@@ -166,6 +166,7 @@ namespace JOB_IN
             textBox2.Size = new Size(480, 32);
             textBox2.TabIndex = 3;
             textBox2.Text = "********";
+            textBox2.Hide();
             // 
             // textBox1
             // 
