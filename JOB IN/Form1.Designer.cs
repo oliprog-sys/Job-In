@@ -47,10 +47,14 @@ namespace JOB_IN
             label2 = new Label();
             label1 = new Label();
             label3 = new Label();
-            panel2 = new Panel();
+            picture = new PictureBox();
+            blackColorLine = new PictureBox();
+            SignUpbtn = new Button();
             panel1.SuspendLayout();
             SIgnUpPanel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picture).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)blackColorLine).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -87,7 +91,7 @@ namespace JOB_IN
             SIgnUpPanel1.Controls.Add(textBox1);
             SIgnUpPanel1.Controls.Add(label2);
             SIgnUpPanel1.Controls.Add(label1);
-            SIgnUpPanel1.Location = new Point(236, 366);
+            SIgnUpPanel1.Location = new Point(236, 379);
             SIgnUpPanel1.Name = "SIgnUpPanel1";
             SIgnUpPanel1.Size = new Size(591, 405);
             SIgnUpPanel1.TabIndex = 1;
@@ -163,10 +167,10 @@ namespace JOB_IN
             textBox2.ForeColor = SystemColors.ScrollBar;
             textBox2.Location = new Point(40, 153);
             textBox2.Name = "textBox2";
+            textBox2.PasswordChar = '*';
             textBox2.Size = new Size(480, 32);
             textBox2.TabIndex = 3;
             textBox2.Text = "********";
-            textBox2.PasswordChar='*';
             // 
             // textBox1
             // 
@@ -207,28 +211,54 @@ namespace JOB_IN
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Britannic Bold", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(425, 313);
+            label3.Location = new Point(425, 326);
             label3.Name = "label3";
             label3.Size = new Size(169, 37);
             label3.TabIndex = 7;
             label3.Text = "Signing in";
             // 
-            // panel2
+            // picture
             // 
-            panel2.Anchor = AnchorStyles.None;
-            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
-            panel2.Location = new Point(458, 207);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(100, 103);
-            panel2.TabIndex = 8;
+            picture.Anchor = AnchorStyles.None;
+            picture.Image = (Image)resources.GetObject("picture.Image");
+            picture.Location = new Point(465, 220);
+            picture.Name = "picture";
+            picture.Size = new Size(102, 103);
+            picture.TabIndex = 9;
+            picture.TabStop = false;
+            // 
+            // blackColorLine
+            // 
+            blackColorLine.Anchor = AnchorStyles.None;
+            blackColorLine.BackColor = Color.Black;
+            blackColorLine.Location = new Point(409, 852);
+            blackColorLine.Name = "blackColorLine";
+            blackColorLine.Size = new Size(204, 10);
+            blackColorLine.TabIndex = 10;
+            blackColorLine.TabStop = false;
+            // 
+            // SignUpbtn
+            // 
+            SignUpbtn.Anchor = AnchorStyles.None;
+            SignUpbtn.FlatAppearance.BorderSize = 0;
+            SignUpbtn.FlatStyle = FlatStyle.Flat;
+            SignUpbtn.Font = new Font("Britannic Bold", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            SignUpbtn.Location = new Point(425, 807);
+            SignUpbtn.Name = "SignUpbtn";
+            SignUpbtn.Size = new Size(169, 39);
+            SignUpbtn.TabIndex = 11;
+            SignUpbtn.Text = "Sign Up";
+            SignUpbtn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1081, 860);
-            Controls.Add(panel2);
+            ClientSize = new Size(1081, 886);
+            Controls.Add(SignUpbtn);
+            Controls.Add(blackColorLine);
+            Controls.Add(picture);
             Controls.Add(label3);
             Controls.Add(SIgnUpPanel1);
             Controls.Add(panel1);
@@ -240,6 +270,8 @@ namespace JOB_IN
             SIgnUpPanel1.ResumeLayout(false);
             SIgnUpPanel1.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picture).EndInit();
+            ((System.ComponentModel.ISupportInitialize)blackColorLine).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -258,6 +290,8 @@ namespace JOB_IN
         private Label label1;
         private Label label3;
         private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel2;
+        private PictureBox picture;
+        private PictureBox blackColorLine;
+        private Button SignUpbtn;
     }
 }
