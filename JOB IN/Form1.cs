@@ -25,7 +25,7 @@ namespace JOB_IN
             button2.BackColor = Color.White;
             //panel2.BackgroundImage = Image.FromFile("D:\\iconb.png");
             //panel2.Size = new Size(100, 83);
-            picture.Image = Image.FromFile("C:\\Users\\hello\\Source\\Repos\\Job-In\\JOB IN\\Image\\iconb.png");
+            picture.Image = Image.FromFile("..\\..\\..\\Image\\iconb.png");
         }
 
         private void button(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace JOB_IN
             button2.BackColor = Color.RoyalBlue;
             // panel2.BackgroundImage = Image.FromFile("D:\\or.png");
             //panel2.Size = new Size(100, 100);
-            picture.Image = Image.FromFile("C:\\Users\\hello\\Source\\Repos\\Job-In\\JOB IN\\Image\\or.png");
+            picture.Image = Image.FromFile("..\\..\\..\\Image\\or.png");
         }
 
         private void Form1_Load(object sender, EventArgs e)

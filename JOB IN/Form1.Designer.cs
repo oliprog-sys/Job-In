@@ -224,7 +224,7 @@ namespace JOB_IN
             // picture
             // 
             picture.Anchor = AnchorStyles.None;
-            picture.Image = Properties.Resources.or;
+            picture.Image = Image.FromFile("..\\..\\..\\Image\\or.png");
             picture.Location = new Point(435, 174);
             picture.Name = "picture";
             picture.Size = new Size(102, 103);
