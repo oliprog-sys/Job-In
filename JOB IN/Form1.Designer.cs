@@ -8,6 +8,9 @@ namespace JOB_IN
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nleft,int ntop, int nright,int nbottom, int nwidthEllipse,int nheightEllipse);
+
+        
+
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -33,8 +36,8 @@ namespace JOB_IN
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+        { 
+
             panel1 = new Panel();
             companyname1 = new Label();
             SIgnUpPanel1 = new Panel();
@@ -50,21 +53,23 @@ namespace JOB_IN
             picture = new PictureBox();
             blackColorLine = new PictureBox();
             SignUpbtn = new Button();
+            MainPanel = new Panel();
             panel1.SuspendLayout();
             SIgnUpPanel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)blackColorLine).BeginInit();
+            MainPanel.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            
             panel1.BackColor = Color.Coral;
             panel1.Controls.Add(companyname1);
-            panel1.Location = new Point(2, 12);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1076, 154);
+            panel1.Size = new Size(1081, 143);
             panel1.TabIndex = 0;
             // 
             // companyname1
@@ -73,16 +78,15 @@ namespace JOB_IN
             companyname1.Anchor = AnchorStyles.None;
             companyname1.AutoSize = true;
             companyname1.Font = new Font("Britannic Bold", 55.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            companyname1.Location = new Point(385, 26);
+            companyname1.Location = new Point(387, 20);
             companyname1.Name = "companyname1";
             companyname1.Size = new Size(310, 101);
             companyname1.TabIndex = 0;
             companyname1.Text = "JOB IN";
             companyname1.TextAlign = ContentAlignment.TopCenter;
-            companyname1.Click += companyname1_Click;
-            // 
+             
             // SIgnUpPanel1
-            // 
+            
             SIgnUpPanel1.Anchor = AnchorStyles.None;
             SIgnUpPanel1.BackColor = Color.Coral;
             SIgnUpPanel1.Controls.Add(tableLayoutPanel1);
@@ -91,9 +95,9 @@ namespace JOB_IN
             SIgnUpPanel1.Controls.Add(textBox1);
             SIgnUpPanel1.Controls.Add(label2);
             SIgnUpPanel1.Controls.Add(label1);
-            SIgnUpPanel1.Location = new Point(236, 379);
+            SIgnUpPanel1.Location = new Point(216, 320);
             SIgnUpPanel1.Name = "SIgnUpPanel1";
-            SIgnUpPanel1.Size = new Size(591, 405);
+            SIgnUpPanel1.Size = new Size(548, 469);
             SIgnUpPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -106,7 +110,7 @@ namespace JOB_IN
             tableLayoutPanel1.Controls.Add(button2, 0, 0);
             tableLayoutPanel1.Controls.Add(button3, 0, 0);
             tableLayoutPanel1.ForeColor = SystemColors.ActiveCaptionText;
-            tableLayoutPanel1.Location = new Point(144, 322);
+            tableLayoutPanel1.Location = new Point(123, 354);
             tableLayoutPanel1.Margin = new Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
@@ -153,7 +157,7 @@ namespace JOB_IN
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Britannic Bold", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(222, 257);
+            button1.Location = new Point(201, 289);
             button1.Name = "button1";
             button1.Size = new Size(109, 38);
             button1.TabIndex = 4;
@@ -168,7 +172,7 @@ namespace JOB_IN
             textBox2.Location = new Point(40, 153);
             textBox2.Name = "textBox2";
             textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(480, 32);
+            textBox2.Size = new Size(437, 32);
             textBox2.TabIndex = 3;
             textBox2.Text = "********";
             // 
@@ -179,7 +183,7 @@ namespace JOB_IN
             textBox1.ForeColor = SystemColors.ScrollBar;
             textBox1.Location = new Point(40, 72);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(480, 32);
+            textBox1.Size = new Size(437, 32);
             textBox1.TabIndex = 2;
             textBox1.Text = "Someone12@gmail.com";
             textBox1.TextChanged += textBox1_TextChanged;
@@ -200,7 +204,7 @@ namespace JOB_IN
             label1.AutoSize = true;
             label1.Font = new Font("Britannic Bold", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(40, 27);
+            label1.Location = new Point(40, 25);
             label1.Name = "label1";
             label1.Size = new Size(88, 33);
             label1.TabIndex = 0;
@@ -211,7 +215,7 @@ namespace JOB_IN
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Britannic Bold", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(425, 326);
+            label3.Location = new Point(397, 280);
             label3.Name = "label3";
             label3.Size = new Size(169, 37);
             label3.TabIndex = 7;
@@ -220,8 +224,8 @@ namespace JOB_IN
             // picture
             // 
             picture.Anchor = AnchorStyles.None;
-            picture.Image = (Image)resources.GetObject("picture.Image");
-            picture.Location = new Point(465, 220);
+            picture.Image = Properties.Resources.or;
+            picture.Location = new Point(435, 174);
             picture.Name = "picture";
             picture.Size = new Size(102, 103);
             picture.TabIndex = 9;
@@ -231,7 +235,7 @@ namespace JOB_IN
             // 
             blackColorLine.Anchor = AnchorStyles.None;
             blackColorLine.BackColor = Color.Black;
-            blackColorLine.Location = new Point(409, 852);
+            blackColorLine.Location = new Point(379, 840);
             blackColorLine.Name = "blackColorLine";
             blackColorLine.Size = new Size(204, 10);
             blackColorLine.TabIndex = 10;
@@ -243,12 +247,26 @@ namespace JOB_IN
             SignUpbtn.FlatAppearance.BorderSize = 0;
             SignUpbtn.FlatStyle = FlatStyle.Flat;
             SignUpbtn.Font = new Font("Britannic Bold", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            SignUpbtn.Location = new Point(425, 807);
+            SignUpbtn.Location = new Point(397, 795);
             SignUpbtn.Name = "SignUpbtn";
             SignUpbtn.Size = new Size(169, 39);
             SignUpbtn.TabIndex = 11;
             SignUpbtn.Text = "Sign Up";
             SignUpbtn.UseVisualStyleBackColor = true;
+            // 
+            // MainPanel
+            // 
+            MainPanel.Controls.Add(SIgnUpPanel1);
+            MainPanel.Controls.Add(blackColorLine);
+            MainPanel.Controls.Add(panel1);
+            MainPanel.Controls.Add(SignUpbtn);
+            MainPanel.Controls.Add(picture);
+            MainPanel.Controls.Add(label3);
+            MainPanel.Dock = DockStyle.Fill;
+            MainPanel.Location = new Point(0, 0);
+            MainPanel.Name = "MainPanel";
+            MainPanel.Size = new Size(1081, 886);
+            MainPanel.TabIndex = 12;
             // 
             // Form1
             // 
@@ -256,12 +274,7 @@ namespace JOB_IN
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1081, 886);
-            Controls.Add(SignUpbtn);
-            Controls.Add(blackColorLine);
-            Controls.Add(picture);
-            Controls.Add(label3);
-            Controls.Add(SIgnUpPanel1);
-            Controls.Add(panel1);
+            Controls.Add(MainPanel);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -272,8 +285,10 @@ namespace JOB_IN
             tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picture).EndInit();
             ((System.ComponentModel.ISupportInitialize)blackColorLine).EndInit();
+            MainPanel.ResumeLayout(false);
+            MainPanel.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
+        
         }
 
         #endregion
@@ -293,5 +308,6 @@ namespace JOB_IN
         private PictureBox picture;
         private PictureBox blackColorLine;
         private Button SignUpbtn;
+        private Panel MainPanel;
     }
 }

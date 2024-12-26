@@ -23,8 +23,9 @@ namespace JOB_IN
             button3.ForeColor = Color.White;
             button2.ForeColor = Color.Black;
             button2.BackColor = Color.White;
-            panel2.BackgroundImage = Image.FromFile("D:\\iconb.png");
-            panel2.Size = new Size(100, 83);
+            //panel2.BackgroundImage = Image.FromFile("D:\\iconb.png");
+            //panel2.Size = new Size(100, 83);
+            picture.Image = Image.FromFile("C:\\Users\\hello\\Source\\Repos\\Job-In\\JOB IN\\Image\\iconb.png");
         }
 
         private void button(object sender, EventArgs e)
@@ -42,8 +43,9 @@ namespace JOB_IN
             button3.ForeColor = Color.Black;
             button2.ForeColor = Color.White;
             button2.BackColor = Color.RoyalBlue;
-            panel2.BackgroundImage = Image.FromFile("D:\\or.png");
-            panel2.Size = new Size(100, 100);
+            // panel2.BackgroundImage = Image.FromFile("D:\\or.png");
+            //panel2.Size = new Size(100, 100);
+            picture.Image = Image.FromFile("C:\\Users\\hello\\Source\\Repos\\Job-In\\JOB IN\\Image\\or.png");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -53,9 +55,10 @@ namespace JOB_IN
             textBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox2.Width, textBox2.Height, 20, 20));
             textBox1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox1.Width, textBox1.Height, 20, 20));
             tableLayoutPanel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height, 20, 20));
+            blackColorLine.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, blackColorLine.Width, blackColorLine.Height, 5, 5));
         }
 
-        private void companyname1_Click(object sender, EventArgs e)
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
