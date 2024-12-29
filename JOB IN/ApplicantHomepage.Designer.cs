@@ -25,12 +25,12 @@
         private topButtons search;
         private topButtons status;
         private topButtons profile;
-        private Panel jobsPane;
-        private Panel searchPane;
-        private Panel statusPane;
+        private borderedPanels jobsPane;
+        private borderedPanels searchPane;
+        private borderedPanels statusPane;
         private borderedPanels profilePane;
         private Panel MainPanel;
 
-       
+      
     }
 }
