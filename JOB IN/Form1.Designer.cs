@@ -257,18 +257,18 @@ namespace JOB_IN
             SignUpbtn.TabIndex = 11;
             SignUpbtn.Text = "Sign Up";
             SignUpbtn.UseVisualStyleBackColor = true;
-            /*
+            
             t.Anchor = AnchorStyles.None;
             t.Text = "hola como es tas";
             t.Location = new Point(397, 795);
             t.Size = new Size(169, 39);
-            t.BorderRadius = 10;
-            t.BorderSize = 10;
-            */
+            //t.BorderRadius = 20;
+            //t.BorderSize = 100;
+            
             // 
             // MainPanel
             // 
-
+           // MainPanel.Controls.Add(t);
             MainPanel.Controls.Add(SIgnUpPanel1);
             MainPanel.Controls.Add(blackColorLine);
             MainPanel.Controls.Add(panel1);
@@ -326,23 +326,9 @@ namespace JOB_IN
 }
 
 
-public partial class applicantsHomePage 
-{
-    private Panel scrollPanel;
-    private Button home, search, status, profile;
-  //  private Label 
-    public applicantsHomePage()
-    {
-        InitializeComponents();
-    }
-    public void InitializeComponents()
-    {
 
 
-
-    }
-}
-
+// Class of Custom Button
 public class topButtons : Button
 {
     private int bordersize = 0;
@@ -351,7 +337,7 @@ public class topButtons : Button
         get { return bordersize; }
         set { bordersize = value; }
     }
-    private int borderRadius = 40;
+    private int borderRadius = 10;
     public int BorderRadius
     {
         get { return borderRadius; }
@@ -364,7 +350,7 @@ public class topButtons : Button
     {
         this.FlatStyle = FlatStyle.Flat;
         this.FlatAppearance.BorderSize = 0;
-        this.Size = new Size(400, 200);
+      //  this.Size = new Size(400, 200);
         this.BackColor = backColor[color];
         if(color == 0)
         {
