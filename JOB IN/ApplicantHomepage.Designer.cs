@@ -28,7 +28,7 @@
         private Panel jobsPane;
         private Panel searchPane;
         private Panel statusPane;
-        private Panel profilePane;
+        private borderedPanels profilePane;
         private Panel MainPanel;
 
        

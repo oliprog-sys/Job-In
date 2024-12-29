@@ -25,7 +25,7 @@ namespace JOB_IN
             jobsPane = new Panel();
             searchPane = new Panel();
             statusPane = new Panel();
-            profilePane = new Panel();
+            profilePane = new borderedPanels();
             MainPanel = new Panel();
 
             jobs.Anchor = AnchorStyles.None;
@@ -52,10 +52,20 @@ namespace JOB_IN
             profile.Size = new Size(140, 80);
             profile.Text = "Profile";
 
+
+            profilePane.Anchor = AnchorStyles.None;
+            profilePane.AutoScroll = true;
+            profilePane.BackColor = Color.White;
+            profilePane.Size = new Size(1434, 675);
+            profilePane.Location = new Point(-647, -220);
+            profilePane.BorderStyle = BorderStyle.None;
+
+
             MainPanel.Controls.Add(jobs);
             MainPanel.Controls.Add(search);
             MainPanel.Controls.Add(status);
             MainPanel.Controls.Add(profile);
+            MainPanel.Controls.Add(profilePane);   
             
             MainPanel.Dock = DockStyle.Fill;
             MainPanel.BackColor = Color.Gray;
@@ -67,6 +77,8 @@ namespace JOB_IN
             ResumeLayout(false);
 
 
+            WindowState = FormWindowState.Maximized;
+            MinimumSize = new Size(1635, 920);
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
