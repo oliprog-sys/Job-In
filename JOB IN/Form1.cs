@@ -83,6 +83,7 @@ namespace JOB_IN
 
 
 
+
         private void Loginbtn_Click(object sender, EventArgs e)
         {
             if (SIgnUpPanel1.BackColor == Color.RoyalBlue)
