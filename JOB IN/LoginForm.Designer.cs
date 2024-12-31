@@ -217,6 +217,8 @@ namespace JOB_IN
             postp.ResumeLayout(false);
             historyp.ResumeLayout(false);
             ResumeLayout(false);
+
+            this.FormClosing += CloseApp;
         }
 
         // #endregion

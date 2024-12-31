@@ -115,7 +115,7 @@ namespace JOB_IN
             BackColor = Color.White;
             ClientSize = new Size(1920, 1080);
             Controls.Add(MainPanel);
-            Name = "Form1";
+            Name = "Applicant";
             Text = "Form1";
 
             this.FormClosing += CloseApp;

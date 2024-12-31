@@ -64,8 +64,13 @@ namespace JOB_IN
             this.Hide();
             if (apage)
             {
-               ApplicantHomepage s = new ApplicantHomepage();
+                ApplicantHomepage s = new ApplicantHomepage();
                 s.Show();
+            }
+            else
+            {
+                LoginForm l = new LoginForm();
+                l.Show();
             }
         }
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)

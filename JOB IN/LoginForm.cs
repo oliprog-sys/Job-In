@@ -52,11 +52,16 @@ namespace JOB_IN
             
             
 
-            OpenchildForm2(new AppJobPanel(), sender);
+            //OpenchildForm2(new AppJobPanel(), sender);
 
 
         }
 
+        private static void CloseApp(object? sender, FormClosingEventArgs e)
+        {
+
+            Application.Exit();
+        }
         private void cusbutton2_Click(object sender, EventArgs e)
         {
             if (jobspanel.BackColor == Color.White)
