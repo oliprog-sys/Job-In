@@ -41,15 +41,18 @@ namespace JOB_IN
         /// </summary>
         private void InitializeComponent()
         {
+
+
             apage = true;
             t = new topButtons(0);
+
             panel1 = new Panel();
             companyname1 = new Label();
             SIgnUpPanel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
-            button2 = new Button();
-            button3 = new Button();
-            button1 = new Button();
+            Employerbtn = new Button();
+            Applicantbtn = new Button();
+            Loginbtn = new Button();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             label2 = new Label();
@@ -68,7 +71,7 @@ namespace JOB_IN
             SuspendLayout();
             // 
             // panel1
-            
+            // 
             panel1.BackColor = Color.Coral;
             panel1.Controls.Add(companyname1);
             panel1.Dock = DockStyle.Top;
@@ -89,13 +92,13 @@ namespace JOB_IN
             companyname1.TabIndex = 0;
             companyname1.Text = "JOB IN";
             companyname1.TextAlign = ContentAlignment.TopCenter;
-             
+            // 
             // SIgnUpPanel1
-            
+            // 
             SIgnUpPanel1.Anchor = AnchorStyles.None;
             SIgnUpPanel1.BackColor = Color.Coral;
             SIgnUpPanel1.Controls.Add(tableLayoutPanel1);
-            SIgnUpPanel1.Controls.Add(button1);
+            SIgnUpPanel1.Controls.Add(Loginbtn);
             SIgnUpPanel1.Controls.Add(textBox2);
             SIgnUpPanel1.Controls.Add(textBox1);
             SIgnUpPanel1.Controls.Add(label2);
@@ -112,8 +115,8 @@ namespace JOB_IN
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Controls.Add(button2, 0, 0);
-            tableLayoutPanel1.Controls.Add(button3, 0, 0);
+            tableLayoutPanel1.Controls.Add(Employerbtn, 0, 0);
+            tableLayoutPanel1.Controls.Add(Applicantbtn, 0, 0);
             tableLayoutPanel1.ForeColor = SystemColors.ActiveCaptionText;
             tableLayoutPanel1.Location = new Point(123, 354);
             tableLayoutPanel1.Margin = new Padding(0);
@@ -123,58 +126,59 @@ namespace JOB_IN
             tableLayoutPanel1.Size = new Size(293, 63);
             tableLayoutPanel1.TabIndex = 5;
             // 
-            // button2
+
+            // Employerbtn
             // 
-            button2.Anchor = AnchorStyles.None;
-            button2.BackColor = Color.RoyalBlue;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.ForeColor = SystemColors.ButtonHighlight;
-            button2.Location = new Point(149, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(141, 57);
-            button2.TabIndex = 5;
-            button2.Text = "Employer";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button;
-            button2.MouseClick += button2_MouseClick;
+            Employerbtn.Anchor = AnchorStyles.None;
+            Employerbtn.BackColor = Color.RoyalBlue;
+            Employerbtn.FlatAppearance.BorderSize = 0;
+            Employerbtn.FlatStyle = FlatStyle.Flat;
+            Employerbtn.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Employerbtn.ForeColor = SystemColors.ButtonHighlight;
+            Employerbtn.Location = new Point(149, 3);
+            Employerbtn.Name = "Employerbtn";
+            Employerbtn.Size = new Size(141, 57);
+            Employerbtn.TabIndex = 5;
+            Employerbtn.Text = "Employer";
+            Employerbtn.UseVisualStyleBackColor = false;
+            Employerbtn.Click += button;
+            Employerbtn.MouseClick += button2_MouseClick;
             // 
-            // button3
+            // Applicantbtn
             // 
-            button3.BackColor = Color.Snow;
-            button3.Dock = DockStyle.Fill;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Britannic Bold", 12F);
-            button3.Location = new Point(3, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(140, 57);
-            button3.TabIndex = 6;
-            button3.Text = "Applicant";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            Applicantbtn.BackColor = Color.Snow;
+            Applicantbtn.Dock = DockStyle.Fill;
+            Applicantbtn.FlatAppearance.BorderSize = 0;
+            Applicantbtn.FlatStyle = FlatStyle.Flat;
+            Applicantbtn.Font = new Font("Britannic Bold", 12F);
+            Applicantbtn.Location = new Point(3, 3);
+            Applicantbtn.Name = "Applicantbtn";
+            Applicantbtn.Size = new Size(140, 57);
+            Applicantbtn.TabIndex = 6;
+            Applicantbtn.Text = "Applicant";
+            Applicantbtn.UseVisualStyleBackColor = false;
+            Applicantbtn.Click += button3_Click;
             // 
-            // button1
+            // Loginbtn
             // 
-            button1.Anchor = AnchorStyles.None;
-            button1.BackColor = Color.Coral;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Britannic Bold", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(201, 289);
-            button1.Name = "button1";
-            button1.Size = new Size(109, 38);
-            button1.TabIndex = 4;
-            button1.Text = "Log In";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += SignIn;
+            Loginbtn.Anchor = AnchorStyles.None;
+            Loginbtn.BackColor = Color.Coral;
+            Loginbtn.FlatAppearance.BorderSize = 0;
+            Loginbtn.FlatStyle = FlatStyle.Flat;
+            Loginbtn.Font = new Font("Britannic Bold", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Loginbtn.Location = new Point(201, 289);
+            Loginbtn.Name = "Loginbtn";
+            Loginbtn.Size = new Size(109, 38);
+            Loginbtn.TabIndex = 4;
+            Loginbtn.Text = "Log In";
+            Loginbtn.UseVisualStyleBackColor = false;
+            Loginbtn.Click += Loginbtn_Click;
             // 
             // textBox2
             // 
             textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox2.Font = new Font("Candara Light", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            textBox2.ForeColor = SystemColors.ScrollBar;
+            textBox2.ForeColor = Color.Black;
             textBox2.Location = new Point(40, 153);
             textBox2.Name = "textBox2";
             textBox2.PasswordChar = '*';
@@ -186,7 +190,7 @@ namespace JOB_IN
             // 
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox1.Font = new Font("Candara Light", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = SystemColors.ScrollBar;
+            textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(40, 72);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(437, 32);
@@ -236,6 +240,7 @@ namespace JOB_IN
             picture.Size = new Size(102, 103);
             picture.TabIndex = 9;
             picture.TabStop = false;
+            picture.Click += picture_Click;
             // 
             // blackColorLine
             // 
@@ -303,7 +308,6 @@ namespace JOB_IN
             MainPanel.ResumeLayout(false);
             MainPanel.PerformLayout();
             ResumeLayout(false);
-        
         }
 
        
@@ -314,9 +318,9 @@ namespace JOB_IN
         private Panel panel1;
         private Label companyname1;
         private Panel SIgnUpPanel1;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private Button Applicantbtn;
+        private Button Employerbtn;
+        private Button Loginbtn;
         private TextBox textBox2;
         private TextBox textBox1;
         private Label label2;
