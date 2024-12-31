@@ -41,6 +41,7 @@ namespace JOB_IN
         /// </summary>
         private void InitializeComponent()
         {
+            apage = true;
             t = new topButtons(0);
             panel1 = new Panel();
             companyname1 = new Label();
@@ -167,6 +168,7 @@ namespace JOB_IN
             button1.TabIndex = 4;
             button1.Text = "Log In";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += SignIn;
             // 
             // textBox2
             // 
@@ -304,6 +306,9 @@ namespace JOB_IN
         
         }
 
+       
+
+        private bool apage;
         #endregion
         private topButtons t;
         private Panel panel1;
@@ -343,7 +348,7 @@ public class topButtons : Button
         get { return borderRadius; }
         set { borderRadius = value; }
     }
-    private Color[] backColor = [Color.Coral, Color.RoyalBlue];
+    private Color[] backColor = [Color.Coral, Color.RoyalBlue, Color.AliceBlue];
     private int ColorChoice;
 
     public topButtons(int color)
@@ -356,9 +361,13 @@ public class topButtons : Button
         {
             this.ForeColor = Color.Black;
         }
-        else
+        else if(color == 1) 
         {
             this.ForeColor= Color.White;
+        }
+        else
+        {
+            this.ForeColor = Color.Coral;
         }
         ColorChoice = color;
     }

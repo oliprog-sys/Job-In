@@ -15,6 +15,7 @@ namespace JOB_IN
 
         private void button2_MouseClick(object sender, MouseEventArgs e)
         {
+            apage = false;
             SIgnUpPanel1.BackColor = Color.RoyalBlue;
             companyname1.ForeColor = Color.White;
             panel1.BackColor = Color.RoyalBlue;
@@ -35,6 +36,7 @@ namespace JOB_IN
 
         private void button3_Click(object sender, EventArgs e)
         {
+            apage = true;
             SIgnUpPanel1.BackColor = Color.Coral;
             companyname1.ForeColor = Color.Black;
             panel1.BackColor = Color.Coral;
@@ -57,10 +59,20 @@ namespace JOB_IN
             tableLayoutPanel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height, 20, 20));
             blackColorLine.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, blackColorLine.Width, blackColorLine.Height, 5, 5));
         }
-
+        private void SignIn(object sender, EventArgs e)
+        {
+            this.Hide();
+            if (apage)
+            {
+               ApplicantHomepage s = new ApplicantHomepage();
+                s.Show();
+            }
+        }
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
     }
 }
+
+

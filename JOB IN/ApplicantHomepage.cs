@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,7 +19,7 @@ namespace JOB_IN
         }
         public void InitializeComponents()
         {
-            jobs = new topButtons(0);
+            jobs = new topButtons(2);
             search = new topButtons(0);
             status = new topButtons(0);
             profile = new topButtons(0);
@@ -117,6 +118,8 @@ namespace JOB_IN
             Name = "Form1";
             Text = "Form1";
 
+            this.FormClosing += CloseApp;
+
 
         }
 
@@ -196,5 +199,32 @@ namespace JOB_IN
 
         }
 
+        // 
+        public void job_list_adder()
+        {
+            ArrayList jobList= new ArrayList { };
+            job_list_fetcher(jobList);
+            //used to control the vertical spacing of the 
+            int j = 0;
+            foreach(borderedPanels i in jobList)
+            {
+                i.Location = new Point(j,10);
+                jobsPane.Controls.Add(i);
+                j += i.Width + 20;
+            }
+
+        }
+        
+
+        //Fetches the job info as a series of strings from the database and creates a panel that will be added to an array list
+        public void job_list_fetcher(ArrayList jobList)
+        {
+
+        }
+        private static void CloseApp(object? sender, FormClosingEventArgs e)
+        {
+          
+            Application.Exit();
+        }
     }
 }
