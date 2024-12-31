@@ -172,7 +172,8 @@ namespace JOB_IN
             Loginbtn.TabIndex = 4;
             Loginbtn.Text = "Log In";
             Loginbtn.UseVisualStyleBackColor = false;
-            Loginbtn.Click += Loginbtn_Click;
+            Loginbtn.Click += SignIn;
+            
             // 
             // textBox2
             // 
@@ -240,7 +241,7 @@ namespace JOB_IN
             picture.Size = new Size(102, 103);
             picture.TabIndex = 9;
             picture.TabStop = false;
-            picture.Click += picture_Click;
+           
             // 
             // blackColorLine
             // 

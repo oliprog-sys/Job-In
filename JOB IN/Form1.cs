@@ -88,7 +88,10 @@ namespace JOB_IN
 
         private void Loginbtn_Click(object sender, EventArgs e)
         {
-            if (SIgnUpPanel1.BackColor == Color.RoyalBlue)
+            if (apage) { 
+                
+            }
+            else
             {
                 SIgnUpPanel1.BackColor = Color.RoyalBlue;
                 companyname1.ForeColor = Color.White;
@@ -99,16 +102,21 @@ namespace JOB_IN
 
         private void SignIn(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
             if (apage)
             {
+                this.Hide();
                 ApplicantHomepage s = new ApplicantHomepage();
+              //  OpenchildForm(s, sender);
                 s.Show();
             }
             else
             {
-                LoginForm l = new LoginForm();
-                l.Show();
+                SIgnUpPanel1.BackColor = Color.RoyalBlue;
+                companyname1.ForeColor = Color.White;
+                LoginForm form = new LoginForm();
+                OpenchildForm(form, sender);
+                form.Hide();
             }
         }
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
