@@ -41,6 +41,7 @@ namespace JOB_IN
         /// </summary>
         private void InitializeComponent()
         {
+            apage = true;
             t = new topButtons(0);
             panel1 = new Panel();
             companyname1 = new Label();
@@ -167,6 +168,7 @@ namespace JOB_IN
             button1.TabIndex = 4;
             button1.Text = "Log In";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += SignIn;
             // 
             // textBox2
             // 
@@ -257,18 +259,18 @@ namespace JOB_IN
             SignUpbtn.TabIndex = 11;
             SignUpbtn.Text = "Sign Up";
             SignUpbtn.UseVisualStyleBackColor = true;
-            /*
+            
             t.Anchor = AnchorStyles.None;
             t.Text = "hola como es tas";
             t.Location = new Point(397, 795);
             t.Size = new Size(169, 39);
-            t.BorderRadius = 10;
-            t.BorderSize = 10;
-            */
+            //t.BorderRadius = 20;
+            //t.BorderSize = 100;
+            
             // 
             // MainPanel
             // 
-
+           // MainPanel.Controls.Add(t);
             MainPanel.Controls.Add(SIgnUpPanel1);
             MainPanel.Controls.Add(blackColorLine);
             MainPanel.Controls.Add(panel1);
@@ -304,6 +306,9 @@ namespace JOB_IN
         
         }
 
+       
+
+        private bool apage;
         #endregion
         private topButtons t;
         private Panel panel1;
@@ -326,23 +331,9 @@ namespace JOB_IN
 }
 
 
-public partial class applicantsHomePage 
-{
-    private Panel scrollPanel;
-    private Button home, search, status, profile;
-  //  private Label 
-    public applicantsHomePage()
-    {
-        InitializeComponents();
-    }
-    public void InitializeComponents()
-    {
 
 
-
-    }
-}
-
+// Class of Custom Button
 public class topButtons : Button
 {
     private int bordersize = 0;
@@ -351,28 +342,32 @@ public class topButtons : Button
         get { return bordersize; }
         set { bordersize = value; }
     }
-    private int borderRadius = 40;
+    private int borderRadius = 10;
     public int BorderRadius
     {
         get { return borderRadius; }
         set { borderRadius = value; }
     }
-    private Color[] backColor = [Color.Coral, Color.RoyalBlue];
+    private Color[] backColor = [Color.Coral, Color.RoyalBlue, Color.AliceBlue];
     private int ColorChoice;
 
     public topButtons(int color)
     {
         this.FlatStyle = FlatStyle.Flat;
         this.FlatAppearance.BorderSize = 0;
-        this.Size = new Size(400, 200);
+      //  this.Size = new Size(400, 200);
         this.BackColor = backColor[color];
         if(color == 0)
         {
             this.ForeColor = Color.Black;
         }
-        else
+        else if(color == 1) 
         {
             this.ForeColor= Color.White;
+        }
+        else
+        {
+            this.ForeColor = Color.Coral;
         }
         ColorChoice = color;
     }
@@ -441,3 +436,91 @@ public class topButtons : Button
     }
 }
 
+
+public class borderedPanels : Panel
+{
+    private int bordersize = 0;
+    public int BorderSize
+    {
+        get { return bordersize; }
+        set { bordersize = value; }
+    }
+    private int borderRadius = 40;
+    public int BorderRadius
+    {
+        get { return borderRadius; }
+        set { borderRadius = value; }
+    }
+    private Color[] backColor = [Color.Coral, Color.RoyalBlue];
+    private int ColorChoice;
+
+    public borderedPanels()
+    {
+      
+        //  this.Size = new Size(400, 200);
+   
+    }
+    private GraphicsPath GetFigurePath(Rectangle rect, float radius)
+    {
+        GraphicsPath path = new GraphicsPath();
+        float curveSize = radius * 2F;
+        path.StartFigure();
+        path.AddArc(rect.X, rect.Y, curveSize, curveSize, 180, 90);
+        path.AddArc(rect.Right - curveSize, rect.Y, curveSize, curveSize, 270, 90);
+        path.AddArc(rect.Right - curveSize, rect.Bottom - curveSize, curveSize, curveSize, 0, 90);
+        path.AddArc(rect.X, rect.Bottom - curveSize, curveSize, curveSize, 90, 90);
+        path.CloseFigure();
+        return path;
+    }
+
+    protected override void OnPaint(PaintEventArgs pevent)
+    {
+        base.OnPaint(pevent);
+        pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+        Rectangle rectSurface = this.ClientRectangle;
+        Rectangle rectBorder = Rectangle.Inflate(rectSurface, bordersize, bordersize);
+        int smoothSize = 2;
+        if (bordersize > 0)
+        {
+            smoothSize = bordersize;
+        }
+        if (borderRadius > 2)
+        {
+            using (GraphicsPath pathSurface = GetFigurePath(rectSurface, borderRadius))
+            using (GraphicsPath pathBorder = GetFigurePath(rectBorder, borderRadius - 1F))
+            using (Pen penSurface = new Pen(this.Parent.BackColor, 2))
+            using (Pen penBorder = new Pen(backColor[ColorChoice], bordersize))
+            {
+                penBorder.Alignment = PenAlignment.Inset;
+                this.Region = new Region(pathSurface);
+                pevent.Graphics.DrawPath(penSurface, pathSurface);
+                if (bordersize >= 1)
+                {
+                    pevent.Graphics.DrawPath(penBorder, pathBorder);
+                }
+            }
+        }
+        else
+        {
+            this.Region = new Region(rectSurface);
+            if (bordersize >= 1)
+            {
+                using (Pen penBorder = new Pen(backColor[ColorChoice], bordersize))
+                {
+                    penBorder.Alignment = PenAlignment.Inset;
+                    pevent.Graphics.DrawRectangle(penBorder, 0, 0, this.Width - 1, this.Height - 1);
+                }
+            }
+        }
+    }
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        this.Parent.BackColorChanged += new EventHandler(Container_BackColorChanged);
+    }
+    private void Container_BackColorChanged(object sender, EventArgs e)
+    {
+        this.Invalidate();
+    }
+}
