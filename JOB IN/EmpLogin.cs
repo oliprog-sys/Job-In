@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace JOB_IN
 {
-    public partial class LoginForm : Form
+    public partial class EmpLogin : Form
     {
-        public LoginForm()
+        public EmpLogin()
         {
             InitializeComponent();
         }
@@ -51,11 +51,9 @@ namespace JOB_IN
             jobspanel.BackColor = Color.White;
             
             
-
-            //OpenchildForm2(new AppJobPanel(), sender);
-
-
-        }
+            AppJobPanel j = new AppJobPanel();
+            OpenchildForm2(j, sender);     
+       }
 
         private static void CloseApp(object? sender, FormClosingEventArgs e)
         {
@@ -107,7 +105,11 @@ namespace JOB_IN
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            jobspanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 20));
+            jobspanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+            postp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+            profilep.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+            historyp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+           // historyp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
         }
     }
 }

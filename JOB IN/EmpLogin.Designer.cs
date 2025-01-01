@@ -1,9 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows.Forms;
+//using System.Data.SqlClient;
+
 
 namespace JOB_IN
 {
-    partial class LoginForm
+    partial class EmpLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -211,6 +213,7 @@ namespace JOB_IN
             Controls.Add(apppanel);
             Name = "LoginForm";
             Text = "LoginForm";
+            FormClosing += CloseApp;
             Load += LoginForm_Load;
             panel1.ResumeLayout(false);
             profilep.ResumeLayout(false);
@@ -218,7 +221,7 @@ namespace JOB_IN
             historyp.ResumeLayout(false);
             ResumeLayout(false);
 
-            this.FormClosing += CloseApp;
+
         }
 
         // #endregion
