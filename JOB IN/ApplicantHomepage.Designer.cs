@@ -1,4 +1,5 @@
-﻿namespace JOB_IN
+﻿using JOB_IN.RJControls;
+namespace JOB_IN
 {
     partial class ApplicantHomepage
     {

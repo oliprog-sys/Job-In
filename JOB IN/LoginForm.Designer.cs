@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using JOB_IN.RJControls;
 
 namespace JOB_IN
 {
@@ -35,10 +36,10 @@ namespace JOB_IN
 
         private void InitializeComponent()
         {
-            Postbtn = new RJControls.Cusbutton();
-            historybtn = new RJControls.Cusbutton();
-            Jobs = new RJControls.Cusbutton();
-            Profilebtn = new RJControls.Cusbutton();
+            Postbtn = new RJControls.Custom();
+            historybtn = new RJControls.Custom();
+            Jobs = new RJControls.Custom();
+            Profilebtn = new RJControls.Custom();
             apppanel = new Panel();
             panel1 = new Panel();
             profilep = new Panel();
@@ -222,10 +223,10 @@ namespace JOB_IN
         }
 
         // #endregion
-        private RJControls.Cusbutton Jobs;
-        private RJControls.Cusbutton Postbtn;
-        private RJControls.Cusbutton historybtn;
-        private RJControls.Cusbutton Profilebtn;
+        private RJControls.Custom Jobs;
+        private RJControls.Custom Postbtn;
+        private RJControls.Custom historybtn;
+        private RJControls.Custom Profilebtn;
         private Panel apppanel;
         private Panel panel1;
         private Panel jobspanel;

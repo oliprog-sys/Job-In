@@ -1,4 +1,5 @@
-﻿namespace JOB_IN
+﻿using JOB_IN.RJControls;
+namespace JOB_IN
 {
     partial class AppJobPanel
     {
@@ -30,10 +31,10 @@
         {
             jpan = new Panel();
             panel2 = new Panel();
-            Myjobsbtn = new RJControls.Cusbutton();
-            otherbtn = new RJControls.Cusbutton();
+            Myjobsbtn = new RJControls.Custom();
+            otherbtn = new RJControls.Custom();
             panel1 = new Panel();
-            showmorebtn = new RJControls.Cusbutton();
+            showmorebtn = new RJControls.Custom();
             textBox1 = new TextBox();
             jpan.SuspendLayout();
             panel2.SuspendLayout();
@@ -169,9 +170,9 @@
 
         private Panel jpan;
         private Panel panel1;
-        private RJControls.Cusbutton otherbtn;
-        private RJControls.Cusbutton Myjobsbtn;
-        private RJControls.Cusbutton showmorebtn;
+        private RJControls.Custom otherbtn;
+        private RJControls.Custom Myjobsbtn;
+        private RJControls.Custom showmorebtn;
         private TextBox textBox1;
         private Panel panel2;
     }

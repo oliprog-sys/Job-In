@@ -74,10 +74,10 @@ namespace JOB_IN
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            SIgnUpPanel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, SIgnUpPanel1.Width, SIgnUpPanel1.Height, 150, 150));
+            //SIgnUpPanel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, SIgnUpPanel1.Width, SIgnUpPanel1.Height, 150, 150));
             Employerbtn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Employerbtn.Width, Employerbtn.Height, 10, 10));
-            textBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox2.Width, textBox2.Height, 20, 20));
-            textBox1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox1.Width, textBox1.Height, 20, 20));
+            //textBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox2.Width, textBox2.Height, 20, 20));
+            //textBox1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox1.Width, textBox1.Height, 20, 20));
             tableLayoutPanel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height, 20, 20));
             blackColorLine.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, blackColorLine.Width, blackColorLine.Height, 5, 5));
             
