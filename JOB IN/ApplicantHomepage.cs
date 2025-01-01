@@ -32,28 +32,28 @@ namespace JOB_IN
 
             jobs.Name = "jobs";
             jobs.Anchor = AnchorStyles.None;
-            jobs.Font = new Font("Istok Web", 12F);
+            jobs.Font = Custom.font(12f);
             jobs.Location = new Point(-647, -380);
             jobs.Size = new Size(140, 80);
             jobs.Text = "Jobs";
             jobs.Click += job_nav_MouseClick;
 
             search.Anchor = AnchorStyles.None;
-            search.Font = new Font("Istok Web", 12F);
+            search.Font = Custom.font(12f);
             search.Location = new Point( -215, -380);
             search.Size = new Size(140, 80);
             search.Text = "Search";
             search.Click += search_nav_MouseClick;
 
             status.Anchor = AnchorStyles.None;
-            status.Font = new Font("Istok Web", 12F);
+            status.Font = Custom.font(12f);
             status.Location = new Point(215, -380);
             status.Size = new Size(140, 80);
             status.Text = "Status";
             status.Click += status_nav_MouseClick;
 
             profile.Anchor = AnchorStyles.None;
-            profile.Font = new Font("Istok Web", 12F);
+            profile.Font = Custom.font(12f);
             profile.Location = new Point(647, -380);
             profile.Size = new Size(140, 80);
             profile.Text = "Profile";
