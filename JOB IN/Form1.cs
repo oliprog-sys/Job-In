@@ -95,7 +95,8 @@ namespace JOB_IN
             {
                 SIgnUpPanel1.BackColor = Color.RoyalBlue;
                 companyname1.ForeColor = Color.White;
-                OpenchildForm(new LoginForm(), sender);
+                EmpLogin l= new EmpLogin();
+                OpenchildForm(l, sender);
             }
         }
 
@@ -114,9 +115,9 @@ namespace JOB_IN
             {
                 SIgnUpPanel1.BackColor = Color.RoyalBlue;
                 companyname1.ForeColor = Color.White;
-                LoginForm form = new LoginForm();
+                EmpLogin form = new EmpLogin();
                 OpenchildForm(form, sender);
-                form.Hide();
+                
             }
         }
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)

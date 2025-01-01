@@ -109,12 +109,14 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top;
+            panel1.AutoSize = true;
             panel1.BackColor = Color.FromArgb(224, 224, 224);
             panel1.Controls.Add(showmorebtn);
             panel1.Controls.Add(textBox1);
-            panel1.Location = new Point(113, 139);
+            panel1.Location = new Point(0, 139);
             panel1.Name = "panel1";
-            panel1.Size = new Size(804, 282);
+            panel1.Size = new Size(1010, 282);
             panel1.TabIndex = 0;
             // 
             // showmorebtn
@@ -132,7 +134,7 @@
             showmorebtn.FlatStyle = FlatStyle.Flat;
             showmorebtn.Font = new Font("Britannic Bold", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             showmorebtn.ForeColor = Color.White;
-            showmorebtn.Location = new Point(524, 216);
+            showmorebtn.Location = new Point(768, 216);
             showmorebtn.Name = "showmorebtn";
             showmorebtn.Size = new Size(188, 50);
             showmorebtn.TabIndex = 1;
@@ -159,6 +161,7 @@
             Name = "AppJobPanel";
             Text = "AppPanel";
             jpan.ResumeLayout(false);
+            jpan.PerformLayout();
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
