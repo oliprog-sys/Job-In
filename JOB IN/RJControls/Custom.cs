@@ -14,8 +14,13 @@ using System.ComponentModel;
 
 namespace JOB_IN.RJControls
 {
+    
     public class Custom : Button
     {
+        public static Font font(float s) {
+          Font f  = new Font("Cascadia Mono", s);
+          return f;
+        } 
         private int borderSize = 0;
         private int borderRadius = 40;
         private Color borderColor = Color.PaleVioletRed;

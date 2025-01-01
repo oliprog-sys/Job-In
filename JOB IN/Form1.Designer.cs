@@ -86,8 +86,8 @@ namespace JOB_IN
             companyname1.AccessibleName = "";
             companyname1.Anchor = AnchorStyles.None;
             companyname1.AutoSize = true;
-            companyname1.Font = new Font("Britannic Bold", 55.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            companyname1.Location = new Point(387, 20);
+            companyname1.Font = Custom.font(55F);
+            companyname1.Location = new Point(805, 20);
             companyname1.Name = "companyname1";
             companyname1.Size = new Size(310, 101);
             companyname1.TabIndex = 0;
@@ -105,7 +105,7 @@ namespace JOB_IN
             SIgnUpPanel1.Controls.Add(textBox1);
             SIgnUpPanel1.Controls.Add(label2);
             SIgnUpPanel1.Controls.Add(label1);
-            SIgnUpPanel1.Location = new Point(216, 320);
+            SIgnUpPanel1.Location = new Point(686, 320);
             SIgnUpPanel1.Name = "SIgnUpPanel1";
             SIgnUpPanel1.Size = new Size(548, 469);
             SIgnUpPanel1.TabIndex = 1;
@@ -135,7 +135,7 @@ namespace JOB_IN
             Employerbtn.BackColor = Color.RoyalBlue;
             Employerbtn.FlatAppearance.BorderSize = 0;
             Employerbtn.FlatStyle = FlatStyle.Flat;
-            Employerbtn.Font = new Font("Britannic Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Employerbtn.Font = Custom.font(12f);
             Employerbtn.ForeColor = SystemColors.ButtonHighlight;
             Employerbtn.Location = new Point(149, 3);
             Employerbtn.Name = "Employerbtn";
@@ -152,7 +152,7 @@ namespace JOB_IN
             Applicantbtn.Dock = DockStyle.Fill;
             Applicantbtn.FlatAppearance.BorderSize = 0;
             Applicantbtn.FlatStyle = FlatStyle.Flat;
-            Applicantbtn.Font = new Font("Britannic Bold", 12F);
+            Applicantbtn.Font = Custom.font(12f);
             Applicantbtn.Location = new Point(3, 3);
             Applicantbtn.Name = "Applicantbtn";
             Applicantbtn.Size = new Size(140, 57);
@@ -167,7 +167,7 @@ namespace JOB_IN
             Loginbtn.BackColor = Color.Coral;
             Loginbtn.FlatAppearance.BorderSize = 0;
             Loginbtn.FlatStyle = FlatStyle.Flat;
-            Loginbtn.Font = new Font("Britannic Bold", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Loginbtn.Font = Custom.font(13.8f);
             Loginbtn.Location = new Point(201, 289);
             Loginbtn.Name = "Loginbtn";
             Loginbtn.Size = new Size(109, 38);
@@ -180,7 +180,7 @@ namespace JOB_IN
             // textBox2
             // 
             textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox2.Font = new Font("Candara Light", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            textBox2.Font = Custom.font(12f);
             textBox2.ForeColor = Color.Black;
             textBox2.Location = new Point(40, 153);
             textBox2.Name = "textBox2";
@@ -192,7 +192,7 @@ namespace JOB_IN
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Font = new Font("Candara Light", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            textBox1.Font = Custom.font(12f);
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(40, 72);
             textBox1.Name = "textBox1";
@@ -204,7 +204,7 @@ namespace JOB_IN
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Britannic Bold", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = Custom.font(18f);
             label2.ForeColor = Color.White;
             label2.Location = new Point(40, 117);
             label2.Name = "label2";
@@ -215,7 +215,7 @@ namespace JOB_IN
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Britannic Bold", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = Custom.font(18);
             label1.ForeColor = Color.White;
             label1.Location = new Point(40, 25);
             label1.Name = "label1";
@@ -227,8 +227,8 @@ namespace JOB_IN
             // 
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
-            label3.Font = new Font("Britannic Bold", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(397, 280);
+            label3.Font = Custom.font(19.8f);
+            label3.Location = new Point(876, 280);
             label3.Name = "label3";
             label3.Size = new Size(169, 37);
             label3.TabIndex = 7;
@@ -238,7 +238,7 @@ namespace JOB_IN
             // 
             picture.Anchor = AnchorStyles.None;
             picture.Image = Image.FromFile("..\\..\\..\\Image\\or.png");
-            picture.Location = new Point(435, 174);
+            picture.Location = new Point(909, 174);
             picture.Name = "picture";
             picture.Size = new Size(102, 103);
             picture.TabIndex = 9;
@@ -249,7 +249,7 @@ namespace JOB_IN
             // 
             blackColorLine.Anchor = AnchorStyles.None;
             blackColorLine.BackColor = Color.Black;
-            blackColorLine.Location = new Point(379, 840);
+            blackColorLine.Location = new Point(858, 840);
             blackColorLine.Name = "blackColorLine";
             blackColorLine.Size = new Size(204, 10);
             blackColorLine.TabIndex = 10;
@@ -260,20 +260,15 @@ namespace JOB_IN
             SignUpbtn.Anchor = AnchorStyles.None;
             SignUpbtn.FlatAppearance.BorderSize = 0;
             SignUpbtn.FlatStyle = FlatStyle.Flat;
-            SignUpbtn.Font = new Font("Britannic Bold", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            SignUpbtn.Location = new Point(397, 795);
+            SignUpbtn.Font = Custom.font(16.2f);
+            SignUpbtn.Location = new Point(876, 795);
             SignUpbtn.Name = "SignUpbtn";
             SignUpbtn.Size = new Size(169, 39);
             SignUpbtn.TabIndex = 11;
             SignUpbtn.Text = "Sign Up";
             SignUpbtn.UseVisualStyleBackColor = true;
             
-            t.Anchor = AnchorStyles.None;
-            t.Text = "hola como es tas";
-            t.Location = new Point(397, 795);
-            t.Size = new Size(169, 39);
-            //t.BorderRadius = 20;
-            //t.BorderSize = 100;
+          
             
             // 
             // MainPanel
