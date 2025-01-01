@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using JOB_IN.RJControls;
 namespace JOB_IN
 {
     public partial class ApplicantHomepage : Form
