@@ -36,7 +36,7 @@ namespace JOB_IN
             this.titlePanel = new Panel();
             this.titlePanel.Anchor = AnchorStyles.None;
             this.titlePanel.Size = new Size(1920, 60);
-            this.titlePanel.Location = new Point(0, 0);
+            this.titlePanel.Location = new Point(-820, -390);
             titlePanel.BackColor = Color.Blue;
 
             this.Controls.Add(titlePanel);
@@ -44,6 +44,7 @@ namespace JOB_IN
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Size = new Size(1930, 1080);
             this.Text = "ApplicantSignUp";
         }
 
