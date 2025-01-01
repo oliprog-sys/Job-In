@@ -42,11 +42,6 @@ namespace JOB_IN
         /// </summary>
         private void InitializeComponent()
         {
-
-
-            apage = true;
-            t = new topButtons(0);
-
             panel1 = new Panel();
             companyname1 = new Label();
             SIgnUpPanel1 = new borderedPanels();
@@ -66,8 +61,8 @@ namespace JOB_IN
             panel1.SuspendLayout();
             SIgnUpPanel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picture).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)blackColorLine).BeginInit();
+            ((ISupportInitialize)picture).BeginInit();
+            ((ISupportInitialize)blackColorLine).BeginInit();
             MainPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -86,10 +81,10 @@ namespace JOB_IN
             companyname1.AccessibleName = "";
             companyname1.Anchor = AnchorStyles.None;
             companyname1.AutoSize = true;
-            companyname1.Font = Custom.font(55F);
+            companyname1.Font = new Font("Cascadia Mono", 55F);
             companyname1.Location = new Point(805, 20);
             companyname1.Name = "companyname1";
-            companyname1.Size = new Size(310, 101);
+            companyname1.Size = new Size(376, 122);
             companyname1.TabIndex = 0;
             companyname1.Text = "JOB IN";
             companyname1.TextAlign = ContentAlignment.TopCenter;
@@ -97,15 +92,16 @@ namespace JOB_IN
             // SIgnUpPanel1
             // 
             SIgnUpPanel1.Anchor = AnchorStyles.None;
-            SIgnUpPanel1.BorderRadius = 80;
             SIgnUpPanel1.BackColor = Color.Coral;
+            SIgnUpPanel1.BorderRadius = 80;
+            SIgnUpPanel1.BorderSize = 0;
             SIgnUpPanel1.Controls.Add(tableLayoutPanel1);
             SIgnUpPanel1.Controls.Add(Loginbtn);
             SIgnUpPanel1.Controls.Add(textBox2);
             SIgnUpPanel1.Controls.Add(textBox1);
             SIgnUpPanel1.Controls.Add(label2);
             SIgnUpPanel1.Controls.Add(label1);
-            SIgnUpPanel1.Location = new Point(686, 320);
+            SIgnUpPanel1.Location = new Point(686, 379);
             SIgnUpPanel1.Name = "SIgnUpPanel1";
             SIgnUpPanel1.Size = new Size(548, 469);
             SIgnUpPanel1.TabIndex = 1;
@@ -128,14 +124,13 @@ namespace JOB_IN
             tableLayoutPanel1.Size = new Size(293, 63);
             tableLayoutPanel1.TabIndex = 5;
             // 
-
             // Employerbtn
             // 
             Employerbtn.Anchor = AnchorStyles.None;
             Employerbtn.BackColor = Color.RoyalBlue;
             Employerbtn.FlatAppearance.BorderSize = 0;
             Employerbtn.FlatStyle = FlatStyle.Flat;
-            Employerbtn.Font = Custom.font(12f);
+            Employerbtn.Font = new Font("Cascadia Mono", 12F);
             Employerbtn.ForeColor = SystemColors.ButtonHighlight;
             Employerbtn.Location = new Point(149, 3);
             Employerbtn.Name = "Employerbtn";
@@ -152,7 +147,7 @@ namespace JOB_IN
             Applicantbtn.Dock = DockStyle.Fill;
             Applicantbtn.FlatAppearance.BorderSize = 0;
             Applicantbtn.FlatStyle = FlatStyle.Flat;
-            Applicantbtn.Font = Custom.font(12f);
+            Applicantbtn.Font = new Font("Cascadia Mono", 12F);
             Applicantbtn.Location = new Point(3, 3);
             Applicantbtn.Name = "Applicantbtn";
             Applicantbtn.Size = new Size(140, 57);
@@ -167,7 +162,7 @@ namespace JOB_IN
             Loginbtn.BackColor = Color.Coral;
             Loginbtn.FlatAppearance.BorderSize = 0;
             Loginbtn.FlatStyle = FlatStyle.Flat;
-            Loginbtn.Font = Custom.font(13.8f);
+            Loginbtn.Font = new Font("Cascadia Mono", 13.8F);
             Loginbtn.Location = new Point(201, 289);
             Loginbtn.Name = "Loginbtn";
             Loginbtn.Size = new Size(109, 38);
@@ -175,28 +170,27 @@ namespace JOB_IN
             Loginbtn.Text = "Log In";
             Loginbtn.UseVisualStyleBackColor = false;
             Loginbtn.Click += SignIn;
-            
             // 
             // textBox2
             // 
             textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox2.Font = Custom.font(12f);
+            textBox2.Font = new Font("Cascadia Mono", 12F);
             textBox2.ForeColor = Color.Black;
             textBox2.Location = new Point(40, 153);
             textBox2.Name = "textBox2";
             textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(437, 32);
+            textBox2.Size = new Size(437, 31);
             textBox2.TabIndex = 3;
             textBox2.Text = "********";
             // 
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Font = Custom.font(12f);
+            textBox1.Font = new Font("Cascadia Mono", 12F);
             textBox1.ForeColor = Color.Black;
             textBox1.Location = new Point(40, 72);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(437, 32);
+            textBox1.Size = new Size(437, 31);
             textBox1.TabIndex = 2;
             textBox1.Text = "Someone12@gmail.com";
             textBox1.TextChanged += textBox1_TextChanged;
@@ -204,22 +198,22 @@ namespace JOB_IN
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = Custom.font(18f);
+            label2.Font = new Font("Cascadia Mono", 18F);
             label2.ForeColor = Color.White;
             label2.Location = new Point(40, 117);
             label2.Name = "label2";
-            label2.Size = new Size(142, 33);
+            label2.Size = new Size(161, 40);
             label2.TabIndex = 1;
             label2.Text = "Password";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = Custom.font(18);
+            label1.Font = new Font("Cascadia Mono", 18F);
             label1.ForeColor = Color.White;
             label1.Location = new Point(40, 25);
             label1.Name = "label1";
-            label1.Size = new Size(88, 33);
+            label1.Size = new Size(107, 40);
             label1.TabIndex = 0;
             label1.Text = "Email";
             // 
@@ -227,29 +221,28 @@ namespace JOB_IN
             // 
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
-            label3.Font = Custom.font(19.8f);
-            label3.Location = new Point(876, 280);
+            label3.Font = new Font("Cascadia Mono", 19.8F);
+            label3.Location = new Point(876, 319);
             label3.Name = "label3";
-            label3.Size = new Size(169, 37);
+            label3.Size = new Size(209, 44);
             label3.TabIndex = 7;
             label3.Text = "Signing in";
             // 
             // picture
             // 
             picture.Anchor = AnchorStyles.None;
-            picture.Image = Image.FromFile("..\\..\\..\\Image\\or.png");
-            picture.Location = new Point(909, 174);
+            picture.Image = Properties.Resources.or;
+            picture.Location = new Point(922, 201);
             picture.Name = "picture";
             picture.Size = new Size(102, 103);
             picture.TabIndex = 9;
             picture.TabStop = false;
-           
             // 
             // blackColorLine
             // 
             blackColorLine.Anchor = AnchorStyles.None;
             blackColorLine.BackColor = Color.Black;
-            blackColorLine.Location = new Point(858, 840);
+            blackColorLine.Location = new Point(858, 913);
             blackColorLine.Name = "blackColorLine";
             blackColorLine.Size = new Size(204, 10);
             blackColorLine.TabIndex = 10;
@@ -260,20 +253,16 @@ namespace JOB_IN
             SignUpbtn.Anchor = AnchorStyles.None;
             SignUpbtn.FlatAppearance.BorderSize = 0;
             SignUpbtn.FlatStyle = FlatStyle.Flat;
-            SignUpbtn.Font = Custom.font(16.2f);
-            SignUpbtn.Location = new Point(876, 795);
+            SignUpbtn.Font = new Font("Cascadia Mono", 16.2F);
+            SignUpbtn.Location = new Point(876, 854);
             SignUpbtn.Name = "SignUpbtn";
-            SignUpbtn.Size = new Size(169, 39);
+            SignUpbtn.Size = new Size(169, 53);
             SignUpbtn.TabIndex = 11;
             SignUpbtn.Text = "Sign Up";
             SignUpbtn.UseVisualStyleBackColor = true;
-            
-          
-            
             // 
             // MainPanel
             // 
-           // MainPanel.Controls.Add(t);
             MainPanel.Controls.Add(SIgnUpPanel1);
             MainPanel.Controls.Add(blackColorLine);
             MainPanel.Controls.Add(panel1);
@@ -283,34 +272,32 @@ namespace JOB_IN
             MainPanel.Dock = DockStyle.Fill;
             MainPanel.Location = new Point(0, 0);
             MainPanel.Name = "MainPanel";
-            MainPanel.Size = new Size(1920, 937);
+            MainPanel.Size = new Size(1920, 1055);
             MainPanel.TabIndex = 12;
             // 
             // Form1
             // 
-            WindowState = FormWindowState.Maximized;
-            MinimumSize = new Size(1635, 920);
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1920, 1080);
+            ClientSize = new Size(1920, 1055);
             Controls.Add(MainPanel);
+            MinimumSize = new Size(1635, 920);
             Name = "Form1";
             Text = "Form1";
+            WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             SIgnUpPanel1.ResumeLayout(false);
             SIgnUpPanel1.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picture).EndInit();
-            ((System.ComponentModel.ISupportInitialize)blackColorLine).EndInit();
+            ((ISupportInitialize)picture).EndInit();
+            ((ISupportInitialize)blackColorLine).EndInit();
             MainPanel.ResumeLayout(false);
             MainPanel.PerformLayout();
             ResumeLayout(false);
         }
-
-       
 
         private bool apage;
         #endregion
