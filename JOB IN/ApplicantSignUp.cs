@@ -16,6 +16,11 @@ namespace JOB_IN
         {
             InitializeComponent();
         }
+
+        private  void next_btn_click(object sender, EventArgs e)
+        {
+
+        }
        
     }
 }
