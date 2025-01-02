@@ -42,6 +42,7 @@ namespace JOB_IN
         /// </summary>
         private void InitializeComponent()
         {
+            apage=true;
             panel1 = new Panel();
             companyname1 = new Label();
             SIgnUpPanel1 = new borderedPanels();

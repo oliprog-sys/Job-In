@@ -179,13 +179,13 @@ namespace JOB_IN
             Jobbackp.Controls.Add(Jobs);
             Jobbackp.Location = new Point(12, 3);
             Jobbackp.Name = "Jobbackp";
-            Jobbackp.Size = new Size(238, 62);
+            Jobbackp.Size = new Size(250, 65);
             Jobbackp.TabIndex = 5;
             // 
             // profilep
             // 
             profilep.Controls.Add(Profilebtn);
-            profilep.Location = new Point(766, 0);
+            profilep.Location = new Point(766, 1);
             profilep.Name = "profilep";
             profilep.Size = new Size(250, 65);
             profilep.TabIndex = 1;
@@ -193,7 +193,7 @@ namespace JOB_IN
             // postp
             // 
             postp.Controls.Add(Postbtn);
-            postp.Location = new Point(256, 0);
+            postp.Location = new Point(256, 1);
             postp.Name = "postp";
             postp.Size = new Size(250, 65);
             postp.TabIndex = 4;
@@ -201,7 +201,7 @@ namespace JOB_IN
             // historyp
             // 
             historyp.Controls.Add(historybtn);
-            historyp.Location = new Point(512, 0);
+            historyp.Location = new Point(512, 1);
             historyp.Name = "historyp";
             historyp.Size = new Size(250, 65);
             historyp.TabIndex = 1;
@@ -223,13 +223,11 @@ namespace JOB_IN
             postp.ResumeLayout(false);
             historyp.ResumeLayout(false);
             ResumeLayout(false);
-<<<<<<< HEAD:JOB IN/LoginForm.Designer.cs
-            Application.Exit();
-=======
+
+          
 
 
->>>>>>> main:JOB IN/EmpLogin.Designer.cs
-        }
+}
 
         // #endregion
         private RJControls.Custom Jobs;
