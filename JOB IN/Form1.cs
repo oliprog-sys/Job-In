@@ -9,6 +9,7 @@ namespace JOB_IN
             InitializeComponent();
 
 
+
         }
 
         private void OpenchildForm(Form ChildForm, object btnsender)

@@ -184,6 +184,7 @@ namespace JOB_IN
             textBox2.TabIndex = 3;
             textBox2.Text = "********";
             // 
+            
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
