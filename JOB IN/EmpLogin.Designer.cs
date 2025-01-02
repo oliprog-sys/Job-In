@@ -1,9 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using JOB_IN.RJControls;
+
 
 namespace JOB_IN
 {
-    partial class LoginForm
+    partial class EmpLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -35,10 +37,10 @@ namespace JOB_IN
 
         private void InitializeComponent()
         {
-            Postbtn = new RJControls.Cusbutton();
-            historybtn = new RJControls.Cusbutton();
-            Jobs = new RJControls.Cusbutton();
-            Profilebtn = new RJControls.Cusbutton();
+            Postbtn = new RJControls.Custom();
+            historybtn = new RJControls.Custom();
+            Jobs = new RJControls.Custom();
+            Profilebtn = new RJControls.Custom();
             apppanel = new Panel();
             panel1 = new Panel();
             Jobbackp = new borderedPanels();
@@ -213,6 +215,7 @@ namespace JOB_IN
             Controls.Add(apppanel);
             Name = "EmpLogin";
             Text = "LoginForm";
+            FormClosing += CloseApp;
             Load += LoginForm_Load;
             panel1.ResumeLayout(false);
             Jobbackp.ResumeLayout(false);
@@ -220,14 +223,19 @@ namespace JOB_IN
             postp.ResumeLayout(false);
             historyp.ResumeLayout(false);
             ResumeLayout(false);
+<<<<<<< HEAD:JOB IN/LoginForm.Designer.cs
             Application.Exit();
+=======
+
+
+>>>>>>> main:JOB IN/EmpLogin.Designer.cs
         }
 
         // #endregion
-        private RJControls.Cusbutton Jobs;
-        private RJControls.Cusbutton Postbtn;
-        private RJControls.Cusbutton historybtn;
-        private RJControls.Cusbutton Profilebtn;
+        private RJControls.Custom Jobs;
+        private RJControls.Custom Postbtn;
+        private RJControls.Custom historybtn;
+        private RJControls.Custom Profilebtn;
         private Panel apppanel;
         private Panel panel1;
         private Panel profilep;

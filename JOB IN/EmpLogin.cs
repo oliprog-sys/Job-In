@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace JOB_IN
 {
-    public partial class LoginForm : Form
+    public partial class EmpLogin : Form
     {
-        public LoginForm()
+        public EmpLogin()
         {
             InitializeComponent();
         }
@@ -48,13 +48,29 @@ namespace JOB_IN
                 profilep.BackColor = Color.LightGray;
 
 
+<<<<<<< HEAD:JOB IN/LoginForm.cs
             Jobbackp.BackColor = Color.White;
 
 
+=======
+            jobspanel.BackColor = Color.White;
+            
+            
+            AppJobPanel j = new AppJobPanel();
+            OpenchildForm2(j, sender);     
+       }
 
+        private static void CloseApp(object? sender, FormClosingEventArgs e)
+        {
+>>>>>>> main:JOB IN/EmpLogin.cs
+
+            Application.Exit();
         }
+<<<<<<< HEAD:JOB IN/LoginForm.cs
 
         
+=======
+>>>>>>> main:JOB IN/EmpLogin.cs
         private void cusbutton2_Click(object sender, EventArgs e)
         {
             if (Jobbackp.BackColor == Color.White)
@@ -100,11 +116,19 @@ namespace JOB_IN
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD:JOB IN/LoginForm.cs
            // jobspanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
             //postp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
             //profilep.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
             //historyp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
             // historyp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+=======
+            jobspanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+            postp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+            profilep.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+            historyp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+           // historyp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+>>>>>>> main:JOB IN/EmpLogin.cs
         }
 
         
