@@ -17,6 +17,7 @@ namespace JOB_IN
             //strt_form.Show();
             Application.Run(strt_form);
            // Application.Exit();
+
           
         }
 
