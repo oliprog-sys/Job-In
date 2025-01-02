@@ -48,6 +48,11 @@ namespace JOB_IN
                 profilep.BackColor = Color.LightGray;
 
 
+<<<<<<< HEAD:JOB IN/LoginForm.cs
+            Jobbackp.BackColor = Color.White;
+
+
+=======
             jobspanel.BackColor = Color.White;
             
             
@@ -57,13 +62,19 @@ namespace JOB_IN
 
         private static void CloseApp(object? sender, FormClosingEventArgs e)
         {
+>>>>>>> main:JOB IN/EmpLogin.cs
 
             Application.Exit();
         }
+<<<<<<< HEAD:JOB IN/LoginForm.cs
+
+        
+=======
+>>>>>>> main:JOB IN/EmpLogin.cs
         private void cusbutton2_Click(object sender, EventArgs e)
         {
-            if (jobspanel.BackColor == Color.White)
-                jobspanel.BackColor = Color.LightGray;
+            if (Jobbackp.BackColor == Color.White)
+                Jobbackp.BackColor = Color.LightGray;
             if (historyp.BackColor == Color.White)
                 historyp.BackColor = Color.LightGray;
             if (profilep.BackColor == Color.White)
@@ -77,8 +88,8 @@ namespace JOB_IN
 
         private void historybtn_Click(object sender, EventArgs e)
         {
-            if (jobspanel.BackColor == Color.White)
-                jobspanel.BackColor = Color.LightGray;
+            if (Jobbackp.BackColor == Color.White)
+                Jobbackp.BackColor = Color.LightGray;
             if (postp.BackColor == Color.White)
                 postp.BackColor = Color.LightGray;
             if (profilep.BackColor == Color.White)
@@ -91,8 +102,8 @@ namespace JOB_IN
 
         private void Profilebtn_Click(object sender, EventArgs e)
         {
-            if (jobspanel.BackColor == Color.White)
-                jobspanel.BackColor = Color.LightGray;
+            if (Jobbackp.BackColor == Color.White)
+                Jobbackp.BackColor = Color.LightGray;
             if (historyp.BackColor == Color.White)
                 historyp.BackColor = Color.LightGray;
             if (postp.BackColor == Color.White)
@@ -105,11 +116,21 @@ namespace JOB_IN
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD:JOB IN/LoginForm.cs
+           // jobspanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+            //postp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+            //profilep.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+            //historyp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+            // historyp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+=======
             jobspanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
             postp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
             profilep.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
             historyp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
            // historyp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, jobspanel.Width, jobspanel.Height, 10, 10));
+>>>>>>> main:JOB IN/EmpLogin.cs
         }
+
+        
     }
 }

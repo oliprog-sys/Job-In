@@ -43,11 +43,12 @@ namespace JOB_IN
             Profilebtn = new RJControls.Custom();
             apppanel = new Panel();
             panel1 = new Panel();
+            Jobbackp = new borderedPanels();
             profilep = new Panel();
-            jobspanel = new Panel();
             postp = new Panel();
             historyp = new Panel();
             panel1.SuspendLayout();
+            Jobbackp.SuspendLayout();
             profilep.SuspendLayout();
             postp.SuspendLayout();
             historyp.SuspendLayout();
@@ -116,9 +117,9 @@ namespace JOB_IN
             Jobs.FlatStyle = FlatStyle.Flat;
             Jobs.Font = new Font("Britannic Bold", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Jobs.ForeColor = Color.Snow;
-            Jobs.Location = new Point(12, 8);
+            Jobs.Location = new Point(19, 3);
             Jobs.Name = "Jobs";
-            Jobs.Size = new Size(212, 40);
+            Jobs.Size = new Size(194, 40);
             Jobs.TabIndex = 2;
             Jobs.Text = "Jobs";
             Jobs.TextColor = Color.RoyalBlue;
@@ -160,9 +161,8 @@ namespace JOB_IN
             // panel1
             // 
             panel1.BackColor = Color.LightGray;
-            panel1.Controls.Add(Jobs);
+            panel1.Controls.Add(Jobbackp);
             panel1.Controls.Add(profilep);
-            panel1.Controls.Add(jobspanel);
             panel1.Controls.Add(postp);
             panel1.Controls.Add(historyp);
             panel1.Dock = DockStyle.Top;
@@ -172,6 +172,16 @@ namespace JOB_IN
             panel1.Size = new Size(1019, 55);
             panel1.TabIndex = 3;
             // 
+            // Jobbackp
+            // 
+            Jobbackp.BorderRadius = 10;
+            Jobbackp.BorderSize = 0;
+            Jobbackp.Controls.Add(Jobs);
+            Jobbackp.Location = new Point(12, 3);
+            Jobbackp.Name = "Jobbackp";
+            Jobbackp.Size = new Size(238, 62);
+            Jobbackp.TabIndex = 5;
+            // 
             // profilep
             // 
             profilep.Controls.Add(Profilebtn);
@@ -179,14 +189,6 @@ namespace JOB_IN
             profilep.Name = "profilep";
             profilep.Size = new Size(250, 65);
             profilep.TabIndex = 1;
-            // 
-            // jobspanel
-            // 
-            jobspanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            jobspanel.Location = new Point(0, 0);
-            jobspanel.Name = "jobspanel";
-            jobspanel.Size = new Size(250, 65);
-            jobspanel.TabIndex = 0;
             // 
             // postp
             // 
@@ -204,24 +206,29 @@ namespace JOB_IN
             historyp.Size = new Size(250, 65);
             historyp.TabIndex = 1;
             // 
-            // LoginForm
+            // EmpLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1019, 440);
             Controls.Add(panel1);
             Controls.Add(apppanel);
-            Name = "LoginForm";
+            Name = "EmpLogin";
             Text = "LoginForm";
             FormClosing += CloseApp;
             Load += LoginForm_Load;
             panel1.ResumeLayout(false);
+            Jobbackp.ResumeLayout(false);
             profilep.ResumeLayout(false);
             postp.ResumeLayout(false);
             historyp.ResumeLayout(false);
             ResumeLayout(false);
+<<<<<<< HEAD:JOB IN/LoginForm.Designer.cs
+            Application.Exit();
+=======
 
 
+>>>>>>> main:JOB IN/EmpLogin.Designer.cs
         }
 
         // #endregion
@@ -231,9 +238,9 @@ namespace JOB_IN
         private RJControls.Custom Profilebtn;
         private Panel apppanel;
         private Panel panel1;
-        private Panel jobspanel;
         private Panel profilep;
         private Panel historyp;
         private Panel postp;
+        private borderedPanels Jobbackp;
     }
 }

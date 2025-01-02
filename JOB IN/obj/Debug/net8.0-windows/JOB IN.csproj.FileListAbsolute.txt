@@ -33,3 +33,5 @@ C:\Users\hello\Source\Repos\Job-In\JOB IN\obj\Debug\net8.0-windows\refint\JOB IN
 C:\Users\hello\Source\Repos\Job-In\JOB IN\obj\Debug\net8.0-windows\JOB IN.pdb
 C:\Users\hello\Source\Repos\Job-In\JOB IN\obj\Debug\net8.0-windows\JOB IN.genruntimeconfig.cache
 C:\Users\hello\Source\Repos\Job-In\JOB IN\obj\Debug\net8.0-windows\ref\JOB IN.dll
+C:\Users\hello\Source\Repos\Job-In\JOB IN\obj\Debug\net8.0-windows\JOB_IN.ApplicantHomepage.resources
+C:\Users\hello\Source\Repos\Job-In\JOB IN\obj\Debug\net8.0-windows\JOB_IN.EmpLogin.resources
