@@ -17,10 +17,12 @@ namespace JOB_IN
             InitializeComponent();
         }
 
-        private  void next_btn_click(object sender, EventArgs e)
+        private void next_btn_click(object sender, EventArgs e)
         {
-
+            infoPanel.Hide();
+            titlePanel.BackColor = Color.FromArgb(238, 164, 127);
+            mainPanel1.Controls.Add(infoPanel2);
         }
-       
+
     }
 }
