@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using JOB_IN.RJControls;
 namespace JOB_IN
 {
@@ -28,19 +29,22 @@ namespace JOB_IN
             search = new topButtons(0);
             status = new topButtons(0);
             profile = new topButtons(0);
-            jobsPane = new borderedPanels();
-            searchPane = new borderedPanels();
+            jobsPane = new borderedscrollPanels();
+            searchPane = new borderedscrollPanels();
             statusPane = new borderedPanels();
             profilePane = new borderedPanels();
+            subMain = new borderedPanels();
+            exit = new topButtons(0);
             MainPanel = new Panel();
 
             jobs.Name = "jobs";
             jobs.Anchor = AnchorStyles.None;
             jobs.Font = Custom.font(12f);
-            jobs.Location = new Point(-647, -320);
+            jobs.Location = new Point(-617, -320);
             jobs.Size = new Size(140, 80);
             jobs.Text = "Jobs";
             jobs.Click += job_nav_MouseClick;
+
 
             search.Anchor = AnchorStyles.None;
             search.Font = Custom.font(12f);
@@ -58,52 +62,69 @@ namespace JOB_IN
 
             profile.Anchor = AnchorStyles.None;
             profile.Font = Custom.font(12f);
-            profile.Location = new Point(647, -320);
+            profile.Location = new Point(617, -320);
             profile.Size = new Size(140, 80);
             profile.Text = "Profile";
             profile.Click += profile_nav_MouseClick;
 
-            jobsPane.Anchor = AnchorStyles.None;
+            exit.Anchor = AnchorStyles.None;
+            exit.Font = Custom.font(12f);
+            exit.Location = new Point(870, 470);
+            exit.Size = new Size(140, 80);
+            exit.Text = "exit";
+         
+
+            jobsPane.Anchor= AnchorStyles.None;
+          
             jobsPane.AutoScroll = true;
-            jobsPane.BackColor = Color.White;
+            jobsPane.BackColor = Color.FromArgb(0,Color.White);
             jobsPane.Size = new Size(1434, 675);
-            jobsPane.Location = new Point(-647, -220);
+            jobsPane.Location = new Point(10, 10);
             jobsPane.BorderStyle = BorderStyle.None;
+           
+            jobs.TabStop = false;
+
 
 
             searchPane.Anchor = AnchorStyles.None;
             searchPane.AutoScroll = true;
             searchPane.BackColor = Color.Green;
-            searchPane.Size = new Size(1434, 675);
-            searchPane.Location = new Point(-647, -220);
+            searchPane.Size = new Size(1413, 675);
+            searchPane.Location = new Point(10, 10);
             searchPane.BorderStyle = BorderStyle.None;
 
             statusPane.Anchor = AnchorStyles.None;
             statusPane.AutoScroll = true;
             statusPane.BackColor = Color.Blue;
-            statusPane.Size = new Size(1434, 675);
-            statusPane.Location = new Point(-647, -220);
+            statusPane.Size = new Size(1413, 675);
+            statusPane.Location = new Point(10, 10);
             statusPane.BorderStyle = BorderStyle.None;
 
             profilePane.Anchor = AnchorStyles.None;
             profilePane.AutoScroll = true;
             profilePane.BackColor = Color.BlueViolet;
-            profilePane.Size = new Size(1434, 675);
-            profilePane.Location = new Point(-647, -220);
+            profilePane.Size = new Size(1413, 675);
+            profilePane.Location = new Point(10, 10);
             profilePane.BorderStyle = BorderStyle.None;
 
+            subMain.Anchor = AnchorStyles.None;
+            subMain.AutoScroll = true;
+            subMain.BackColor = Color.Coral;
+            subMain.Size = new Size(1443, 705);
+            subMain.Location = new Point(-617, -220);
+            subMain.BorderStyle = BorderStyle.None;
 
 
             companyname1.AccessibleName = "";
             companyname1.Anchor = AnchorStyles.None;
             companyname1.AutoSize = true;
             companyname1.Font = new Font("Cascadia Mono", 55F);
-            companyname1.Location = new Point(-58, 11);
+            companyname1.Location = new Point(-60, 11);
             companyname1.Name = "companyname1";
             companyname1.Size = new Size(376, 122);
             companyname1.TabIndex = 0;
             companyname1.Text = "JOB IN";
-            companyname1.TextAlign = ContentAlignment.TopCenter;
+          
 
             panel1.BackColor = Color.Coral;
             panel1.Controls.Add(companyname1);
@@ -119,10 +140,12 @@ namespace JOB_IN
             MainPanel.Controls.Add(search);
             MainPanel.Controls.Add(status);
             MainPanel.Controls.Add(profile);
-            MainPanel.Controls.Add(jobsPane);
-            MainPanel.Controls.Add(searchPane);
-            MainPanel.Controls.Add(statusPane);
-            MainPanel.Controls.Add(profilePane);
+            MainPanel.Controls.Add(exit);
+            subMain.Controls.Add(jobsPane);
+            subMain.Controls.Add(searchPane);
+            subMain.Controls.Add(statusPane);
+            subMain.Controls.Add(profilePane);
+            MainPanel.Controls.Add(subMain);
 
             MainPanel.Anchor = AnchorStyles.None;
             MainPanel.BackColor = Color.Gray;
@@ -201,13 +224,14 @@ namespace JOB_IN
         {
             selectedButton("jobs");
             jobsPane.BringToFront();
-
+           
         }
 
         private void search_nav_MouseClick(object? sender, EventArgs e)
         {
             selectedButton("search");
             searchPane.BringToFront();
+           
 
         }
 
@@ -226,19 +250,12 @@ namespace JOB_IN
         }
 
         // 
-        public void job_list_adder()
+        public  void  job_list_adder()
         {
-            ArrayList jobList= new ArrayList { };
-            job_list_fetcher(jobList);
-            //used to control the vertical spacing of the 
-            int j = 0;
-            foreach(borderedPanels i in jobList)
+            for(int i = 0; i < 10; i++)
             {
-                i.Location = new Point(j,10);
-                jobsPane.Controls.Add(i);
-                j += i.Width + 20;
+                jobsPane.Controls.Add(new jobDesc("title", " description", "requirement"));
             }
-
         }
         
 
@@ -251,6 +268,52 @@ namespace JOB_IN
         {
 
             Application.Exit();
+        }
+    }
+
+    class jobDesc : borderedPanels
+    {
+        private Label jobName;
+        private Label jobDescription;
+        private Label jobRequirement;
+        private topButtons more;
+        public static int Y=42;
+        public jobDesc(string JobName, string  JobDescription, string JobRequirement)
+        {
+            jobName = new Label();
+            jobDescription = new Label();
+            jobRequirement = new Label();
+            more = new topButtons(0);
+
+
+            jobName.Anchor = AnchorStyles.None;
+            jobName.Text = JobName;
+            jobName.Location = new Point(-500,-50);
+
+            jobDescription.Anchor = AnchorStyles.None;
+            jobDescription.Text = JobDescription;
+            jobDescription.Location = new Point(0, 40);
+
+            jobRequirement.Anchor = AnchorStyles.None;
+            jobRequirement.Text = JobRequirement;
+            jobRequirement.Location = new Point(0, 80);
+
+            this.BackColor = Color.White;
+            this.Controls.Add (jobName);
+            this.Controls.Add (jobDescription);
+            this.Controls.Add(jobRequirement);
+            // this.Controls.Add (more);
+            this.Size = new Size(1405, 300);
+           
+            this.Anchor = AnchorStyles.None;
+            this.Location = new Point(42,Y);
+            recalculateY();
+
+            
+        }
+        public static void recalculateY()
+        {
+            Y += 342;
         }
     }
 }

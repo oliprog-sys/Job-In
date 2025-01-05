@@ -93,15 +93,17 @@ namespace JOB_IN
             //this.Hide();
             if (apage)
             {
-                SIgnUpPanel1.BackColor = Color.Coral;
-                companyname1.ForeColor = Color.Black;
-                ApplicantHomepage s = new ApplicantHomepage();
-                OpenchildForm(s, sender);
+               // SIgnUpPanel1.BackColor = Color.Coral;
+               // companyname1.ForeColor = Color.Black;
+               // ApplicantHomepage s = new ApplicantHomepage();
+              
+               // OpenchildForm(s, sender);
 
-               // this.Hide();
-                //ApplicantHomepage s = new ApplicantHomepage();
-              //  OpenchildForm(s, sender);
-               // s.Show();
+                this.Hide();
+                ApplicantHomepage s = new ApplicantHomepage();
+                //  OpenchildForm(s, sender);
+                s.job_list_adder();
+                s.Show();
             }
             else
             {
