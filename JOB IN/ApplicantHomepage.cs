@@ -14,12 +14,16 @@ namespace JOB_IN
 {
     public partial class ApplicantHomepage : Form
     {
+        private Label companyname1;
+        private Panel panel1;
         public ApplicantHomepage()
         {
             InitializeComponents();
         }
         public void InitializeComponents()
         {
+            panel1 = new Panel();
+            companyname1 = new Label();
             jobs = new topButtons(2);
             search = new topButtons(0);
             status = new topButtons(0);
@@ -33,28 +37,28 @@ namespace JOB_IN
             jobs.Name = "jobs";
             jobs.Anchor = AnchorStyles.None;
             jobs.Font = Custom.font(12f);
-            jobs.Location = new Point(-647, -380);
+            jobs.Location = new Point(-647, -320);
             jobs.Size = new Size(140, 80);
             jobs.Text = "Jobs";
             jobs.Click += job_nav_MouseClick;
 
             search.Anchor = AnchorStyles.None;
             search.Font = Custom.font(12f);
-            search.Location = new Point( -215, -380);
+            search.Location = new Point( -215, -320);
             search.Size = new Size(140, 80);
             search.Text = "Search";
             search.Click += search_nav_MouseClick;
 
             status.Anchor = AnchorStyles.None;
             status.Font = Custom.font(12f);
-            status.Location = new Point(215, -380);
+            status.Location = new Point(215, -320);
             status.Size = new Size(140, 80);
             status.Text = "Status";
             status.Click += status_nav_MouseClick;
 
             profile.Anchor = AnchorStyles.None;
             profile.Font = Custom.font(12f);
-            profile.Location = new Point(647, -380);
+            profile.Location = new Point(647, -320);
             profile.Size = new Size(140, 80);
             profile.Text = "Profile";
             profile.Click += profile_nav_MouseClick;
@@ -88,8 +92,29 @@ namespace JOB_IN
             profilePane.Location = new Point(-647, -220);
             profilePane.BorderStyle = BorderStyle.None;
 
-           
 
+
+            companyname1.AccessibleName = "";
+            companyname1.Anchor = AnchorStyles.None;
+            companyname1.AutoSize = true;
+            companyname1.Font = new Font("Cascadia Mono", 55F);
+            companyname1.Location = new Point(-58, 11);
+            companyname1.Name = "companyname1";
+            companyname1.Size = new Size(376, 122);
+            companyname1.TabIndex = 0;
+            companyname1.Text = "JOB IN";
+            companyname1.TextAlign = ContentAlignment.TopCenter;
+
+            panel1.BackColor = Color.Coral;
+            panel1.Controls.Add(companyname1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1920, 143);
+            panel1.TabIndex = 0;
+
+
+            MainPanel.Controls.Add(panel1);
             MainPanel.Controls.Add(jobs);
             MainPanel.Controls.Add(search);
             MainPanel.Controls.Add(status);
@@ -99,7 +124,7 @@ namespace JOB_IN
             MainPanel.Controls.Add(statusPane);
             MainPanel.Controls.Add(profilePane);
 
-            MainPanel.Dock = DockStyle.Fill;
+            MainPanel.Anchor = AnchorStyles.None;
             MainPanel.BackColor = Color.Gray;
             MainPanel.Location = new Point(0, 0);
             MainPanel.Name = "MainPanel";
@@ -117,7 +142,7 @@ namespace JOB_IN
             ClientSize = new Size(1920, 1080);
             Controls.Add(MainPanel);
             Name = "Applicant";
-            Text = "Form1";
+            Text = "Applicant";
 
             this.FormClosing += CloseApp;
 

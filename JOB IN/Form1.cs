@@ -88,30 +88,20 @@ namespace JOB_IN
 
 
 
-        private void Loginbtn_Click(object sender, EventArgs e)
-        {
-            if (apage) { 
-                
-            }
-            else
-            {
-                SIgnUpPanel1.BackColor = Color.RoyalBlue;
-                companyname1.ForeColor = Color.White;
-                EmpLogin l= new EmpLogin();
-                OpenchildForm(l, sender);
-            }
-        }
-
-
         private void SignIn(object sender, EventArgs e)
         {
             //this.Hide();
             if (apage)
             {
-                this.Hide();
+                SIgnUpPanel1.BackColor = Color.Coral;
+                companyname1.ForeColor = Color.Black;
                 ApplicantHomepage s = new ApplicantHomepage();
+                OpenchildForm(s, sender);
+
+               // this.Hide();
+                //ApplicantHomepage s = new ApplicantHomepage();
               //  OpenchildForm(s, sender);
-                s.Show();
+               // s.Show();
             }
             else
             {
