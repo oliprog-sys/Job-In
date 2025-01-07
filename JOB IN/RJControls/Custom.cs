@@ -145,7 +145,7 @@ namespace JOB_IN.RJControls
             set { borderRadius = value; }
         }
         private Color[] backColor = [Color.Coral, Color.RoyalBlue, Color.AliceBlue];
-        private int ColorChoice;
+        private Color ColorChoice;
 
         public topButtons(int color)
         {
@@ -165,7 +165,16 @@ namespace JOB_IN.RJControls
             {
                 this.ForeColor = Color.Coral;
             }
-            ColorChoice = color;
+            ColorChoice = backColor[color];
+        }
+        public topButtons(Color Back, Color For)
+        {
+            this.FlatStyle = FlatStyle.Flat;
+            this.FlatAppearance.BorderSize = 0;
+            //  this.Size = new Size(400, 200);
+            this.BackColor = Back;
+            this.ForeColor = For;
+            ColorChoice = Back;
         }
         private GraphicsPath GetFigurePath(Rectangle rect, float radius)
         {
@@ -197,7 +206,7 @@ namespace JOB_IN.RJControls
                 using (GraphicsPath pathSurface = GetFigurePath(rectSurface, borderRadius))
                 using (GraphicsPath pathBorder = GetFigurePath(rectBorder, borderRadius - 1F))
                 using (Pen penSurface = new Pen(this.Parent.BackColor, 2))
-                using (Pen penBorder = new Pen(backColor[ColorChoice], bordersize))
+                using (Pen penBorder = new Pen(ColorChoice, bordersize))
                 {
                     penBorder.Alignment = PenAlignment.Inset;
                     this.Region = new Region(pathSurface);
@@ -213,7 +222,7 @@ namespace JOB_IN.RJControls
                 this.Region = new Region(rectSurface);
                 if (bordersize >= 1)
                 {
-                    using (Pen penBorder = new Pen(backColor[ColorChoice], bordersize))
+                    using (Pen penBorder = new Pen(ColorChoice, bordersize))
                     {
                         penBorder.Alignment = PenAlignment.Inset;
                         pevent.Graphics.DrawRectangle(penBorder, 0, 0, this.Width - 1, this.Height - 1);

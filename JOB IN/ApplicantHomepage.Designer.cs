@@ -21,15 +21,17 @@ namespace JOB_IN
             }
             base.Dispose(disposing);
         }
-        
 
+        private TextBox searchBox;
+        private topButtons searchButton;
         private topButtons jobs;
         private topButtons search;
         private topButtons status;
         private topButtons profile;
         private topButtons exit;
         private borderedscrollPanels jobsPane;
-        private borderedscrollPanels searchPane;
+        private borderedscrollPanels searchResultsPane;
+        private borderedPanels searchPane;
         private borderedPanels statusPane;
         private borderedPanels subMain;
         private borderedPanels profilePane;

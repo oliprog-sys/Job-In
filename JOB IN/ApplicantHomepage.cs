@@ -23,14 +23,17 @@ namespace JOB_IN
         }
         public void InitializeComponents()
         {
+            searchBox = new TextBox();
             panel1 = new Panel();
             companyname1 = new Label();
             jobs = new topButtons(2);
             search = new topButtons(0);
+            searchButton = new topButtons(Color.Black,Color.White);
             status = new topButtons(0);
             profile = new topButtons(0);
             jobsPane = new borderedscrollPanels();
-            searchPane = new borderedscrollPanels();
+            searchResultsPane = new borderedscrollPanels();
+            searchPane = new borderedPanels();
             statusPane = new borderedPanels();
             profilePane = new borderedPanels();
             subMain = new borderedPanels();
@@ -81,17 +84,51 @@ namespace JOB_IN
             jobsPane.Size = new Size(1434, 675);
             jobsPane.Location = new Point(10, 10);
             jobsPane.BorderStyle = BorderStyle.None;
-           
-            jobs.TabStop = false;
 
+            // jobs.TabStop = false;
+
+            borderedPanels searchboxP = new borderedPanels();
+            searchboxP.Anchor = AnchorStyles.None;
+            searchboxP.Location = new Point(260, 15);
+            searchboxP.Size = new Size(680, 60);
+            searchboxP.BackColor = Color.Black;
+            searchboxP.BorderRadius = 30;
+
+            searchBox.Anchor = AnchorStyles.None;
+            searchBox.BorderStyle = BorderStyle.None;
+            searchBox.Location = new Point(300, 30);
+            searchBox.Size = new Size(600, 80);
+            searchBox.BackColor = Color.Black;
+            searchBox.ForeColor = Color.White;
+            searchBox.Font = Custom.font(18);
+            searchBox.Text = "Search";
+
+            searchButton.Anchor = AnchorStyles.None;
+            searchButton.Size = new Size(60, 60);
+            searchButton.Location = new Point(950, 15);
+            searchButton.Font = Custom.font(18);
+            searchButton.Text = "🔍";
+            searchButton.Click += searchResultFetch;
+
+            searchResultsPane.Anchor = AnchorStyles.None;
+            searchResultsPane.Size = new Size(1250, 500);
+            searchResultsPane.BackColor = Color.FromArgb(0, Color.Chartreuse);
+            searchResultsPane.Location = new Point(100, 100);
 
 
             searchPane.Anchor = AnchorStyles.None;
             searchPane.AutoScroll = true;
-            searchPane.BackColor = Color.Green;
+            searchPane.BackColor = Color.FromArgb(255, Color.WhiteSmoke);
             searchPane.Size = new Size(1413, 675);
             searchPane.Location = new Point(10, 10);
             searchPane.BorderStyle = BorderStyle.None;
+
+            searchPane.Controls.Add(searchboxP);
+            searchPane.Controls.Add(searchBox);
+            searchPane.Controls.Add(searchButton);
+            searchPane.Controls.Add(searchResultsPane);
+
+            searchBox.BringToFront();
 
             statusPane.Anchor = AnchorStyles.None;
             statusPane.AutoScroll = true;
@@ -170,6 +207,30 @@ namespace JOB_IN
             this.FormClosing += CloseApp;
 
 
+        }
+
+        private void searchResultFetch(object? sender, EventArgs e)
+        {
+            searchResultsPane.Controls.Clear();
+            int x = 0;
+            //perform data fetch here and add it to searchResultPane
+            if (x == 0)
+            {
+                Panel wrap = new Panel();
+               // wrap.BackColor = Color.Azure;
+                wrap.Size = new Size(1250, 160);
+                
+                Label noResult = new Label();
+                noResult.Anchor = AnchorStyles.None;
+                noResult.BorderStyle = BorderStyle.None;
+                noResult.Font = Custom.font(23);
+                noResult.Size = new Size(600, 90);
+                noResult.Text = "No results found...";
+                noResult.BackColor = Color.FromArgb(0, Color.White);
+                noResult.Location = new Point(400, 80);
+                wrap.Controls.Add(noResult);
+                searchResultsPane.Controls.Add(wrap);
+            }
         }
 
         private void selectedButton(string button)
@@ -254,7 +315,7 @@ namespace JOB_IN
         {
             for(int i = 0; i < 10; i++)
             {
-                jobsPane.Controls.Add(new jobDesc("title", " description", "requirement"));
+                jobsPane.Controls.Add(new jobDesc("title", " description", "requirements"));
             }
         }
         
@@ -287,22 +348,35 @@ namespace JOB_IN
 
 
             jobName.Anchor = AnchorStyles.None;
+            jobName.Font = Custom.font(29);
+            jobName.Size = new Size(200, 60);
             jobName.Text = JobName;
-            jobName.Location = new Point(-500,-50);
+            jobName.BackColor = Color.AliceBlue;
+            jobName.Location = new Point(-550,-70);
 
             jobDescription.Anchor = AnchorStyles.None;
+            jobDescription.Font = Custom.font(14);
+            jobDescription.Size = new Size(200, 60);
             jobDescription.Text = JobDescription;
-            jobDescription.Location = new Point(0, 40);
+            jobDescription.Location = new Point(-500, 30);
 
             jobRequirement.Anchor = AnchorStyles.None;
+            jobRequirement.Font = Custom.font(20);
+            jobRequirement.Size = new Size(400, 60);
             jobRequirement.Text = JobRequirement;
-            jobRequirement.Location = new Point(0, 80);
+            jobRequirement.Location = new Point(-525, 80);
+
+            more.Anchor = AnchorStyles.None;
+            more.Font = Custom.font(17);
+            more.Text = "More Info";
+            more.Size = new Size(290, 50);
+            more.Location = new Point(450, 130);
 
             this.BackColor = Color.White;
             this.Controls.Add (jobName);
             this.Controls.Add (jobDescription);
             this.Controls.Add(jobRequirement);
-            // this.Controls.Add (more);
+            this.Controls.Add (more);
             this.Size = new Size(1405, 300);
            
             this.Anchor = AnchorStyles.None;
