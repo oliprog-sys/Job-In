@@ -96,8 +96,9 @@ namespace JOB_IN
 
             searchBox.Anchor = AnchorStyles.None;
             searchBox.BorderStyle = BorderStyle.None;
-            searchBox.Location = new Point(300, 30);
-            searchBox.Size = new Size(600, 80);
+            searchBox.MinimumSize = new Size(600, 40);
+            searchBox.Location = new Point(300, 28);
+            //searchBox.Size = new Size(600, 200);
             searchBox.BackColor = Color.Black;
             searchBox.ForeColor = Color.White;
             searchBox.Font = Custom.font(18);
