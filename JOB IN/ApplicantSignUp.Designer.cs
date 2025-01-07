@@ -270,6 +270,7 @@ namespace JOB_IN
             cvField.Location = new Point(57, 704);
             cvField.Font = new Font("Sans serif", 14f);
             cvField.BackColor = Color.Black;
+            cvField.ForeColor = Color.White;
             cvField.BorderStyle = BorderStyle.None;
             cvField.Font = new Font("Sans serif", 18f);
             
@@ -285,6 +286,7 @@ namespace JOB_IN
             uploadBtn.ForeColor = Color.Black;
             uploadBtn.FlatStyle = FlatStyle.Flat;
             uploadBtn.Font = new Font("Sans serif", 16f);
+            uploadBtn.Click += onUploadBtn_clicked;
 
             // Certification label
             certificationLabel = new Label();
@@ -317,6 +319,7 @@ namespace JOB_IN
             addCertificateBtn.ForeColor = Color.Black;
             addCertificateBtn.BackColor = Color.LightGray;
             addCertificateBtn.FlatStyle = FlatStyle.Flat;
+            addCertificateBtn.Click += OnPlusSign_clicked;
 
             // Job category label
             jobCategoryLabel = new Label();
@@ -488,7 +491,7 @@ namespace JOB_IN
         private RoundedTextBox nameField, emailField, phoneNumField, passwordField, skillField, cvField, certificationField, experienceField;
         private DateTimePicker DobField;
         private ComboBox jobCategoryCB;
-        private RadioButton statusRadioBtn1, statusRadioBtn2;
+        private RadioButton statusRadioBtn1, statusRadioBtn2;        
 
 
 
