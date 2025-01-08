@@ -23,20 +23,32 @@ namespace JOB_IN
         }
         public void InitializeComponents()
         {
-            searchBox = new TextBox();
+            
             panel1 = new Panel();
             companyname1 = new Label();
+
             jobs = new topButtons(2);
+            jobsPane = new borderedscrollPanels();
+
             search = new topButtons(0);
             searchButton = new topButtons(Color.Black,Color.White);
-            status = new topButtons(0);
-            profile = new topButtons(0);
-            jobsPane = new borderedscrollPanels();
+            searchBox = new TextBox();
             searchResultsPane = new borderedscrollPanels();
             searchPane = new borderedPanels();
+
+            status = new topButtons(0);
+            sAllbutton = new topButtons(Color.Black, Color.White);
+            sAcceptedbutton = new topButtons(Color.Orange, Color.Black);
+            sPendingbutton = new topButtons(Color.Orange, Color.Black);
+            sDeniedbutton = new topButtons(Color.Orange, Color.Black);
             statusPane = new borderedPanels();
+            statusScrollPane = new borderedscrollPanels();
+
+            profile = new topButtons(0);
             profilePane = new borderedPanels();
+
             subMain = new borderedPanels();
+            
             exit = new topButtons(0);
             MainPanel = new Panel();
 
@@ -131,12 +143,52 @@ namespace JOB_IN
 
             searchBox.BringToFront();
 
+            sAllbutton.Anchor = AnchorStyles.None;
+            sAllbutton.Size = new Size(160, 40);
+            sAllbutton.Location = new Point(320, 30);
+            sAllbutton.Font = Custom.font(15);
+            sAllbutton.Text = "All";
+            sAllbutton.Click += all_button_nav;
+
+            sAcceptedbutton.Anchor = AnchorStyles.None;
+            sAcceptedbutton.Size = new Size(160, 40);
+            sAcceptedbutton.Location = new Point(510, 30);
+            sAcceptedbutton.Font = Custom.font(15);
+            sAcceptedbutton.Text = "Accepted";
+            sAcceptedbutton.Click += accepted_button_nav;
+
+            sDeniedbutton.Anchor = AnchorStyles.None;
+            sDeniedbutton.Size = new Size(160, 40);
+            sDeniedbutton.Location = new Point(700, 30);
+            sDeniedbutton.Font = Custom.font(15);
+            sDeniedbutton.Text = "Rejected";
+            sDeniedbutton.Click += denied_button_click;
+
+            sPendingbutton.Anchor = AnchorStyles.None;
+            sPendingbutton.Size = new Size(160, 40);
+            sPendingbutton.Location = new Point(890, 30);
+            sPendingbutton.Font = Custom.font(15);
+            sPendingbutton.Text = "Pending";
+            sPendingbutton.Click += pending_button_nav;
+
             statusPane.Anchor = AnchorStyles.None;
             statusPane.AutoScroll = true;
-            statusPane.BackColor = Color.Blue;
+            statusPane.BackColor = Color.White;
             statusPane.Size = new Size(1413, 675);
             statusPane.Location = new Point(10, 10);
             statusPane.BorderStyle = BorderStyle.None;
+
+            statusScrollPane.Anchor = AnchorStyles.None;
+            statusScrollPane.AutoScroll = true;
+            statusScrollPane.Size = new Size(1250, 550);
+            statusScrollPane.Location = new Point(100, 100);
+            statusScrollPane.BackColor = Color.FromArgb(0, Color.PaleGoldenrod);
+
+            statusPane.Controls.Add(sAllbutton);
+            statusPane.Controls.Add(sAcceptedbutton);
+            statusPane.Controls.Add(sPendingbutton);
+            statusPane.Controls.Add(sDeniedbutton);
+            statusPane.Controls.Add(statusScrollPane);
 
             profilePane.Anchor = AnchorStyles.None;
             profilePane.AutoScroll = true;
@@ -210,6 +262,30 @@ namespace JOB_IN
 
         }
 
+        private void pending_button_nav(object? sender, EventArgs e)
+        {
+            selectedButtonStatus("pending");
+            job_history_adder("pending");
+        }
+
+        private void denied_button_click(object? sender, EventArgs e)
+        {
+            selectedButtonStatus("denied");
+            job_history_adder("denied");
+        }
+
+        private void accepted_button_nav(object? sender, EventArgs e)
+        {
+            selectedButtonStatus("accepted");
+            job_history_adder("accepted");
+        }
+
+        private void all_button_nav(object? sender, EventArgs e)
+        {
+            selectedButtonStatus("all");
+            job_history_adder("all");
+        }
+
         private void searchResultFetch(object? sender, EventArgs e)
         {
             searchResultsPane.Controls.Clear();
@@ -233,6 +309,8 @@ namespace JOB_IN
                 searchResultsPane.Controls.Add(wrap);
             }
         }
+
+
 
         private void selectedButton(string button)
         {
@@ -282,6 +360,54 @@ namespace JOB_IN
             }
         }
 
+        private void selectedButtonStatus(string button)
+        {
+            if (button == "all")
+            {
+                sAllbutton.BackColor = Color.Black;
+                sAllbutton.ForeColor = Color.White;
+                sAcceptedbutton.BackColor = Color.Orange;
+                sAcceptedbutton.ForeColor = Color.Black;
+                sDeniedbutton.BackColor = Color.Orange;
+                sDeniedbutton.ForeColor = Color.Black;
+                sPendingbutton.BackColor = Color.Orange;
+                sPendingbutton.ForeColor = Color.Black;
+            }
+            else if (button == "accepted")
+            {
+                sAllbutton.BackColor = Color.Orange;
+                sAllbutton.ForeColor = Color.Black;
+                sAcceptedbutton.BackColor = Color.Black;
+                sAcceptedbutton.ForeColor = Color.White;
+                sDeniedbutton.BackColor = Color.Orange;
+                sDeniedbutton.ForeColor = Color.Black;
+                sPendingbutton.BackColor = Color.Orange;
+                sPendingbutton.ForeColor = Color.Black;
+            }
+            else if (button == "pending")
+            {
+                sAllbutton.BackColor = Color.Orange;
+                sAllbutton.ForeColor = Color.Black;
+                sAcceptedbutton.BackColor = Color.Orange;
+                sAcceptedbutton.ForeColor = Color.Black;
+                sDeniedbutton.BackColor = Color.Orange;
+                sDeniedbutton.ForeColor = Color.Black;
+                sPendingbutton.BackColor = Color.Black;
+                sPendingbutton.ForeColor = Color.White;
+            }
+            else if (button == "denied")
+            {
+                sAllbutton.BackColor = Color.Orange;
+                sAllbutton.ForeColor = Color.Black;
+                sAcceptedbutton.BackColor = Color.Orange;
+                sAcceptedbutton.ForeColor = Color.Black;
+                sDeniedbutton.BackColor = Color.Black;
+                sDeniedbutton.ForeColor = Color.White;
+                sPendingbutton.BackColor = Color.Orange;
+                sPendingbutton.ForeColor = Color.Black; ;
+            }
+        }
+
         private void job_nav_MouseClick(object? sender, EventArgs e)
         {
             selectedButton("jobs");
@@ -301,6 +427,7 @@ namespace JOB_IN
         {
             selectedButton("status");
             statusPane.BringToFront();
+            job_history_adder("all");
 
         }
 
@@ -326,6 +453,38 @@ namespace JOB_IN
         {
 
         }
+
+        public void job_history_fetcher()
+        {
+
+        }
+
+        public void job_history_adder(string stat)
+        {
+            statusScrollPane.Controls.Clear();
+            int max=0;
+            if (stat == "all")
+            {
+                max = 9;
+            }else if(stat == "accepted")
+            {
+                max = 5;
+            }
+            else if (stat == "pending")
+            {
+                max = 3;
+            }
+            else if (stat == "denied")
+            {
+                max = 1;
+            }
+            for (int i = 0; i < max; i++)
+            {
+                statusScrollPane.Controls.Add(new jobHistory("title", "Employer"," job type", "requirements", "31/2/25"));
+            }
+        }
+
+
         private static void CloseApp(object? sender, FormClosingEventArgs e)
         {
 
@@ -386,6 +545,120 @@ namespace JOB_IN
 
             
         }
+        public static void recalculateY()
+        {
+            Y += 342;
+        }
+    }
+
+
+
+    class jobHistory : borderedPanels
+    {
+        private Label jobName;
+        private Label employer;
+        private Label jobType;
+        private Label jobRequirement;
+        private Label deadline;
+        private topButtons more;
+        public static int Y = 42;
+        public jobHistory(string JobName, string Employer, string JobType, string JobRequirement, string Deadline)
+        {
+            jobName = new Label();
+            employer = new Label();
+            jobType = new Label();
+            jobRequirement = new Label();
+            deadline = new Label();
+            more = new topButtons(0);
+
+
+            jobName.Anchor = AnchorStyles.None;
+            jobName.Font = Custom.font(17);
+            jobName.Size = new Size(120, 40);
+            jobName.Text = JobName;
+          //  jobName.BackColor = Color.Red;
+            jobName.Location = new Point(-350, -20);
+
+
+            employer.Anchor = AnchorStyles.None;
+            employer.Font = Custom.font(12);
+            employer.Size = new Size(120, 40);
+            employer.Text = Employer;
+            employer.Location = new Point(-350, 40);
+            //employer.BackColor = Color.Blue;
+
+            jobType.Anchor = AnchorStyles.None;
+            jobType.Font = Custom.font(12);
+            jobType.Size = new Size(120, 40);
+            jobType.Text = JobType;
+            jobType.Location = new Point(0, -20);
+            //jobType.BackColor = Color.Blue;
+
+            jobRequirement.Anchor = AnchorStyles.None;
+            jobRequirement.Font = Custom.font(11);
+            jobRequirement.Size = new Size(140, 40);
+            jobRequirement.Text = JobRequirement;
+            jobRequirement.Location = new Point(0, 40);
+            //jobRequirement.BackColor = Color.Blue;
+
+            deadline.Anchor = AnchorStyles.None;
+            deadline.Font = Custom.font(10);
+            deadline.Size = new Size(200, 60);
+            deadline.Text = Deadline;
+            deadline.Location = new Point(400, -20);
+            //deadline.BackColor = Color.Blue;
+
+            more.Anchor = AnchorStyles.None;
+            more.Font = Custom.font(10);
+            more.Text = "More Info";
+            more.Size = new Size(290, 50);
+            more.Location = new Point(450, 90);
+
+            this.BackColor = Color.LightGray;
+            this.Controls.Add(jobName);
+            this.Controls.Add(employer);
+            this.Controls.Add(jobType);
+            this.Controls.Add(jobRequirement);
+            this.Controls.Add(deadline);
+            //this.Controls.Add(more);
+            this.Size = new Size(1205, 150);
+            this.MouseHover += Enlarge;
+            this.MouseLeave += Shrink;
+
+            
+
+            this.Anchor = AnchorStyles.None;
+            this.Location = new Point(42, Y);
+            recalculateY();
+
+
+        }
+
+        private void Shrink(object? sender, EventArgs e)
+        {
+            jobName.Font = Custom.font(17);
+            employer.Font = Custom.font(12);
+
+
+            jobName.Size = new Size(120, 40);
+            employer.Size = new Size(120, 40);
+            //employer.Location = new Point(-350, 40);
+            //this.Controls.Add(employer);
+            this.Size = new Size(1205, 150);
+        }
+
+        private void Enlarge(object? sender, EventArgs e)
+        {
+            jobName.Font = Custom.font(24);
+            employer.Font = Custom.font(17);
+
+            jobName.Size = new Size(220, 50);
+            employer.Size = new Size(220, 40);
+           // employer.Location = new Point(-350, 90);
+           // this.Controls.Add(employer);
+            this.Size = new Size(1205, 300);
+        }
+
         public static void recalculateY()
         {
             Y += 342;

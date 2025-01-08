@@ -27,10 +27,15 @@ namespace JOB_IN
         private topButtons jobs;
         private topButtons search;
         private topButtons status;
+        private topButtons sAllbutton;
+        private topButtons sPendingbutton;
+        private topButtons sAcceptedbutton;
+        private topButtons sDeniedbutton;
         private topButtons profile;
         private topButtons exit;
         private borderedscrollPanels jobsPane;
         private borderedscrollPanels searchResultsPane;
+        private borderedscrollPanels statusScrollPane;
         private borderedPanels searchPane;
         private borderedPanels statusPane;
         private borderedPanels subMain;
