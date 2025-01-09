@@ -16,80 +16,48 @@ namespace JOB_IN
         {
             InitializeComponent();
         }
-        private Form activeform1;
-        private void OpenchildForm2(Form ChildForm, object btnsender)
-        {
 
-
-            if (activeform1 != null)
-            {
-
-                activeform1.Close();
-            }
-
-            activeform1 = ChildForm;
-            ChildForm.TopLevel = false;
-            ChildForm.FormBorderStyle = FormBorderStyle.None;
-            ChildForm.Dock = DockStyle.Fill;
-            this.apppanel.Controls.Add(ChildForm);
-            this.apppanel.Tag = ChildForm;
-            ChildForm.BringToFront();
-            ChildForm.Show();
-
-        }
 
         private void Jobs_Click(object sender, EventArgs e)
         {
-            if (postp.BackColor == Color.White)
-                postp.BackColor = Color.LightGray;
-            if (historyp.BackColor == Color.White)
-                historyp.BackColor = Color.LightGray;
-            if (profilep.BackColor == Color.White)
-                profilep.BackColor = Color.LightGray;
+            if (postbackp.BackColor == Color.White || postbackp.BackColor == Color.FromArgb(64, 64, 64))
+                postbackp.BackColor = Color.LightGray;
+            if (historybackp.BackColor == Color.White)
+                historybackp.BackColor = Color.LightGray;
+            if (profilebackp.BackColor == Color.White)
+                profilebackp.BackColor = Color.LightGray;
 
 
+            jobpanel.BringToFront();
+            historypanel.SendToBack();
+            profilepanel.SendToBack();
+            postpanel.SendToBack();
             Jobbackp.BackColor = Color.White;
-
-
-            Jobbackp.BackColor = Color.White;
             
-            
-            
-       }
 
-        private static void CloseApp(object? sender, FormClosingEventArgs e)
-        {
 
-            Application.Exit();
+
         }
-        
-        private void cusbutton2_Click(object sender, EventArgs e)
-        {
-            if (Jobbackp.BackColor == Color.White)
-                Jobbackp.BackColor = Color.LightGray;
-            if (historyp.BackColor == Color.White)
-                historyp.BackColor = Color.LightGray;
-            if (profilep.BackColor == Color.White)
-                profilep.BackColor = Color.LightGray;
 
-            postp.BackColor = Color.White;
 
-            //apppanel.Dock = DockStyle.None;
-            //apppanel.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Left;    
-        }
+
+
 
         private void historybtn_Click(object sender, EventArgs e)
         {
             if (Jobbackp.BackColor == Color.White)
                 Jobbackp.BackColor = Color.LightGray;
-            if (postp.BackColor == Color.White)
-                postp.BackColor = Color.LightGray;
-            if (profilep.BackColor == Color.White)
-                profilep.BackColor = Color.LightGray;
+            if (postbackp.BackColor == Color.White || postbackp.BackColor == Color.FromArgb(64, 64, 64))
+                postbackp.BackColor = Color.LightGray;
+            if (profilebackp.BackColor == Color.White)
+                profilebackp.BackColor = Color.LightGray;
 
 
 
-            historyp.BackColor = Color.White;
+            historybackp.BackColor = Color.White;
+            historypanel.BringToFront();
+            jobpanel.SendToBack();
+            profilepanel.SendToBack();
 
         }
 
@@ -98,21 +66,51 @@ namespace JOB_IN
         {
             if (Jobbackp.BackColor == Color.White)
                 Jobbackp.BackColor = Color.LightGray;
-            if (historyp.BackColor == Color.White)
-                historyp.BackColor = Color.LightGray;
-            if (postp.BackColor == Color.White)
-                postp.BackColor = Color.LightGray;
+            if (historybackp.BackColor == Color.White)
+                historybackp.BackColor = Color.LightGray;
+            if (postbackp.BackColor == Color.White || postbackp.BackColor == Color.FromArgb(64, 64, 64))
+                postbackp.BackColor = Color.LightGray;
 
-            profilep.BackColor = Color.White;
-
+            profilebackp.BackColor = Color.White;
+            profilepanel.BringToFront();
+            historypanel.SendToBack();
+            postpanel.SendToBack();
+            jobpanel.SendToBack() ;
 
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            jobpanel.BringToFront();
+            postpanel.SendToBack();
+            historypanel.SendToBack();
+            profilepanel.SendToBack();
+        }
+
+        private void postbtn_Click(object sender, EventArgs e)
+        {
+            if (Jobbackp.BackColor == Color.White)
+                Jobbackp.BackColor = Color.LightGray;
+            if (historybackp.BackColor == Color.White)
+                historybackp.BackColor = Color.LightGray;
+            if (profilebackp.BackColor == Color.White )
+                profilebackp.BackColor = Color.LightGray;
+
+            postbackp.BackColor = Color.FromArgb(64, 64, 64);
+            postpanel.BringToFront();
+            jobpanel.SendToBack();
+            historypanel.SendToBack();
+            profilepanel.SendToBack();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
-        
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

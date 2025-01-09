@@ -299,6 +299,7 @@ namespace JOB_IN
             MainPanel.ResumeLayout(false);
             MainPanel.PerformLayout();
             ResumeLayout(false);
+            
         }
 
         private bool apage;
