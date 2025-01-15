@@ -25,13 +25,7 @@ namespace JOB_IN
             base.Dispose(disposing);
         }
 
-        //#region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        /// 
+        
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nleft, int ntop, int nright, int nbottom, int nwidthEllipse, int nheightEllipse);
 
@@ -41,7 +35,7 @@ namespace JOB_IN
             historybtn = new Custom();
             Jobs = new Custom();
             Profilebtn = new Custom();
-            jobpanel = new borderedPanels();
+            jobpanel = new borderedscrollPanels();
             postpanel = new borderedPanels();
             postb = new Custom();
             numericUpDown1 = new NumericUpDown();
@@ -184,13 +178,17 @@ namespace JOB_IN
             // jobpanel
             // 
             jobpanel.Anchor = AnchorStyles.None;
-            jobpanel.BackColor = Color.White;
+            jobpanel.BackColor = Color.RoyalBlue;
             jobpanel.BorderRadius = 20;
             jobpanel.BorderSize = 0;
-            jobpanel.Location = new Point(47, 125);
+            jobpanel.Location = new Point(49, 125);
             jobpanel.Name = "jobpanel";
-            jobpanel.Size = new Size(1434, 689);
+            jobpanel.Size = new Size(1453,686 );
             jobpanel.TabIndex = 0;
+            jobpanel.AutoScroll = true;
+            
+
+            
             // 
             // postpanel
             // 
@@ -606,7 +604,7 @@ namespace JOB_IN
         private borderedPanels postbackp;
         private borderedPanels profilebackp;
         private borderedPanels historybackp;
-        private borderedPanels jobpanel;
+        private borderedscrollPanels jobpanel;
         private borderedPanels postpanel;
         private Label numofappl;
         private Label expl;
@@ -632,5 +630,15 @@ namespace JOB_IN
         private borderedPanels smpanel;
         private Custom backbtn;
         private borderedPanels backbtnp;
+
+
+        public void joblist()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                jobpanel.Controls.Add(new jobDesc("eyob wolde ararso", "ceko", "nada"));
+            }
+        }
     }
+
 }

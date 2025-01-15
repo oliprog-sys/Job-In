@@ -119,6 +119,7 @@ namespace JOB_IN
                     SIgnUpPanel1.BackColor = Color.RoyalBlue;
                     companyname1.ForeColor = Color.White;
                     EmpLogin form = new EmpLogin();
+                    form.joblist();
                     OpenchildForm(form, sender);
                // }
              //   else
