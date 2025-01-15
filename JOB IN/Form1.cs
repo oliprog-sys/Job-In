@@ -83,7 +83,7 @@ namespace JOB_IN
             //textBox1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox1.Width, textBox1.Height, 20, 20));
             tableLayoutPanel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height, 20, 20));
             blackColorLine.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, blackColorLine.Width, blackColorLine.Height, 5, 5));
-            
+            apage = true;   
         }
 
         
@@ -114,27 +114,23 @@ namespace JOB_IN
             }
             else
             {
-                if (Db.checkOrganization(textBox1.Text, textBox2.Text) == true)
-                {
+               // if (Db.checkOrganization(textBox1.Text, textBox2.Text) == true)
+                //{
                     SIgnUpPanel1.BackColor = Color.RoyalBlue;
                     companyname1.ForeColor = Color.White;
                     EmpLogin form = new EmpLogin();
                     OpenchildForm(form, sender);
-                }
-                else
-                {
-                    MessageBox.Show("no email found");
+               // }
+             //   else
+               // {
+                 //   MessageBox.Show("no email found");
                 }
 
                
                 
-            }
+            
         }
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-
-        {
-
-        }
+        
     }
 }
 
