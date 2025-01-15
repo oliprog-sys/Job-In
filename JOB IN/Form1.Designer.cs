@@ -42,7 +42,6 @@ namespace JOB_IN
         /// </summary>
         private void InitializeComponent()
         {
-            apage=true;
             panel1 = new Panel();
             companyname1 = new Label();
             SIgnUpPanel1 = new borderedPanels();
@@ -184,7 +183,6 @@ namespace JOB_IN
             textBox2.TabIndex = 3;
             textBox2.Text = "********";
             // 
-            
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -299,7 +297,6 @@ namespace JOB_IN
             MainPanel.ResumeLayout(false);
             MainPanel.PerformLayout();
             ResumeLayout(false);
-            
         }
 
         private bool apage;

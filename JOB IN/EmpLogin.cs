@@ -33,7 +33,7 @@ namespace JOB_IN
             profilepanel.SendToBack();
             postpanel.SendToBack();
             Jobbackp.BackColor = Color.White;
-            
+
 
 
 
@@ -75,7 +75,7 @@ namespace JOB_IN
             profilepanel.BringToFront();
             historypanel.SendToBack();
             postpanel.SendToBack();
-            jobpanel.SendToBack() ;
+            jobpanel.SendToBack();
 
         }
 
@@ -93,7 +93,7 @@ namespace JOB_IN
                 Jobbackp.BackColor = Color.LightGray;
             if (historybackp.BackColor == Color.White)
                 historybackp.BackColor = Color.LightGray;
-            if (profilebackp.BackColor == Color.White )
+            if (profilebackp.BackColor == Color.White)
                 profilebackp.BackColor = Color.LightGray;
 
             postbackp.BackColor = Color.FromArgb(64, 64, 64);
@@ -110,6 +110,12 @@ namespace JOB_IN
 
         private void label1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void backbtn_Click(object sender, EventArgs e)
+        {   
+            this.Hide();
 
         }
     }

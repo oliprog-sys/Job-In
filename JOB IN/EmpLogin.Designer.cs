@@ -70,6 +70,8 @@ namespace JOB_IN
             adlbl = new Label();
             namelbl = new Label();
             orgicon = new PictureBox();
+            backbtn = new Custom();
+            backbtnp = new borderedPanels();
             postpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panel1.SuspendLayout();
@@ -77,10 +79,10 @@ namespace JOB_IN
             profilebackp.SuspendLayout();
             historybackp.SuspendLayout();
             Jobbackp.SuspendLayout();
-            historypanel.SuspendLayout();
             profilepanel.SuspendLayout();
             biop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)orgicon).BeginInit();
+            backbtnp.SuspendLayout();
             SuspendLayout();
             // 
             // Postbtn
@@ -185,7 +187,7 @@ namespace JOB_IN
             jobpanel.BackColor = Color.White;
             jobpanel.BorderRadius = 20;
             jobpanel.BorderSize = 0;
-            jobpanel.Location = new Point(47,125 );
+            jobpanel.Location = new Point(47, 125);
             jobpanel.Name = "jobpanel";
             jobpanel.Size = new Size(1434, 689);
             jobpanel.TabIndex = 0;
@@ -196,7 +198,6 @@ namespace JOB_IN
             postpanel.BackColor = Color.FromArgb(64, 64, 64);
             postpanel.BorderRadius = 20;
             postpanel.BorderSize = 0;
-            //postpanel.Controls.Add(jobpanel);
             postpanel.Controls.Add(postb);
             postpanel.Controls.Add(numericUpDown1);
             postpanel.Controls.Add(excomp);
@@ -316,6 +317,7 @@ namespace JOB_IN
             // panel1
             // 
             panel1.BackColor = Color.LightGray;
+            panel1.Controls.Add(backbtnp);
             panel1.Controls.Add(postbackp);
             panel1.Controls.Add(profilebackp);
             panel1.Controls.Add(historybackp);
@@ -373,8 +375,7 @@ namespace JOB_IN
             historypanel.BackColor = Color.LightGray;
             historypanel.BorderRadius = 20;
             historypanel.BorderSize = 0;
-            
-            historypanel.Location = new Point(47,125);
+            historypanel.Location = new Point(47, 125);
             historypanel.Name = "historypanel";
             historypanel.Size = new Size(1434, 689);
             historypanel.TabIndex = 1;
@@ -520,6 +521,41 @@ namespace JOB_IN
             orgicon.Size = new Size(152, 121);
             orgicon.TabIndex = 0;
             orgicon.TabStop = false;
+            
+            // 
+            // backbtn
+            // 
+            backbtn.BackColor = Color.Black;
+            backbtn.BackgroundColor = Color.Black;
+            backbtn.BorderColor = Color.PaleVioletRed;
+            backbtn.BorderColor1 = Color.PaleVioletRed;
+            backbtn.BorderRadius = 20;
+            backbtn.BorderRadius1 = 20;
+            backbtn.BorderSize = 0;
+            backbtn.BorderSize1 = 0;
+            backbtn.FlatAppearance.BorderSize = 0;
+            backbtn.FlatStyle = FlatStyle.Flat;
+            backbtn.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            backbtn.ForeColor = Color.White;
+            backbtn.Location = new Point(12, 49);
+            backbtn.Name = "backbtn";
+            backbtn.Size = new Size(110, 41);
+            backbtn.TabIndex = 4;
+            backbtn.Text = "Back";
+            backbtn.TextColor = Color.Black;
+            backbtn.UseVisualStyleBackColor = false;
+            backbtn.Click += backbtn_Click;
+            // 
+            // backbtnp
+            // 
+            backbtnp.BorderRadius = 40;
+            backbtnp.BorderSize = 0;
+            backbtnp.Controls.Add(backbtn);
+            backbtnp.Dock = DockStyle.Left;
+            backbtnp.Location = new Point(0, 0);
+            backbtnp.Name = "backbtnp";
+            backbtnp.Size = new Size(250, 104);
+            backbtnp.TabIndex = 9;
             // 
             // EmpLogin
             // 
@@ -530,7 +566,6 @@ namespace JOB_IN
             Controls.Add(panel1);
             Controls.Add(postpanel);
             Controls.Add(profilepanel);
-            
             Controls.Add(jobpanel);
             Name = "EmpLogin";
             Text = "LoginForm";
@@ -544,12 +579,12 @@ namespace JOB_IN
             profilebackp.ResumeLayout(false);
             historybackp.ResumeLayout(false);
             Jobbackp.ResumeLayout(false);
-            historypanel.ResumeLayout(false);
             profilepanel.ResumeLayout(false);
             profilepanel.PerformLayout();
             biop.ResumeLayout(false);
             biop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)orgicon).EndInit();
+            backbtnp.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -595,5 +630,7 @@ namespace JOB_IN
         private Label biolbl;
         private Custom editbtn;
         private borderedPanels smpanel;
+        private Custom backbtn;
+        private borderedPanels backbtnp;
     }
 }
