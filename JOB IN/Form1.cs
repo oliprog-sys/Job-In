@@ -76,17 +76,17 @@ namespace JOB_IN
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+
             //SIgnUpPanel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, SIgnUpPanel1.Width, SIgnUpPanel1.Height, 150, 150));
             Employerbtn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Employerbtn.Width, Employerbtn.Height, 10, 10));
             //textBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox2.Width, textBox2.Height, 20, 20));
             //textBox1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox1.Width, textBox1.Height, 20, 20));
             tableLayoutPanel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height, 20, 20));
             blackColorLine.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, blackColorLine.Width, blackColorLine.Height, 5, 5));
-            apage = true;   
+            apage = true;
         }
 
-        
+
 
 
         private void SignIn(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace JOB_IN
             {
                 if (Db.check(textBox1.Text, textBox2.Text) == true)
                 {
-                 
+
                     s = new ApplicantHomepage();
                     s.job_list_adder();
 
@@ -104,8 +104,9 @@ namespace JOB_IN
 
                     OpenchildForm(s, sender);
                     activeForm.Controls.Remove(this);
-                    
-                }else
+
+                }
+                else
                 {
                     MessageBox.Show("no email found");
                 }
@@ -114,23 +115,37 @@ namespace JOB_IN
             }
             else
             {
-               // if (Db.checkOrganization(textBox1.Text, textBox2.Text) == true)
+                // if (Db.checkOrganization(textBox1.Text, textBox2.Text) == true)
                 //{
-                    SIgnUpPanel1.BackColor = Color.RoyalBlue;
-                    companyname1.ForeColor = Color.White;
-                    EmpLogin form = new EmpLogin();
-                    OpenchildForm(form, sender);
-               // }
-             //   else
-               // {
-                 //   MessageBox.Show("no email found");
-                }
+                SIgnUpPanel1.BackColor = Color.RoyalBlue;
+                companyname1.ForeColor = Color.White;
+                EmpLogin form = new EmpLogin();
+                OpenchildForm(form, sender);
+                // }
+                //   else
+                // {
+                //   MessageBox.Show("no email found");
+            }
 
-               
-                
-            
+
+
+
         }
-        
+
+        private void SignUpbtn_Click(object sender, EventArgs e)
+        {
+            if (apage)
+            {
+                ApplicantSignUp app = new ApplicantSignUp();
+                OpenchildForm(app, sender);
+            }
+            else
+            {
+                EmployerSignUp appO = new EmployerSignUp();
+                OpenchildForm(appO, sender);
+            }
+           
+        }
     }
 }
 
