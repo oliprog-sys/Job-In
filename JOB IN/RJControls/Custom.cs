@@ -430,4 +430,161 @@ namespace JOB_IN.RJControls
     }
 
 
+
+    class jobDesc : borderedPanels
+    {
+        private Label jobName;
+        private Label jobDescription;
+        private Label jobRequirement;
+        private topButtons more;
+        public static int Y = 42;
+        public jobDesc(string JobName, string JobDescription, string JobRequirement)
+        {
+            jobName = new Label();
+            jobDescription = new Label();
+            jobRequirement = new Label();
+            more = new topButtons(0);
+
+
+            jobName.Anchor = AnchorStyles.None;
+            jobName.Font = Custom.font(29);
+            jobName.Size = new Size(200, 60);
+            jobName.Text = JobName;
+            jobName.BackColor = Color.AliceBlue;
+            jobName.Location = new Point(-550, -70);
+
+            jobDescription.Anchor = AnchorStyles.None;
+            jobDescription.Font = Custom.font(14);
+            jobDescription.Size = new Size(200, 60);
+            jobDescription.Text = JobDescription;
+            jobDescription.Location = new Point(-500, 30);
+
+            jobRequirement.Anchor = AnchorStyles.None;
+            jobRequirement.Font = Custom.font(20);
+            jobRequirement.Size = new Size(400, 60);
+            jobRequirement.Text = JobRequirement;
+            jobRequirement.Location = new Point(-525, 80);
+
+            more.Anchor = AnchorStyles.None;
+            more.Font = Custom.font(17);
+            more.Text = "More Info";
+            more.Size = new Size(290, 50);
+            more.Location = new Point(450, 130);
+
+            this.BackColor = Color.White;
+            this.Controls.Add(jobName);
+            this.Controls.Add(jobDescription);
+            this.Controls.Add(jobRequirement);
+            this.Controls.Add(more);
+            this.Size = new Size(1405, 300);
+
+            this.Anchor = AnchorStyles.None;
+            this.Location = new Point(42, Y);
+            recalculateY();
+
+
+        }
+        public static void recalculateY()
+        {
+            Y += 342;
+        }
+    }
+
+
+
+    class jobHistory : borderedPanels
+    {
+        private Label jobName;
+        private Label employer;
+        private Label jobType;
+        private Label jobRequirement;
+        private Label deadline;
+        private topButtons more;
+
+
+        public static int Y = 42;
+        public jobHistory(string JobName, string Employer, string JobType, string JobRequirement, string Deadline)
+        {
+            jobName = new Label();
+            employer = new Label();
+            jobType = new Label();
+            jobRequirement = new Label();
+            deadline = new Label();
+            more = new topButtons(0);
+
+
+            jobName.Anchor = AnchorStyles.None;
+            jobName.Font = Custom.font(17);
+            jobName.Size = new Size(120, 40);
+            jobName.Text = JobName;
+            //jobName.BackColor = Color.Red;
+            jobName.Location = new Point(-350, -20);
+            //  jobName.Click += Enlarge;
+
+            employer.Anchor = AnchorStyles.None;
+            employer.Font = Custom.font(12);
+            employer.Size = new Size(120, 40);
+            employer.Text = Employer;
+            employer.Location = new Point(-350, 40);
+            //employer.BackColor = Color.Blue;
+            // employer.Click += Enlarge;
+
+            jobType.Anchor = AnchorStyles.None;
+            jobType.Font = Custom.font(12);
+            jobType.Size = new Size(120, 40);
+            jobType.Text = JobType;
+            jobType.Location = new Point(0, -20);
+            //jobType.BackColor = Color.Blue;
+            // jobType.Click += Enlarge;
+
+            jobRequirement.Anchor = AnchorStyles.None;
+            jobRequirement.Font = Custom.font(11);
+            jobRequirement.Size = new Size(140, 40);
+            jobRequirement.Text = JobRequirement;
+            jobRequirement.Location = new Point(0, 40);
+            //jobRequirement.BackColor = Color.Blue;
+            //  jobRequirement.Click += Enlarge;
+
+            deadline.Anchor = AnchorStyles.None;
+            deadline.Font = Custom.font(10);
+            deadline.Size = new Size(200, 60);
+            deadline.Text = Deadline;
+            deadline.Location = new Point(400, -20);
+            //deadline.BackColor = Color.Blue;
+            // deadline.Click += Enlarge;
+
+            more.Anchor = AnchorStyles.None;
+            more.Font = Custom.font(10);
+            more.Text = "More Info";
+            more.Size = new Size(290, 50);
+            more.Location = new Point(450, 90);
+
+
+
+
+            this.BackColor = Color.LightGray;
+            this.Controls.Add(jobName);
+            this.Controls.Add(employer);
+            this.Controls.Add(jobType);
+            this.Controls.Add(jobRequirement);
+            this.Controls.Add(deadline);
+            //this.Controls.Add(more);
+
+            this.Size = new Size(1205, 150);
+
+
+            this.Anchor = AnchorStyles.None;
+            this.Location = new Point(42, Y);
+            recalculateY();
+
+
+        }
+
+       
+        public static void recalculateY()
+        {
+            Y += 342;
+        }
+    }
+
 }
