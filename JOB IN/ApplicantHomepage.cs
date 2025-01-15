@@ -87,12 +87,13 @@ namespace JOB_IN
             exit.Location = new Point(870, 470);
             exit.Size = new Size(140, 80);
             exit.Text = "exit";
+           // exit.Click += ClosePanel;
          
 
             jobsPane.Anchor= AnchorStyles.None;
           
             jobsPane.AutoScroll = true;
-            jobsPane.BackColor = Color.FromArgb(0,Color.White);
+            jobsPane.BackColor = Color.FromArgb(0,Color.Black);
             jobsPane.Size = new Size(1434, 675);
             jobsPane.Location = new Point(10, 10);
             jobsPane.BorderStyle = BorderStyle.None;
@@ -183,6 +184,7 @@ namespace JOB_IN
             statusScrollPane.Size = new Size(1250, 550);
             statusScrollPane.Location = new Point(100, 100);
             statusScrollPane.BackColor = Color.FromArgb(0, Color.PaleGoldenrod);
+           
 
             statusPane.Controls.Add(sAllbutton);
             statusPane.Controls.Add(sAcceptedbutton);
@@ -238,7 +240,7 @@ namespace JOB_IN
             MainPanel.Controls.Add(subMain);
 
             MainPanel.Anchor = AnchorStyles.None;
-            MainPanel.BackColor = Color.Gray;
+            MainPanel.BackColor = Color.White;
             MainPanel.Location = new Point(0, 0);
             MainPanel.Name = "MainPanel";
             MainPanel.Size = new Size(1920, 1080);
@@ -441,6 +443,7 @@ namespace JOB_IN
         // 
         public  void  job_list_adder()
         {
+            jobsPane.Controls.Clear();
             for(int i = 0; i < 10; i++)
             {
                 jobsPane.Controls.Add(new jobDesc("title", " description", "requirements"));
@@ -454,14 +457,17 @@ namespace JOB_IN
 
         }
 
+        //needs db
         public void job_history_fetcher()
         {
 
         }
-
+       
+        
         public void job_history_adder(string stat)
         {
             statusScrollPane.Controls.Clear();
+
             int max=0;
             if (stat == "all")
             {
@@ -478,9 +484,9 @@ namespace JOB_IN
             {
                 max = 1;
             }
-            for (int i = 0; i < max; i++)
+            for (int i = 1; i < max+1; i++)
             {
-                statusScrollPane.Controls.Add(new jobHistory("title", "Employer"," job type", "requirements", "31/2/25"));
+                statusScrollPane.Controls.Add(new jobHistory("title "+ i, "Employer"," job type", "requirements", "31/2/25"));
             }
         }
 
@@ -490,7 +496,25 @@ namespace JOB_IN
 
             Application.Exit();
         }
+
+
+        private void ClosePanel(object? sender, EventArgs e)
+        {
+            this.Close();
+            MainPanel.BringToFront();
+
+            // Application.Exit();
+        }
+
+        public  void return_to_login(Object sender, EventArgs e, Form1 f)
+        {
+            f.Show();
+            f.activeForm.Controls.Remove(this);
+            this.Hide();
+          
+        }
     }
+
 
     class jobDesc : borderedPanels
     {
@@ -561,6 +585,8 @@ namespace JOB_IN
         private Label jobRequirement;
         private Label deadline;
         private topButtons more;
+
+    
         public static int Y = 42;
         public jobHistory(string JobName, string Employer, string JobType, string JobRequirement, string Deadline)
         {
@@ -570,15 +596,15 @@ namespace JOB_IN
             jobRequirement = new Label();
             deadline = new Label();
             more = new topButtons(0);
-
+  
 
             jobName.Anchor = AnchorStyles.None;
             jobName.Font = Custom.font(17);
             jobName.Size = new Size(120, 40);
             jobName.Text = JobName;
-          //  jobName.BackColor = Color.Red;
+            //jobName.BackColor = Color.Red;
             jobName.Location = new Point(-350, -20);
-
+          //  jobName.Click += Enlarge;
 
             employer.Anchor = AnchorStyles.None;
             employer.Font = Custom.font(12);
@@ -586,6 +612,7 @@ namespace JOB_IN
             employer.Text = Employer;
             employer.Location = new Point(-350, 40);
             //employer.BackColor = Color.Blue;
+           // employer.Click += Enlarge;
 
             jobType.Anchor = AnchorStyles.None;
             jobType.Font = Custom.font(12);
@@ -593,6 +620,7 @@ namespace JOB_IN
             jobType.Text = JobType;
             jobType.Location = new Point(0, -20);
             //jobType.BackColor = Color.Blue;
+           // jobType.Click += Enlarge;
 
             jobRequirement.Anchor = AnchorStyles.None;
             jobRequirement.Font = Custom.font(11);
@@ -600,6 +628,7 @@ namespace JOB_IN
             jobRequirement.Text = JobRequirement;
             jobRequirement.Location = new Point(0, 40);
             //jobRequirement.BackColor = Color.Blue;
+          //  jobRequirement.Click += Enlarge;
 
             deadline.Anchor = AnchorStyles.None;
             deadline.Font = Custom.font(10);
@@ -607,12 +636,16 @@ namespace JOB_IN
             deadline.Text = Deadline;
             deadline.Location = new Point(400, -20);
             //deadline.BackColor = Color.Blue;
+           // deadline.Click += Enlarge;
 
             more.Anchor = AnchorStyles.None;
             more.Font = Custom.font(10);
             more.Text = "More Info";
             more.Size = new Size(290, 50);
             more.Location = new Point(450, 90);
+
+            
+         
 
             this.BackColor = Color.LightGray;
             this.Controls.Add(jobName);
@@ -621,10 +654,8 @@ namespace JOB_IN
             this.Controls.Add(jobRequirement);
             this.Controls.Add(deadline);
             //this.Controls.Add(more);
+          
             this.Size = new Size(1205, 150);
-            this.MouseHover += Enlarge;
-            this.MouseLeave += Shrink;
-
             
 
             this.Anchor = AnchorStyles.None;
@@ -634,17 +665,29 @@ namespace JOB_IN
 
         }
 
+        /*
         private void Shrink(object? sender, EventArgs e)
         {
+            System.Threading.Thread.Sleep(1000);
             jobName.Font = Custom.font(17);
             employer.Font = Custom.font(12);
 
 
+       
             jobName.Size = new Size(120, 40);
             employer.Size = new Size(120, 40);
             //employer.Location = new Point(-350, 40);
             //this.Controls.Add(employer);
             this.Size = new Size(1205, 150);
+            //   cover.Size = new Size(1205, 150);
+            //cover.Dock = DockStyle.Fill;
+            
+            deadline.MouseEnter -= Enlarge;
+            jobName.MouseEnter -= Enlarge;
+            employer.MouseEnter -= Enlarge;
+            jobType.MouseEnter -= Enlarge;
+            jobRequirement.MouseEnter -= Enlarge;
+            
         }
 
         private void Enlarge(object? sender, EventArgs e)
@@ -657,7 +700,15 @@ namespace JOB_IN
            // employer.Location = new Point(-350, 90);
            // this.Controls.Add(employer);
             this.Size = new Size(1205, 300);
+            
+            deadline.MouseEnter += Enlarge;
+            jobName.MouseEnter += Enlarge;
+            employer.MouseEnter += Enlarge;
+            jobType.MouseEnter += Enlarge;
+            jobRequirement.MouseEnter += Enlarge;
+            
         }
+        */
 
         public static void recalculateY()
         {

@@ -1,4 +1,7 @@
 
+using System.ComponentModel.Design;
+
+
 namespace JOB_IN
 {
     internal static class Program
@@ -10,14 +13,15 @@ namespace JOB_IN
         [STAThread]
         static void Main()
         {
+           // Db.InsertApplicant();
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             strt_form = new Form1();
             //strt_form.Show();
             Application.Run(strt_form);
-           // Application.Exit();
-
+            // Application.Exit();
+           
 
           
         }

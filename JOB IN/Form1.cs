@@ -2,8 +2,8 @@ namespace JOB_IN
 {
     public partial class Form1 : Form
     {
-        private Form activeForm;
-
+        public Form activeForm;
+        static ApplicantHomepage s = new ApplicantHomepage();
         public Form1()
         {
             InitializeComponent();
@@ -17,7 +17,7 @@ namespace JOB_IN
             if (activeForm != null)
             {
 
-                activeForm.Close();
+                activeForm.Hide();
             }
 
             activeForm = ChildForm;
@@ -85,7 +85,7 @@ namespace JOB_IN
             
         }
 
-
+        
 
 
         private void SignIn(object sender, EventArgs e)
@@ -93,24 +93,39 @@ namespace JOB_IN
             //this.Hide();
             if (apage)
             {
-               // SIgnUpPanel1.BackColor = Color.Coral;
-               // companyname1.ForeColor = Color.Black;
-               // ApplicantHomepage s = new ApplicantHomepage();
-              
-               // OpenchildForm(s, sender);
+                if (Db.check(textBox1.Text, textBox2.Text) == true)
+                {
+                 
+                    s = new ApplicantHomepage();
+                    s.job_list_adder();
 
-                this.Hide();
-                ApplicantHomepage s = new ApplicantHomepage();
-                //  OpenchildForm(s, sender);
-                s.job_list_adder();
-                s.Show();
+                    s.exit.Click += (sender, e) => s.return_to_login(sender, e, this);
+
+                    OpenchildForm(s, sender);
+                    activeForm.Controls.Remove(this);
+                    
+                }else
+                {
+                    MessageBox.Show("no email found");
+                }
+
+
             }
             else
             {
-                SIgnUpPanel1.BackColor = Color.RoyalBlue;
-                companyname1.ForeColor = Color.White;
-                EmpLogin form = new EmpLogin();
-                OpenchildForm(form, sender);
+                if (Db.checkOrganization(textBox1.Text, textBox2.Text) == true)
+                {
+                    SIgnUpPanel1.BackColor = Color.RoyalBlue;
+                    companyname1.ForeColor = Color.White;
+                    EmpLogin form = new EmpLogin();
+                    OpenchildForm(form, sender);
+                }
+                else
+                {
+                    MessageBox.Show("no email found");
+                }
+
+               
                 
             }
         }

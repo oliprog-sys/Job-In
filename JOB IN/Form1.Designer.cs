@@ -182,7 +182,7 @@ namespace JOB_IN
             textBox2.PasswordChar = '*';
             textBox2.Size = new Size(437, 31);
             textBox2.TabIndex = 3;
-            textBox2.Text = "********";
+           // textBox2.Text = "********";
             // 
             
             // textBox1
@@ -320,6 +320,7 @@ namespace JOB_IN
         private PictureBox blackColorLine;
         private Button SignUpbtn;
         private Panel MainPanel;
+        
     }
 }
 

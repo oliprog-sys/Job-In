@@ -21,7 +21,7 @@ namespace JOB_IN
             }
             base.Dispose(disposing);
         }
-
+        public static bool hidden=false;
         private TextBox searchBox;
         private topButtons searchButton;
         private topButtons jobs;
@@ -32,7 +32,7 @@ namespace JOB_IN
         private topButtons sAcceptedbutton;
         private topButtons sDeniedbutton;
         private topButtons profile;
-        private topButtons exit;
+        public topButtons exit;
         private borderedscrollPanels jobsPane;
         private borderedscrollPanels searchResultsPane;
         private borderedscrollPanels statusScrollPane;
