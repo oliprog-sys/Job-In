@@ -260,6 +260,8 @@ namespace JOB_IN
             SignUpbtn.TabIndex = 11;
             SignUpbtn.Text = "Sign Up";
             SignUpbtn.UseVisualStyleBackColor = true;
+
+            SignUpbtn.Click += SignUpbtn_Click;
             // 
             // MainPanel
             // 
