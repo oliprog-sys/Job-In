@@ -170,7 +170,8 @@ namespace JOB_IN
             // Name Field 
             orgnameField = new RoundedTextBox2();
             orgnameField.Anchor = AnchorStyles.None;
-            orgnameField.Size = new Size(432, 100);
+            //orgnameField.Size = new Size(432, 100);
+            orgnameField.MinimumSize = new Size(432, 40);
             orgnameField.Location = new Point(150, 374);
             orgnameField.PlaceholderText = "Enter your name";
             orgnameField.BorderStyle = BorderStyle.None;
@@ -189,7 +190,8 @@ namespace JOB_IN
             // Phone number field 
             orgphoneNumField = new RoundedTextBox2();
             orgphoneNumField.Anchor = AnchorStyles.None;
-            orgphoneNumField.Size = new Size(432, 100);
+            //orgphoneNumField.Size = new Size(432, 100);
+            orgphoneNumField.MinimumSize = new Size(432, 40);
             orgphoneNumField.Location = new Point(150, 537);
             orgphoneNumField.PlaceholderText = "09--------";
             orgphoneNumField.BorderStyle = BorderStyle.None;
@@ -207,7 +209,8 @@ namespace JOB_IN
             // Date of birth field
             orgaddressField = new RoundedTextBox2();
             orgaddressField.Anchor = AnchorStyles.None;
-            orgaddressField.Size = new Size(230, 50);
+            //orgaddressField.Size = new Size(230, 50);
+            orgaddressField.MinimumSize = new Size(432, 40);
             orgaddressField.Location = new Point(150, 693);
             orgaddressField.PlaceholderText = "Addis Ababa";
             orgaddressField.BorderStyle = BorderStyle.None;
@@ -226,7 +229,8 @@ namespace JOB_IN
             // Email Field 
             orgemailField = new RoundedTextBox2();
             orgemailField.Anchor = AnchorStyles.None;
-            orgemailField.Size = new Size(432, 100);
+            //orgemailField.Size = new Size(432, 100);
+            orgemailField.MinimumSize = new Size(432, 40);
             orgemailField.Location = new Point(1175, 374);
             orgemailField.PlaceholderText = "example@gmail.com";
             orgemailField.BorderStyle = BorderStyle.None;
@@ -244,7 +248,8 @@ namespace JOB_IN
             // password field
             orgpasswordField = new RoundedTextBox2();
             orgpasswordField.Anchor = AnchorStyles.None;
-            orgpasswordField.Size = new Size(432, 100);
+            //orgpasswordField.Size = new Size(432, 100);
+            orgpasswordField.MinimumSize = new Size(432, 40);
             orgpasswordField.Location = new Point(1175, 537);
             orgpasswordField.PlaceholderText = "******";
             orgpasswordField.PasswordChar = '*';
