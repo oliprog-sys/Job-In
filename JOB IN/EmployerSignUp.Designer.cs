@@ -170,7 +170,8 @@ namespace JOB_IN
             // Name Field 
             orgnameField = new RoundedTextBox2();
             orgnameField.Anchor = AnchorStyles.None;
-            orgnameField.Size = new Size(432, 100);
+            //orgnameField.Size = new Size(432, 100);
+            orgnameField.MinimumSize = new Size(432, 40);
             orgnameField.Location = new Point(150, 374);
             orgnameField.PlaceholderText = "Enter your name";
             orgnameField.BorderStyle = BorderStyle.None;
@@ -189,7 +190,8 @@ namespace JOB_IN
             // Phone number field 
             orgphoneNumField = new RoundedTextBox2();
             orgphoneNumField.Anchor = AnchorStyles.None;
-            orgphoneNumField.Size = new Size(432, 100);
+            //orgphoneNumField.Size = new Size(432, 100);
+            orgphoneNumField.MinimumSize = new Size(432, 40);
             orgphoneNumField.Location = new Point(150, 537);
             orgphoneNumField.PlaceholderText = "09--------";
             orgphoneNumField.BorderStyle = BorderStyle.None;
@@ -200,14 +202,15 @@ namespace JOB_IN
             orgaddressLabel.Anchor = AnchorStyles.None;
             orgaddressLabel.Size = new Size(540, 40);
             orgaddressLabel.Location = new Point(150, 637);
-            orgaddressLabel.Text = "Date of Birth";
+            orgaddressLabel.Text = "Address";
             orgaddressLabel.ForeColor = Color.White;
             orgaddressLabel.Font = new Font("sans serif", 18f);
 
             // Date of birth field
             orgaddressField = new RoundedTextBox2();
             orgaddressField.Anchor = AnchorStyles.None;
-            orgaddressField.Size = new Size(230, 50);
+            //orgaddressField.Size = new Size(230, 50);
+            orgaddressField.MinimumSize = new Size(432, 40);
             orgaddressField.Location = new Point(150, 693);
             orgaddressField.PlaceholderText = "Addis Ababa";
             orgaddressField.BorderStyle = BorderStyle.None;
@@ -226,7 +229,8 @@ namespace JOB_IN
             // Email Field 
             orgemailField = new RoundedTextBox2();
             orgemailField.Anchor = AnchorStyles.None;
-            orgemailField.Size = new Size(432, 100);
+            //orgemailField.Size = new Size(432, 100);
+            orgemailField.MinimumSize = new Size(432, 40);
             orgemailField.Location = new Point(1175, 374);
             orgemailField.PlaceholderText = "example@gmail.com";
             orgemailField.BorderStyle = BorderStyle.None;
@@ -244,7 +248,8 @@ namespace JOB_IN
             // password field
             orgpasswordField = new RoundedTextBox2();
             orgpasswordField.Anchor = AnchorStyles.None;
-            orgpasswordField.Size = new Size(432, 100);
+            //orgpasswordField.Size = new Size(432, 100);
+            orgpasswordField.MinimumSize = new Size(432, 40);
             orgpasswordField.Location = new Point(1175, 537);
             orgpasswordField.PlaceholderText = "******";
             orgpasswordField.PasswordChar = '*';
@@ -347,6 +352,7 @@ namespace JOB_IN
             orgSubmitBtn.BackColor = Color.FromArgb(0, 83, 156);
             orgSubmitBtn.FlatStyle = FlatStyle.Flat | FlatStyle.Popup;
             orgSubmitBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            orgSubmitBtn.Click += OnorgSubmitBtn_clicked;
 
             // first under line
             orgUnderline1 = new Panel();
@@ -395,7 +401,7 @@ namespace JOB_IN
             // Name Field 
             pernameField = new RoundedTextBox2();
             pernameField.Anchor = AnchorStyles.None;
-            pernameField.Size = new Size(432, 100);
+            pernameField.MinimumSize = new Size(432, 40);
             pernameField.Location = new Point(150, 374);
             pernameField.PlaceholderText = "Enter your name";
             pernameField.BorderStyle = BorderStyle.None;
@@ -414,7 +420,7 @@ namespace JOB_IN
             // Phone number field 
             perphoneNumField = new RoundedTextBox2();
             perphoneNumField.Anchor = AnchorStyles.None;
-            perphoneNumField.Size = new Size(432, 100);
+            perphoneNumField.MinimumSize = new Size(432, 40);
             perphoneNumField.Location = new Point(150, 537);
             perphoneNumField.PlaceholderText = "09--------";
             perphoneNumField.BorderStyle = BorderStyle.None;
@@ -425,14 +431,14 @@ namespace JOB_IN
             peraddressLabel.Anchor = AnchorStyles.None;
             peraddressLabel.Size = new Size(540, 40);
             peraddressLabel.Location = new Point(150, 637);
-            peraddressLabel.Text = "Date of Birth";
+            peraddressLabel.Text = "Address";
             peraddressLabel.ForeColor = Color.White;
             peraddressLabel.Font = new Font("sans serif", 18f);
 
             // Date of birth field
             peraddressField = new RoundedTextBox2();
             peraddressField.Anchor = AnchorStyles.None;
-            peraddressField.Size = new Size(230, 50);
+            peraddressField.MinimumSize = new Size(432, 40);
             peraddressField.Location = new Point(150, 693);
             peraddressField.PlaceholderText = "Addis Ababa";
             peraddressField.BorderStyle = BorderStyle.None;
@@ -451,7 +457,7 @@ namespace JOB_IN
             // Email Field 
             peremailField = new RoundedTextBox2();
             peremailField.Anchor = AnchorStyles.None;
-            peremailField.Size = new Size(432, 100);
+            peremailField.MinimumSize = new Size(432, 40);
             peremailField.Location = new Point(1175, 374);
             peremailField.PlaceholderText = "example@gmail.com";
             peremailField.BorderStyle = BorderStyle.None;
@@ -469,7 +475,7 @@ namespace JOB_IN
             // password field
             perpasswordField = new RoundedTextBox2();
             perpasswordField.Anchor = AnchorStyles.None;
-            perpasswordField.Size = new Size(432, 100);
+            perpasswordField.MinimumSize = new Size(432, 40);
             perpasswordField.Location = new Point(1175, 537);
             perpasswordField.PlaceholderText = "******";
             perpasswordField.PasswordChar = '*';
@@ -573,6 +579,7 @@ namespace JOB_IN
             perSubmitBtn.BackColor = Color.FromArgb(0, 83, 156);
             perSubmitBtn.FlatStyle = FlatStyle.Flat | FlatStyle.Popup;
             perSubmitBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            perSubmitBtn.Click += OnperSubmitBtn_clicked;
 
             // first under line
             perUnderline1 = new Panel();

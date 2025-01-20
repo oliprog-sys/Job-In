@@ -135,11 +135,14 @@ namespace JOB_IN
             // Name Field 
             nameField = new RoundedTextBox();
             nameField.Anchor = AnchorStyles.None;
-            nameField.Size = new Size(432, 100);
+            //nameField.Size = new Size(432, 100);
             nameField.Location = new Point(150, 374);
+            nameField.MinimumSize = new Size(432, 40);
+            nameField.TextAlign = HorizontalAlignment.Left;
             nameField.PlaceholderText = "Enter your name";
-            nameField.BorderStyle = BorderStyle.None;
+            nameField.BorderStyle = BorderStyle.None;            
             nameField.Font = new Font("Sans serif", 14f);
+            
 
 
             // Phone number label
@@ -155,6 +158,7 @@ namespace JOB_IN
             phoneNumField = new RoundedTextBox();
             phoneNumField.Anchor = AnchorStyles.None;
             phoneNumField.Size = new Size(432, 100);
+            phoneNumField.MinimumSize = new Size(432, 40);
             phoneNumField.Location = new Point(150, 537);
             phoneNumField.PlaceholderText = "09--------";
             phoneNumField.BorderStyle = BorderStyle.None;
@@ -190,6 +194,7 @@ namespace JOB_IN
             emailField = new RoundedTextBox();
             emailField.Anchor = AnchorStyles.None;
             emailField.Size = new Size(432, 100);
+            emailField.MinimumSize = new Size(432, 40);
             emailField.Location = new Point(1175, 374);
             emailField.PlaceholderText = "example@gmail.com";
             emailField.BorderStyle = BorderStyle.None;
@@ -208,6 +213,7 @@ namespace JOB_IN
             passwordField = new RoundedTextBox();
             passwordField.Anchor = AnchorStyles.None;
             passwordField.Size = new Size(432, 100);
+            passwordField.MinimumSize = new Size(432, 40);
             passwordField.Location = new Point(1175, 537);
             passwordField.PlaceholderText = "******";
             passwordField.PasswordChar = '*';
@@ -224,6 +230,7 @@ namespace JOB_IN
             nextBtn.ForeColor = Color.White;
             nextBtn.Font = new Font("Sans serif", 18f);
             nextBtn.FlatStyle = FlatStyle.Flat;
+            nextBtn.Cursor = Cursors.Hand;
             nextBtn.Click += next_btn_click;
 
             //Second main panel
@@ -273,20 +280,32 @@ namespace JOB_IN
             cvField.ForeColor = Color.White;
             cvField.BorderStyle = BorderStyle.None;
             cvField.Font = new Font("Sans serif", 18f);
-            
 
 
-            // Upload file btn
-            uploadBtn = new RoundedButton();
-            uploadBtn.Anchor = AnchorStyles.None;
-            uploadBtn.Size = new Size(230, 70);
-            uploadBtn.Location = new Point(478, 690);
-            uploadBtn.Text = "Upload";
-            uploadBtn.BackColor = Color.LightGray;
-            uploadBtn.ForeColor = Color.Black;
-            uploadBtn.FlatStyle = FlatStyle.Flat;
-            uploadBtn.Font = new Font("Sans serif", 16f);
-            uploadBtn.Click += onUploadBtn_clicked;
+            // Choose Btn
+            chooseFileBtn = new RoundedButton();
+            chooseFileBtn.Anchor = AnchorStyles.None;
+            chooseFileBtn.Size = new Size(230, 70);
+            chooseFileBtn.Location = new Point(478, 690);
+            chooseFileBtn.Text = "Choose File";
+            chooseFileBtn.BackColor = Color.Coral;
+            chooseFileBtn.ForeColor = Color.White;
+            chooseFileBtn.FlatStyle = FlatStyle.Flat;
+            chooseFileBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            chooseFileBtn.Click += OnChooseFile_clicked;
+
+
+            //// Upload file btn
+            //uploadBtn = new RoundedButton();
+            //uploadBtn.Anchor = AnchorStyles.None;
+            //uploadBtn.Size = new Size(200, 70);
+            //uploadBtn.Location = new Point(720, 690);
+            //uploadBtn.Text = "upload";          
+            //uploadBtn.BackColor = Color.LightGray;
+            //uploadBtn.ForeColor = Color.Black;
+            //uploadBtn.FlatStyle = FlatStyle.Flat;
+            //uploadBtn.Font = new Font("Sans serif", 16f);
+            //uploadBtn.Click += onUploadBtn_clicked;
 
             // Certification label
             certificationLabel = new Label();
@@ -414,6 +433,7 @@ namespace JOB_IN
             submitBtn.BackColor = Color.FromArgb(238, 164, 127);
             submitBtn.FlatStyle = FlatStyle.Flat | FlatStyle.Popup;
             submitBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            submitBtn.Click += OnSubmitBtn_clicked;
 
             // first under line
             underlinePanel1 = new Panel();
@@ -453,8 +473,9 @@ namespace JOB_IN
             infoPanel2.Controls.Add(skillLabel);
             infoPanel2.Controls.Add(skillField);
             infoPanel2.Controls.Add(cvLabel);
+            infoPanel2.Controls.Add(chooseFileBtn);
             infoPanel2.Controls.Add(cvField);
-            infoPanel2.Controls.Add(uploadBtn);
+            //infoPanel2.Controls.Add(uploadBtn);
             infoPanel2.Controls.Add(certificationLabel);
             infoPanel2.Controls.Add(addCertificateBtn);
             infoPanel2.Controls.Add(certificationField);
@@ -487,7 +508,7 @@ namespace JOB_IN
         private Panel mainPanel1, infoPanel2, titlePanel, infoPanel, underlinePanel1, underlinePanel2;
         private Label titleLabel, nameLabel, emailLabel, phoneNumLabel, passwordLabel, DOBLabel, skillLabel, cvLabel,
             certificationLabel, jobCategoryLabel, experienceLabel, workStatusLabel, yearsLabel;
-        private RoundedButton nextBtn, submitBtn, uploadBtn, addCertificateBtn;
+        private RoundedButton nextBtn, submitBtn, uploadBtn, addCertificateBtn, chooseFileBtn;
         private RoundedTextBox nameField, emailField, phoneNumField, passwordField, skillField, cvField, certificationField, experienceField;
         private DateTimePicker DobField;
         private ComboBox jobCategoryCB;
