@@ -94,8 +94,8 @@ namespace JOB_IN
             //this.Hide();
             if (apage)
             {
-                if (Db.check(textBox1.Text, textBox2.Text) == true)
-                {
+                //if (Db.check(textBox1.Text, textBox2.Text) == true)
+                //{
 
                     s = new ApplicantHomepage();
                     s.job_list_adder();
@@ -105,11 +105,11 @@ namespace JOB_IN
                     OpenchildForm(s, sender);
                     activeForm.Controls.Remove(this);
 
-                }
-                else
+                //}
+                /*else
                 {
                     MessageBox.Show("no email found");
-                }
+                }*/
 
 
             }

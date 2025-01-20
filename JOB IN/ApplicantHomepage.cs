@@ -194,10 +194,75 @@ namespace JOB_IN
 
             profilePane.Anchor = AnchorStyles.None;
             profilePane.AutoScroll = true;
-            profilePane.BackColor = Color.BlueViolet;
+            profilePane.BackColor = Color.White;
             profilePane.Size = new Size(1413, 675);
             profilePane.Location = new Point(10, 10);
             profilePane.BorderStyle = BorderStyle.None;
+
+            Panel profileImg = new Panel();
+            Label UserNameL = new Label();
+            Label Email = new Label();
+            Label PhoneNum = new Label();
+            Label Status = new Label();
+            Label Bio = new Label();
+            borderedPanels BioP = new borderedPanels();
+            TextBox bioT = new TextBox();
+            Label Experience = new Label();
+            //Label UserName = new Label();
+
+            UserNameL.Text = "Name: ";
+            UserNameL.Anchor = AnchorStyles.None;
+            UserNameL.Font = Custom.font(15);
+            UserNameL.Location = new Point(40, 170);
+            UserNameL.Size = new Size(200, 40);
+
+            Email.Text = "Email: ";
+            Email.Anchor = AnchorStyles.None;
+            Email.Font = Custom.font(15);
+            Email.Location = new Point(40, 210);
+            Email.Size = new Size(200, 40);
+
+            PhoneNum.Text = "Phone: ";
+            PhoneNum.Anchor = AnchorStyles.None;
+            PhoneNum.Font = Custom.font(15);
+            PhoneNum.Location = new Point(40, 250);
+            PhoneNum.Size = new Size(200, 40);
+
+            Status.Text = "Status: Active";
+            Status.Anchor = AnchorStyles.None;
+            Status.Font = Custom.font(15);
+            Status.Location = new Point(40, 290);
+            Status.Size = new Size(200, 40);
+
+
+            Bio.Text = "Bio: ";
+            Bio.Anchor = AnchorStyles.None;
+            Bio.Font = Custom.font(15);
+            Bio.Location = new Point(40, 330);
+            Bio.Size = new Size(200, 30);
+
+            BioP.Size = new Size(400, 200);
+            BioP.Location = new Point(40, 370);
+            BioP.Anchor = AnchorStyles.None;
+            BioP.BackColor = Color.Coral;
+
+            bioT.Text = "lorem ipsum....";
+            bioT.Anchor = AnchorStyles.None;    
+            bioT.AllowDrop = true;
+            bioT.Multiline = true;
+            bioT.Size = new Size(350,160);
+            bioT.BorderStyle = BorderStyle.None;
+            bioT.Location = new Point(25, 20);
+            
+
+            BioP.Controls.Add(bioT);
+
+            profilePane.Controls.Add(UserNameL);
+            profilePane.Controls.Add(Email);
+            profilePane.Controls.Add(PhoneNum);
+            profilePane.Controls.Add(Status);
+            profilePane.Controls.Add(Bio);
+            profilePane.Controls.Add(BioP);
 
             subMain.Anchor = AnchorStyles.None;
             subMain.AutoScroll = true;
@@ -211,22 +276,31 @@ namespace JOB_IN
             companyname1.Anchor = AnchorStyles.None;
             companyname1.AutoSize = true;
             companyname1.Font = new Font("Cascadia Mono", 55F);
-            companyname1.Location = new Point(-60, 11);
+            companyname1.Location = new Point(-90, 11);
             companyname1.Name = "companyname1";
             companyname1.Size = new Size(376, 122);
             companyname1.TabIndex = 0;
+            companyname1.ForeColor= Color.White;
             companyname1.Text = "JOB IN";
           
 
             panel1.BackColor = Color.Coral;
             panel1.Controls.Add(companyname1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
+            panel1.Anchor = AnchorStyles.None;
+            panel1.Location = new Point(-860, -500);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1920, 143);
+            panel1.Size = new Size(400, 143);
             panel1.TabIndex = 0;
 
+            Label welcome = new Label();
+            welcome.Text = "WELCOME, USERNAME";
+            welcome.Font = Custom.font(30);
+            welcome.Anchor = AnchorStyles.None;
+            welcome.Location = new Point(-200, -450);
+            welcome.ForeColor = Color.OrangeRed;
+            welcome.Size = new Size(850, 100);
 
+            MainPanel.Controls.Add(welcome);
             MainPanel.Controls.Add(panel1);
             MainPanel.Controls.Add(jobs);
             MainPanel.Controls.Add(search);
@@ -446,10 +520,20 @@ namespace JOB_IN
             jobsPane.Controls.Clear();
             for(int i = 0; i < 10; i++)
             {
-                jobsPane.Controls.Add(new jobDesc("title", " description", "requirements"));
+                jobDesc jd = new jobDesc("title", " description", "requirements");
+                jd.more.Click += (sender,e)=>jobExpand(sender,e, "title", " description", "requirements");
+                jobsPane.Controls.Add(jd);
+                
             }
         }
-        
+
+        private void jobExpand(object? sender, EventArgs e, string title,string desc, string req)
+        {
+            jobDescDetail a = new jobDescDetail(title, desc, req);
+            MainPanel.Controls.Add(a);
+            a.BringToFront();
+        }
+
 
         //Fetches the job info as a series of strings from the database and creates a panel that will be added to an array list
         public void job_list_fetcher(ArrayList jobList)
