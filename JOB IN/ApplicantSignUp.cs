@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.IO;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
+
 
 namespace JOB_IN
 {
     public partial class ApplicantSignUp : Form
     {
-        private string connString = "Data Source=DESKTOP-D5PCH38\\SQLEXPRESS;Initial Catalog=Job_in;Integrated Security=True;Trust Server Certificate=True";
+        CreateAccount ca = new CreateAccount();
+        //private string connString = "Data Source=DESKTOP-D5PCH38\\SQLEXPRESS;Initial Catalog=Job_in;Integrated Security=True;";
         public ApplicantSignUp()
         {
             InitializeComponent();
@@ -27,10 +29,10 @@ namespace JOB_IN
             mainPanel1.Controls.Add(infoPanel2);
         }
 
-        private void onUploadBtn_clicked(object sender, EventArgs e)
-        {
-            uploadFile();
-        }
+        //private void onUploadBtn_clicked(object sender, EventArgs e)
+        //{
+        //    uploadFile();
+        //}
 
         private void OnChooseFile_clicked(object sender, EventArgs e)
         {
@@ -51,74 +53,72 @@ namespace JOB_IN
 
         private void OnSubmitBtn_clicked(Object sender, EventArgs e)
         {
-            CreateAccount ca = new CreateAccount();
             ca.ApplicantName = nameField.Text;
             ca.ApplicantPhoneNum = phoneNumField.Text;
             ca.ApplicantDOB = DobField.Text;
             ca.ApplicantEmail = emailField.Text;
             ca.ApplicantPassword = passwordField.Text;
             ca.ApplicantSkillDesc = skillField.Text;
-            ca.ApplicantCV = File.ReadAllBytes(cvField.Text);
-            ca.ApplicantJobCategory = jobCategoryCB.SelectedText;
-            ca.ApplicantExperience = int.Parse(experienceField.Text);
-            if (statusRadioBtn1.Checked)
-            {
-                ca.ApplicantWorkStatus = statusRadioBtn1.Text;
-            } else
-            {
-                ca.ApplicantWorkStatus = statusRadioBtn2.Text;
-            }
 
-
-            ca.SaveInfo();
-            MessageBox.Show("Account created successfully");
-
-        }
-
-        private void uploadFile()
-        {
             string filePath = cvField.Text;
-            
-            if(string.IsNullOrEmpty(filePath) )
+
+            if (string.IsNullOrEmpty(filePath))
             {
                 MessageBox.Show("You should insert the file to upload");
                 return;
             }
 
             string fileExtension = Path.GetExtension(filePath).ToLower();
+            string[] allowedExtensions = { ".pdf" };
 
-            string[] allowedExtension = { ".pdf" };
-
-            if(!allowedExtension.Contains(fileExtension))
+            if (!allowedExtensions.Contains(fileExtension))
             {
-                MessageBox.Show("Invalid file type. please upload pdf file");
+                MessageBox.Show("Invalid file type. Please upload a PDF file.");
                 return;
             }
 
-            byte[] fileData = File.ReadAllBytes(filePath);
-
-            using (SqlConnection conn = new SqlConnection(connString))           
+            try
             {
-                string fileUpload = "INSERT INTO Job_in (CV) VALUES (@fileInput)";
-                
-                using(SqlCommand com = new SqlCommand(fileUpload, conn))
-                {
-                    com.Parameters.AddWithValue("@fileInput", fileData);
-
-                    try
-                    {
-                        conn.Open();
-                        com.ExecuteNonQuery();
-                        MessageBox.Show("File uploaded successfully");
-                    }
-                    catch(Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message);
-                    }
-                }
+                ca.ApplicantCV = File.ReadAllBytes(filePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading file: " + ex.Message);
+                return;
             }
 
+            if (!int.TryParse(experienceField.Text, out int experience))
+            {
+                MessageBox.Show("Please enter a valid number for experience.");
+                return;
+            }
+            ca.ApplicantExperience = experience;
+
+            ca.ApplicantJobCategory = jobCategoryCB.SelectedItem.ToString();
+
+            if (statusRadioBtn1.Checked)
+            {
+                ca.ApplicantWorkStatus = statusRadioBtn1.Text;
+            }
+            else
+            {
+                ca.ApplicantWorkStatus = statusRadioBtn2.Text;
+            }
+
+            var success = ca.SaveInfo(ca);
+
+            if(success)
+            {
+                MessageBox.Show("Account Created Successfully");
+            } else
+            {
+                MessageBox.Show("Error adding data to the database");
+            }
+
+           
         }
+
+       
 
         private void OnPlusSign_clicked(object sender, EventArgs e)
         {
@@ -129,7 +129,7 @@ namespace JOB_IN
 
     public class CreateAccount
     {
-        private string connString = "Data Source=DESKTOP-D5PCH38\\SQLEXPRESS;Initial Catalog=Job_in;Integrated Security=True;Trust Server Certificate=True";
+        private string connString = "Data Source=DESKTOP-D5PCH38\\SQLEXPRESS;Initial Catalog=Job_in;Integrated Security=True;";
         public string ApplicantName { get; set; }
         public string ApplicantPhoneNum { get; set; }
         public string ApplicantDOB { get; set; }
@@ -140,29 +140,39 @@ namespace JOB_IN
         public int ApplicantExperience { get; set; }
         public string ApplicantWorkStatus { get; set; }
         public byte[] ApplicantCV { get; set; }
-        private const string InsertQuery = "Insert Into Job_in(Name, Phone_num, DOB, AEmail, Password, Skill_description, Job_category, Experience, Work_status, CV) Values (@ApplicantName, @ApplicantPhoneNum, @ApplicantDOB, @ApplicantEmail, @ApplicantPassword, @ApplicantSkillDesc, @ApplicantJobCategory, @ApplicantExperience, @ApplicantWorkStatus, @ApplicantCV)";
+        private const string InsertQuery = "INSERT INTO Applicant (Name, Phone_num, DOB, AEmail, Password, Skill_description, Job_category, Experience, Work_status, CV) VALUES (@ApName, @ApPhone, @ApDob, @ApEmail, @ApPassword, @ApSkill, @ApJob, @ApExper, @ApWork, @ApCV)";
 
-        public void SaveInfo()
+        public bool SaveInfo(CreateAccount ca)
         {
+            int row = 0;
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
                 using (SqlCommand com = new SqlCommand(InsertQuery, conn))
                 {
-                    com.Parameters.AddWithValue("@ApplicantName", ApplicantName);
-                    com.Parameters.AddWithValue("@ApplicantPhoneNum", ApplicantPhoneNum);
-                    com.Parameters.AddWithValue("@ApplicantDOB", ApplicantDOB);
-                    com.Parameters.AddWithValue("@ApplicantEmail", ApplicantEmail);
-                    com.Parameters.AddWithValue("@ApplicantPassword", ApplicantPassword);
-                    com.Parameters.AddWithValue("@ApplicantSkillDesc", ApplicantSkillDesc);
-                    com.Parameters.AddWithValue("@ApplicantJobCategory", ApplicantJobCategory);
-                    com.Parameters.AddWithValue("@ApplicantExperience", ApplicantExperience);
-                    com.Parameters.AddWithValue("@ApplicantWorkStatus", ApplicantWorkStatus);
-                    com.Parameters.AddWithValue("@ApplicantCV", ApplicantCV);
+                    try
+                    {
+                        com.Parameters.AddWithValue("@ApName", ca.ApplicantName);
+                        com.Parameters.AddWithValue("@ApPhone", ca.ApplicantPhoneNum);
+                        com.Parameters.AddWithValue("@ApDob", ca.ApplicantDOB);
+                        com.Parameters.AddWithValue("@ApEmail", ca.ApplicantEmail);
+                        com.Parameters.AddWithValue("@ApPassword", ca.ApplicantPassword);
+                        com.Parameters.AddWithValue("@ApSkill", ca.ApplicantSkillDesc);
+                        com.Parameters.AddWithValue("@ApJob", ca.ApplicantJobCategory);
+                        com.Parameters.AddWithValue("@ApExper", ca.ApplicantExperience);
+                        com.Parameters.AddWithValue("@ApWork", ca.ApplicantWorkStatus);
+                        com.Parameters.AddWithValue("@ApCV", ca.ApplicantCV);
 
-                    com.ExecuteNonQuery(); 
+                        row = com.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
                 }
             }
+            return row > 0;
         }
     }
 }

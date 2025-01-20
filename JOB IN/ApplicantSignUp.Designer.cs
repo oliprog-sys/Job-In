@@ -19,7 +19,7 @@ namespace JOB_IN
         private void UpdateRegion()
         {
             GraphicsPath path = new GraphicsPath();
-            int radius = 30;
+            int radius = 20;
             path.AddArc(0, 0, radius, radius, 180, 90);
             path.AddArc(Width - radius - 1, 0, radius, radius, 270, 90);
             path.AddArc(Width - radius - 1, Height - radius - 1, radius, radius, 0, 90);
@@ -295,17 +295,17 @@ namespace JOB_IN
             chooseFileBtn.Click += OnChooseFile_clicked;
 
 
-            // Upload file btn
-            uploadBtn = new RoundedButton();
-            uploadBtn.Anchor = AnchorStyles.None;
-            uploadBtn.Size = new Size(200, 70);
-            uploadBtn.Location = new Point(720, 690);
-            uploadBtn.Text = "upload";          
-            uploadBtn.BackColor = Color.LightGray;
-            uploadBtn.ForeColor = Color.Black;
-            uploadBtn.FlatStyle = FlatStyle.Flat;
-            uploadBtn.Font = new Font("Sans serif", 16f);
-            uploadBtn.Click += onUploadBtn_clicked;
+            //// Upload file btn
+            //uploadBtn = new RoundedButton();
+            //uploadBtn.Anchor = AnchorStyles.None;
+            //uploadBtn.Size = new Size(200, 70);
+            //uploadBtn.Location = new Point(720, 690);
+            //uploadBtn.Text = "upload";          
+            //uploadBtn.BackColor = Color.LightGray;
+            //uploadBtn.ForeColor = Color.Black;
+            //uploadBtn.FlatStyle = FlatStyle.Flat;
+            //uploadBtn.Font = new Font("Sans serif", 16f);
+            //uploadBtn.Click += onUploadBtn_clicked;
 
             // Certification label
             certificationLabel = new Label();
@@ -475,7 +475,7 @@ namespace JOB_IN
             infoPanel2.Controls.Add(cvLabel);
             infoPanel2.Controls.Add(chooseFileBtn);
             infoPanel2.Controls.Add(cvField);
-            infoPanel2.Controls.Add(uploadBtn);
+            //infoPanel2.Controls.Add(uploadBtn);
             infoPanel2.Controls.Add(certificationLabel);
             infoPanel2.Controls.Add(addCertificateBtn);
             infoPanel2.Controls.Add(certificationField);
