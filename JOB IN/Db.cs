@@ -16,7 +16,7 @@ namespace JOB_IN
         static string ConnectionString = "Data Source=.;Initial Catalog=Job_in;Integrated Security=True;";
         public static bool InsertApplicant()
         {
-            applicants b = new applicants("abebe", 091121, DateTime.Now, "abebe@gmail.com", "abebe11", "abe in the house", "abe likes work", "abe no work", 2, "notworking");
+            applicants b = new applicants("abebe", "091121", DateTime.Now, "abebe@gmail.com", "abebe11", "abe in the house", "abe likes work", "abe no work", 2, "notworking");
             int r;
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -64,6 +64,31 @@ namespace JOB_IN
             }
             return false;
         }
+
+        public static applicants fetchApplicantinfo(string email)
+        {
+            SqlDataReader s;
+            applicants app;
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select * from Applicant where AEmail=@1;";
+                command.Parameters.AddWithValue("@1", email);
+
+                //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
+                command.Connection = conn;
+                s = command.ExecuteReader();
+                s.Read();
+                app = new applicants(s["Name"].ToString(), s["Phone_num"].ToString(), (DateTime)s["DOB"], s["AEmail"].ToString(), s["Password"].ToString(), s["Skill_description"].ToString(), s["Skill_description"].ToString(), s["Job_category"].ToString(), (int)s["Experience"], s["Work_status"].ToString());
+
+
+            }
+            return app;
+
+        }
+
         public static bool checkOrganization(string email, string password)
         {
             Object r;
@@ -91,7 +116,7 @@ namespace JOB_IN
     public class applicants
     {
         public string name;
-        public int PhoneNum;
+        public string PhoneNum;
         public DateTime dob;
         public string email;
         public string password;
@@ -103,7 +128,7 @@ namespace JOB_IN
         // CV varbinary(max) not null,
         // Photo varbinary
 
-        public applicants( string name, int PhoneNum, DateTime dob, string email, string password, string description, string skill_description, string job_description, int experience, string work_status)
+        public applicants( string name, string PhoneNum, DateTime dob, string email, string password, string description, string skill_description, string job_description, int experience, string work_status)
         {
             this.name = name; 
             this.PhoneNum = PhoneNum;
@@ -117,8 +142,22 @@ namespace JOB_IN
             this.work_status = work_status;
 
         }
+        public applicants(SqlDataReader s)
+        {
+            this.name = s["Name"].ToString();
+            this.PhoneNum = s["Phone_num"].ToString();
+            this.dob = (DateTime)s["DOB"];
+            this.email = s["AEmail"].ToString();
+            //this.password = s["Password"].ToString();
+            this.description = s["Skill_description"].ToString();
+            this.skill_description = s["Skill_description"].ToString();
+            this.job_description = s["Job_category"].ToString();
+            this.experience = (int)s["Experience"];
+            this.work_status = s["Work_status"].ToString();
 
-        
+        }
+
+
 
     }
 }
