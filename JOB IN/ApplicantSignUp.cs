@@ -129,7 +129,7 @@ namespace JOB_IN
 
     public class CreateAccount
     {
-        private string connString = "Data Source=DESKTOP-D5PCH38\\SQLEXPRESS;Initial Catalog=Job_in;Integrated Security=True;";
+        private string connString = "private string connString = \"Data Source=.;Initial Catalog=Job_in;Integrated Security=True;\";";
         public string ApplicantName { get; set; }
         public string ApplicantPhoneNum { get; set; }
         public string ApplicantDOB { get; set; }
