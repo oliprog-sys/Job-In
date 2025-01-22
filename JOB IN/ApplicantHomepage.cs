@@ -219,6 +219,7 @@ namespace JOB_IN
             borderedPanels CertificationPanel = new borderedPanels();
             borderedscrollPanels CertificationScroll = new borderedscrollPanels();
             topButtons edit = new topButtons(0);
+            topButtons addCertification = new topButtons(Color.AliceBlue, Color.Coral);
             //Label UserName = new Label();
 
             profileImg.Size = new Size(140, 140);
@@ -237,7 +238,7 @@ namespace JOB_IN
             Email.Anchor = AnchorStyles.None;
             Email.Font = Custom.font(15);
             Email.Location = new Point(40, 210);
-            Email.Size = new Size(200, 40);
+            Email.Size = new Size(400, 40);
 
             PhoneNum.Text = "Phone: " + applicant.PhoneNum;
             PhoneNum.Anchor = AnchorStyles.None;
@@ -249,7 +250,7 @@ namespace JOB_IN
             Status.Anchor = AnchorStyles.None;
             Status.Font = Custom.font(15);
             Status.Location = new Point(40, 290);
-            Status.Size = new Size(200, 40);
+            Status.Size = new Size(400, 40);
 
 
             Bio.Text = "Bio: " ;
@@ -275,8 +276,8 @@ namespace JOB_IN
             Experience.Text = "Experience: " + applicant.experience;
             Experience.Anchor = AnchorStyles.None;
             Experience.Font = Custom.font(15);
-            Experience.Location = new Point(240, 170);
-            Experience.Size = new Size(200, 30);
+            Experience.Location = new Point(400, 170);
+            Experience.Size = new Size(400, 30);
 
             CV.Text = "Curriculum Vitae";
             CV.Anchor = AnchorStyles.None;
@@ -295,16 +296,24 @@ namespace JOB_IN
             CertificationsLabel.Location = new Point(900, 300);
             CertificationsLabel.Size = new Size(400, 30);
 
-            CertificationScroll.Size = new Size(400, 200);
-            CertificationScroll.Location = new Point(0, 0);
+            CertificationScroll.Size = new Size(400, 130);
+            CertificationScroll.Location = new Point(3, 3);
             CertificationScroll.Anchor = AnchorStyles.None;
             CertificationScroll.BackColor = Color.FromArgb(0,Color.White);
+
+            addCertification.Anchor = AnchorStyles.None;
+            addCertification.Size = new Size(180, 40);
+            addCertification.Text = "Add";
+            addCertification.Location = new Point(180, 150);
+            
 
             CertificationPanel.Size = new Size(400, 200);
             CertificationPanel.Location = new Point(880, 350);
             CertificationPanel.Anchor = AnchorStyles.None;
             CertificationPanel.BackColor = Color.Coral;
             CertificationPanel.Controls.Add(CertificationScroll);
+            CertificationPanel.Controls.Add(addCertification);
+
 
             edit.Anchor = AnchorStyles.None;
             edit.Font = Custom.font(17);
