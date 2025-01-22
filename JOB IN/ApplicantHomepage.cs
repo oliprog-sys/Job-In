@@ -15,10 +15,14 @@ namespace JOB_IN
 {
     public partial class ApplicantHomepage : Form
     {
+
+        public applicants applicant;
+
         private Label companyname1;
         private Panel panel1;
-        public ApplicantHomepage()
+        public ApplicantHomepage(applicants ap)
         {
+            applicant = ap;
             InitializeComponents();
         }
         public void InitializeComponents()
@@ -89,7 +93,7 @@ namespace JOB_IN
             exit.Text = "exit";
            // exit.Click += ClosePanel;
          
-
+            
             jobsPane.Anchor= AnchorStyles.None;
           
             jobsPane.AutoScroll = true;
@@ -194,10 +198,143 @@ namespace JOB_IN
 
             profilePane.Anchor = AnchorStyles.None;
             profilePane.AutoScroll = true;
-            profilePane.BackColor = Color.BlueViolet;
+            profilePane.BackColor = Color.White;
             profilePane.Size = new Size(1413, 675);
             profilePane.Location = new Point(10, 10);
             profilePane.BorderStyle = BorderStyle.None;
+
+            Panel profileImg = new Panel();
+            Label UserNameL = new Label();
+            Label Email = new Label();
+            Label PhoneNum = new Label();
+            Label Status = new Label();
+            Label Bio = new Label();
+            borderedPanels BioP = new borderedPanels();
+            TextBox bioT = new TextBox();
+            Label Experience = new Label();
+            Label CV = new Label();
+            borderedPanels cvP = new borderedPanels();
+            borderedscrollPanels cvs = new borderedscrollPanels();
+            Label CertificationsLabel = new Label();
+            borderedPanels CertificationPanel = new borderedPanels();
+            borderedscrollPanels CertificationScroll = new borderedscrollPanels();
+            topButtons edit = new topButtons(0);
+            topButtons addCertification = new topButtons(Color.AliceBlue, Color.Coral);
+            //Label UserName = new Label();
+
+            profileImg.Size = new Size(140, 140);
+            profileImg.Location = new Point(40, 25);
+            profileImg.BorderStyle = BorderStyle.None;  
+            profileImg.BackColor = Color.OrangeRed;
+       //     profileImg.Controls.Add(new Label("profile image"));
+
+            UserNameL.Text = "Name: "+applicant.name;
+            UserNameL.Anchor = AnchorStyles.None;
+            UserNameL.Font = Custom.font(15);
+            UserNameL.Location = new Point(40, 170);
+            UserNameL.Size = new Size(200, 40);
+
+            Email.Text = "Email: "+applicant.email;
+            Email.Anchor = AnchorStyles.None;
+            Email.Font = Custom.font(15);
+            Email.Location = new Point(40, 210);
+            Email.Size = new Size(400, 40);
+
+            PhoneNum.Text = "Phone: " + applicant.PhoneNum;
+            PhoneNum.Anchor = AnchorStyles.None;
+            PhoneNum.Font = Custom.font(15);
+            PhoneNum.Location = new Point(40, 250);
+            PhoneNum.Size = new Size(200, 40);
+
+            Status.Text = "Status: " + applicant.work_status;
+            Status.Anchor = AnchorStyles.None;
+            Status.Font = Custom.font(15);
+            Status.Location = new Point(40, 290);
+            Status.Size = new Size(400, 40);
+
+
+            Bio.Text = "Bio: " ;
+            Bio.Anchor = AnchorStyles.None;
+            Bio.Font = Custom.font(15);
+            Bio.Location = new Point(40, 330);
+            Bio.Size = new Size(200, 30);
+
+            BioP.Size = new Size(400, 200);
+            BioP.Location = new Point(40, 370);
+            BioP.Anchor = AnchorStyles.None;
+            BioP.BackColor = Color.Coral;
+
+            bioT.Text = applicant.skill_description;
+            bioT.Anchor = AnchorStyles.None;    
+            bioT.AllowDrop = true;
+            bioT.Multiline = true;
+            bioT.Size = new Size(350,160);
+            bioT.BorderStyle = BorderStyle.None;
+            bioT.Location = new Point(25, 20);
+            BioP.Controls.Add(bioT);
+
+            Experience.Text = "Experience: " + applicant.experience;
+            Experience.Anchor = AnchorStyles.None;
+            Experience.Font = Custom.font(15);
+            Experience.Location = new Point(400, 170);
+            Experience.Size = new Size(400, 30);
+
+            CV.Text = "Curriculum Vitae";
+            CV.Anchor = AnchorStyles.None;
+            CV.Font = Custom.font(15);
+            CV.Location = new Point(900, 40);
+            CV.Size = new Size(400, 30);
+
+            cvP.Size = new Size(400, 200);
+            cvP.Location = new Point(880, 70);
+            cvP.Anchor = AnchorStyles.None;
+            cvP.BackColor = Color.Coral;
+
+            CertificationsLabel.Text = "Certifications";
+            CertificationsLabel.Anchor = AnchorStyles.None;
+            CertificationsLabel.Font = Custom.font(15);
+            CertificationsLabel.Location = new Point(900, 300);
+            CertificationsLabel.Size = new Size(400, 30);
+
+            CertificationScroll.Size = new Size(400, 130);
+            CertificationScroll.Location = new Point(3, 3);
+            CertificationScroll.Anchor = AnchorStyles.None;
+            CertificationScroll.BackColor = Color.FromArgb(0,Color.White);
+
+            addCertification.Anchor = AnchorStyles.None;
+            addCertification.Size = new Size(180, 40);
+            addCertification.Text = "Add";
+            addCertification.Location = new Point(180, 150);
+            
+
+            CertificationPanel.Size = new Size(400, 200);
+            CertificationPanel.Location = new Point(880, 350);
+            CertificationPanel.Anchor = AnchorStyles.None;
+            CertificationPanel.BackColor = Color.Coral;
+            CertificationPanel.Controls.Add(CertificationScroll);
+            CertificationPanel.Controls.Add(addCertification);
+
+
+            edit.Anchor = AnchorStyles.None;
+            edit.Font = Custom.font(17);
+            edit.Text = "Edit";
+            edit.Size = new Size(290, 50);
+            edit.Location = new Point(935, 600);
+
+            profilePane.Controls.Add(profileImg);
+            profilePane.Controls.Add(UserNameL);
+            profilePane.Controls.Add(Experience);
+            profilePane.Controls.Add(Email);
+            profilePane.Controls.Add(PhoneNum);
+            profilePane.Controls.Add(Status);
+            profilePane.Controls.Add(Bio);
+            profilePane.Controls.Add(BioP);
+            profilePane.Controls.Add(CV);
+            profilePane.Controls.Add(cvP);
+            profilePane.Controls.Add(CertificationsLabel);
+            profilePane.Controls.Add(CertificationPanel);
+            profilePane.Controls.Add(edit);
+            edit.BringToFront();
 
             subMain.Anchor = AnchorStyles.None;
             subMain.AutoScroll = true;
@@ -211,22 +348,31 @@ namespace JOB_IN
             companyname1.Anchor = AnchorStyles.None;
             companyname1.AutoSize = true;
             companyname1.Font = new Font("Cascadia Mono", 55F);
-            companyname1.Location = new Point(-60, 11);
+            companyname1.Location = new Point(-90, 11);
             companyname1.Name = "companyname1";
             companyname1.Size = new Size(376, 122);
             companyname1.TabIndex = 0;
+            companyname1.ForeColor= Color.White;
             companyname1.Text = "JOB IN";
           
 
             panel1.BackColor = Color.Coral;
             panel1.Controls.Add(companyname1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
+            panel1.Anchor = AnchorStyles.None;
+            panel1.Location = new Point(-860, -500);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1920, 143);
+            panel1.Size = new Size(400, 143);
             panel1.TabIndex = 0;
 
+            Label welcome = new Label();
+            welcome.Text = "WELCOME, " + applicant.name.ToUpperInvariant();
+            welcome.Font = Custom.font(30);
+            welcome.Anchor = AnchorStyles.None;
+            welcome.Location = new Point(-200, -450);
+            welcome.ForeColor = Color.OrangeRed;
+            welcome.Size = new Size(850, 100);
 
+            MainPanel.Controls.Add(welcome);
             MainPanel.Controls.Add(panel1);
             MainPanel.Controls.Add(jobs);
             MainPanel.Controls.Add(search);
@@ -446,10 +592,20 @@ namespace JOB_IN
             jobsPane.Controls.Clear();
             for(int i = 0; i < 10; i++)
             {
-                jobsPane.Controls.Add(new jobDesc("title", " description", "requirements"));
+                jobDesc jd = new jobDesc("title", " description", "requirements");
+                jd.more.Click += (sender,e)=>jobExpand(sender,e, "title", " description", "requirements");
+                jobsPane.Controls.Add(jd);
+                
             }
         }
-        
+
+        private void jobExpand(object? sender, EventArgs e, string title,string desc, string req)
+        {
+            jobDescDetail a = new jobDescDetail(title, desc, req);
+            MainPanel.Controls.Add(a);
+            a.BringToFront();
+        }
+
 
         //Fetches the job info as a series of strings from the database and creates a panel that will be added to an array list
         public void job_list_fetcher(ArrayList jobList)

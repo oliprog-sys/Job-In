@@ -3,7 +3,7 @@ namespace JOB_IN
     public partial class Form1 : Form
     {
         public Form activeForm;
-        static ApplicantHomepage s = new ApplicantHomepage();
+        static ApplicantHomepage s ;
         public Form1()
         {
             InitializeComponent();
@@ -96,8 +96,8 @@ namespace JOB_IN
             {
                 if (Db.check(textBox1.Text, textBox2.Text) == true)
                 {
-
-                    s = new ApplicantHomepage();
+                    applicants app = Db.fetchApplicantinfo(textBox1.Text);
+                    s = new ApplicantHomepage(app);
                     s.job_list_adder();
 
                     s.exit.Click += (sender, e) => s.return_to_login(sender, e, this);

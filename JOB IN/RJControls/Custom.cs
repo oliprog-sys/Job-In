@@ -433,10 +433,11 @@ namespace JOB_IN.RJControls
 
     class jobDesc : borderedPanels
     {
-        private Label jobName;
-        private Label jobDescription;
-        private Label jobRequirement;
-        private topButtons more;
+        private string jobID;
+        public Label jobName;
+        public Label jobDescription;
+        public Label jobRequirement;
+        public topButtons more;
         public static int Y = 42;
         public jobDesc(string JobName, string JobDescription, string JobRequirement)
         {
@@ -489,6 +490,118 @@ namespace JOB_IN.RJControls
             Y += 342;
         }
     }
+
+
+
+    class jobDescDetail : borderedPanels
+    {
+        private string jobID;
+        private Label jobName;
+        private Label jobDescription;
+        private Label jobRequirement;
+        private Label JobField;
+        private Label Deadline;
+        private Label TotalApplicant;
+        private Label PayEstimate;
+        private Label Employer;
+        private topButtons Apply;
+        private topButtons close;
+        public jobDescDetail(string JobName, string JobDescription, string JobRequirement)
+        {
+            jobName = new Label();
+            jobDescription = new Label();
+            jobRequirement = new Label();
+            JobField = new Label();
+            Deadline = new Label();
+            TotalApplicant = new Label();
+            PayEstimate = new Label();
+            Employer = new Label();
+            Apply = new topButtons(0);
+            close = new topButtons(0);
+
+            jobName.Anchor = AnchorStyles.None;
+            jobName.Font = Custom.font(29);
+            jobName.Size = new Size(200, 60);
+            jobName.Text = JobName;
+            //jobName.BackColor = Color.AliceBlue;
+            jobName.Location = new Point(-550, -300);
+
+            Employer.Anchor = AnchorStyles.None;
+            Employer.Font = Custom.font(22);
+            Employer.Size = new Size(400, 60);
+            Employer.Text = "Organization";
+            Employer.Location = new Point(-520, -230);
+
+            jobDescription.Anchor = AnchorStyles.None;
+            jobDescription.Font = Custom.font(14);
+            jobDescription.Size = new Size(200, 60);
+            jobDescription.Text = JobDescription;
+            jobDescription.Location = new Point(-500, -150);
+
+            jobRequirement.Anchor = AnchorStyles.None;
+            jobRequirement.Font = Custom.font(14);
+            jobRequirement.Size = new Size(200, 60);
+            jobRequirement.Text = "requirements";
+            jobRequirement.Location = new Point(-520, 100);
+
+            PayEstimate.Anchor = AnchorStyles.None;
+            PayEstimate.Font = Custom.font(13);
+            PayEstimate.Size = new Size(200, 90);
+            PayEstimate.Text = "Pay estimate: \n30,000 ETB";
+            PayEstimate.Location = new Point(-520, 0);
+
+            TotalApplicant.Anchor = AnchorStyles.None;
+            TotalApplicant.Font = Custom.font(14);
+            TotalApplicant.Size = new Size(400, 60);
+            TotalApplicant.Text = "Total Applicants:\n19/20";
+            TotalApplicant.Location = new Point(450, -80);
+
+            Deadline.Anchor = AnchorStyles.None;
+            Deadline.Font = Custom.font(14);
+            Deadline.Size = new Size(200, 60);
+            Deadline.Text = "Deadline: \n12/7/25";
+            Deadline.Location = new Point(450, -150);
+
+            Apply.Anchor = AnchorStyles.None;
+            Apply.Font = Custom.font(17);
+            Apply.Text = "Apply";
+            Apply.Size = new Size(290, 50);
+            Apply.Location = new Point(450, 150);
+
+            close.Anchor = AnchorStyles.None;
+            close.Font = Custom.font(17);
+            close.Text = "Close";
+            close.Size = new Size(290, 50);
+            close.Location = new Point(450, 220);
+            close.Click += rem;
+
+            this.BackColor = Color.LightGoldenrodYellow;
+            this.Controls.Add(jobName);
+            this.Controls.Add(Employer);
+            this.Controls.Add(jobDescription);
+            this.Controls.Add(jobRequirement);
+            this.Controls.Add(Deadline);
+            this.Controls.Add(TotalApplicant);
+            this.Controls.Add(PayEstimate);
+            this.Controls.Add(Apply);
+            this.Controls.Add(close);
+            this.Size = new Size(1560, 840);
+            
+
+            this.Anchor = AnchorStyles.None;
+            this.Location = new Point(195, 150);
+
+            
+
+
+        }
+
+        private void rem(object? sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+    }
+
 
 
 
