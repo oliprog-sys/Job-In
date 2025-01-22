@@ -31,13 +31,13 @@ namespace JOB_IN
 
         private void InitializeComponent()
         {
-            Postbtn = new Custom();
-            historybtn = new Custom();
-            Jobs = new Custom();
-            Profilebtn = new Custom();
+            Postbtn = new Customb();
+            historybtn = new Customb();
+            Jobs = new Customb();
+            Profilebtn = new Customb();
             jobpanel = new borderedscrollPanels();
             postpanel = new borderedPanels();
-            postb = new Custom();
+            postb = new Customb();
             numericUpDown1 = new NumericUpDown();
             excomp = new ComboBox();
             roundedTextBox3 = new RoundedTextBox();
@@ -53,7 +53,7 @@ namespace JOB_IN
             Jobbackp = new borderedPanels();
             historypanel = new borderedPanels();
             profilepanel = new borderedPanels();
-            editbtn = new Custom();
+            editbtn = new Customb();
             smpanel = new borderedPanels();
             smlbl = new Label();
             biop = new borderedPanels();
@@ -64,7 +64,7 @@ namespace JOB_IN
             adlbl = new Label();
             namelbl = new Label();
             orgicon = new PictureBox();
-            backbtn = new Custom();
+            backbtn = new Customb();
             backbtnp = new borderedPanels();
             postpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -587,10 +587,10 @@ namespace JOB_IN
         }
 
         // #endregion
-        private RJControls.Custom Jobs;
-        private RJControls.Custom Postbtn;
-        private RJControls.Custom historybtn;
-        private RJControls.Custom Profilebtn;
+        private RJControls.Customb Jobs;
+        private RJControls.Customb Postbtn;
+        private RJControls.Customb historybtn;
+        private RJControls.Customb Profilebtn;
       
         private Panel panel1;
         private borderedPanels Jobbackp;
@@ -614,7 +614,7 @@ namespace JOB_IN
         private RoundedTextBox roundedTextBox3;
         private ComboBox excomp;
         private NumericUpDown numericUpDown1;
-        private Custom postb;
+        private Customb postb;
         private borderedPanels historypanel;
         private borderedPanels profilepanel;
         private PictureBox orgicon;
@@ -626,9 +626,9 @@ namespace JOB_IN
         private Label smlbl;
         private borderedPanels biop;
         private Label biolbl;
-        private Custom editbtn;
+        private Customb editbtn;
         private borderedPanels smpanel;
-        private Custom backbtn;
+        private Customb backbtn;
         private borderedPanels backbtnp;
 
 
