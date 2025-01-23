@@ -25,8 +25,18 @@ namespace JOB_IN
         private void next_btn_click(object sender, EventArgs e)
         {
             infoPanel.Hide();
-            titlePanel.BackColor = Color.FromArgb(238, 164, 127);
+            backBtn.Visible = true;
+            titlePanel.BackColor = Color.FromArgb(238, 164, 127);            
             mainPanel1.Controls.Add(infoPanel2);
+            infoPanel2.Show();
+        }
+
+        private void OnbackBtn_clicked(object sender, EventArgs e)
+        {
+            backBtn.Visible = false;
+            infoPanel2.Hide();
+            titlePanel.BackColor = Color.White;
+            infoPanel.Show();
         }
 
         //private void onUploadBtn_clicked(object sender, EventArgs e)
@@ -68,18 +78,32 @@ namespace JOB_IN
                 return;
             }
 
-            string fileExtension = Path.GetExtension(filePath).ToLower();
-            string[] allowedExtensions = { ".pdf" };
+            checkExtension(filePath);
 
-            if (!allowedExtensions.Contains(fileExtension))
-            {
-                MessageBox.Show("Invalid file type. Please upload a PDF file.");
-                return;
-            }
 
             try
             {
                 ca.ApplicantCV = File.ReadAllBytes(filePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading file: " + ex.Message);
+                return;
+            }
+
+            string certiPath = certificationField.Text;
+
+            if(string.IsNullOrEmpty(certiPath))
+            {
+                MessageBox.Show("You should insert the certification file");
+                return;
+            }
+
+            checkExtension(certiPath);
+
+            try
+            {
+                ca.ApplicantCertificate = File.ReadAllBytes(certiPath);
             }
             catch (Exception ex)
             {
@@ -110,6 +134,7 @@ namespace JOB_IN
             if(success)
             {
                 MessageBox.Show("Account Created Successfully");
+                this.Close();
             } else
             {
                 MessageBox.Show("Error adding data to the database");
@@ -118,18 +143,40 @@ namespace JOB_IN
            
         }
 
-       
+        private void checkExtension(string fileName)
+        {
+            string fileExtension = Path.GetExtension(fileName).ToLower();
+            string[] allowedExtensions = { ".pdf" };
+
+            if (!allowedExtensions.Contains(fileExtension))
+            {
+                MessageBox.Show("Invalid file type. Please upload a PDF file.");
+                return;
+            }
+        }
 
         private void OnPlusSign_clicked(object sender, EventArgs e)
         {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Select a File";
+                openFileDialog.Filter = "All Files (*.*)|*.*";
 
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+
+                    MessageBox.Show("Selected file: " + filePath);
+                    certificationField.Text = filePath;
+                }
+            }
         }
 
     }
 
     public class CreateAccount
     {
-        private string connString = "private string connString = \"Data Source=.;Initial Catalog=Job_in;Integrated Security=True;\";";
+        private string connString = "Data Source=.;Initial Catalog=Job_in;Integrated Security=True;";
         public string ApplicantName { get; set; }
         public string ApplicantPhoneNum { get; set; }
         public string ApplicantDOB { get; set; }
@@ -138,9 +185,11 @@ namespace JOB_IN
         public string ApplicantSkillDesc { get; set; }
         public string ApplicantJobCategory { get; set; }
         public int ApplicantExperience { get; set; }
-        public string ApplicantWorkStatus { get; set; }
+        public string ApplicantWorkStatus { get; set; }        
         public byte[] ApplicantCV { get; set; }
-        private const string InsertQuery = "INSERT INTO Applicant (Name, Phone_num, DOB, AEmail, Password, Skill_description, Job_category, Experience, Work_status, CV) VALUES (@ApName, @ApPhone, @ApDob, @ApEmail, @ApPassword, @ApSkill, @ApJob, @ApExper, @ApWork, @ApCV)";
+        public byte[] ApplicantCertificate { get; set; }
+
+        private const string InsertQuery = "INSERT INTO Applicant (Name, Phone_num, DOB, AEmail, Password, Skill_description, Job_category, Experience, Work_status, CV, AppCertificate) VALUES (@ApName, @ApPhone, @ApDob, @ApEmail, @ApPassword, @ApSkill, @ApJob, @ApExper, @ApWork, @ApCV, @ApCerti)";
 
         public bool SaveInfo(CreateAccount ca)
         {
@@ -162,6 +211,7 @@ namespace JOB_IN
                         com.Parameters.AddWithValue("@ApExper", ca.ApplicantExperience);
                         com.Parameters.AddWithValue("@ApWork", ca.ApplicantWorkStatus);
                         com.Parameters.AddWithValue("@ApCV", ca.ApplicantCV);
+                        com.Parameters.AddWithValue("@ApCerti", ca.ApplicantCertificate);
 
                         row = com.ExecuteNonQuery();
                     }

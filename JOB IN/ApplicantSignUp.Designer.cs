@@ -117,6 +117,20 @@ namespace JOB_IN
             titleLabel.Text = "Applicant SignUp";
             titleLabel.Font = new Font("sans serif", 42f);
 
+            backBtn = new RoundedButton();
+            backBtn.Anchor = AnchorStyles.None;
+            backBtn.Size = new Size(170, 70);
+            backBtn.Location = new Point(50, 130);
+            backBtn.Text = "< Back";
+            backBtn.BackColor = Color.Red;
+            backBtn.ForeColor = Color.White;
+            backBtn.FlatStyle = FlatStyle.Flat;
+            backBtn.FlatAppearance.BorderColor = Color.Red;
+            backBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            backBtn.Cursor = Cursors.Hand;
+            backBtn.Visible = false;
+            backBtn.Click += OnbackBtn_clicked;
+
             // information gathering panel
             infoPanel = new Panel();
             infoPanel.Anchor = AnchorStyles.None;
@@ -231,6 +245,7 @@ namespace JOB_IN
             nextBtn.Font = new Font("Sans serif", 18f);
             nextBtn.FlatStyle = FlatStyle.Flat;
             nextBtn.Cursor = Cursors.Hand;
+            nextBtn.FlatAppearance.BorderColor = Color.Black;
             nextBtn.Click += next_btn_click;
 
             //Second main panel
@@ -273,24 +288,24 @@ namespace JOB_IN
             // Cv Field
             cvField = new RoundedTextBox();
             cvField.Anchor = AnchorStyles.None;
-            cvField.Size = new Size(420, 76);
+            cvField.MinimumSize = new Size(420, 45);
             cvField.Location = new Point(57, 704);
-            cvField.Font = new Font("Sans serif", 14f);
+            cvField.Font = new Font("Sans serif", 14f, FontStyle.Regular);
             cvField.BackColor = Color.Black;
             cvField.ForeColor = Color.White;
             cvField.BorderStyle = BorderStyle.None;
-            cvField.Font = new Font("Sans serif", 18f);
 
 
             // Choose Btn
             chooseFileBtn = new RoundedButton();
             chooseFileBtn.Anchor = AnchorStyles.None;
             chooseFileBtn.Size = new Size(230, 70);
-            chooseFileBtn.Location = new Point(478, 690);
+            chooseFileBtn.Location = new Point(478, 695);
             chooseFileBtn.Text = "Choose File";
             chooseFileBtn.BackColor = Color.Coral;
             chooseFileBtn.ForeColor = Color.White;
             chooseFileBtn.FlatStyle = FlatStyle.Flat;
+            chooseFileBtn.Cursor = Cursors.Hand;
             chooseFileBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
             chooseFileBtn.Click += OnChooseFile_clicked;
 
@@ -312,7 +327,7 @@ namespace JOB_IN
             certificationLabel.Anchor = AnchorStyles.None;
             certificationLabel.Size = new Size(372, 46);
             certificationLabel.Location = new Point(57, 790);
-            certificationLabel.Text = "Certifications";
+            certificationLabel.Text = "Certificate";
             certificationLabel.ForeColor = Color.Black;
             certificationLabel.Font = new Font("Sans serif", 16f);
 
@@ -320,23 +335,24 @@ namespace JOB_IN
             // certification adding field
             certificationField = new RoundedTextBox();
             certificationField.Anchor = AnchorStyles.None;
-            certificationField.Size = new Size(660, 76);
+            certificationField.MinimumSize = new Size(580, 45);
             certificationField.Location = new Point(57, 846);
             certificationField.BackColor = Color.Black;
-            certificationField.Font = new Font("Sans serif", 19f, FontStyle.Regular);
+            certificationField.Font = new Font("Sans serif", 16f, FontStyle.Regular);
             certificationField.BorderStyle = BorderStyle.None;
             certificationField.ForeColor = Color.White;
 
             // cerification add button
             addCertificateBtn = new RoundedButton();
-            addCertificateBtn.Size = new Size(40, 40);
+            addCertificateBtn.Size = new Size(45, 45);
             addCertificateBtn.radius = 43;
-            addCertificateBtn.Location = new Point(641, 846);
+            addCertificateBtn.Location = new Point(641, 847);
             addCertificateBtn.Text = "+";
             addCertificateBtn.TextAlign = ContentAlignment.MiddleCenter;
-            addCertificateBtn.Font = new Font("Arial", 14f, FontStyle.Bold);
+            addCertificateBtn.Font = new Font("Arial", 16f, FontStyle.Bold);
             addCertificateBtn.ForeColor = Color.Black;
             addCertificateBtn.BackColor = Color.LightGray;
+            addCertificateBtn.FlatAppearance.BorderColor = Color.LightGray;
             addCertificateBtn.FlatStyle = FlatStyle.Flat;
             addCertificateBtn.Click += OnPlusSign_clicked;
 
@@ -431,8 +447,10 @@ namespace JOB_IN
             submitBtn.Location = new Point(1529, 820);
             submitBtn.ForeColor = Color.Black;
             submitBtn.BackColor = Color.FromArgb(238, 164, 127);
-            submitBtn.FlatStyle = FlatStyle.Flat | FlatStyle.Popup;
+            submitBtn.FlatStyle = FlatStyle.Flat;
+            submitBtn.Cursor = Cursors.Hand;
             submitBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            submitBtn.FlatAppearance.BorderColor = Color.FromArgb(238, 164, 127);
             submitBtn.Click += OnSubmitBtn_clicked;
 
             // first under line
@@ -452,7 +470,9 @@ namespace JOB_IN
             underlinePanel2.BorderStyle = BorderStyle.None;
 
             // Add the title to the title panel
+            titlePanel.Controls.Add(backBtn);
             titlePanel.Controls.Add(titleLabel);
+            
 
             // Add to the info panel
             infoPanel.Controls.Add(nameLabel);
@@ -508,7 +528,7 @@ namespace JOB_IN
         private Panel mainPanel1, infoPanel2, titlePanel, infoPanel, underlinePanel1, underlinePanel2;
         private Label titleLabel, nameLabel, emailLabel, phoneNumLabel, passwordLabel, DOBLabel, skillLabel, cvLabel,
             certificationLabel, jobCategoryLabel, experienceLabel, workStatusLabel, yearsLabel;
-        private RoundedButton nextBtn, submitBtn, uploadBtn, addCertificateBtn, chooseFileBtn;
+        private RoundedButton nextBtn, submitBtn, uploadBtn, addCertificateBtn, chooseFileBtn, backBtn;
         private RoundedTextBox nameField, emailField, phoneNumField, passwordField, skillField, cvField, certificationField, experienceField;
         private DateTimePicker DobField;
         private ComboBox jobCategoryCB;
