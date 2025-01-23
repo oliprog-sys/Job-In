@@ -185,19 +185,19 @@ namespace JOB_IN
         public string ApplicantSkillDesc { get; set; }
         public string ApplicantJobCategory { get; set; }
         public int ApplicantExperience { get; set; }
-        public string ApplicantWorkStatus { get; set; }        
+        public string ApplicantWorkStatus { get; set; }
         public byte[] ApplicantCV { get; set; }
         public byte[] ApplicantCertificate { get; set; }
 
         private const string InsertQuery = "INSERT INTO Applicant (Name, Phone_num, DOB, AEmail, Password, Skill_description, Job_category, Experience, Work_status, CV, AppCertificate) VALUES (@ApName, @ApPhone, @ApDob, @ApEmail, @ApPassword, @ApSkill, @ApJob, @ApExper, @ApWork, @ApCV, @ApCerti)";
-
+        
         public bool SaveInfo(CreateAccount ca)
         {
             int row = 0;
-            using (SqlConnection conn = new SqlConnection(connString))
+            using(SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-                using (SqlCommand com = new SqlCommand(InsertQuery, conn))
+                using(SqlCommand com = new SqlCommand(InsertQuery, conn))
                 {
                     try
                     {
@@ -212,22 +212,17 @@ namespace JOB_IN
                         com.Parameters.AddWithValue("@ApWork", ca.ApplicantWorkStatus);
                         com.Parameters.AddWithValue("@ApCV", ca.ApplicantCV);
 
-                            row = com.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-
+                        row = com.ExecuteNonQuery();
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message);
                     }
                 }
             }
-            catch(ArgumentException e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            
             return row > 0;
         }
+
     }
+
 }

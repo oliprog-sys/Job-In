@@ -65,6 +65,7 @@ namespace JOB_IN
             if (success)
             {
                 MessageBox.Show("Account added successfully");
+                this.Close();
             } else
             {
                 MessageBox.Show("Error: unable to create an account");
@@ -111,6 +112,7 @@ namespace JOB_IN
             if (success)
             {
                 MessageBox.Show("Account added successfully");
+                this.Close();
             }
             else
             {
