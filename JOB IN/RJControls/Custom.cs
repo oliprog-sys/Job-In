@@ -15,12 +15,18 @@ using System.ComponentModel;
 namespace JOB_IN.RJControls
 {
     
-    public class Custom : Button
+    public class Custom
     {
-        public static Font font(float s) {
-          Font f  = new Font("Cascadia Mono", s);
-          return f;
-        } 
+        public static List<string> job_category = new List<string>() { "Architecture and Engineering", "Arts and design", "Maintenance ", "Business and Financial", "Social Services", "Construction", "Farming and Forestry", "Healthcare support", "Installation and repair", "Legal", "Office and Administrative", "Personal care and service ", "Sales", "Tech and Web development" };
+        public static Font font(float s)
+        {
+            Font f = new Font("Cascadia Mono", s);
+            return f;
+        }
+    }
+    public class Customb : Button
+    {
+       
         private int borderSize = 0;
         private int borderRadius = 40;
         private Color borderColor = Color.PaleVioletRed;
@@ -50,7 +56,7 @@ namespace JOB_IN.RJControls
             set { this.BackColor = value; }
         }
 
-        public Custom() {
+        public Customb() {
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 0;
             this.Size = new Size(150, 40);

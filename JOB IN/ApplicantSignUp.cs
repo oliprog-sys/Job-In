@@ -106,10 +106,13 @@ namespace JOB_IN
             }
 
             var success = ca.SaveInfo(ca);
-
-            if(success)
+            
+            if (success)
             {
                 MessageBox.Show("Account Created Successfully");
+               
+                this.Close();
+
             } else
             {
                 MessageBox.Show("Error adding data to the database");
@@ -129,7 +132,7 @@ namespace JOB_IN
 
     public class CreateAccount
     {
-        private string connString = "Data Source=DESKTOP-D5PCH38\\SQLEXPRESS;Initial Catalog=Job_in;Integrated Security=True;";
+        private string connString = "Data Source=.;Initial Catalog=Job_in;Integrated Security=True;";
         public string ApplicantName { get; set; }
         public string ApplicantPhoneNum { get; set; }
         public string ApplicantDOB { get; set; }
@@ -145,33 +148,41 @@ namespace JOB_IN
         public bool SaveInfo(CreateAccount ca)
         {
             int row = 0;
-            using (SqlConnection conn = new SqlConnection(connString))
+            try
             {
-                conn.Open();
-                using (SqlCommand com = new SqlCommand(InsertQuery, conn))
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
-                    try
+                    conn.Open();
+                    using (SqlCommand com = new SqlCommand(InsertQuery, conn))
                     {
-                        com.Parameters.AddWithValue("@ApName", ca.ApplicantName);
-                        com.Parameters.AddWithValue("@ApPhone", ca.ApplicantPhoneNum);
-                        com.Parameters.AddWithValue("@ApDob", ca.ApplicantDOB);
-                        com.Parameters.AddWithValue("@ApEmail", ca.ApplicantEmail);
-                        com.Parameters.AddWithValue("@ApPassword", ca.ApplicantPassword);
-                        com.Parameters.AddWithValue("@ApSkill", ca.ApplicantSkillDesc);
-                        com.Parameters.AddWithValue("@ApJob", ca.ApplicantJobCategory);
-                        com.Parameters.AddWithValue("@ApExper", ca.ApplicantExperience);
-                        com.Parameters.AddWithValue("@ApWork", ca.ApplicantWorkStatus);
-                        com.Parameters.AddWithValue("@ApCV", ca.ApplicantCV);
+                        try
+                        {
+                            com.Parameters.AddWithValue("@ApName", ca.ApplicantName);
+                            com.Parameters.AddWithValue("@ApPhone", ca.ApplicantPhoneNum);
+                            com.Parameters.AddWithValue("@ApDob", ca.ApplicantDOB);
+                            com.Parameters.AddWithValue("@ApEmail", ca.ApplicantEmail);
+                            com.Parameters.AddWithValue("@ApPassword", ca.ApplicantPassword);
+                            com.Parameters.AddWithValue("@ApSkill", ca.ApplicantSkillDesc);
+                            com.Parameters.AddWithValue("@ApJob", ca.ApplicantJobCategory);
+                            com.Parameters.AddWithValue("@ApExper", ca.ApplicantExperience);
+                            com.Parameters.AddWithValue("@ApWork", ca.ApplicantWorkStatus);
+                            com.Parameters.AddWithValue("@ApCV", ca.ApplicantCV);
 
-                        row = com.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                            row = com.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
 
+                    }
                 }
             }
+            catch(ArgumentException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
             return row > 0;
         }
     }
