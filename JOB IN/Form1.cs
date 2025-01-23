@@ -115,20 +115,21 @@ namespace JOB_IN
             }
             else
             {
-                // if (Db.checkOrganization(textBox1.Text, textBox2.Text) == true)
-                //{
+                if (Db.checkOrganization(textBox1.Text, textBox2.Text) == true)
+                {
+                    organization o = Db.fetchOrganizationInfo(textBox1.Text);
                     SIgnUpPanel1.BackColor = Color.RoyalBlue;
                     companyname1.ForeColor = Color.White;
-                    EmpLogin form = new EmpLogin();
+                    EmpLogin form = new EmpLogin(o);
                     form.joblist();
                     OpenchildForm(form, sender);
-               // }
-             //   else
-               // {
-                 //   MessageBox.Show("no email found");
+                }
+                else
+                {
+                    MessageBox.Show("no email found");
                 }
 
-
+            }
 
 
         }

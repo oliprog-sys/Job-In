@@ -12,9 +12,10 @@ namespace JOB_IN
 {
     public partial class EmpLogin : Form
     {
-        public EmpLogin()
+        public EmpLogin(organization org)
         {
             InitializeComponent();
+            this.org = org;
         }
 
 

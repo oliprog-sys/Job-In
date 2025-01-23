@@ -7,6 +7,7 @@ namespace JOB_IN
 {
     partial class EmpLogin
     {
+        organization org;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -205,6 +206,8 @@ namespace JOB_IN
             postpanel.Controls.Add(expl);
             postpanel.Controls.Add(Reql);
             postpanel.Controls.Add(jobdescl);
+
+            
             postpanel.Location = new Point(47, 125);
             postpanel.Name = "postpanel";
             postpanel.Size = new Size(1434, 689);
@@ -231,6 +234,7 @@ namespace JOB_IN
             postb.Text = "Post";
             postb.TextColor = Color.RoyalBlue;
             postb.UseVisualStyleBackColor = false;
+            postb.Click += postJob;
             // 
             // numericUpDown1
             // 
@@ -247,7 +251,7 @@ namespace JOB_IN
             excomp.ForeColor = Color.White;
             excomp.FormattingEnabled = true;
             excomp.Items.AddRange(new object[] { "Entry", "Junior", "Expert" });
-            excomp.Location = new Point(1126, 265);
+            excomp.Location = new Point(1070, 265);
             excomp.Name = "excomp";
             excomp.Size = new Size(229, 35);
             excomp.TabIndex = 8;
@@ -289,6 +293,52 @@ namespace JOB_IN
             expl.Size = new Size(221, 30);
             expl.TabIndex = 3;
             expl.Text = "Experience Level";
+
+            catlbl = new Label();
+            catlbl.AutoSize = true;
+            catlbl.Font = new Font("Cascadia Code", 13.8F, FontStyle.Bold);
+            catlbl.ForeColor = Color.White;
+            catlbl.Location = new Point(831, 390);
+            catlbl.Anchor= AnchorStyles.None;
+            catlbl.Size = new Size(221, 30);
+            catlbl.TabIndex = 3;
+            catlbl.Text = "Job Catagory";
+            postpanel.Controls.Add(catlbl);
+
+            catcb = new ComboBox();
+            catcb.BackColor = Color.Coral;
+            catcb.Font = new Font("Cascadia Mono", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            catcb.ForeColor = Color.White;
+            catcb.FormattingEnabled = true;
+            foreach (var n in Custom.job_category)
+            {
+                catcb.Items.Add(n);
+            }
+            catcb.Location = new Point(1070, 390);
+            catcb.Name = "excomp";
+            catcb.Size = new Size(350, 35);
+            //catcb.TabIndex = 8;
+            postpanel.Controls.Add(catcb);
+
+
+            jname = new Label();
+            jname.AutoSize = true;
+            jname.Font = new Font("Cascadia Code", 13.8F, FontStyle.Bold);
+            jname.ForeColor = Color.White;
+            jname.Location = new Point(831, 330);
+            jname.Anchor = AnchorStyles.None;
+            jname.Size = new Size(221, 30);
+            jname.TabIndex = 3;
+            jname.Text = "Job Name";
+            postpanel.Controls.Add(jname);
+
+
+            jnametxt = new TextBox();
+            jnametxt.Size = new Size(350, 0);
+            jnametxt.Location = new Point(1070, 330);
+            postpanel.Controls.Add(jnametxt);
+
+
             // 
             // Reql
             // 
@@ -586,6 +636,29 @@ namespace JOB_IN
             ResumeLayout(false);
         }
 
+        private void postJob(object sender, EventArgs e)
+        {
+            Job job = new Job();
+            job.name= jnametxt.Text;
+            job.description=roundedTextBox2.Text;
+            job.requirement = roundedTextBox3.Text;
+            job.category = catcb.Text;
+            job.capacity=(int) numericUpDown1.Value;
+            job.oEmail = org.email;
+            job.Deadline= DateTime.Now;
+            bool success = Db.insertJob(job);
+            if (success)
+            {
+                MessageBox.Show("Job posted successfully");
+
+            }
+            else
+            {
+                MessageBox.Show("Job not posted successfully");
+            }
+
+        }
+
         // #endregion
         private RJControls.Customb Jobs;
         private RJControls.Customb Postbtn;
@@ -630,6 +703,10 @@ namespace JOB_IN
         private borderedPanels smpanel;
         private Customb backbtn;
         private borderedPanels backbtnp;
+        private Label catlbl;
+        private ComboBox catcb;
+        private Label jname;
+        private TextBox jnametxt;
 
 
         public void joblist()

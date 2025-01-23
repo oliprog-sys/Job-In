@@ -17,7 +17,7 @@ namespace JOB_IN.RJControls
     
     public class Custom
     {
-        public static List<string> job_category = new List<string>() { "Architecture and Engineering", "Arts and design", "Maintenance ", "Business and Financial", "Social Services", "Construction", "Farming and Forestry", "Healthcare support", "Installation and repair", "Legal", "Office and Administrative", "Personal care and service ", "Sales", "Tech and Web development" };
+        public static List<string> job_category = new List<string>() { "Architecture and Engineering", "Arts and design", "Maintenance ", "Business and Financial", "Social Services", "Construction", "Farming and Forestry", "Healthcare support", "Installation and repair", "Legal", "Office and Administrative", "Personal care and service ", "Sales", "Tech and Web development","Others" };
         public static Font font(float s)
         {
             Font f = new Font("Cascadia Mono", s);
