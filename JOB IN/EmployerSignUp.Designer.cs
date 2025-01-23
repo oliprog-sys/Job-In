@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.DirectoryServices.ActiveDirectory;
+using static JOB_IN.ApplicantSignUp;
 namespace JOB_IN
 {
 
@@ -118,6 +119,22 @@ namespace JOB_IN
             signUpAsLabel.Text = "Sign-Up  as";
             signUpAsLabel.Font = new Font("sans serif", 42f);
 
+            // back button
+            backBtn = new RoundedButton2();
+            backBtn.Anchor = AnchorStyles.None;
+            backBtn.Size = new Size(170, 70);
+            backBtn.Location = new Point(50, 130);
+            backBtn.Text = "< Back";
+            backBtn.BackColor = Color.Red;
+            backBtn.ForeColor = Color.White;
+            backBtn.FlatStyle = FlatStyle.Flat;
+            backBtn.FlatAppearance.BorderColor = Color.Red;
+            backBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            backBtn.Cursor = Cursors.Hand;
+            backBtn.Visible = false;
+            backBtn.Click += OnbackBtnForOrganization_clicked;
+            backBtn.Click += OnbackBtnForPersonal_clicked;
+
             // choose the sign up way panel
             choosePanel = new Panel();
             choosePanel.Anchor = AnchorStyles.None;
@@ -143,7 +160,9 @@ namespace JOB_IN
             personalBtn.Click += OnPersonalBtn_clicked;
 
             // Add the label to the title panel
+            signUpAsPanel.Controls.Add(backBtn);
             signUpAsPanel.Controls.Add(signUpAsLabel);
+            
 
             // Add to the choose panel
             choosePanel.Controls.Add(organizationBtn);
@@ -266,6 +285,7 @@ namespace JOB_IN
             orgnextBtn.ForeColor = Color.White;
             orgnextBtn.Font = new Font("Sans serif", 18f);
             orgnextBtn.FlatStyle = FlatStyle.Flat;
+            orgnextBtn.FlatAppearance.BorderColor = Color.Black;
             orgnextBtn.Click += next_btn_click;
 
 
@@ -322,25 +342,14 @@ namespace JOB_IN
             // media link field
             mediaLinkField = new RoundedTextBox2();
             mediaLinkField.Anchor = AnchorStyles.None;
-            mediaLinkField.Size = new Size(660, 76);
+            mediaLinkField.MinimumSize = new Size(600, 45);
             mediaLinkField.Location = new Point(57, 714);
             mediaLinkField.BackColor = Color.Black;
-            mediaLinkField.Font = new Font("Sans serif", 19f, FontStyle.Regular);
+            mediaLinkField.PlaceholderText = "https://linkedin/";
+            mediaLinkField.Font = new Font("Sans serif", 16f);
             mediaLinkField.BorderStyle = BorderStyle.None;
-            mediaLinkField.ForeColor = Color.White;
-
-            // add medial link button
-            addMediaLinkBtn = new RoundedButton2();
-            addMediaLinkBtn.Size = new Size(40, 40);
-            addMediaLinkBtn.radius = 43;
-            addMediaLinkBtn.Location = new Point(641, 716);
-            addMediaLinkBtn.Text = "+";
-            addMediaLinkBtn.TextAlign = ContentAlignment.MiddleCenter;
-            addMediaLinkBtn.Font = new Font("Arial", 14f, FontStyle.Bold);
-            addMediaLinkBtn.ForeColor = Color.Black;
-            addMediaLinkBtn.BackColor = Color.LightGray;
-            addMediaLinkBtn.FlatStyle = FlatStyle.Flat;
-            addMediaLinkBtn.Click += On_add_media_clicked;
+            mediaLinkField.ForeColor = Color.LightGray;
+            
 
             // organization submit button
             orgSubmitBtn = new RoundedButton2();
@@ -350,7 +359,8 @@ namespace JOB_IN
             orgSubmitBtn.Location = new Point(1529, 820);
             orgSubmitBtn.ForeColor = Color.White;
             orgSubmitBtn.BackColor = Color.FromArgb(0, 83, 156);
-            orgSubmitBtn.FlatStyle = FlatStyle.Flat | FlatStyle.Popup;
+            orgSubmitBtn.FlatStyle = FlatStyle.Flat;
+            orgSubmitBtn.FlatAppearance.BorderColor = Color.Blue;
             orgSubmitBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
             orgSubmitBtn.Click += OnorgSubmitBtn_clicked;
 
@@ -375,7 +385,6 @@ namespace JOB_IN
             organizationalMorePanel.Controls.Add(aboutUsLabel);
             organizationalMorePanel.Controls.Add(aboutUsField);
             organizationalMorePanel.Controls.Add(mediaLinkLabel);
-            organizationalMorePanel.Controls.Add(addMediaLinkBtn);
             organizationalMorePanel.Controls.Add(mediaLinkField);            
             organizationalMorePanel.Controls.Add(orgSubmitBtn);
             organizationalMorePanel.Controls.Add(orgUnderline1);
@@ -492,6 +501,7 @@ namespace JOB_IN
             pernextBtn.ForeColor = Color.White;
             pernextBtn.Font = new Font("Sans serif", 18f);
             pernextBtn.FlatStyle = FlatStyle.Flat;
+            pernextBtn.FlatAppearance.BorderColor = Color.Black;
             pernextBtn.Click += personal_next_btn_click;
 
 
@@ -549,25 +559,15 @@ namespace JOB_IN
             // media link field
             permediaLinkField = new RoundedTextBox2();
             permediaLinkField.Anchor = AnchorStyles.None;
-            permediaLinkField.Size = new Size(660, 76);
+            permediaLinkField.MinimumSize = new Size(600, 45);
+            permediaLinkField.PlaceholderText = "https://linkedin/";
             permediaLinkField.Location = new Point(57, 714);
             permediaLinkField.BackColor = Color.Black;
-            permediaLinkField.Font = new Font("Sans serif", 19f, FontStyle.Regular);
+            permediaLinkField.Font = new Font("Sans serif", 16f, FontStyle.Regular);
             permediaLinkField.BorderStyle = BorderStyle.None;
-            permediaLinkField.ForeColor = Color.White;
+            permediaLinkField.ForeColor = Color.LightGray;
 
-            // add medial link button
-            peraddMediaLinkBtn = new RoundedButton2();
-            peraddMediaLinkBtn.Size = new Size(40, 40);
-            peraddMediaLinkBtn.radius = 43;
-            peraddMediaLinkBtn.Location = new Point(641, 716);
-            peraddMediaLinkBtn.Text = "+";
-            peraddMediaLinkBtn.TextAlign = ContentAlignment.MiddleCenter;
-            peraddMediaLinkBtn.Font = new Font("Arial", 14f, FontStyle.Bold);
-            peraddMediaLinkBtn.ForeColor = Color.Black;
-            peraddMediaLinkBtn.BackColor = Color.LightGray;
-            peraddMediaLinkBtn.FlatStyle = FlatStyle.Flat;
-            peraddMediaLinkBtn.Click += On_add_media_clicked;
+            
 
             // organization submit button
             perSubmitBtn = new RoundedButton2();
@@ -577,7 +577,8 @@ namespace JOB_IN
             perSubmitBtn.Location = new Point(1529, 820);
             perSubmitBtn.ForeColor = Color.White;
             perSubmitBtn.BackColor = Color.FromArgb(0, 83, 156);
-            perSubmitBtn.FlatStyle = FlatStyle.Flat | FlatStyle.Popup;
+            perSubmitBtn.FlatStyle = FlatStyle.Flat;
+            perSubmitBtn.FlatAppearance.BorderColor = Color.Blue; 
             perSubmitBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
             perSubmitBtn.Click += OnperSubmitBtn_clicked;
 
@@ -602,7 +603,6 @@ namespace JOB_IN
             personalMorePanel.Controls.Add(peraboutUsLabel);
             personalMorePanel.Controls.Add(peraboutUsField);
             personalMorePanel.Controls.Add(permediaLinkLabel);
-            personalMorePanel.Controls.Add(peraddMediaLinkBtn);
             personalMorePanel.Controls.Add(permediaLinkField);
             personalMorePanel.Controls.Add(perSubmitBtn);
             personalMorePanel.Controls.Add(perUnderline1);
@@ -625,7 +625,7 @@ namespace JOB_IN
                         perphoneNumLabel, peraddressLabel, peremailLabel, perpasswordLabel, peraboutUsLabel, permediaLinkLabel;
         private RoundedTextBox2 orgnameField, orgphoneNumField, orgaddressField, orgemailField, orgpasswordField, aboutUsField, mediaLinkField,
                             pernameField, perphoneNumField, peraddressField, peremailField, perpasswordField, peraboutUsField, permediaLinkField;
-        private RoundedButton2 orgnextBtn, addMediaLinkBtn, orgSubmitBtn, pernextBtn, peraddMediaLinkBtn, perSubmitBtn;
+        private RoundedButton2 orgnextBtn, addMediaLinkBtn, orgSubmitBtn, pernextBtn, peraddMediaLinkBtn, perSubmitBtn, backBtn;
         private Button organizationBtn, personalBtn;
 
         #endregion
