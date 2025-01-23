@@ -207,7 +207,7 @@ namespace JOB_IN
             postpanel.Controls.Add(jobdescl);
             postpanel.Location = new Point(47, 125);
             postpanel.Name = "postpanel";
-            postpanel.Size = new Size(1434, 684);
+            postpanel.Size = new Size(1434, 689);
             postpanel.TabIndex = 1;
             // 
             // postb
