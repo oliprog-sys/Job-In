@@ -8,7 +8,8 @@ using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Xml.Linq;
 using System.Windows.Forms.VisualStyles;
-
+using System.Collections;
+using System.Collections.Generic;
 namespace JOB_IN
 {
     public class Db
@@ -164,6 +165,71 @@ namespace JOB_IN
             {
                 return false;
             }
+        }
+        public static ArrayList fetchOrgJobs(string email)
+        {
+            ArrayList arrayList = new ArrayList();
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select * from Jobs where OEmail=@1;";
+                command.Parameters.AddWithValue("@1", email);
+                SqlDataReader a = command.ExecuteReader();
+                while (a.Read())
+                {
+                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(),(int) a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"]));
+                }
+            }
+           
+                return arrayList;
+            
+
+        }
+
+        public static ArrayList fetchJobs(string category)
+        {
+            ArrayList arrayList = new ArrayList();
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select * from Jobs where category=@1;";
+                command.Parameters.AddWithValue("@1", category);
+                SqlDataReader a = command.ExecuteReader();
+                while (a.Read())
+                {
+                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"]));
+                }
+            }
+
+            return arrayList;
+
+        }
+
+
+        public static ArrayList fetchOrgJobsothers(string email)
+        {
+            ArrayList arrayList = new ArrayList();
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select * from Jobs where OEmail!=@1;";
+                command.Parameters.AddWithValue("@1", email);
+                SqlDataReader a = command.ExecuteReader();
+                while (a.Read())
+                {
+                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"]));
+                }
+            }
+
+            return arrayList;
+
+
         }
     }
     public class applicants

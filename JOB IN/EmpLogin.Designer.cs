@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using JOB_IN.RJControls;
+using System.Collections;
 
 
 namespace JOB_IN
@@ -711,9 +712,11 @@ namespace JOB_IN
 
         public void joblist()
         {
-            for (int i = 0; i < 10; i++)
+            ArrayList arr = Db.fetchOrgJobs(org.email);
+            
+           foreach(Job i in arr)
             {
-                jobpanel.Controls.Add(new jobDesc("eyob wolde ararso", "ceko", "nada"));
+                jobpanel.Controls.Add(new jobDesc(i.name, i.description, i.requirement));
             }
         }
     }
