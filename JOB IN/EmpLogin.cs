@@ -14,8 +14,9 @@ namespace JOB_IN
     {
         public EmpLogin(organization org)
         {
-            InitializeComponent();
             this.org = org;
+            InitializeComponent();
+            
         }
 
 
@@ -86,6 +87,14 @@ namespace JOB_IN
             postpanel.SendToBack();
             historypanel.SendToBack();
             profilepanel.SendToBack();
+
+            orglbl.Text = org.name;
+            b.Text = org.description;
+            emaillbl.Text = org.email;
+            phonelbl.Text = org.PhoneNum;
+            adlbl.Text = org.address;
+            smlink.Text= org.mediaLink;
+            
         }
 
         private void postbtn_Click(object sender, EventArgs e)

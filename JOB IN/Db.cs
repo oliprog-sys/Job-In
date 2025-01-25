@@ -10,6 +10,7 @@ using System.Xml.Linq;
 using System.Windows.Forms.VisualStyles;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 namespace JOB_IN
 {
     public class Db
@@ -107,7 +108,7 @@ namespace JOB_IN
                 command.Connection = conn;
                 s = command.ExecuteReader();
                 s.Read();
-                org = new organization(s["OName"].ToString(), s["phoneNum"].ToString(), s["OEmail"].ToString(), s["Password"].ToString(), s["Address"].ToString(), s["Description"].ToString());
+                org = new organization(s["OName"].ToString(), s["phoneNum"].ToString(), s["OEmail"].ToString(), s["Password"].ToString(), s["Address"].ToString(), s["Description"].ToString(), s["mediaLink"].ToString());
 
 
             }
@@ -147,7 +148,7 @@ namespace JOB_IN
                 conn.Open();
                 SqlCommand command = conn.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "insert into Jobs(Job_description,Requirement,capacity, Deadline, OEmail, Job_name, Job_category) values(@1,@2,@3,@4,@5,@6,@7);";
+                command.CommandText = "insert into Jobs(Job_description,Requirement,capacity, Deadline, OEmail, Job_name, Job_category,job_exp_level) values(@1,@2,@3,@4,@5,@6,@7,@8);";
                 command.Parameters.AddWithValue("@1", job.description);
                 command.Parameters.AddWithValue("@2", job.requirement);
                 command.Parameters.AddWithValue("@3", job.capacity);
@@ -155,6 +156,7 @@ namespace JOB_IN
                 command.Parameters.AddWithValue("@5", job.oEmail);
                 command.Parameters.AddWithValue("@6", job.name);
                 command.Parameters.AddWithValue("@7", job.category);
+                command.Parameters.AddWithValue("@8", job.Explevel);
                 a = command.ExecuteNonQuery();
             }
             if (a == 1)
@@ -166,6 +168,37 @@ namespace JOB_IN
                 return false;
             }
         }
+
+
+        public static bool UpdateOrgInfo(organization org)
+        {
+            int a;
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "Update Organization set OName = @1 , phoneNum = @2,Address = @3,Password = @4,Description = @5,mediaLink= @7 where OEmail = @6";
+                command.Parameters.AddWithValue("@1", org.name);
+                command.Parameters.AddWithValue("@2", org.PhoneNum);
+                command.Parameters.AddWithValue("@3", org.address);
+                command.Parameters.AddWithValue("@4",org.password);
+                command.Parameters.AddWithValue("@5", org.description);
+                command.Parameters.AddWithValue("@6", org.email);
+                command.Parameters.AddWithValue("@7",org.mediaLink);
+                
+                a = command.ExecuteNonQuery();
+            }
+            if (a == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static ArrayList fetchOrgJobs(string email)
         {
             ArrayList arrayList = new ArrayList();
@@ -179,7 +212,7 @@ namespace JOB_IN
                 SqlDataReader a = command.ExecuteReader();
                 while (a.Read())
                 {
-                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(),(int) a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"]));
+                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(),(int) a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"], a["job_exp_level"].ToString()));
                 }
             }
            
@@ -201,7 +234,7 @@ namespace JOB_IN
                 SqlDataReader a = command.ExecuteReader();
                 while (a.Read())
                 {
-                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"]));
+                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"], a["job_exp_level"].ToString()));
                 }
             }
 
@@ -223,12 +256,33 @@ namespace JOB_IN
                 SqlDataReader a = command.ExecuteReader();
                 while (a.Read())
                 {
-                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"]));
+                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"], a["job_exp_level"].ToString()));
                 }
             }
 
             return arrayList;
 
+
+        }
+
+        public static ArrayList applied_list(int jid)
+        {
+            ArrayList arrayList = new ArrayList();
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select Aemail from ApplicantJob where Job_id=@1;";
+                command.Parameters.AddWithValue("@1", jid);
+                SqlDataReader a = command.ExecuteReader();
+                while (a.Read())
+                {
+                    arrayList.Add(a["AEmail"].ToString());
+                }
+            }
+
+            return arrayList;
 
         }
     }
@@ -290,10 +344,10 @@ namespace JOB_IN
         public string requirement;
         public string description;
         public DateTime Deadline;
-
+        public string Explevel;
         public Job(){ }
 
-        public Job(int id, string name, string category, string oEmail, int capacity, string requirement, string description, DateTime deadline)
+        public Job(int id, string name, string category, string oEmail, int capacity, string requirement, string description, DateTime deadline,string Explevel)
         {
             this.id = id;
             this.name = name;
@@ -303,6 +357,7 @@ namespace JOB_IN
             this.requirement = requirement;
             this.description = description;
             Deadline = deadline;
+            this.Explevel = Explevel;
         }   
     }
 
@@ -314,10 +369,11 @@ namespace JOB_IN
         public string password;
         public string address;
         public string description;
+        public string mediaLink;
         // CV varbinary(max) not null,
         // Photo varbinary
 
-        public organization(string name, string PhoneNum, string email, string password, string address, string description )
+        public organization(string name, string PhoneNum, string email, string password, string address, string description, string medialink )
         {
             
             this.name = name;
@@ -326,6 +382,7 @@ namespace JOB_IN
             this.email = email;
             this.password = password;
             this.description = description;
+            this.mediaLink = medialink;
             
         }
 

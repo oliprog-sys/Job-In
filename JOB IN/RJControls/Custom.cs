@@ -706,4 +706,95 @@ namespace JOB_IN.RJControls
         }
     }
 
+
+    public class Applicant_desc : borderedPanels
+    {
+        public Label name;
+        public Label email;
+        public Label experience;
+        public Label skill_desc;
+        public Label work_Status;
+        public Customb cv;
+        public Customb accept;
+        public Customb reject;
+        public Customb close;
+
+        public Applicant_desc() { }
+
+        public Applicant_desc(applicants app)
+        {
+            name = new Label();
+            email = new Label();
+            experience = new Label();
+            skill_desc = new Label();
+            work_Status = new Label();
+            cv = new Customb();
+            accept = new Customb();
+            reject = new Customb();
+            close = new Customb();
+
+            name.Text = "Name: " + app.name;
+            name.Size = new Size(500,25);
+            name.Anchor = AnchorStyles.None;
+            name.Font = Custom.font(16);
+
+
+
+            email.Text = "Email: " + app.email;
+            email.Size = new Size(500, 25);
+            email.Anchor = AnchorStyles.None;
+            email.Font = Custom.font(16);
+
+
+            experience.Text ="Experience: "+ app.experience + " years";
+            experience.Size = new Size(500, 25);
+            experience.Anchor = AnchorStyles.None;
+            experience.Font = Custom.font(16);
+
+
+            work_Status.Text = "Status: "+app.work_status;
+            work_Status.Size = new Size(500, 25);
+            work_Status.Anchor = AnchorStyles.None;
+            work_Status.Font = Custom.font(16);
+
+
+            skill_desc.Text = "Description: " + app.skill_description;
+            skill_desc.Size = new Size(500, 25);
+            skill_desc.Anchor = AnchorStyles.None;
+            skill_desc.Font = Custom.font(16);
+
+            cv.Text = "CV and certifications";
+            cv.Size = new Size(120,40);
+            cv.Anchor = AnchorStyles.None;
+            cv.Font = Custom.font(10);
+
+            accept.Text = "Accept";
+            accept.Size = new Size(70, 40);
+            accept.Anchor = AnchorStyles.None;
+            accept.Font = Custom.font(10);
+
+            reject.Text = "Reject";
+            reject.Size = new Size(70, 40);
+            reject.Anchor = AnchorStyles.None;
+            reject.Font = Custom.font(10);
+
+            close.Text = "Close";
+            close.Size = new Size(70, 40);
+            close.Anchor = AnchorStyles.None;
+            close.Font = Custom.font(10);
+
+            this.Controls.Add(name);
+            this.Controls.Add(email);
+            this.Controls.Add(skill_desc);
+            this.Controls.Add(work_Status);
+            this.Controls.Add(experience);
+            this.Controls.Add(cv);
+            this.Controls.Add(accept);
+            this.Controls.Add(reject);
+            this.Controls.Add(close);
+            this.BackColor = Color.White;
+            this.Size = new Size(1405,400);
+
+        }
+    }
 }

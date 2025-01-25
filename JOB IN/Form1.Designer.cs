@@ -34,12 +34,7 @@ namespace JOB_IN
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
+       
         private void InitializeComponent()
         {
             panel1 = new Panel();
@@ -302,7 +297,7 @@ namespace JOB_IN
         }
 
         private bool apage;
-        #endregion
+       
         private topButtons t;
         private Panel panel1;
         private Label companyname1;

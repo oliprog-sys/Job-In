@@ -79,7 +79,7 @@ namespace JOB_IN
 
             //SIgnUpPanel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, SIgnUpPanel1.Width, SIgnUpPanel1.Height, 150, 150));
             Employerbtn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Employerbtn.Width, Employerbtn.Height, 10, 10));
-            //textBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox2.Width, textBox2.Height, 20, 20));
+            Applicantbtn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Applicantbtn.Width, Applicantbtn.Height, 10, 10));
             //textBox1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox1.Width, textBox1.Height, 20, 20));
             tableLayoutPanel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height, 20, 20));
             blackColorLine.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, blackColorLine.Width, blackColorLine.Height, 5, 5));
@@ -121,7 +121,7 @@ namespace JOB_IN
                     SIgnUpPanel1.BackColor = Color.RoyalBlue;
                     companyname1.ForeColor = Color.White;
                     EmpLogin form = new EmpLogin(o);
-                    form.joblist();
+                   // form.joblist(form);
                     OpenchildForm(form, sender);
                 }
                 else
