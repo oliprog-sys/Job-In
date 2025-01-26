@@ -83,13 +83,40 @@ namespace JOB_IN
                 command.Connection = conn;
                 s = command.ExecuteReader();
                 s.Read();
-                app = new applicants(s["Name"].ToString(), s["Phone_num"].ToString(), (DateTime)s["DOB"], s["AEmail"].ToString(), s["Password"].ToString(), s["Skill_description"].ToString(), s["Skill_description"].ToString(), s["Job_category"].ToString(), (int)s["Experience"], s["Work_status"].ToString());
+                app = new applicants(s["Name"].ToString(), s["Phone_num"].ToString(), (DateTime)s["DOB"], s["AEmail"].ToString(), s["Password"].ToString(), s["Job_category"].ToString(), s["Skill_description"].ToString(), s["Job_category"].ToString(), (int)s["Experience"], s["Work_status"].ToString());
 
 
             }
             return app;
 
         }
+
+        public static Job fetchJobId(int id)
+        {
+            SqlDataReader s;
+            Job app;
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select * from Jobs where Job_id=@1;";
+                command.Parameters.AddWithValue("@1", id);
+
+                //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
+                command.Connection = conn;
+                s = command.ExecuteReader();
+                s.Read();
+                app = new Job((int)s["Job_id"], s["Job_name"].ToString(), s["Job_category"].ToString(), s["OEmail"].ToString(), (int)s["capacity"], s["Requirement"].ToString(), s["Job_description"].ToString(), (DateTime)s["Deadline"]);
+
+                
+
+
+            }
+            return app;
+
+        }
+
 
         public static organization fetchOrganizationInfo(string email)
         {
@@ -196,7 +223,8 @@ namespace JOB_IN
                 conn.Open();
                 SqlCommand command = conn.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "select * from Jobs where category=@1;";
+            //    command.CommandText = "select * from Jobs;";
+                command.CommandText = "select * from Jobs where Job_category=@1;";
                 command.Parameters.AddWithValue("@1", category);
                 SqlDataReader a = command.ExecuteReader();
                 while (a.Read())
@@ -231,6 +259,36 @@ namespace JOB_IN
 
 
         }
+
+        public static ArrayList fetchJobName(string id)
+        {
+            SqlDataReader s;
+            Job app;
+            ArrayList arrayList = new ArrayList();
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select * from Jobs where Job_name=@1 or OEmail=@1 or Job_category=@1;";
+                command.Parameters.AddWithValue("@1", id);
+
+                //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
+                command.Connection = conn;
+                s = command.ExecuteReader();
+                s.Read();
+                app = new Job((int)s["Job_id"], s["Job_name"].ToString(), s["Job_category"].ToString(), s["OEmail"].ToString(), (int)s["capacity"], s["Requirement"].ToString(), s["Job_description"].ToString(), (DateTime)s["Deadline"]);
+                arrayList.Add(app);
+
+
+
+            }
+            return arrayList;
+
+        }
+
+
+
     }
     public class applicants
     {
@@ -239,7 +297,7 @@ namespace JOB_IN
         public DateTime dob;
         public string email;
         public string password;
-        public string description;
+        public string category;
         public string skill_description;
         public string job_description;
         public int experience;
@@ -247,14 +305,14 @@ namespace JOB_IN
         // CV varbinary(max) not null,
         // Photo varbinary
 
-        public applicants( string name, string PhoneNum, DateTime dob, string email, string password, string description, string skill_description, string job_description, int experience, string work_status)
+        public applicants( string name, string PhoneNum, DateTime dob, string email, string password, string category, string skill_description, string job_description, int experience, string work_status)
         {
             this.name = name; 
             this.PhoneNum = PhoneNum;
             this.dob = dob;
             this.email = email;
             this.password = password;
-            this.description = description;
+            this.category = category;
             this.skill_description = skill_description;
             this.job_description = job_description;
             this.experience = experience;
@@ -268,7 +326,7 @@ namespace JOB_IN
             this.dob = (DateTime)s["DOB"];
             this.email = s["AEmail"].ToString();
             //this.password = s["Password"].ToString();
-            this.description = s["Skill_description"].ToString();
+            this.category = s["category"].ToString();
             this.skill_description = s["Skill_description"].ToString();
             this.job_description = s["Job_category"].ToString();
             this.experience = (int)s["Experience"];

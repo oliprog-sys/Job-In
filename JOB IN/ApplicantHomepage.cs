@@ -13,6 +13,7 @@ using System.Windows.Forms.VisualStyles;
 using JOB_IN.RJControls;
 namespace JOB_IN
 {
+    
     public partial class ApplicantHomepage : Form
     {
 
@@ -119,14 +120,14 @@ namespace JOB_IN
             searchBox.BackColor = Color.Black;
             searchBox.ForeColor = Color.White;
             searchBox.Font = Custom.font(18);
-            searchBox.Text = "Search";
+            searchBox.PlaceholderText = "Search";
 
             searchButton.Anchor = AnchorStyles.None;
             searchButton.Size = new Size(60, 60);
             searchButton.Location = new Point(950, 15);
             searchButton.Font = Custom.font(18);
             searchButton.Text = "🔍";
-            searchButton.Click += searchResultFetch;
+            searchButton.Click += (s,e)=>searchResultFetch(s,e,searchBox.Text);
 
             searchResultsPane.Anchor = AnchorStyles.None;
             searchResultsPane.Size = new Size(1250, 500);
@@ -434,12 +435,13 @@ namespace JOB_IN
             job_history_adder("all");
         }
 
-        private void searchResultFetch(object? sender, EventArgs e)
+        private void searchResultFetch(object? sender, EventArgs e, string search)
         {
             searchResultsPane.Controls.Clear();
-            int x = 0;
+         
             //perform data fetch here and add it to searchResultPane
-            if (x == 0)
+            ArrayList arr = Db.fetchJobName(search);
+            if (arr.Count == 0)
             {
                 Panel wrap = new Panel();
                // wrap.BackColor = Color.Azure;
@@ -455,6 +457,17 @@ namespace JOB_IN
                 noResult.Location = new Point(400, 80);
                 wrap.Controls.Add(noResult);
                 searchResultsPane.Controls.Add(wrap);
+            }
+            else
+            {
+                foreach(Job j in arr)
+                {
+
+                    jobDesc jd = new jobDesc(j.name, j.description, j.requirement);
+                    //jd.Size = new Size(1100, 400);
+                    jd.more.Click += (sender, e) => jobExpand(sender, e, j.id);
+                    searchResultsPane.Controls.Add(jd);
+                }
             }
         }
 
@@ -589,19 +602,44 @@ namespace JOB_IN
         // 
         public  void  job_list_adder()
         {
+            ArrayList arr = Db.fetchJobs(applicant.category);
             jobsPane.Controls.Clear();
-            for(int i = 0; i < 10; i++)
+            if (arr.Count==0)
             {
-                jobDesc jd = new jobDesc("title", " description", "requirements");
-                jd.more.Click += (sender,e)=>jobExpand(sender,e, "title", " description", "requirements");
-                jobsPane.Controls.Add(jd);
-                
+                borderedPanels b = new borderedPanels();
+                b.Size = new Size(1410, 650);
+                b.BackColor = Color.White;
+                b.Anchor = AnchorStyles.None;
+                b.Location = new Point(1000, 700);
+
+                Label l = new Label();
+                l.ForeColor = Color.Black;
+                l.Text = "No jobs available, Try again later";
+                l.Font = Custom.font(24);
+                l.Anchor = AnchorStyles.None;
+                l.Size = new Size(1200, 60);
+                l.Location = new Point(340, 280);
+
+                b.Controls.Add(l);
+                jobsPane.Controls.Add(b);
             }
+            else
+            {
+                foreach (Job j in arr)
+                {
+
+                    jobDesc jd = new jobDesc(j.name, j.description, j.requirement);
+                    jd.more.Click += (sender, e) => jobExpand(sender, e, j.id);
+                    jobsPane.Controls.Add(jd);
+
+                }
+            }
+            
         }
 
-        private void jobExpand(object? sender, EventArgs e, string title,string desc, string req)
+        private void jobExpand(object? sender, EventArgs e, int id)
         {
-            jobDescDetail a = new jobDescDetail(title, desc, req);
+            jobDescDetail a = new jobDescDetail(id);
             MainPanel.Controls.Add(a);
             a.BringToFront();
         }
