@@ -227,6 +227,7 @@ namespace JOB_IN
                         com.Parameters.AddWithValue("@ApJob", ca.ApplicantJobCategory);
                         com.Parameters.AddWithValue("@ApExper", ca.ApplicantExperience);
                         com.Parameters.AddWithValue("@ApWork", ca.ApplicantWorkStatus);
+                        com.Parameters.AddWithValue("@ApCerti", ca.ApplicantCertificate);
                         com.Parameters.AddWithValue("@ApCV", ca.ApplicantCV);
 
                         row = com.ExecuteNonQuery();
