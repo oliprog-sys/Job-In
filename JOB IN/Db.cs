@@ -285,6 +285,51 @@ namespace JOB_IN
             return arrayList;
 
         }
+        public static bool Accepted(int jid)
+        {
+            int a;
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "Update ApplicantJob set Message='Accepted' where Job_id=@1 ";
+                command.Parameters.AddWithValue("@1", jid);
+
+                a = command.ExecuteNonQuery();
+            }
+            if (a == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool Rejected(int jid)
+        {
+            int a;
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "Update ApplicantJob set Message='Rejected' where Job_id=@1";
+                command.Parameters.AddWithValue("@1", jid);
+
+                a = command.ExecuteNonQuery();
+            }
+            if (a == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
     public class applicants
     {

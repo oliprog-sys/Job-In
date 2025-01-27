@@ -734,54 +734,82 @@ namespace JOB_IN.RJControls
             close = new Customb();
 
             name.Text = "Name: " + app.name;
-            name.Size = new Size(500,25);
-            name.Anchor = AnchorStyles.None;
+            name.Size = new Size(500,35);
+            //name.Anchor = AnchorStyles.None;
             name.Font = Custom.font(16);
+            name.Location = new Point(100, 50);
 
 
 
             email.Text = "Email: " + app.email;
-            email.Size = new Size(500, 25);
-            email.Anchor = AnchorStyles.None;
+            email.Size = new Size(500, 35);
+            //email.Anchor = AnchorStyles.None;
             email.Font = Custom.font(16);
+            email.Location = new Point(100, 100);
 
 
             experience.Text ="Experience: "+ app.experience + " years";
-            experience.Size = new Size(500, 25);
-            experience.Anchor = AnchorStyles.None;
+            experience.Size = new Size(500, 35);
+            //experience.Anchor = AnchorStyles.None;
             experience.Font = Custom.font(16);
+            experience.Location = new Point(900, 150);
 
 
             work_Status.Text = "Status: "+app.work_status;
-            work_Status.Size = new Size(500, 25);
-            work_Status.Anchor = AnchorStyles.None;
+            work_Status.Size = new Size(500, 35);
+           // work_Status.Anchor = AnchorStyles.None;
             work_Status.Font = Custom.font(16);
+            work_Status.Location = new Point(900, 50);
 
 
-            skill_desc.Text = "Description: " + app.skill_description;
-            skill_desc.Size = new Size(500, 25);
-            skill_desc.Anchor = AnchorStyles.None;
-            skill_desc.Font = Custom.font(16);
+            skill_desc.Text = "Skill Description: " +"\n" +app.skill_description;
+            skill_desc.Size = new Size(500, 135);
+            //skill_desc.Anchor = AnchorStyles.None;
+            skill_desc.Font = Custom.font(12);
+            skill_desc.Location = new Point(100, 150);
 
             cv.Text = "CV and certifications";
-            cv.Size = new Size(120,40);
-            cv.Anchor = AnchorStyles.None;
-            cv.Font = Custom.font(10);
+            cv.Size = new Size(300,50);
+            cv.BackColor = Color.RoyalBlue;
+            cv.BorderRadius = 20;
+            cv.BorderSize = 0;
+            cv.FlatAppearance.BorderSize = 0;
+            cv.FlatStyle = FlatStyle.Flat;
+            cv.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cv.ForeColor = Color.White;
+            cv.Location = new Point(100, 390);
+            
 
             accept.Text = "Accept";
-            accept.Size = new Size(70, 40);
-            accept.Anchor = AnchorStyles.None;
-            accept.Font = Custom.font(10);
+            accept.Size = new Size(100, 60);
+            accept.BackColor = Color.RoyalBlue;
+            accept.BorderRadius = 20;
+            accept.BorderSize = 0;
+            accept.FlatAppearance.BorderSize = 0;
+            accept.FlatStyle = FlatStyle.Flat;
+            accept.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            accept.ForeColor = Color.White;
+            accept.Location = new Point(1000, 390);
+            
 
             reject.Text = "Reject";
-            reject.Size = new Size(70, 40);
-            reject.Anchor = AnchorStyles.None;
-            reject.Font = Custom.font(10);
+            reject.Size = new Size(100, 60);
+            reject.BackColor = Color.RoyalBlue;
+            reject.BorderRadius = 20;
+            reject.BorderSize = 0;
+            reject.FlatAppearance.BorderSize = 0;
+            reject.FlatStyle = FlatStyle.Flat;
+            reject.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            reject.ForeColor = Color.White;
+            reject.Location = new Point(1200, 390);
+            
 
             close.Text = "Close";
             close.Size = new Size(70, 40);
-            close.Anchor = AnchorStyles.None;
+           // close.Anchor = AnchorStyles.None;
             close.Font = Custom.font(10);
+            close.Location = new Point(1300, 360);
+            close.BorderRadius = 10;
 
             this.Controls.Add(name);
             this.Controls.Add(email);
@@ -791,9 +819,10 @@ namespace JOB_IN.RJControls
             this.Controls.Add(cv);
             this.Controls.Add(accept);
             this.Controls.Add(reject);
-            this.Controls.Add(close);
+           // this.Controls.Add(close);
             this.BackColor = Color.White;
-            this.Size = new Size(1405,400);
+            this.Size = new Size(1405,500);
+          
 
         }
     }

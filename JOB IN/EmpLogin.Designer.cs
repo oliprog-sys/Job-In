@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using JOB_IN.RJControls;
 using System.Collections;
+using System.Security.Cryptography;
 
 
 namespace JOB_IN
@@ -691,38 +692,10 @@ namespace JOB_IN
             enametxt.Location = new Point(100, 150);
             enametxt.Size = new Size(550, 30);
             editpan.Controls.Add(enametxt);
-            
-            epassword= new Label();
-            epassword.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            epassword.Location = new Point(100, 200);
-            epassword.Size = new Size(300, 37);
-            epassword.Text = "Password : ";
-            epassword.ForeColor = Color.White;
-            editpan.Controls.Add(epassword);
-
-            epasswordtxt= new RoundedTextBox();
-            epasswordtxt.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            epasswordtxt.Location = new Point(100, 250);
-            epasswordtxt.Size = new Size(550, 30);
-           // epasswordtxt.PasswordChar = '*';
-            p = new Customb();
-            p.BackColor = Color.Coral;
-            p.ForeColor = Color.White;
-            p.Dock = DockStyle.Right;
-            p.Text = "0";
-            p.Font = Custom.font(9);
-            p.Size = new Size(50, 20);
-            p.BorderRadius = 50;
-            p.Click += show_passowrd;
-            //p.Anchor = AnchorStyles.Right| AnchorStyles.Top;
-            epasswordtxt.Controls.Add(p);
-
-            
-            editpan.Controls.Add(epasswordtxt);
-
+           
             ephonenum = new Label();
             ephonenum.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ephonenum.Location = new Point(100, 300);
+            ephonenum.Location = new Point(100, 200);
             ephonenum.Size = new Size(300, 37);
             ephonenum.Text = "Phone Number : ";
             ephonenum.ForeColor = Color.White;
@@ -730,14 +703,14 @@ namespace JOB_IN
 
             ephonenumtxt = new RoundedTextBox();
             ephonenumtxt.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ephonenumtxt.Location = new Point(100, 350);
+            ephonenumtxt.Location = new Point(100, 250);
             ephonenumtxt.Size = new Size(550, 30);
             ephonenumtxt.BorderStyle = BorderStyle.Fixed3D;
             editpan.Controls.Add(ephonenumtxt);
 
             ebio = new Label();
             ebio.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ebio.Location = new Point(100, 400);
+            ebio.Location = new Point(100, 300);
             ebio.Size = new Size(100, 37);
             ebio.Text = "Bio : ";
             ebio.ForeColor = Color.White;
@@ -745,7 +718,7 @@ namespace JOB_IN
 
             ebiotxt = new RoundedTextBox();
             ebiotxt.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ebiotxt.Location = new Point(100, 450);
+            ebiotxt.Location = new Point(100, 350);
             ebiotxt.Multiline = true;
             ebiotxt.Size = new Size(550, 100);
             editpan.Controls.Add(ebiotxt);
@@ -837,11 +810,7 @@ namespace JOB_IN
             
         }
 
-        private void show_passowrd(object sender, EventArgs e)
-        {
-
-            epasswordtxt.UseSystemPasswordChar = false;
-        }
+       
 
         private void back_action(object sender, EventArgs e)
         {
@@ -852,14 +821,13 @@ namespace JOB_IN
         private void save_action(object sender, EventArgs e)
         {
             string em = org.email;
-            org.password = epasswordtxt.Text;
             org.name= enametxt.Text;
             org.PhoneNum= ephonenumtxt.Text;
             org.address= eaddresstxt.Text;
             org.description = ebiotxt.Text;
             org.mediaLink = emedialinktxt.Text;
             bool success = Db.UpdateOrgInfo(org);
-            if (enametxt.Text == "" || epasswordtxt.Text == "" || ephonenumtxt.Text == "" || eaddresstxt.Text == "" || ebiotxt.Text == ""||emedialinktxt.Text =="")
+            if (enametxt.Text == ""  || ephonenumtxt.Text == "" || eaddresstxt.Text == "" || ebiotxt.Text == ""||emedialinktxt.Text =="")
             {
                 string Message = "There are Spaces you havent filled. \n Please Fill the Neccessary Informatiom ";
                 MessageBox.Show(Message, "Full Info Check ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1008,6 +976,7 @@ namespace JOB_IN
         private Customb save;
         private Customb p;
         private Customb eback;
+        private bool proclicked;
 
 
         
@@ -1028,47 +997,89 @@ namespace JOB_IN
         }
 
         private void applicants_list(object sender, EventArgs e, Job j, Form f)
-        {
+        {    
             borderedscrollPanels scroll = new borderedscrollPanels();
-            scroll.Size = new Size(1600, 720);
-            scroll.BackColor = Color.Aquamarine;
+            scroll.Size = new Size(1550, 700);
+            scroll.BackColor = Color.FromArgb(0,Color.RoyalBlue);
+            Customb x = new Customb();
+            x.Text = "Back";
+            x.Font = Custom.font(10);
+            x.BackColor= Color.Coral;
+            x.BorderRadius = 20;
+            x.BorderSize = 0;
+            x.Size = new Size(70,40);
+            x.Location = new Point(10, 0);
+            x.Click +=(sender,e)=> close_the_scroll(sender,e,scroll);
+            Panel p = new Panel();
+            p.Dock = DockStyle.Left;
+            p.Size = new Size(70, 10);
+            p.BackColor = SystemColors.Control;
+            
+            scroll.Controls.Add(x);
+            scroll.AutoScroll = true;
 
             ArrayList arr = Db.applied_list(j.id);
             foreach(string s in arr)
             {
                 applicants a = Db.fetchApplicantinfo(s);
                 Applicant_desc d = new Applicant_desc(a);
+                d.Anchor = AnchorStyles.None;
+               scroll.Controls.Add(p); 
                 scroll.Controls.Add(d);
+                
+
                 
                 
                 
                 //cv.Click+=
-                d.accept.Click += accepted;
-                d.reject.Click += rejected;
+                d.accept.Click +=(sender,e)=> accepted(sender,e,j.id);
+                d.reject.Click += (sender,e)=>rejected(sender,e,j.id);
                 d.close.Click += closed;
                 
             }
-           
-            scroll.Anchor = AnchorStyles.Top;
-            scroll.Location = new Point(0, 100);
+             
+           // scroll.Anchor = AnchorStyles.None;
+            scroll.Location = new Point(150, 105);
             f.Controls.Add(scroll);
             scroll.BringToFront();
         }
 
-       
+        private void close_the_scroll(object sender, EventArgs e,borderedscrollPanels s)
+        {
+           s.Hide();
+         
+            
+        }
+
         private void closed(object sender, EventArgs e)
         {
             this.Hide();
         }
 
-        private void rejected(object sender, EventArgs e)
+        private void rejected(object sender, EventArgs e,int jid)
         {
-            throw new NotImplementedException();
+            bool success = Db.Rejected(jid);
+            if (success)
+            {
+                MessageBox.Show("You have rejected this client","Success message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("You have not rejected this client","Erros message",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
 
-        private void accepted(object sender, EventArgs e)
+        private void accepted(object sender, EventArgs e, int jid)
         {
-            throw new NotImplementedException();
+           bool success= Db.Accepted(jid);
+            if (success)
+            {
+                MessageBox.Show("You have accepted this client succesfully");
+            }
+            else
+            {
+                MessageBox.Show("You have not accepted this client succesfully");
+            }
         }
     }
 

@@ -30,10 +30,10 @@ namespace JOB_IN
                 profilebackp.BackColor = Color.LightGray;
 
 
-            jobpanel.BringToFront();
-            historypanel.SendToBack();
-            profilepanel.SendToBack();
-            postpanel.SendToBack();
+            jobpanel.Show();
+            historypanel.Hide();
+            profilepanel.Hide();
+            postpanel.Hide();
             Jobbackp.BackColor = Color.White;
 
 
@@ -57,9 +57,10 @@ namespace JOB_IN
 
 
             historybackp.BackColor = Color.White;
-            historypanel.BringToFront();
-            jobpanel.SendToBack();
-            profilepanel.SendToBack();
+            historypanel.Show();
+            jobpanel.Hide();
+            profilepanel.Hide();
+            postpanel.Hide();
 
         }
 
@@ -74,19 +75,21 @@ namespace JOB_IN
                 postbackp.BackColor = Color.LightGray;
 
             profilebackp.BackColor = Color.White;
-            profilepanel.BringToFront();
-            historypanel.SendToBack();
-            postpanel.SendToBack();
-            jobpanel.SendToBack();
+            profilepanel.Show();
+            historypanel.Hide();
+            postpanel.Hide();
+            jobpanel.Hide();
+
+       
 
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            jobpanel.BringToFront();
-            postpanel.SendToBack();
-            historypanel.SendToBack();
-            profilepanel.SendToBack();
+            jobpanel.Show();
+            postpanel.Hide();
+            historypanel.Hide();
+            profilepanel.Hide();
 
             orglbl.Text = org.name;
             b.Text = org.description;
@@ -107,10 +110,10 @@ namespace JOB_IN
                 profilebackp.BackColor = Color.LightGray;
 
             postbackp.BackColor = Color.FromArgb(64, 64, 64);
-            postpanel.BringToFront();
-            jobpanel.SendToBack();
-            historypanel.SendToBack();
-            profilepanel.SendToBack();
+            postpanel.Show();
+            jobpanel.Hide();
+            historypanel.Hide();
+            profilepanel.Hide();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
