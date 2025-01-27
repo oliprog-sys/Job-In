@@ -25,8 +25,18 @@ namespace JOB_IN
         private void next_btn_click(object sender, EventArgs e)
         {
             infoPanel.Hide();
-            titlePanel.BackColor = Color.FromArgb(238, 164, 127);
+            backBtn.Visible = true;
+            titlePanel.BackColor = Color.FromArgb(238, 164, 127);            
             mainPanel1.Controls.Add(infoPanel2);
+            infoPanel2.Show();
+        }
+
+        private void OnbackBtn_clicked(object sender, EventArgs e)
+        {
+            backBtn.Visible = false;
+            infoPanel2.Hide();
+            titlePanel.BackColor = Color.White;
+            infoPanel.Show();
         }
 
         //private void onUploadBtn_clicked(object sender, EventArgs e)
@@ -68,18 +78,32 @@ namespace JOB_IN
                 return;
             }
 
-            string fileExtension = Path.GetExtension(filePath).ToLower();
-            string[] allowedExtensions = { ".pdf" };
+            checkExtension(filePath);
 
-            if (!allowedExtensions.Contains(fileExtension))
-            {
-                MessageBox.Show("Invalid file type. Please upload a PDF file.");
-                return;
-            }
 
             try
             {
                 ca.ApplicantCV = File.ReadAllBytes(filePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading file: " + ex.Message);
+                return;
+            }
+
+            string certiPath = certificationField.Text;
+
+            if(string.IsNullOrEmpty(certiPath))
+            {
+                MessageBox.Show("You should insert the certification file");
+                return;
+            }
+
+            checkExtension(certiPath);
+
+            try
+            {
+                ca.ApplicantCertificate = File.ReadAllBytes(certiPath);
             }
             catch (Exception ex)
             {
@@ -110,22 +134,42 @@ namespace JOB_IN
             if (success)
             {
                 MessageBox.Show("Account Created Successfully");
-               
                 this.Close();
-
             } else
             {
                 MessageBox.Show("Error adding data to the database");
-            }
+            };
 
            
         }
 
-       
+        private void checkExtension(string fileName)
+        {
+            string fileExtension = Path.GetExtension(fileName).ToLower();
+            string[] allowedExtensions = { ".pdf" };
+
+            if (!allowedExtensions.Contains(fileExtension))
+            {
+                MessageBox.Show("Invalid file type. Please upload a PDF file.");
+                return;
+            }
+        }
 
         private void OnPlusSign_clicked(object sender, EventArgs e)
         {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Select a File";
+                openFileDialog.Filter = "All Files (*.*)|*.*";
 
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+
+                    MessageBox.Show("Selected file: " + filePath);
+                    certificationField.Text = filePath;
+                }
+            }
         }
 
     }
@@ -143,47 +187,43 @@ namespace JOB_IN
         public int ApplicantExperience { get; set; }
         public string ApplicantWorkStatus { get; set; }
         public byte[] ApplicantCV { get; set; }
-        private const string InsertQuery = "INSERT INTO Applicant (Name, Phone_num, DOB, AEmail, Password, Skill_description, Job_category, Experience, Work_status, CV) VALUES (@ApName, @ApPhone, @ApDob, @ApEmail, @ApPassword, @ApSkill, @ApJob, @ApExper, @ApWork, @ApCV)";
+        public byte[] ApplicantCertificate { get; set; }
 
+        private const string InsertQuery = "INSERT INTO Applicant (Name, Phone_num, DOB, AEmail, Password, Skill_description, Job_category, Experience, Work_status, CV, AppCertificate) VALUES (@ApName, @ApPhone, @ApDob, @ApEmail, @ApPassword, @ApSkill, @ApJob, @ApExper, @ApWork, @ApCV, @ApCerti)";
+        
         public bool SaveInfo(CreateAccount ca)
         {
             int row = 0;
-            try
+            using(SqlConnection conn = new SqlConnection(connString))
             {
-                using (SqlConnection conn = new SqlConnection(connString))
+                conn.Open();
+                using(SqlCommand com = new SqlCommand(InsertQuery, conn))
                 {
-                    conn.Open();
-                    using (SqlCommand com = new SqlCommand(InsertQuery, conn))
+                    try
                     {
-                        try
-                        {
-                            com.Parameters.AddWithValue("@ApName", ca.ApplicantName);
-                            com.Parameters.AddWithValue("@ApPhone", ca.ApplicantPhoneNum);
-                            com.Parameters.AddWithValue("@ApDob", ca.ApplicantDOB);
-                            com.Parameters.AddWithValue("@ApEmail", ca.ApplicantEmail);
-                            com.Parameters.AddWithValue("@ApPassword", ca.ApplicantPassword);
-                            com.Parameters.AddWithValue("@ApSkill", ca.ApplicantSkillDesc);
-                            com.Parameters.AddWithValue("@ApJob", ca.ApplicantJobCategory);
-                            com.Parameters.AddWithValue("@ApExper", ca.ApplicantExperience);
-                            com.Parameters.AddWithValue("@ApWork", ca.ApplicantWorkStatus);
-                            com.Parameters.AddWithValue("@ApCV", ca.ApplicantCV);
+                        com.Parameters.AddWithValue("@ApName", ca.ApplicantName);
+                        com.Parameters.AddWithValue("@ApPhone", ca.ApplicantPhoneNum);
+                        com.Parameters.AddWithValue("@ApDob", ca.ApplicantDOB);
+                        com.Parameters.AddWithValue("@ApEmail", ca.ApplicantEmail);
+                        com.Parameters.AddWithValue("@ApPassword", ca.ApplicantPassword);
+                        com.Parameters.AddWithValue("@ApSkill", ca.ApplicantSkillDesc);
+                        com.Parameters.AddWithValue("@ApJob", ca.ApplicantJobCategory);
+                        com.Parameters.AddWithValue("@ApExper", ca.ApplicantExperience);
+                        com.Parameters.AddWithValue("@ApWork", ca.ApplicantWorkStatus);
+                        com.Parameters.AddWithValue("@ApCerti", ca.ApplicantCertificate);
+                        com.Parameters.AddWithValue("@ApCV", ca.ApplicantCV);
 
-                            row = com.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-
+                        row = com.ExecuteNonQuery();
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message);
                     }
                 }
             }
-            catch(ArgumentException e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            
             return row > 0;
         }
+
     }
+
 }

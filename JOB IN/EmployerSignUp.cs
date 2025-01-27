@@ -34,9 +34,20 @@ namespace JOB_IN
         private void next_btn_click(object sender, EventArgs e)
         {
             organizationPanel.Hide();
+            backBtn.Visible = true;
             signUpAsPanel.BackColor = Color.FromArgb(0, 83, 156);
             signUpAsLabel.ForeColor = Color.White;
             mainPanel.Controls.Add(organizationalMorePanel);
+            organizationalMorePanel.Show();
+        }
+
+        private void OnbackBtnForOrganization_clicked(Object sender, EventArgs e)
+        {
+            backBtn.Visible = false;
+            organizationalMorePanel.Hide();
+            signUpAsPanel.BackColor = Color.White;
+            signUpAsLabel.ForeColor = Color.Black;            
+            organizationPanel.Show();
         }
 
         private void OnorgSubmitBtn_clicked(object sender, EventArgs e)
@@ -47,12 +58,14 @@ namespace JOB_IN
             coa.orgEmail = orgemailField.Text;
             coa.orgPassword = orgpasswordField.Text;
             coa.orgDescription = aboutUsField.Text;
+            coa.orgMediaLink = mediaLinkField.Text;
 
             var success = coa.SaveOrgInfo(coa);
 
             if (success)
             {
                 MessageBox.Show("Account added successfully");
+                this.Close();
             } else
             {
                 MessageBox.Show("Error: unable to create an account");
@@ -68,9 +81,20 @@ namespace JOB_IN
         private void personal_next_btn_click(Object sender, EventArgs e)
         {
             personalPanel.Hide();
+            backBtn.Visible = true;
             signUpAsPanel.BackColor = Color.FromArgb(0, 83, 156);
             signUpAsLabel.ForeColor = Color.White;
             mainPanel.Controls.Add(personalMorePanel);
+            personalMorePanel.Show();
+        }
+
+        private void OnbackBtnForPersonal_clicked(object sender, EventArgs e)
+        {
+            backBtn.Visible = false;
+            personalMorePanel.Hide();
+            signUpAsPanel.BackColor = Color.White;
+            signUpAsLabel.ForeColor = Color.Black;
+            personalPanel.Show();
         }
 
         private void OnperSubmitBtn_clicked(Object sender, EventArgs e)
@@ -80,13 +104,15 @@ namespace JOB_IN
             cpa.perAddress = peraddressField.Text;
             cpa.perEmail = peremailField.Text;
             cpa.perPassword = perpasswordField.Text;
-            cpa.perDescription = peraboutUsField.Text;
+            cpa.perDescription = peraboutUsField.Text;           
+            cpa.perMediaLink = permediaLinkField.Text;
 
             var success = cpa.SavePerInfo(cpa);
 
             if (success)
             {
                 MessageBox.Show("Account added successfully");
+                this.Close();
             }
             else
             {
@@ -113,8 +139,9 @@ namespace JOB_IN
         public string orgEmail { get; set; }
         public string orgPassword { get; set; }
         public string orgDescription { get; set; }
+        public string orgMediaLink { get; set; }
 
-        private string InsertQuery = "INSERT INTO Organization (OName, phoneNum, Address, OEmail, Password, Description) VALUES (@name, @phone, @address, @email, @password, @description)";
+        private string InsertQuery = "INSERT INTO Organization (OName, phoneNum, Address, OEmail, Password, Description, mediaLink) VALUES (@name, @phone, @address, @email, @password, @description, @mediaLink)";
 
         public bool SaveOrgInfo(CreateOrganizationAccount account)
         {
@@ -132,6 +159,7 @@ namespace JOB_IN
                         com.Parameters.AddWithValue("@email", account.orgEmail);
                         com.Parameters.AddWithValue("@password", account.orgPassword);
                         com.Parameters.AddWithValue("@description", account.orgDescription);
+                        com.Parameters.AddWithValue("@mediaLink", account.orgMediaLink);
 
                         row = com.ExecuteNonQuery();
                     }
@@ -156,8 +184,9 @@ namespace JOB_IN
         public string perEmail { get; set; }
         public string perPassword { get; set; }
         public string perDescription { get; set; }
+        public string perMediaLink { get; set; }
 
-        private string InsertQuery = "INSERT INTO Organization (OName, phoneNum, Address, OEmail, Password, Description) VALUES (@name, @phone, @address, @email, @password, @description)";
+        private string InsertQuery = "INSERT INTO Organization (OName, phoneNum, Address, OEmail, Password, Description, mediaLink) VALUES (@name, @phone, @address, @email, @password, @description, @mediaLink)";
 
         public bool SavePerInfo(CreatePersonalAccount account)
         {
@@ -175,6 +204,7 @@ namespace JOB_IN
                         com.Parameters.AddWithValue("@email", account.perEmail);
                         com.Parameters.AddWithValue("@password", account.perPassword);
                         com.Parameters.AddWithValue("@description", account.perDescription);
+                        com.Parameters.AddWithValue("@mediaLink", account.perMediaLink);
 
                         row = com.ExecuteNonQuery();
                     }
