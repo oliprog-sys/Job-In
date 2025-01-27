@@ -276,9 +276,13 @@ namespace JOB_IN
                 //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
                 command.Connection = conn;
                 s = command.ExecuteReader();
-                s.Read();
-                app = new Job((int)s["Job_id"], s["Job_name"].ToString(), s["Job_category"].ToString(), s["OEmail"].ToString(), (int)s["capacity"], s["Requirement"].ToString(), s["Job_description"].ToString(), (DateTime)s["Deadline"]);
-                arrayList.Add(app);
+                while(s.Read())
+                {
+
+                    app = new Job((int)s["Job_id"], s["Job_name"].ToString(), s["Job_category"].ToString(), s["OEmail"].ToString(), (int)s["capacity"], s["Requirement"].ToString(), s["Job_description"].ToString(), (DateTime)s["Deadline"]);
+                    arrayList.Add(app);
+                }
+               
 
 
 

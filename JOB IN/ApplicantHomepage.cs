@@ -438,15 +438,11 @@ namespace JOB_IN
         private void searchResultFetch(object? sender, EventArgs e, string search)
         {
             searchResultsPane.Controls.Clear();
-         
-            //perform data fetch here and add it to searchResultPane
-            ArrayList arr = Db.fetchJobName(search);
-            if (arr.Count == 0)
-            {
+            if (search == "") {
                 Panel wrap = new Panel();
-               // wrap.BackColor = Color.Azure;
+                // wrap.BackColor = Color.Azure;
                 wrap.Size = new Size(1250, 160);
-                
+
                 Label noResult = new Label();
                 noResult.Anchor = AnchorStyles.None;
                 noResult.BorderStyle = BorderStyle.None;
@@ -458,17 +454,40 @@ namespace JOB_IN
                 wrap.Controls.Add(noResult);
                 searchResultsPane.Controls.Add(wrap);
             }
+        
             else
             {
-                foreach(Job j in arr)
+                ArrayList arr = Db.fetchJobName(search);
+                if (arr.Count == 0)
                 {
+                    Panel wrap = new Panel();
+                    // wrap.BackColor = Color.Azure;
+                    wrap.Size = new Size(1250, 160);
 
-                    jobDesc jd = new jobDesc(j.name, j.description, j.requirement);
-                    //jd.Size = new Size(1100, 400);
-                    jd.more.Click += (sender, e) => jobExpand(sender, e, j.id);
-                    searchResultsPane.Controls.Add(jd);
+                    Label noResult = new Label();
+                    noResult.Anchor = AnchorStyles.None;
+                    noResult.BorderStyle = BorderStyle.None;
+                    noResult.Font = Custom.font(23);
+                    noResult.Size = new Size(600, 90);
+                    noResult.Text = "No results found...";
+                    noResult.BackColor = Color.FromArgb(0, Color.White);
+                    noResult.Location = new Point(400, 80);
+                    wrap.Controls.Add(noResult);
+                    searchResultsPane.Controls.Add(wrap);
+                }
+                else
+                {
+                    foreach (Job j in arr)
+                    {
+
+                        jobDesc jd = new jobDesc(j.name, j.description, j.requirement);
+                        //jd.Size = new Size(1100, 400);
+                        jd.more.Click += (sender, e) => jobExpand(sender, e, j.id);
+                        searchResultsPane.Controls.Add(jd);
+                    }
                 }
             }
+            
         }
 
 
