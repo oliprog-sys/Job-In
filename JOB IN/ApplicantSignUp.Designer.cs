@@ -119,14 +119,15 @@ namespace JOB_IN
 
             backBtn = new RoundedButton();
             backBtn.Anchor = AnchorStyles.None;
-            backBtn.Size = new Size(170, 70);
-            backBtn.Location = new Point(50, 130);
+            backBtn.Size = new Size(130, 40);
+            backBtn.radius = 10;
+            backBtn.Location = new Point(50, 170);
             backBtn.Text = "< Back";
-            backBtn.BackColor = Color.Red;
-            backBtn.ForeColor = Color.White;
+            backBtn.BackColor = Color.White;
+            backBtn.ForeColor = Color.Black;
             backBtn.FlatStyle = FlatStyle.Flat;
             backBtn.FlatAppearance.BorderColor = Color.Red;
-            backBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            backBtn.Font = new Font("Sans serif", 14f, FontStyle.Bold);
             backBtn.Cursor = Cursors.Hand;
             backBtn.Visible = false;
             backBtn.Click += OnbackBtn_clicked;
@@ -229,10 +230,25 @@ namespace JOB_IN
             passwordField.Size = new Size(432, 100);
             passwordField.MinimumSize = new Size(432, 40);
             passwordField.Location = new Point(1175, 537);
-            passwordField.PlaceholderText = "******";
+            passwordField.PlaceholderText = "*********";
             passwordField.PasswordChar = '*';
+            passwordField.Font = new Font("Sans serif", 16f);
             passwordField.BorderStyle = BorderStyle.None;
             passwordField.Font = new Font("Sans serif", 14f);
+
+            // show and hide password button
+            showPasswordBtn = new RoundedButton();
+            showPasswordBtn.Anchor = AnchorStyles.None;
+            showPasswordBtn.radius = 10;
+            showPasswordBtn.Size = new Size(100, 45);
+            showPasswordBtn.Location = new Point(1610, 535);
+            showPasswordBtn.Text = "Show";
+            showPasswordBtn.Font = new Font("Sans serif", 14f);
+            showPasswordBtn.BackColor = Color.White;
+            showPasswordBtn.FlatStyle = FlatStyle.Flat;
+            showPasswordBtn.FlatAppearance.BorderColor = Color.White;
+            showPasswordBtn.Cursor = Cursors.Hand;
+            showPasswordBtn.Click += showPasswordBtn_clicked;
 
             // Next Button
             nextBtn = new RoundedButton();
@@ -309,18 +325,6 @@ namespace JOB_IN
             chooseFileBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
             chooseFileBtn.Click += OnChooseFile_clicked;
 
-
-            //// Upload file btn
-            //uploadBtn = new RoundedButton();
-            //uploadBtn.Anchor = AnchorStyles.None;
-            //uploadBtn.Size = new Size(200, 70);
-            //uploadBtn.Location = new Point(720, 690);
-            //uploadBtn.Text = "upload";          
-            //uploadBtn.BackColor = Color.LightGray;
-            //uploadBtn.ForeColor = Color.Black;
-            //uploadBtn.FlatStyle = FlatStyle.Flat;
-            //uploadBtn.Font = new Font("Sans serif", 16f);
-            //uploadBtn.Click += onUploadBtn_clicked;
 
             // Certification label
             certificationLabel = new Label();
@@ -485,6 +489,7 @@ namespace JOB_IN
             infoPanel.Controls.Add(emailField);
             infoPanel.Controls.Add(passwordLabel);
             infoPanel.Controls.Add(passwordField);
+            infoPanel.Controls.Add(showPasswordBtn);
             infoPanel.Controls.Add(nextBtn);
             
 
@@ -495,7 +500,6 @@ namespace JOB_IN
             infoPanel2.Controls.Add(cvLabel);
             infoPanel2.Controls.Add(chooseFileBtn);
             infoPanel2.Controls.Add(cvField);
-            //infoPanel2.Controls.Add(uploadBtn);
             infoPanel2.Controls.Add(certificationLabel);
             infoPanel2.Controls.Add(addCertificateBtn);
             infoPanel2.Controls.Add(certificationField);
@@ -528,13 +532,11 @@ namespace JOB_IN
         private Panel mainPanel1, infoPanel2, titlePanel, infoPanel, underlinePanel1, underlinePanel2;
         private Label titleLabel, nameLabel, emailLabel, phoneNumLabel, passwordLabel, DOBLabel, skillLabel, cvLabel,
             certificationLabel, jobCategoryLabel, experienceLabel, workStatusLabel, yearsLabel;
-        private RoundedButton nextBtn, submitBtn, uploadBtn, addCertificateBtn, chooseFileBtn, backBtn;
+        private RoundedButton nextBtn, submitBtn, uploadBtn, addCertificateBtn, chooseFileBtn, backBtn, showPasswordBtn;
         private RoundedTextBox nameField, emailField, phoneNumField, passwordField, skillField, cvField, certificationField, experienceField;
         private DateTimePicker DobField;
         private ComboBox jobCategoryCB;
-        private RadioButton statusRadioBtn1, statusRadioBtn2;        
-
-
+        private RadioButton statusRadioBtn1, statusRadioBtn2;    
 
 
 

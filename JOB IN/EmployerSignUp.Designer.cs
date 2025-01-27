@@ -122,14 +122,15 @@ namespace JOB_IN
             // back button
             backBtn = new RoundedButton2();
             backBtn.Anchor = AnchorStyles.None;
-            backBtn.Size = new Size(170, 70);
-            backBtn.Location = new Point(50, 130);
+            backBtn.Size = new Size(130, 40);
+            backBtn.radius = 10;
+            backBtn.Location = new Point(50, 170);
             backBtn.Text = "< Back";
-            backBtn.BackColor = Color.Red;
-            backBtn.ForeColor = Color.White;
+            backBtn.BackColor = Color.White;
+            backBtn.ForeColor = Color.Black;
             backBtn.FlatStyle = FlatStyle.Flat;
             backBtn.FlatAppearance.BorderColor = Color.Red;
-            backBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            backBtn.Font = new Font("Sans serif", 14f, FontStyle.Bold);
             backBtn.Cursor = Cursors.Hand;
             backBtn.Visible = false;
             backBtn.Click += OnbackBtnForOrganization_clicked;
@@ -148,6 +149,7 @@ namespace JOB_IN
             organizationBtn.Text = "Organization \n  For Organization use";
             organizationBtn.ForeColor = Color.White;
             organizationBtn.BackColor = Color.FromArgb(0, 83, 156);
+            organizationBtn.Font = new Font("sans serif", 16f);
             organizationBtn.Click += OnOrganizationBtn_clicked;
 
             // sign up as personal button
@@ -155,6 +157,7 @@ namespace JOB_IN
             personalBtn.Size = new Size(500, 500);
             personalBtn.Location = new Point(1150, 300);
             personalBtn.Text = "Person \n For personal Use";
+            personalBtn.Font = new Font("sans serif", 16f);
             personalBtn.ForeColor = Color.White;
             personalBtn.BackColor = Color.FromArgb(0, 83, 156);
             personalBtn.Click += OnPersonalBtn_clicked;
