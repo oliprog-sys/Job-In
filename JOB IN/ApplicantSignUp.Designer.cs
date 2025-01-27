@@ -373,7 +373,7 @@ namespace JOB_IN
             // Job category combo Box
             jobCategoryCB = new ComboBox();
             jobCategoryCB.Anchor = AnchorStyles.None;
-            List<string> items = new List<string> { "Software enginerring", "Computer science", "Graphics designer", "Architecture", "Mechanical Engineering" };
+            List<string> items = new List<string> { "Architecture and Engineering", "Arts and design", "Maintenance ", "Business and Financial", "Social Services", "Construction", "Farming and Forestry", "Healthcare support", "Installation and repair", "Legal", "Office and Administrative", "Personal care and service ", "Sales", "Tech and Web development", "Others" };
             jobCategoryCB.DataSource = items;
             jobCategoryCB.Size = new Size(432, 76);
             jobCategoryCB.Location = new Point(1390, 340);
