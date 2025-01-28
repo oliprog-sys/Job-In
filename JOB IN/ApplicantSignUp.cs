@@ -143,6 +143,23 @@ namespace JOB_IN
            
         }
 
+        bool isPasswordVisible = false;
+
+        private void showPasswordBtn_clicked(object sender, EventArgs e)
+        {
+            if(isPasswordVisible)
+            {
+                passwordField.PasswordChar = '*';
+                showPasswordBtn.Text = "Show";
+            } else
+            {
+                passwordField.PasswordChar = '\0';
+                showPasswordBtn.Text = "Hide";
+            }
+
+            isPasswordVisible = !isPasswordVisible;
+        }
+
         private void checkExtension(string fileName)
         {
             string fileExtension = Path.GetExtension(fileName).ToLower();
