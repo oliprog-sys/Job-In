@@ -108,7 +108,7 @@ namespace JOB_IN
                 }
                 else
                 {
-                    MessageBox.Show("no email found");
+                    MessageBox.Show("Email or Password havent been found","Login Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
 
 

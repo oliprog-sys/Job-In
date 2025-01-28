@@ -34,6 +34,7 @@ namespace JOB_IN
             historypanel.Hide();
             profilepanel.Hide();
             postpanel.Hide();
+
             Jobbackp.BackColor = Color.White;
 
 
@@ -61,6 +62,7 @@ namespace JOB_IN
             jobpanel.Hide();
             profilepanel.Hide();
             postpanel.Hide();
+            
 
         }
 
@@ -85,7 +87,7 @@ namespace JOB_IN
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
-        {
+        {   Jobbackp.BackColor = Color.White;
             jobpanel.Show();
             postpanel.Hide();
             historypanel.Hide();

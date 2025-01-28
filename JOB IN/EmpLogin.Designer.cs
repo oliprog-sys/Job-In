@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using JOB_IN.RJControls;
 using System.Collections;
 using System.Security.Cryptography;
+using System.Drawing;
 
 
 namespace JOB_IN
@@ -42,7 +43,7 @@ namespace JOB_IN
             postpanel = new borderedPanels();
             postb = new Customb();
             numericUpDown1 = new NumericUpDown();
-            excomp = new ComboBox();
+            excomp = new NumericUpDown();
             roundedTextBox3 = new RoundedTextBox();
             roundedTextBox2 = new RoundedTextBox();
             numofappl = new Label();
@@ -251,8 +252,7 @@ namespace JOB_IN
             excomp.BackColor = Color.Coral;
             excomp.Font = new Font("Cascadia Mono", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             excomp.ForeColor = Color.White;
-            excomp.FormattingEnabled = true;
-            excomp.Items.AddRange(new object[] { "Entry", "Junior", "Expert" });
+            
             excomp.Location = new Point(1070, 265);
             excomp.Name = "excomp";
             excomp.Size = new Size(229, 35);
@@ -771,11 +771,8 @@ namespace JOB_IN
 
 
             profilepanel.Controls.Add(editpan);
-            
 
-
-
-            // 
+            //
             // EmpLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -890,7 +887,7 @@ namespace JOB_IN
                 job.capacity = (int)numericUpDown1.Value;
                 job.oEmail = org.email;
                 job.Deadline = deadl.Value;
-                job.Explevel = excomp.Text;
+                job.Explevel = (int)excomp.Value;
                 bool success = Db.insertJob(job);
                 if (success)
                 {
@@ -930,7 +927,7 @@ namespace JOB_IN
         private Label jobdescl;
         private RoundedTextBox roundedTextBox2;
         private RoundedTextBox roundedTextBox3;
-        private ComboBox excomp;
+        private NumericUpDown excomp;
         private NumericUpDown numericUpDown1;
         private Customb postb;
         private borderedPanels historypanel;
@@ -978,9 +975,10 @@ namespace JOB_IN
         private Customb eback;
         private bool proclicked;
 
+        
 
-        
-        
+
+
 
 
         public void joblist(Form f)
@@ -988,12 +986,86 @@ namespace JOB_IN
             ArrayList arr = Db.fetchOrgJobs(org.email);
             
            foreach(Job i in arr)
-            {
-                jobDesc j = new jobDesc(i.name, i.description, i.requirement);
-                jobpanel.Controls.Add(j);
-                j.more.Click += (s,e)=>applicants_list(s,e,i,f);
+            {   
+                orgJobs j = new orgJobs(i);
+                if (i.Deadline > DateTime.Now)
+                {
+                    jobpanel.Controls.Add(j);
+                    j.Showbutton.Click += (s, e) => applicants_list(s, e, i, f);
+                }else if (i.Deadline <= DateTime.Now)
+                {
 
+                    j.Size = new Size(1430, 350);
+                    historypanel.Controls.Add(j);
+                  
+                    j.Anchor = AnchorStyles.None;
+                    historypanel.BackColor = Color.FromArgb(255, 135, 206, 235);
+                   
+                    j.Showbutton.Click += (s, e) => applicants_list2(s, e, i, f);
+                }
             }
+        }
+
+        private void applicants_list2(object s, EventArgs e, Job i, Form f)
+        {
+            borderedscrollPanels scroll = new borderedscrollPanels();
+            scroll.Size = new Size(1550, 700);
+            scroll.BackColor = Color.FromArgb(0, Color.RoyalBlue);
+            Customb x = new Customb();
+            x.Text = "Back";
+            x.Font = Custom.font(10);
+            x.BackColor = Color.Coral;
+            x.BorderRadius = 20;
+            x.BorderSize = 0;
+            x.Size = new Size(70, 40);
+            x.Location = new Point(10, 0);
+            x.Click += (sender, e) => close_the_scroll(sender, e, scroll);
+            Panel p = new Panel();
+            p.Dock = DockStyle.Left;
+            p.Size = new Size(70, 10);
+            p.BackColor = SystemColors.Control;
+
+            scroll.Controls.Add(x);
+            scroll.AutoScroll = true;
+
+            ArrayList arr = Db.applied_list(i.id);
+            if (arr.Count == 0)
+            {
+
+                Label lbl = new Label();
+                lbl.Text = "No one has Applied";
+                lbl.Font = Custom.font(24);
+                lbl.Size = new Size(900, 400);
+                lbl.Location = new Point(500, 400);
+                lbl.Anchor = AnchorStyles.None;
+                lbl.Dock = DockStyle.Fill;
+
+                scroll.Controls.Add(lbl);
+            }
+            else
+            {
+                foreach (string b in arr)
+                {
+                    applicants a = Db.fetchApplicantinfo(b);
+                    Applicant_desc_his d = new Applicant_desc_his(a,i.id);
+                    d.acceptance_status.Text += Db.acceptance(i.id, a.email);
+                    d.Anchor = AnchorStyles.None;
+                    scroll.Controls.Add(p);
+                    scroll.Controls.Add(d);
+
+
+
+
+
+                   
+                }
+            }
+
+            // scroll.Anchor = AnchorStyles.None;
+            scroll.Location = new Point(150, 105);
+            f.Controls.Add(scroll);
+            scroll.BringToFront();
+            
         }
 
         private void applicants_list(object sender, EventArgs e, Job j, Form f)
@@ -1018,24 +1090,39 @@ namespace JOB_IN
             scroll.Controls.Add(x);
             scroll.AutoScroll = true;
 
-            ArrayList arr = Db.applied_list(j.id);
-            foreach(string s in arr)
+            ArrayList arr = Db.applied_list2(j.id);
+            if (arr.Count == 0) { 
+           
+                Label lbl = new Label();
+                lbl.Text = "No one has Applied";
+                lbl.Font = Custom.font(24);
+                lbl.Size = new Size(900, 400);
+                lbl.Location = new Point(500,400);
+                lbl.Anchor = AnchorStyles.None;
+                lbl.Dock = DockStyle.Fill;
+               
+                scroll.Controls.Add(lbl);
+            }
+            else
             {
-                applicants a = Db.fetchApplicantinfo(s);
-                Applicant_desc d = new Applicant_desc(a);
-                d.Anchor = AnchorStyles.None;
-               scroll.Controls.Add(p); 
-                scroll.Controls.Add(d);
-                
+                foreach (string s in arr)
+                {
+                    applicants a = Db.fetchApplicantinfo(s);
+                    Applicant_desc d = new Applicant_desc(a);
+                    d.Anchor = AnchorStyles.None;
+                    scroll.Controls.Add(p);
+                    scroll.Controls.Add(d);
 
-                
-                
-                
-                //cv.Click+=
-                d.accept.Click +=(sender,e)=> accepted(sender,e,j.id);
-                d.reject.Click += (sender,e)=>rejected(sender,e,j.id);
-                d.close.Click += closed;
-                
+
+
+
+
+                    //cv.Click+=
+                    d.accept.Click += (sender, e) => accepted(sender, e, j.id, a.email);
+                    d.reject.Click += (sender, e) => rejected(sender, e, j.id, a.email);
+                    d.close.Click += closed;
+
+                }
             }
              
            // scroll.Anchor = AnchorStyles.None;
@@ -1056,9 +1143,9 @@ namespace JOB_IN
             this.Hide();
         }
 
-        private void rejected(object sender, EventArgs e,int jid)
+        private void rejected(object sender, EventArgs e,int jid,string email)
         {
-            bool success = Db.Rejected(jid);
+            bool success = Db.Rejected(jid, email);
             if (success)
             {
                 MessageBox.Show("You have rejected this client","Success message",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -1069,16 +1156,16 @@ namespace JOB_IN
             }
         }
 
-        private void accepted(object sender, EventArgs e, int jid)
+        private void accepted(object sender, EventArgs e, int jid, string email)
         {
-           bool success= Db.Accepted(jid);
+           bool success= Db.Accepted(jid,email);
             if (success)
             {
-                MessageBox.Show("You have accepted this client succesfully");
+                MessageBox.Show("You have accepted this client succesfully","Success Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("You have not accepted this client succesfully");
+                MessageBox.Show("You have not accepted this client succesfully", "Erros message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
