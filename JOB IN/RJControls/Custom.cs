@@ -434,7 +434,105 @@ namespace JOB_IN.RJControls
             this.Invalidate();
         }
     }
+    /// <summary>
+    /// organization custom panel
+    /// </summary>
+    class orgJobs : borderedPanels
+    {
+        private Job job;
+        private Label jname;
+        private Label jdesc;
+        private Label jreq;
+        private Label jcat;
+        private Label DeadLine;
+        private Label app;
+        private Label jexplvl;
+        public Customb Showbutton;
 
+        public orgJobs(Job job)
+        {
+            this.job = job;
+            jname = new Label();
+            jdesc = new Label();
+            jreq = new Label();
+            jcat = new Label();
+            jexplvl = new Label();
+            DeadLine = new Label();
+            app = new Label();
+            Showbutton = new Customb();
+
+            jname.Text = "Job Name: " + job.name;
+            jname.Font = Custom.font(16);
+            jname.Size = new Size(500, 35);
+            jname.Location = new Point(50, 30);
+
+            jcat.Text = "Job Catagory: " + job.category;
+            jcat.Font = Custom.font(12);
+            jcat.Size = new Size(500, 30);
+            jcat.Location = new Point(50, 70);
+
+            jdesc.Text = "Job Description: " + "\n"+job.description;
+            jdesc.Font = Custom.font(12);
+            jdesc.Size = new Size(500,300);
+            jdesc.Location = new Point(50, 100);
+
+
+            app.Text = "No of applicants needed : " + job.capacity;
+            app.Font = Custom.font(12);
+            app.Size = new Size(500, 30);
+            app.Location = new Point(50, 300);
+
+
+
+            jreq.Text = "Job Requirement : " +"\n"+ job.requirement;
+            jreq.Font = Custom.font(12);
+            jreq.Size = new Size(700, 300);
+            jreq.Location = new Point(700, 40);
+
+            jexplvl.Text = "Job Experience: " + job.Explevel+" Years";
+            jexplvl.Font = Custom.font(12);
+            jexplvl.Size = new Size(500, 30);
+            jexplvl.Location = new Point(700, 200);
+
+            DeadLine.Text = "Dead Line: " + job.Deadline;
+            DeadLine.Font = Custom.font(12);
+            DeadLine.Size = new Size(500, 30);
+            DeadLine.Location = new Point(700, 230);
+
+            Showbutton.Text = "Show Applicants";
+            Showbutton.Font = Custom.font(12);
+            Showbutton.Size = new Size(300, 50);
+            Showbutton.BackColor = Color.RoyalBlue;
+            Showbutton.BorderRadius = 20;
+            Showbutton.BorderSize = 0;
+            Showbutton.FlatAppearance.BorderSize = 0;
+            Showbutton.FlatStyle = FlatStyle.Flat;
+            Showbutton.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Showbutton.ForeColor = Color.White;
+            Showbutton.Location = new Point(1000, 280);
+
+
+            this.Size = new Size(1405, 350);
+            //this.Anchor = AnchorStyles.None;
+            this.Controls.Add(jname);
+            this.Controls.Add(jexplvl);
+            this.Controls.Add(Showbutton);
+            this.Controls.Add(jcat);
+            this.Controls.Add(app);
+            this.Controls.Add(DeadLine);
+            this.Controls.Add(jdesc); 
+            this.Controls.Add(jreq);
+            this.BackColor = Color.White;
+
+
+
+
+        }
+
+
+
+
+    }
 
 
     class jobDesc : borderedPanels
@@ -510,7 +608,7 @@ namespace JOB_IN.RJControls
         private Label TotalApplicant;
         private Label PayEstimate;
         private Label Employer;
-        private topButtons Apply;
+        public topButtons Apply;
         private topButtons close;
 
         public jobDescDetail(int jid)
@@ -800,4 +898,215 @@ namespace JOB_IN.RJControls
         }
     }
 
+
+    public class Applicant_desc : borderedPanels
+    {
+        public Label name;
+        public Label email;
+        public Label experience;
+        public Label skill_desc;
+        public Label work_Status;
+        public Customb cv;
+        public Customb accept;
+        public Customb reject;
+        public Customb close;
+
+        public Applicant_desc() { }
+
+        public Applicant_desc(applicants app)
+        {
+            name = new Label();
+            email = new Label();
+            experience = new Label();
+            skill_desc = new Label();
+            work_Status = new Label();
+            cv = new Customb();
+            accept = new Customb();
+            reject = new Customb();
+            close = new Customb();
+
+            name.Text = "Name: " + app.name;
+            name.Size = new Size(500,35);
+            //name.Anchor = AnchorStyles.None;
+            name.Font = Custom.font(16);
+            name.Location = new Point(100, 50);
+
+
+
+            email.Text = "Email: " + app.email;
+            email.Size = new Size(500, 35);
+            //email.Anchor = AnchorStyles.None;
+            email.Font = Custom.font(16);
+            email.Location = new Point(100, 100);
+
+
+            experience.Text ="Experience: "+ app.experience + " years";
+            experience.Size = new Size(500, 35);
+            //experience.Anchor = AnchorStyles.None;
+            experience.Font = Custom.font(16);
+            experience.Location = new Point(900, 150);
+
+
+            work_Status.Text = "Status: "+app.work_status;
+            work_Status.Size = new Size(500, 35);
+           // work_Status.Anchor = AnchorStyles.None;
+            work_Status.Font = Custom.font(16);
+            work_Status.Location = new Point(900, 50);
+
+
+            skill_desc.Text = "Skill Description: " +"\n" +app.skill_description;
+            skill_desc.Size = new Size(500, 135);
+            //skill_desc.Anchor = AnchorStyles.None;
+            skill_desc.Font = Custom.font(12);
+            skill_desc.Location = new Point(100, 150);
+
+            cv.Text = "CV";
+            cv.Size = new Size(50,50);
+            cv.BackColor = Color.RoyalBlue;
+            cv.BorderRadius = 20;
+            cv.BorderSize = 0;
+            cv.FlatAppearance.BorderSize = 0;
+            cv.FlatStyle = FlatStyle.Flat;
+            cv.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cv.ForeColor = Color.White;
+            cv.Location = new Point(100, 390);
+            
+
+            accept.Text = "Accept";
+            accept.Size = new Size(100, 60);
+            accept.BackColor = Color.RoyalBlue;
+            accept.BorderRadius = 20;
+            accept.BorderSize = 0;
+            accept.FlatAppearance.BorderSize = 0;
+            accept.FlatStyle = FlatStyle.Flat;
+            accept.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            accept.ForeColor = Color.White;
+            accept.Location = new Point(1000, 390);
+            
+
+            reject.Text = "Reject";
+            reject.Size = new Size(100, 60);
+            reject.BackColor = Color.RoyalBlue;
+            reject.BorderRadius = 20;
+            reject.BorderSize = 0;
+            reject.FlatAppearance.BorderSize = 0;
+            reject.FlatStyle = FlatStyle.Flat;
+            reject.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            reject.ForeColor = Color.White;
+            reject.Location = new Point(1200, 390);
+            
+
+            close.Text = "Certficate";
+            
+            close.Size = new Size(200, 50);
+            close.BackColor = Color.RoyalBlue;
+            close.BorderRadius = 20;
+            close.BorderSize = 0;
+            close.FlatAppearance.BorderSize = 0;
+            close.FlatStyle = FlatStyle.Flat;
+            close.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            close.ForeColor = Color.White;
+            close.Location = new Point(160, 390);
+
+
+            this.Controls.Add(name);
+            this.Controls.Add(email);
+            this.Controls.Add(skill_desc);
+            this.Controls.Add(work_Status);
+            this.Controls.Add(experience);
+            this.Controls.Add(cv);
+            this.Controls.Add(accept);
+            this.Controls.Add(reject);
+            this.Controls.Add(close);
+            this.BackColor = Color.White;
+            this.Size = new Size(1405,500);
+          
+
+        }
+    }
+    public class Applicant_desc_his : borderedPanels
+    {
+        public Label name;
+        public Label email;
+        public Label experience;
+        public Label skill_desc;
+        public Label work_Status;
+       
+        public Label acceptance_status;
+       
+
+        public Applicant_desc_his() { }
+
+        public Applicant_desc_his(applicants app,int jid)
+        {
+            name = new Label();
+            email = new Label();
+            experience = new Label();
+            skill_desc = new Label();
+            work_Status = new Label();
+           acceptance_status = new Label();
+
+            name.Text = "Name: " + app.name;
+            name.Size = new Size(500, 35);
+            //name.Anchor = AnchorStyles.None;
+            name.Font = Custom.font(16);
+            name.Location = new Point(100, 50);
+
+
+
+            email.Text = "Email: " + app.email;
+            email.Size = new Size(500, 35);
+            //email.Anchor = AnchorStyles.None;
+            email.Font = Custom.font(16);
+            email.Location = new Point(100, 100);
+
+
+            experience.Text = "Experience: " + app.experience + " years";
+            experience.Size = new Size(500, 35);
+            //experience.Anchor = AnchorStyles.None;
+            experience.Font = Custom.font(16);
+            experience.Location = new Point(900, 150);
+
+            acceptance_status.Text = "Acceptance status: " ;
+            acceptance_status.Size = new Size(500, 35);
+            //experience.Anchor = AnchorStyles.None;
+            acceptance_status.Font = Custom.font(16);
+            acceptance_status.Location = new Point(900, 200);
+
+
+
+            work_Status.Text = "Status: " + app.work_status;
+            work_Status.Size = new Size(500, 35);
+            // work_Status.Anchor = AnchorStyles.None;
+            work_Status.Font = Custom.font(16);
+            work_Status.Location = new Point(900, 50);
+
+
+            skill_desc.Text = "Skill Description: " + "\n" + app.skill_description;
+            skill_desc.Size = new Size(500, 135);
+            //skill_desc.Anchor = AnchorStyles.None;
+            skill_desc.Font = Custom.font(12);
+            skill_desc.Location = new Point(100, 150);
+
+          
+
+
+          
+
+
+            
+            this.Controls.Add(name);
+            this.Controls.Add(email);
+            this.Controls.Add(skill_desc);
+            this.Controls.Add(work_Status);
+            this.Controls.Add(experience);
+            this.Controls.Add(acceptance_status);
+            
+            // this.Controls.Add(close);
+            this.BackColor = Color.White;
+            this.Size = new Size(1405, 300);
+
+
+        }
+    }
 }

@@ -438,15 +438,11 @@ namespace JOB_IN
         private void searchResultFetch(object? sender, EventArgs e, string search)
         {
             searchResultsPane.Controls.Clear();
-         
-            //perform data fetch here and add it to searchResultPane
-            ArrayList arr = Db.fetchJobName(search);
-            if (arr.Count == 0)
-            {
+            if (search == "") {
                 Panel wrap = new Panel();
-               // wrap.BackColor = Color.Azure;
+                // wrap.BackColor = Color.Azure;
                 wrap.Size = new Size(1250, 160);
-                
+
                 Label noResult = new Label();
                 noResult.Anchor = AnchorStyles.None;
                 noResult.BorderStyle = BorderStyle.None;
@@ -458,17 +454,40 @@ namespace JOB_IN
                 wrap.Controls.Add(noResult);
                 searchResultsPane.Controls.Add(wrap);
             }
+        
             else
             {
-                foreach(Job j in arr)
+                ArrayList arr = Db.fetchJobName(search);
+                if (arr.Count == 0)
                 {
+                    Panel wrap = new Panel();
+                    // wrap.BackColor = Color.Azure;
+                    wrap.Size = new Size(1250, 160);
 
-                    jobDesc jd = new jobDesc(j.name, j.description, j.requirement);
-                    //jd.Size = new Size(1100, 400);
-                    jd.more.Click += (sender, e) => jobExpand(sender, e, j.id);
-                    searchResultsPane.Controls.Add(jd);
+                    Label noResult = new Label();
+                    noResult.Anchor = AnchorStyles.None;
+                    noResult.BorderStyle = BorderStyle.None;
+                    noResult.Font = Custom.font(23);
+                    noResult.Size = new Size(600, 90);
+                    noResult.Text = "No results found...";
+                    noResult.BackColor = Color.FromArgb(0, Color.White);
+                    noResult.Location = new Point(400, 80);
+                    wrap.Controls.Add(noResult);
+                    searchResultsPane.Controls.Add(wrap);
+                }
+                else
+                {
+                    foreach (Job j in arr)
+                    {
+
+                        jobDesc jd = new jobDesc(j.name, j.description, j.requirement);
+                        //jd.Size = new Size(1100, 400);
+                        jd.more.Click += (sender, e) => jobExpand(sender, e, j.id);
+                        searchResultsPane.Controls.Add(jd);
+                    }
                 }
             }
+            
         }
 
 
@@ -640,8 +659,17 @@ namespace JOB_IN
         private void jobExpand(object? sender, EventArgs e, int id)
         {
             jobDescDetail a = new jobDescDetail(id);
+            a.Apply.Click += (sender, e) => Apply_Click(sender, e, id);
             MainPanel.Controls.Add(a);
             a.BringToFront();
+        }
+
+        private void Apply_Click(object? sender, EventArgs e, int id)
+        {
+            if(Db.apply(id, applicant.email))
+            {
+                MessageBox.Show("Applies Successfully");
+            }
         }
 
 
@@ -662,26 +690,28 @@ namespace JOB_IN
         {
             statusScrollPane.Controls.Clear();
 
-            int max=0;
-            if (stat == "all")
+            ArrayList arr= Db.Applied_History(applicant.email, stat);
+            if(arr.Count == 0)
             {
-                max = 9;
-            }else if(stat == "accepted")
-            {
-                max = 5;
+                Label l = new Label();
+                l.Text = "No Job history, Apply to jobs to see history.";
+                l.Font = Custom.font(20);
+                l.Size = new Size(400, 40);
+                
+                borderedPanels b = new borderedPanels();
+                b.Size = new Size(1150, 400);
+                b.Controls.Add(l);
+                statusScrollPane.Controls.Add(b);
             }
-            else if (stat == "pending")
+            else
             {
-                max = 3;
+                foreach (int i in arr)
+                {
+                    Job j = Db.fetchJobId(i);
+                    statusScrollPane.Controls.Add(new jobHistory(j.name, j.oEmail, j.category, j.requirement, j.Deadline.ToString()));
+                }
             }
-            else if (stat == "denied")
-            {
-                max = 1;
-            }
-            for (int i = 1; i < max+1; i++)
-            {
-                statusScrollPane.Controls.Add(new jobHistory("title "+ i, "Employer"," job type", "requirements", "31/2/25"));
-            }
+           
         }
 
 

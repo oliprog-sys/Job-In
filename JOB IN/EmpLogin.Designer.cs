@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using JOB_IN.RJControls;
 using System.Collections;
+using System.Security.Cryptography;
+using System.Drawing;
 
 
 namespace JOB_IN
@@ -41,7 +43,7 @@ namespace JOB_IN
             postpanel = new borderedPanels();
             postb = new Customb();
             numericUpDown1 = new NumericUpDown();
-            excomp = new ComboBox();
+            excomp = new NumericUpDown();
             roundedTextBox3 = new RoundedTextBox();
             roundedTextBox2 = new RoundedTextBox();
             numofappl = new Label();
@@ -183,9 +185,9 @@ namespace JOB_IN
             jobpanel.BackColor = Color.RoyalBlue;
             jobpanel.BorderRadius = 20;
             jobpanel.BorderSize = 0;
-            jobpanel.Location = new Point(49, 125);
+            jobpanel.Location = new Point(47, 125);
             jobpanel.Name = "jobpanel";
-            jobpanel.Size = new Size(1453,686 );
+            jobpanel.Size = new Size(1434,689);
             jobpanel.TabIndex = 0;
             jobpanel.AutoScroll = true;
             
@@ -211,7 +213,7 @@ namespace JOB_IN
             
             postpanel.Location = new Point(47, 125);
             postpanel.Name = "postpanel";
-            postpanel.Size = new Size(1434, 689);
+            postpanel.Size = new Size(1434, 684);
             postpanel.TabIndex = 1;
             // 
             // postb
@@ -250,8 +252,7 @@ namespace JOB_IN
             excomp.BackColor = Color.Coral;
             excomp.Font = new Font("Cascadia Mono", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             excomp.ForeColor = Color.White;
-            excomp.FormattingEnabled = true;
-            excomp.Items.AddRange(new object[] { "Entry", "Junior", "Expert" });
+            
             excomp.Location = new Point(1070, 265);
             excomp.Name = "excomp";
             excomp.Size = new Size(229, 35);
@@ -263,6 +264,7 @@ namespace JOB_IN
             roundedTextBox3.Multiline = true;
             roundedTextBox3.Name = "roundedTextBox3";
             roundedTextBox3.Size = new Size(623, 224);
+            roundedTextBox3.Font = Custom.font(10);
             roundedTextBox3.TabIndex = 7;
             // 
             // roundedTextBox2
@@ -271,6 +273,7 @@ namespace JOB_IN
             roundedTextBox2.Multiline = true;
             roundedTextBox2.Name = "roundedTextBox2";
             roundedTextBox2.Size = new Size(623, 180);
+            roundedTextBox2.Font = Custom.font(10);
             roundedTextBox2.TabIndex = 6;
             // 
             // numofappl
@@ -283,6 +286,25 @@ namespace JOB_IN
             numofappl.Size = new Size(273, 30);
             numofappl.TabIndex = 4;
             numofappl.Text = "Number of Applicants";
+
+            deadline = new Label();
+            deadline.AutoSize = true;
+            deadline.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            deadline.ForeColor = Color.White;
+            deadline.Location = new Point(831, 150);
+            deadline.Size = new Size(273, 30);
+            deadline.Text = "Dead Line";
+            postpanel.Controls.Add(deadline);
+
+
+            deadl = new DateTimePicker();
+            deadl.Font = new Font("Cascadia Mono SemiLight", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            deadl.Location = new Point(1126, 150);
+            deadl.Size = new Size(180,180);
+            deadl.Format = DateTimePickerFormat.Short;
+            //deadl.CalendarForeColor = Color.White;
+            postpanel.Controls.Add(deadl);
+           
             // 
             // expl
             // 
@@ -311,10 +333,8 @@ namespace JOB_IN
             catcb.Font = new Font("Cascadia Mono", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             catcb.ForeColor = Color.White;
             catcb.FormattingEnabled = true;
-            foreach (var n in Custom.job_category)
-            {
-                catcb.Items.Add(n);
-            }
+           
+            catcb.DataSource= Custom.job_category;
             catcb.Location = new Point(1070, 390);
             catcb.Name = "excomp";
             catcb.Size = new Size(350, 35);
@@ -471,6 +491,7 @@ namespace JOB_IN
             editbtn.Text = "Edit";
             editbtn.TextColor = Color.Coral;
             editbtn.UseVisualStyleBackColor = false;
+            editbtn.Click += change_editing_panel;
             // 
             // smpanel
             // 
@@ -481,6 +502,21 @@ namespace JOB_IN
             smpanel.Name = "smpanel";
             smpanel.Size = new Size(445, 153);
             smpanel.TabIndex = 7;
+            
+
+            sminp = new FlowLayoutPanel();
+            sminp.Dock = DockStyle.Fill;
+            sminp.FlowDirection = FlowDirection.TopDown;
+
+            smlink = new LinkLabel();
+            smlink.AutoSize = true;
+            smlink.Font = new Font("Cascadia Mono", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smlink.Location = new Point(20,30 );
+            
+            smlink.Size = new Size(305, 37);
+            sminp.Controls.Add(smlink); 
+           smpanel.Controls.Add(sminp);
+
             // 
             // smlbl
             // 
@@ -502,6 +538,18 @@ namespace JOB_IN
             biop.Name = "biop";
             biop.Size = new Size(771, 228);
             biop.TabIndex = 6;
+
+            b = new Label();
+            b.Anchor= AnchorStyles.None;
+            b.Location = new Point(20, 60);
+            b.Size = new Size(720, 150);
+            b.BackColor = SystemColors.Control;
+           // b.Multiline = true;
+            b.Font = Custom.font(20);
+            b.BorderStyle = BorderStyle.None;
+
+        //    b.Text = org.description;
+            biop.Controls.Add(b);
             // 
             // biolbl
             // 
@@ -531,7 +579,7 @@ namespace JOB_IN
             emaillbl.Name = "emaillbl";
             emaillbl.Size = new Size(97, 37);
             emaillbl.TabIndex = 4;
-            emaillbl.Text = "Email";
+            emaillbl.Text = "or email";
             // 
             // phonelbl
             // 
@@ -541,7 +589,7 @@ namespace JOB_IN
             phonelbl.Name = "phonelbl";
             phonelbl.Size = new Size(209, 37);
             phonelbl.TabIndex = 3;
-            phonelbl.Text = "Phone Number";
+           // phonelbl.Text = org.PhoneNum;
             // 
             // adlbl
             // 
@@ -551,7 +599,7 @@ namespace JOB_IN
             adlbl.Name = "adlbl";
             adlbl.Size = new Size(129, 37);
             adlbl.TabIndex = 2;
-            adlbl.Text = "Address";
+        //    adlbl.Text = org.address;
             // 
             // namelbl
             // 
@@ -561,7 +609,7 @@ namespace JOB_IN
             namelbl.Name = "namelbl";
             namelbl.Size = new Size(81, 37);
             namelbl.TabIndex = 1;
-            namelbl.Text = "Name";
+        //    namelbl.Text = org.name;
             // 
             // orgicon
             // 
@@ -570,7 +618,7 @@ namespace JOB_IN
             orgicon.Size = new Size(152, 121);
             orgicon.TabIndex = 0;
             orgicon.TabStop = false;
-            
+            orgicon.Image = Image.FromFile("C:\\Users\\hello\\Source\\Repos\\Job-In\\JOB IN\\Image\\png-clipart-logo-house-home-house-angle-building.png");
             // 
             // backbtn
             // 
@@ -605,7 +653,126 @@ namespace JOB_IN
             backbtnp.Name = "backbtnp";
             backbtnp.Size = new Size(250, 104);
             backbtnp.TabIndex = 9;
-            // 
+            //edit panel
+            editpan = new borderedPanels();
+            editpan.Dock = DockStyle.Fill;
+            editpan.Location = new Point(47, 125);
+            editpan.BackColor = Color.AliceBlue;
+            editpan.Size = new Size(1434, 689);
+            editpan.BackColor = Color.FromArgb(64, 64, 64);
+            editpan.Hide();
+              //editing save button
+            save = new Customb();
+            save.BackColor = Color.RoyalBlue;
+            save.BackgroundColor = Color.RoyalBlue;
+            save.BorderRadius = 20;
+            save.BorderSize = 0;
+            save.FlatAppearance.BorderSize = 0;
+            save.FlatStyle = FlatStyle.Flat;
+            save.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            save.ForeColor = Color.White;
+            save.Location = new Point(1128, 597);
+            save.Size = new Size(188, 50);
+            save.TabIndex = 8;
+            save.Text = "Save";
+            save.Click += save_action;
+            editpan.Controls.Add(save);
+
+           
+            ename = new Label();
+            ename.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ename.Location = new Point(100, 100);
+            ename.Size = new Size(100, 37);
+            ename.Text = "Name : ";
+            ename.ForeColor = Color.White;
+            editpan.Controls.Add(ename);
+
+            enametxt = new RoundedTextBox();
+            enametxt.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            enametxt.Location = new Point(100, 150);
+            enametxt.Size = new Size(550, 30);
+            editpan.Controls.Add(enametxt);
+           
+            ephonenum = new Label();
+            ephonenum.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ephonenum.Location = new Point(100, 200);
+            ephonenum.Size = new Size(300, 37);
+            ephonenum.Text = "Phone Number : ";
+            ephonenum.ForeColor = Color.White;
+            editpan.Controls.Add(ephonenum);
+
+            ephonenumtxt = new RoundedTextBox();
+            ephonenumtxt.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ephonenumtxt.Location = new Point(100, 250);
+            ephonenumtxt.Size = new Size(550, 30);
+            ephonenumtxt.BorderStyle = BorderStyle.Fixed3D;
+            editpan.Controls.Add(ephonenumtxt);
+
+            ebio = new Label();
+            ebio.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ebio.Location = new Point(100, 300);
+            ebio.Size = new Size(100, 37);
+            ebio.Text = "Bio : ";
+            ebio.ForeColor = Color.White;
+            editpan.Controls.Add(ebio);
+
+            ebiotxt = new RoundedTextBox();
+            ebiotxt.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ebiotxt.Location = new Point(100, 350);
+            ebiotxt.Multiline = true;
+            ebiotxt.Size = new Size(550, 100);
+            editpan.Controls.Add(ebiotxt);
+
+            eaddress = new Label();
+            eaddress.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            eaddress.Location = new Point(750, 100);
+            eaddress.Size = new Size(700, 37);
+            eaddress.Text = "Address(City,Subcity,Town) : ";
+            eaddress.ForeColor = Color.White;
+            editpan.Controls.Add(eaddress);
+
+            eaddresstxt = new RoundedTextBox();
+            eaddresstxt.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            eaddresstxt.Location = new Point(750, 150);
+            eaddresstxt.Size = new Size(550,0);
+            editpan.Controls.Add(eaddresstxt);
+
+            emedialink=new Label();
+            emedialink.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            emedialink.Location = new Point(750, 250);
+            emedialink.Size = new Size(300, 37);
+            emedialink.Text = "Media Link : ";
+            emedialink.ForeColor = Color.White;
+            editpan.Controls.Add(emedialink);
+
+            emedialinktxt = new RoundedTextBox();
+            emedialinktxt.Font = new Font("Cascadia Mono", 12.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            emedialinktxt.Location = new Point(750, 300);
+            emedialinktxt.Size = new Size(550, 0);
+            editpan.Controls.Add(emedialinktxt);
+
+
+            eback = new Customb();
+            
+            eback.BackColor = Color.Coral;
+            eback.BackgroundColor = Color.Coral;
+            eback.BorderRadius = 20;
+            eback.BorderSize = 0;
+            eback.FlatAppearance.BorderSize = 0;
+            eback.FlatStyle = FlatStyle.Flat;
+            eback.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            eback.ForeColor = Color.White;
+            eback.Location = new Point(100, 597);
+            eback.Size = new Size(188, 50);
+            eback.TabIndex = 8;
+            eback.Text = "Back";
+            eback.Click += back_action;
+            editpan.Controls.Add(eback);
+
+
+            profilepanel.Controls.Add(editpan);
+
+            //
             // EmpLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -635,29 +802,103 @@ namespace JOB_IN
             ((System.ComponentModel.ISupportInitialize)orgicon).EndInit();
             backbtnp.ResumeLayout(false);
             ResumeLayout(false);
+            this.joblist(this);
+
+            
         }
 
-        private void postJob(object sender, EventArgs e)
-        {
-            Job job = new Job();
-            job.name= jnametxt.Text;
-            job.description=roundedTextBox2.Text;
-            job.requirement = roundedTextBox3.Text;
-            job.category = catcb.Text;
-            job.capacity=(int) numericUpDown1.Value;
-            job.oEmail = org.email;
-            job.Deadline= DateTime.Now;
-            bool success = Db.insertJob(job);
-            if (success)
-            {
-                MessageBox.Show("Job posted successfully");
+       
 
+        private void back_action(object sender, EventArgs e)
+        {
+            editpan.Hide();
+            profilebackp.BackColor = Color.White;
+        }
+
+        private void save_action(object sender, EventArgs e)
+        {
+            string em = org.email;
+            org.name= enametxt.Text;
+            org.PhoneNum= ephonenumtxt.Text;
+            org.address= eaddresstxt.Text;
+            org.description = ebiotxt.Text;
+            org.mediaLink = emedialinktxt.Text;
+            bool success = Db.UpdateOrgInfo(org);
+            if (enametxt.Text == ""  || ephonenumtxt.Text == "" || eaddresstxt.Text == "" || ebiotxt.Text == ""||emedialinktxt.Text =="")
+            {
+                string Message = "There are Spaces you havent filled. \n Please Fill the Neccessary Informatiom ";
+                MessageBox.Show(Message, "Full Info Check ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Job not posted successfully");
+
+
+                if (success)
+                {
+                    MessageBox.Show("Profile Changed successfully", " Profile Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            orglbl.Text = enametxt.Text;
+            b.Text = ebiotxt.Text;
+            phonelbl.Text = ephonenumtxt.Text;
+            adlbl.Text = eaddresstxt.Text;
+            smlink.Text = emedialinktxt.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Profile Change Falied", " Profile Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
+            
+            editpan.Hide();
+            profilebackp.BackColor= Color.White;
+
+        }
+
+        private void change_editing_panel(object sender, EventArgs e)
+        {
+
+            editpan.Show();
+            editpan.BringToFront();
+            profilebackp.BackColor= Color.FromArgb(64, 64, 64);
+        }
+
+       
+
+        private Label b; 
+        private void postJob(object sender, EventArgs e)
+        {
+            if (jnametxt.Text == "" || roundedTextBox2.Text == "" || roundedTextBox3.Text == "" || catcb.Text == "")
+            {
+
+                MessageBox.Show("Please Enter All Spaces Provided");
+
+            }
+            if(deadl.Value <= DateTime.Now)
+            {
+                MessageBox.Show("You have entered Wrong Date.Please enter valid date ", "Deadline Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Job job = new Job();
+                job.name = jnametxt.Text;
+                job.description = roundedTextBox2.Text;
+                job.requirement = roundedTextBox3.Text;
+                job.category = catcb.Text;
+                job.capacity = (int)numericUpDown1.Value;
+                job.oEmail = org.email;
+                job.Deadline = deadl.Value;
+                job.Explevel = (int)excomp.Value;
+                bool success = Db.insertJob(job);
+                if (success)
+                {
+                    MessageBox.Show("Job posted successfully");
+
+                }
+                else
+                {
+                    MessageBox.Show("Job not posted successfully");
+                }
+            }
         }
 
         // #endregion
@@ -686,7 +927,7 @@ namespace JOB_IN
         private Label jobdescl;
         private RoundedTextBox roundedTextBox2;
         private RoundedTextBox roundedTextBox3;
-        private ComboBox excomp;
+        private NumericUpDown excomp;
         private NumericUpDown numericUpDown1;
         private Customb postb;
         private borderedPanels historypanel;
@@ -708,15 +949,223 @@ namespace JOB_IN
         private ComboBox catcb;
         private Label jname;
         private TextBox jnametxt;
+        private DateTimePicker deadl;
+        private Label deadline;
+        private Customb myjobs;
+        private Customb ojobs;
+        private FlowLayoutPanel sminp;
+        private LinkLabel smlink;
+
+        // edit panel
+        private borderedPanels editpan;
+        private Label ename;
+        private RoundedTextBox enametxt;
+        private Label ebio;
+        private RoundedTextBox ebiotxt;
+        private Label epassword;
+        private RoundedTextBox epasswordtxt;
+        private Label ephonenum;
+        private RoundedTextBox ephonenumtxt;
+        private Label eaddress;
+        private RoundedTextBox eaddresstxt;
+        private RoundedTextBox emedialinktxt;
+        private Label emedialink;
+        private Customb save;
+        private Customb p;
+        private Customb eback;
+        private bool proclicked;
+
+        
 
 
-        public void joblist()
+
+
+
+        public void joblist(Form f)
         {
             ArrayList arr = Db.fetchOrgJobs(org.email);
             
            foreach(Job i in arr)
+            {   
+                orgJobs j = new orgJobs(i);
+                if (i.Deadline > DateTime.Now)
+                {
+                    jobpanel.Controls.Add(j);
+                    j.Showbutton.Click += (s, e) => applicants_list(s, e, i, f);
+                }else if (i.Deadline <= DateTime.Now)
+                {
+
+                    j.Size = new Size(1430, 350);
+                    historypanel.Controls.Add(j);
+                  
+                    j.Anchor = AnchorStyles.None;
+                    historypanel.BackColor = Color.FromArgb(255, 135, 206, 235);
+                   
+                    j.Showbutton.Click += (s, e) => applicants_list2(s, e, i, f);
+                }
+            }
+        }
+
+        private void applicants_list2(object s, EventArgs e, Job i, Form f)
+        {
+            borderedscrollPanels scroll = new borderedscrollPanels();
+            scroll.Size = new Size(1550, 700);
+            scroll.BackColor = Color.FromArgb(0, Color.RoyalBlue);
+            Customb x = new Customb();
+            x.Text = "Back";
+            x.Font = Custom.font(10);
+            x.BackColor = Color.Coral;
+            x.BorderRadius = 20;
+            x.BorderSize = 0;
+            x.Size = new Size(70, 40);
+            x.Location = new Point(10, 0);
+            x.Click += (sender, e) => close_the_scroll(sender, e, scroll);
+            Panel p = new Panel();
+            p.Dock = DockStyle.Left;
+            p.Size = new Size(70, 10);
+            p.BackColor = SystemColors.Control;
+
+            scroll.Controls.Add(x);
+            scroll.AutoScroll = true;
+
+            ArrayList arr = Db.applied_list(i.id);
+            if (arr.Count == 0)
             {
-                jobpanel.Controls.Add(new jobDesc(i.name, i.description, i.requirement));
+
+                Label lbl = new Label();
+                lbl.Text = "No one has Applied";
+                lbl.Font = Custom.font(24);
+                lbl.Size = new Size(900, 400);
+                lbl.Location = new Point(500, 400);
+                lbl.Anchor = AnchorStyles.None;
+                lbl.Dock = DockStyle.Fill;
+
+                scroll.Controls.Add(lbl);
+            }
+            else
+            {
+                foreach (string b in arr)
+                {
+                    applicants a = Db.fetchApplicantinfo(b);
+                    Applicant_desc_his d = new Applicant_desc_his(a,i.id);
+                    d.acceptance_status.Text += Db.acceptance(i.id, a.email);
+                    d.Anchor = AnchorStyles.None;
+                    scroll.Controls.Add(p);
+                    scroll.Controls.Add(d);
+
+
+
+
+
+                   
+                }
+            }
+
+            // scroll.Anchor = AnchorStyles.None;
+            scroll.Location = new Point(150, 105);
+            f.Controls.Add(scroll);
+            scroll.BringToFront();
+            
+        }
+
+        private void applicants_list(object sender, EventArgs e, Job j, Form f)
+        {    
+            borderedscrollPanels scroll = new borderedscrollPanels();
+            scroll.Size = new Size(1550, 700);
+            scroll.BackColor = Color.FromArgb(0,Color.RoyalBlue);
+            Customb x = new Customb();
+            x.Text = "Back";
+            x.Font = Custom.font(10);
+            x.BackColor= Color.Coral;
+            x.BorderRadius = 20;
+            x.BorderSize = 0;
+            x.Size = new Size(70,40);
+            x.Location = new Point(10, 0);
+            x.Click +=(sender,e)=> close_the_scroll(sender,e,scroll);
+            Panel p = new Panel();
+            p.Dock = DockStyle.Left;
+            p.Size = new Size(70, 10);
+            p.BackColor = SystemColors.Control;
+            
+            scroll.Controls.Add(x);
+            scroll.AutoScroll = true;
+
+            ArrayList arr = Db.applied_list2(j.id);
+            if (arr.Count == 0) { 
+           
+                Label lbl = new Label();
+                lbl.Text = "No one has Applied";
+                lbl.Font = Custom.font(24);
+                lbl.Size = new Size(900, 400);
+                lbl.Location = new Point(500,400);
+                lbl.Anchor = AnchorStyles.None;
+                lbl.Dock = DockStyle.Fill;
+               
+                scroll.Controls.Add(lbl);
+            }
+            else
+            {
+                foreach (string s in arr)
+                {
+                    applicants a = Db.fetchApplicantinfo(s);
+                    Applicant_desc d = new Applicant_desc(a);
+                    d.Anchor = AnchorStyles.None;
+                    scroll.Controls.Add(p);
+                    scroll.Controls.Add(d);
+
+
+
+
+
+                    //cv.Click+=
+                    d.accept.Click += (sender, e) => accepted(sender, e, j.id, a.email);
+                    d.reject.Click += (sender, e) => rejected(sender, e, j.id, a.email);
+                    d.close.Click += closed;
+
+                }
+            }
+             
+           // scroll.Anchor = AnchorStyles.None;
+            scroll.Location = new Point(150, 105);
+            f.Controls.Add(scroll);
+            scroll.BringToFront();
+        }
+
+        private void close_the_scroll(object sender, EventArgs e,borderedscrollPanels s)
+        {
+           s.Hide();
+         
+            
+        }
+
+        private void closed(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void rejected(object sender, EventArgs e,int jid,string email)
+        {
+            bool success = Db.Rejected(jid, email);
+            if (success)
+            {
+                MessageBox.Show("You have rejected this client","Success message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("You have not rejected this client","Erros message",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+        }
+
+        private void accepted(object sender, EventArgs e, int jid, string email)
+        {
+           bool success= Db.Accepted(jid,email);
+            if (success)
+            {
+                MessageBox.Show("You have accepted this client succesfully","Success Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("You have not accepted this client succesfully", "Erros message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
