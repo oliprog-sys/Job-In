@@ -428,7 +428,17 @@ namespace JOB_IN
                 command.Parameters.AddWithValue("@1", email);
                 command.Parameters.AddWithValue("@2", jobid);
 
+                //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
+                command.Connection = conn;
+                s = command.ExecuteReader();
+                while (s.Read())
+                {
+                    stat = s["Message"].ToString();
+                }
 
+            }
+            return stat;
+        }
         public static bool apply(int jid, string aemail)
         {
             SqlDataReader s;
