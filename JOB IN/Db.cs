@@ -174,7 +174,7 @@ namespace JOB_IN
                 conn.Open();
                 SqlCommand command = conn.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "insert into Jobs(Job_description,Requirement,capacity, Deadline, OEmail, Job_name, Job_category) values(@1,@2,@3,@4,@5,@6,@7);";
+                command.CommandText = "insert into Jobs(Job_description,Requirement,capacity, Deadline, OEmail, Job_name, Job_category, job_exp_level) values(@1,@2,@3,@4,@5,@6,@7,1);";
                 command.Parameters.AddWithValue("@1", job.description);
                 command.Parameters.AddWithValue("@2", job.requirement);
                 command.Parameters.AddWithValue("@3", job.capacity);
@@ -291,7 +291,112 @@ namespace JOB_IN
 
         }
 
+        public static bool apply(int jid, string aemail)
+        {
+            SqlDataReader s;
+            int a = 0;
+            int applicants, capacity, min_exp,exp;
 
+            int c;
+            
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.Connection = conn;
+
+                command.CommandText = "select count(*)  from ApplicantJob  where Job_id=@11 and Aemail=@0;";
+                command.Parameters.AddWithValue("@11", jid);
+                command.Parameters.AddWithValue("@0", aemail);
+
+                if(command.ExecuteNonQuery() != 0)
+                {
+                    MessageBox.Show("You have already applied to this job.");
+                    return false;
+                }
+
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select count(*)  from ApplicantJob  where Job_id=@1 Jp;";
+                command.Parameters.AddWithValue("@1", jid);
+               
+                applicants =(int) command.ExecuteScalar();
+
+                command.CommandText = "select capacity  from Jobs  where Job_id=@2;";
+                command.Parameters.AddWithValue("@2", jid);
+
+                capacity = (int)command.ExecuteScalar();
+                /*
+                command.CommandText = "select jop_exp_level from ApplicantJob  where Job_id=@3;";
+                command.Parameters.AddWithValue("@3", jid);
+
+                min_exp = (int)command.ExecuteScalar();
+
+                command.CommandText = "select Experience  from Applicant  where Aemail=@4;";
+                command.Parameters.AddWithValue("@4", aemail);
+                */
+                exp = (int)command.ExecuteScalar();
+
+                if (applicants >= capacity)
+                {
+                    MessageBox.Show("Capacity full, Cannot apply to this job.");
+                    return false;
+                }
+                /*
+                if(min_exp > exp)
+                {
+                    MessageBox.Show("You do not have the experience needed to apply to this job.");
+                    return false;
+                }
+                */
+                DateTime d = DateTime.Now;
+                command.CommandText = "insert into ApplicantJob values (@5, @6, @7, 'pending');";
+                command.Parameters.AddWithValue("@5", aemail);
+                command.Parameters.AddWithValue("@6", jid);
+                command.Parameters.AddWithValue("@7", d);
+
+                c = command.ExecuteNonQuery();
+
+            }
+            if (c == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static ArrayList Applied_History(string aemail, string stat)
+        {
+            SqlDataReader s;
+            ArrayList arr = new ArrayList();
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.Connection = conn;
+                if (stat == "all")
+                {
+                    command.CommandText = "select *  from ApplicantJob  where Aemail=@1;";
+                    command.Parameters.AddWithValue("@1", aemail);
+                }
+                else
+                {
+                    command.CommandText = "select *  from ApplicantJob  where Aemail=@1 and Message=@2;";
+
+                    command.Parameters.AddWithValue("@1", aemail);
+                    command.Parameters.AddWithValue("@2", stat);
+                }
+
+                s = command.ExecuteReader();
+                while(s.Read())
+                {
+                    arr.Add((int)s["Job_id"]);
+                }
+
+            }
+           
+            return arr;
+        }
 
     }
     public class applicants

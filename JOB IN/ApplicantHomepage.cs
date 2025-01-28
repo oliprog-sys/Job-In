@@ -659,8 +659,17 @@ namespace JOB_IN
         private void jobExpand(object? sender, EventArgs e, int id)
         {
             jobDescDetail a = new jobDescDetail(id);
+            a.Apply.Click += (sender, e) => Apply_Click(sender, e, id);
             MainPanel.Controls.Add(a);
             a.BringToFront();
+        }
+
+        private void Apply_Click(object? sender, EventArgs e, int id)
+        {
+            if(Db.apply(id, applicant.email))
+            {
+                MessageBox.Show("Applies Successfully");
+            }
         }
 
 
@@ -681,26 +690,28 @@ namespace JOB_IN
         {
             statusScrollPane.Controls.Clear();
 
-            int max=0;
-            if (stat == "all")
+            ArrayList arr= Db.Applied_History(applicant.email, stat);
+            if(arr.Count == 0)
             {
-                max = 9;
-            }else if(stat == "accepted")
-            {
-                max = 5;
+                Label l = new Label();
+                l.Text = "No Job history, Apply to jobs to see history.";
+                l.Font = Custom.font(20);
+                l.Size = new Size(400, 40);
+                
+                borderedPanels b = new borderedPanels();
+                b.Size = new Size(1150, 400);
+                b.Controls.Add(l);
+                statusScrollPane.Controls.Add(b);
             }
-            else if (stat == "pending")
+            else
             {
-                max = 3;
+                foreach (int i in arr)
+                {
+                    Job j = Db.fetchJobId(i);
+                    statusScrollPane.Controls.Add(new jobHistory(j.name, j.oEmail, j.category, j.requirement, j.Deadline.ToString()));
+                }
             }
-            else if (stat == "denied")
-            {
-                max = 1;
-            }
-            for (int i = 1; i < max+1; i++)
-            {
-                statusScrollPane.Controls.Add(new jobHistory("title "+ i, "Employer"," job type", "requirements", "31/2/25"));
-            }
+           
         }
 
 
