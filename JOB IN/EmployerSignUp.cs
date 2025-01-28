@@ -72,6 +72,23 @@ namespace JOB_IN
             }
         }
 
+        bool isPasswordVisible = false;
+        private void showPasswordBtn_on_org_clicked(object sender, EventArgs e)
+        {
+            if (isPasswordVisible)
+            {
+                orgpasswordField.PasswordChar = '*';
+                showPasswordBtn1.Text = "Show";
+            }
+            else
+            {
+                orgpasswordField.PasswordChar = '\0';
+                showPasswordBtn1.Text = "Hide";
+            }
+
+            isPasswordVisible = !isPasswordVisible;
+        }
+
         private void On_add_media_clicked(object sender, EventArgs e)
         {
 
@@ -118,6 +135,23 @@ namespace JOB_IN
             {
                 MessageBox.Show("Error: unable to create an account");
             }
+        }
+
+        bool isPasswordVisible2 = false;
+        private void showPasswordBtn_on_per_clicked(object sender, EventArgs e)
+        {
+            if (isPasswordVisible2)
+            {
+                perpasswordField.PasswordChar = '*';
+                showPasswordBtn2.Text = "Show";
+            }
+            else
+            {
+                perpasswordField.PasswordChar = '\0';
+                showPasswordBtn2.Text = "Hide";
+            }
+
+            isPasswordVisible2 = !isPasswordVisible2;
         }
 
         private void OnPersonalBtn_clicked(object sender, EventArgs e)

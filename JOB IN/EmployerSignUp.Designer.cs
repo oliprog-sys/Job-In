@@ -278,6 +278,21 @@ namespace JOB_IN
             orgpasswordField.BorderStyle = BorderStyle.None;
             orgpasswordField.Font = new Font("Sans serif", 14f);
 
+           
+            // show and hide password button
+            showPasswordBtn1 = new RoundedButton2();
+            showPasswordBtn1.Anchor = AnchorStyles.None;
+            showPasswordBtn1.radius = 10;
+            showPasswordBtn1.Size = new Size(100, 45);
+            showPasswordBtn1.Location = new Point(1610, 535);
+            showPasswordBtn1.Text = "Show";
+            showPasswordBtn1.Font = new Font("Sans serif", 14f);
+            showPasswordBtn1.BackColor = Color.White;
+            showPasswordBtn1.FlatStyle = FlatStyle.Flat;
+            showPasswordBtn1.FlatAppearance.BorderColor = Color.White;
+            showPasswordBtn1.Cursor = Cursors.Hand;
+            showPasswordBtn1.Click += showPasswordBtn_on_org_clicked;
+
             // Next Button
             orgnextBtn = new RoundedButton2();
             orgnextBtn.Anchor = AnchorStyles.None;
@@ -303,6 +318,7 @@ namespace JOB_IN
             organizationPanel.Controls.Add(orgemailField);
             organizationPanel.Controls.Add(orgpasswordLabel);
             organizationPanel.Controls.Add(orgpasswordField);
+            organizationPanel.Controls.Add(showPasswordBtn1);
             organizationPanel.Controls.Add(orgnextBtn);
 
             /* Third page */
@@ -494,6 +510,20 @@ namespace JOB_IN
             perpasswordField.BorderStyle = BorderStyle.None;
             perpasswordField.Font = new Font("Sans serif", 14f);
 
+            // show and hide password button
+            showPasswordBtn2 = new RoundedButton2();
+            showPasswordBtn2.Anchor = AnchorStyles.None;
+            showPasswordBtn2.radius = 10;
+            showPasswordBtn2.Size = new Size(100, 45);
+            showPasswordBtn2.Location = new Point(1610, 535);
+            showPasswordBtn2.Text = "Show";
+            showPasswordBtn2.Font = new Font("Sans serif", 14f);
+            showPasswordBtn2.BackColor = Color.White;
+            showPasswordBtn2.FlatStyle = FlatStyle.Flat;
+            showPasswordBtn2.FlatAppearance.BorderColor = Color.White;
+            showPasswordBtn2.Cursor = Cursors.Hand;
+            showPasswordBtn2.Click += showPasswordBtn_on_per_clicked;
+
             // Next Button
             pernextBtn = new RoundedButton2();
             pernextBtn.Anchor = AnchorStyles.None;
@@ -519,6 +549,7 @@ namespace JOB_IN
             personalPanel.Controls.Add(peremailField);
             personalPanel.Controls.Add(perpasswordLabel);
             personalPanel.Controls.Add(perpasswordField);
+            personalPanel.Controls.Add(showPasswordBtn2);
             personalPanel.Controls.Add(pernextBtn);
 
 
@@ -628,7 +659,7 @@ namespace JOB_IN
                         perphoneNumLabel, peraddressLabel, peremailLabel, perpasswordLabel, peraboutUsLabel, permediaLinkLabel;
         private RoundedTextBox2 orgnameField, orgphoneNumField, orgaddressField, orgemailField, orgpasswordField, aboutUsField, mediaLinkField,
                             pernameField, perphoneNumField, peraddressField, peremailField, perpasswordField, peraboutUsField, permediaLinkField;
-        private RoundedButton2 orgnextBtn, addMediaLinkBtn, orgSubmitBtn, pernextBtn, peraddMediaLinkBtn, perSubmitBtn, backBtn;
+        private RoundedButton2 orgnextBtn, addMediaLinkBtn, orgSubmitBtn, pernextBtn, peraddMediaLinkBtn, perSubmitBtn, backBtn, showPasswordBtn1, showPasswordBtn2;
         private Button organizationBtn, personalBtn;
 
         #endregion
