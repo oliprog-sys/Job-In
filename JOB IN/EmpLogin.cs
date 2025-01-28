@@ -14,8 +14,9 @@ namespace JOB_IN
     {
         public EmpLogin(organization org)
         {
-            InitializeComponent();
             this.org = org;
+            InitializeComponent();
+            
         }
 
 
@@ -29,10 +30,11 @@ namespace JOB_IN
                 profilebackp.BackColor = Color.LightGray;
 
 
-            jobpanel.BringToFront();
-            historypanel.SendToBack();
-            profilepanel.SendToBack();
-            postpanel.SendToBack();
+            jobpanel.Show();
+            historypanel.Hide();
+            profilepanel.Hide();
+            postpanel.Hide();
+
             Jobbackp.BackColor = Color.White;
 
 
@@ -56,9 +58,11 @@ namespace JOB_IN
 
 
             historybackp.BackColor = Color.White;
-            historypanel.BringToFront();
-            jobpanel.SendToBack();
-            profilepanel.SendToBack();
+            historypanel.Show();
+            jobpanel.Hide();
+            profilepanel.Hide();
+            postpanel.Hide();
+            
 
         }
 
@@ -73,19 +77,29 @@ namespace JOB_IN
                 postbackp.BackColor = Color.LightGray;
 
             profilebackp.BackColor = Color.White;
-            profilepanel.BringToFront();
-            historypanel.SendToBack();
-            postpanel.SendToBack();
-            jobpanel.SendToBack();
+            profilepanel.Show();
+            historypanel.Hide();
+            postpanel.Hide();
+            jobpanel.Hide();
+
+       
 
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
-        {
-            jobpanel.BringToFront();
-            postpanel.SendToBack();
-            historypanel.SendToBack();
-            profilepanel.SendToBack();
+        {   Jobbackp.BackColor = Color.White;
+            jobpanel.Show();
+            postpanel.Hide();
+            historypanel.Hide();
+            profilepanel.Hide();
+
+            orglbl.Text = org.name;
+            b.Text = org.description;
+            emaillbl.Text = org.email;
+            phonelbl.Text = org.PhoneNum;
+            adlbl.Text = org.address;
+            smlink.Text= org.mediaLink;
+            
         }
 
         private void postbtn_Click(object sender, EventArgs e)
@@ -98,10 +112,10 @@ namespace JOB_IN
                 profilebackp.BackColor = Color.LightGray;
 
             postbackp.BackColor = Color.FromArgb(64, 64, 64);
-            postpanel.BringToFront();
-            jobpanel.SendToBack();
-            historypanel.SendToBack();
-            profilepanel.SendToBack();
+            postpanel.Show();
+            jobpanel.Hide();
+            historypanel.Hide();
+            profilepanel.Hide();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
