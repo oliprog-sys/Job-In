@@ -1220,14 +1220,14 @@ namespace JOB_IN
 
         private void showcertificate(object sender, EventArgs e, byte[]a)
         {
-            string tempfilepath = "D:\\hello1" + ".pdf";
+            string tempfilepath = Application.StartupPath+ "..\\..\\..\\cv\\certificate" + ".pdf";
             File.WriteAllBytes(tempfilepath, a);
             Process.Start(new ProcessStartInfo { FileName = tempfilepath, UseShellExecute = true });
         }
 
         private void show_cv(object sender, EventArgs e, byte[]a)
         {
-           string tempfilepath = "D:\\hello1" + ".pdf";
+            string tempfilepath = Application.StartupPath + "..\\..\\..\\cv\\cv" + ".pdf";
             File.WriteAllBytes(tempfilepath, a);
             Process.Start(new ProcessStartInfo { FileName = tempfilepath, UseShellExecute= true });
         }
