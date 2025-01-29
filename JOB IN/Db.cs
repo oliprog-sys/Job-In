@@ -249,6 +249,27 @@ namespace JOB_IN
 
 
         }
+        public static ArrayList fetchOrghisJobs(string email)
+        {
+            ArrayList arrayList = new ArrayList();
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select * from Jobs where OEmail=@1 and Deadline <= GETDATE();";
+                command.Parameters.AddWithValue("@1", email);
+                SqlDataReader a = command.ExecuteReader();
+                while (a.Read())
+                {
+                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"], (int)a["job_exp_level"], (int)a["payestimate"]));
+                }
+            }
+
+            return arrayList;
+
+
+        }
 
         public static ArrayList fetchJobs(string category)
         {

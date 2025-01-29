@@ -73,6 +73,7 @@ namespace JOB_IN
             orgicon = new PictureBox();
             backbtn = new Customb();
             backbtnp = new borderedPanels();
+            
             postpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panel1.SuspendLayout();
@@ -796,6 +797,9 @@ namespace JOB_IN
 
             profilepanel.Controls.Add(editpan);
 
+
+           
+
             //
             // EmpLogin
             // 
@@ -1011,6 +1015,7 @@ namespace JOB_IN
         public void joblist(EmpLogin f)
         {
             ArrayList arr = Db.fetchOrgJobs(org.email);
+            ArrayList arr2= Db.fetchOrghisJobs(org.email);
             
             if (arr.Count == 0) {
                 Label lbl = new Label();
@@ -1040,9 +1045,38 @@ namespace JOB_IN
                     if (i.Deadline > DateTime.Now)
                     {
                         f.jobpanel.Controls.Add(j);
-                        j.Showbutton.Click += (s, e) => applicants_list2(s, e, i, f);
+                        j.Showbutton.Click += (s, e) => applicants_list(s, e, i, f);
                     }
-                    else if (i.Deadline <= DateTime.Now)
+                    
+                }
+            }
+
+            if (arr2.Count == 0)
+            {
+                Label lbl = new Label();
+                lbl.Text = "               No History Available       ";
+                lbl.Font = Custom.font(24);
+                lbl.ForeColor = Color.Black;
+                lbl.Size = new Size(900, 400);
+                lbl.Location = new Point(0, 0);
+                lbl.Anchor = AnchorStyles.None;
+                lbl.Dock = DockStyle.Fill;
+                lbl.BringToFront();
+                Panel panel = new Panel();
+                panel.Size = new Size(1000, 500);
+                panel.Location = new Point(50, 200);
+                panel.Controls.Add(lbl);
+                //panel.Dock = DockStyle.Fill;
+
+                f.historypanel.BackColor = Color.FromArgb(255, 135, 206, 235);
+                f.historypanel.Controls.Add(panel);
+            }
+            else
+            {
+                
+                foreach (Job i in arr2)
+                {   orgJobs j = new orgJobs(i);
+                    if (i.Deadline <= DateTime.Now)
                     {
 
                         j.Size = new Size(1430, 350);
@@ -1051,13 +1085,13 @@ namespace JOB_IN
                         j.Anchor = AnchorStyles.None;
                         f.historypanel.BackColor = Color.FromArgb(255, 135, 206, 235);
 
-                        j.Showbutton.Click += (s, e) => applicants_list(s, e, i, f);
+                        j.Showbutton.Click += (s, e) => applicants_list2(s, e, i, f);
                     }
                 }
             }
         } 
-
-        private void applicants_list2(object s, EventArgs e, Job i, Form f)
+        //histories
+        private void applicants_list2(object s, EventArgs e, Job i, EmpLogin f)
         {
             borderedscrollPanels scroll = new borderedscrollPanels();
             scroll.Size = new Size(1550, 700);
@@ -1114,11 +1148,13 @@ namespace JOB_IN
 
             // scroll.Anchor = AnchorStyles.None;
             scroll.Location = new Point(150, 105);
-            f.Controls.Add(scroll);
+            Controls.Add(scroll);
             scroll.BringToFront();
             
         }
-
+       
+        
+        //jobs applist
         private void applicants_list(object sender, EventArgs e, Job j, Form f)
         {    
             borderedscrollPanels scroll = new borderedscrollPanels();
@@ -1145,7 +1181,7 @@ namespace JOB_IN
             if (arr.Count == 0) { 
            
                 Label lbl = new Label();
-                lbl.Text = "No one has Applied";
+                lbl.Text = "        No one has Applied  ";
                 lbl.Font = Custom.font(24);
                 lbl.Size = new Size(900, 400);
                 lbl.Location = new Point(500,400);

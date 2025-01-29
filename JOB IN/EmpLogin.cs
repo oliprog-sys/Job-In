@@ -64,7 +64,8 @@ namespace JOB_IN
             profilepanel.Hide();
             postpanel.Hide();
             
-
+            
+            //this.joblist(this);
         }
 
 
@@ -82,6 +83,7 @@ namespace JOB_IN
             historypanel.Hide();
             postpanel.Hide();
             jobpanel.Hide();
+            
 
        
 
