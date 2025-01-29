@@ -38,8 +38,8 @@ namespace JOB_IN
 
             Jobbackp.BackColor = Color.White;
 
-
-
+            jobpanel.Controls.Clear();
+            this.joblist(this);
 
         }
 
