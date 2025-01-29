@@ -635,8 +635,8 @@ namespace JOB_IN
                 b.Size = new Size(700, 400);
                 b.Location = new Point(600, 300);
                 b.Controls.Add(l);
-               
-               
+
+                statusScrollPane.Controls.Clear();
                 statusPane.Controls.Add(b);
                 b.BringToFront();
                 statusPane.MinimumSize = new Size(1434, 675);
@@ -651,6 +651,7 @@ namespace JOB_IN
                 job_history_adder("all");
                 statusScrollPane.BringToFront();
                 b.Hide();
+                statusPane.MaximumSize = new Size(1413, 675);
 
             }
         }
