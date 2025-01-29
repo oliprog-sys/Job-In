@@ -96,6 +96,7 @@ namespace JOB_IN
             {
                 if (Db.check(textBox1.Text, textBox2.Text) == true)
                 {
+
                     applicants app = Db.fetchApplicantinfo(textBox1.Text);
                     s = new ApplicantHomepage(app);
                     s.job_list_adder();

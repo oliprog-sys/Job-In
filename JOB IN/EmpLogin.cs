@@ -19,6 +19,7 @@ namespace JOB_IN
         }
 
 
+
         private void Jobs_Click(object sender, EventArgs e)
         {
             if (postbackp.BackColor == Color.White || postbackp.BackColor == Color.FromArgb(64, 64, 64))
