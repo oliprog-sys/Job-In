@@ -547,6 +547,30 @@ namespace JOB_IN
             return arr;
         }
 
+        public static int Applied_History_Count(string aemail)
+        {
+            SqlDataReader s;
+            int i;
+
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.Connection = conn;
+              
+                command.CommandText = "select Count(*)  from ApplicantJob  where Aemail=@1;";
+                command.Parameters.AddWithValue("@1", aemail);
+                
+              
+                i =(int) command.ExecuteScalar();
+               
+
+            }
+
+            return i;
+        }
+
 
     }
     public class applicants
