@@ -204,6 +204,11 @@ namespace JOB_IN
             }
         }
 
+        private void exitBtn_clicked(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 
     public class CreateAccount

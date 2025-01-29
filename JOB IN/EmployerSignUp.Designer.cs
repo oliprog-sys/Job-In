@@ -116,7 +116,7 @@ namespace JOB_IN
             signUpAsLabel = new Label();
             signUpAsLabel.Anchor = AnchorStyles.None;
             signUpAsLabel.Size = new Size(1920, 210);
-            signUpAsLabel.TextAlign = ContentAlignment.MiddleCenter;
+            signUpAsLabel.TextAlign = ContentAlignment.MiddleCenter;            
             signUpAsLabel.Text = "Sign-Up  as";
             signUpAsLabel.Font = Custom.font(42);
 
@@ -150,6 +150,8 @@ namespace JOB_IN
             organizationBtn.Text = "Organization \n  For Organization use";
             organizationBtn.ForeColor = Color.White;
             organizationBtn.BackColor = Color.FromArgb(0, 83, 156);
+            organizationBtn.FlatStyle = FlatStyle.Flat;
+            organizationBtn.FlatAppearance.BorderColor = Color.White;
             organizationBtn.Font = Custom.font(16);
             organizationBtn.Click += OnOrganizationBtn_clicked;
 
@@ -161,6 +163,8 @@ namespace JOB_IN
             personalBtn.Font = Custom.font(16);
             personalBtn.ForeColor = Color.White;
             personalBtn.BackColor = Color.FromArgb(0, 83, 156);
+            personalBtn.FlatStyle = FlatStyle.Flat;
+            personalBtn.FlatAppearance.BorderColor = Color.White;
             personalBtn.Click += OnPersonalBtn_clicked;
 
             // Add the label to the title panel
@@ -297,14 +301,15 @@ namespace JOB_IN
             // Next Button
             orgnextBtn = new RoundedButton2();
             orgnextBtn.Anchor = AnchorStyles.None;
-            orgnextBtn.Size = new Size(230, 70);
-            orgnextBtn.Location = new Point(1397, 878);
+            orgnextBtn.radius = 20;
+            orgnextBtn.Size = new Size(200, 70);
+            orgnextBtn.Location = new Point(1497, 878);
             orgnextBtn.Text = "Next >>";
             orgnextBtn.BackColor = Color.Black;
             orgnextBtn.ForeColor = Color.White;
             orgnextBtn.Font = Custom.font(18);
             orgnextBtn.FlatStyle = FlatStyle.Flat;
-            orgnextBtn.FlatAppearance.BorderColor = Color.Black;
+            orgnextBtn.FlatAppearance.BorderColor = Color.Blue;
             orgnextBtn.Click += next_btn_click;
 
 
@@ -374,15 +379,32 @@ namespace JOB_IN
             // organization submit button
             orgSubmitBtn = new RoundedButton2();
             orgSubmitBtn.Anchor = AnchorStyles.None;
+            orgSubmitBtn.radius = 20;
             orgSubmitBtn.Text = "Submit";
-            orgSubmitBtn.Size = new Size(245, 76);
-            orgSubmitBtn.Location = new Point(1529, 820);
+            orgSubmitBtn.Size = new Size(200, 70);
+            orgSubmitBtn.Location = new Point(1379, 820);
             orgSubmitBtn.ForeColor = Color.White;
             orgSubmitBtn.BackColor = Color.FromArgb(0, 83, 156);
             orgSubmitBtn.FlatStyle = FlatStyle.Flat;
-            orgSubmitBtn.FlatAppearance.BorderColor = Color.Blue;
+            orgSubmitBtn.FlatAppearance.BorderColor = Color.White;
             orgSubmitBtn.Font = Custom.font(16);
             orgSubmitBtn.Click += OnorgSubmitBtn_clicked;
+
+            // exit button one
+            exitBtn1 = new RoundedButton2();
+            exitBtn1.Anchor = AnchorStyles.None;
+            exitBtn1.radius = 20;
+            exitBtn1.Size = new Size(200, 70);
+            exitBtn1.Location = new Point(1620, 820);
+            exitBtn1.Text = "Exit";
+            exitBtn1.Font = Custom.font(18);
+            exitBtn1.Cursor = Cursors.Hand;
+            exitBtn1.BackColor = Color.Red;
+            exitBtn1.ForeColor = Color.White;
+            exitBtn1.FlatStyle = FlatStyle.Flat;
+            exitBtn1.FlatAppearance.BorderColor = Color.FromArgb(238, 164, 127);
+            exitBtn1.Click += exitBtn1_clicked;
+
 
             // first under line
             orgUnderline1 = new Panel();
@@ -405,7 +427,8 @@ namespace JOB_IN
             organizationalMorePanel.Controls.Add(aboutUsLabel);
             organizationalMorePanel.Controls.Add(aboutUsField);
             organizationalMorePanel.Controls.Add(mediaLinkLabel);
-            organizationalMorePanel.Controls.Add(mediaLinkField);            
+            organizationalMorePanel.Controls.Add(mediaLinkField);
+            organizationalMorePanel.Controls.Add(exitBtn1);
             organizationalMorePanel.Controls.Add(orgSubmitBtn);
             organizationalMorePanel.Controls.Add(orgUnderline1);
             organizationalMorePanel.Controls.Add(orgUnderline2);
@@ -528,8 +551,9 @@ namespace JOB_IN
             // Next Button
             pernextBtn = new RoundedButton2();
             pernextBtn.Anchor = AnchorStyles.None;
-            pernextBtn.Size = new Size(230, 70);
-            pernextBtn.Location = new Point(1397, 878);
+            pernextBtn.radius = 20;
+            pernextBtn.Size = new Size(200, 70);
+            pernextBtn.Location = new Point(1497, 878);
             pernextBtn.Text = "Next >>";
             pernextBtn.BackColor = Color.Black;
             pernextBtn.ForeColor = Color.White;
@@ -537,6 +561,8 @@ namespace JOB_IN
             pernextBtn.FlatStyle = FlatStyle.Flat;
             pernextBtn.FlatAppearance.BorderColor = Color.Black;
             pernextBtn.Click += personal_next_btn_click;
+
+
 
 
             // Adding the controls to the personal panel
@@ -607,15 +633,32 @@ namespace JOB_IN
             // organization submit button
             perSubmitBtn = new RoundedButton2();
             perSubmitBtn.Anchor = AnchorStyles.None;
+            perSubmitBtn.radius = 20;
             perSubmitBtn.Text = "Submit";
-            perSubmitBtn.Size = new Size(245, 76);
-            perSubmitBtn.Location = new Point(1529, 820);
+            perSubmitBtn.Size = new Size(200, 70);
+            perSubmitBtn.Location = new Point(1382, 820);
             perSubmitBtn.ForeColor = Color.White;
             perSubmitBtn.BackColor = Color.FromArgb(0, 83, 156);
             perSubmitBtn.FlatStyle = FlatStyle.Flat;
-            perSubmitBtn.FlatAppearance.BorderColor = Color.Blue; 
+            perSubmitBtn.FlatAppearance.BorderColor = Color.White; 
             perSubmitBtn.Font = Custom.font(16);
             perSubmitBtn.Click += OnperSubmitBtn_clicked;
+
+            
+            // exit button two
+            exitBtn2 = new RoundedButton2();
+            exitBtn2.Anchor = AnchorStyles.None;
+            exitBtn2.radius = 20;
+            exitBtn2.Size = new Size(200, 70);
+            exitBtn2.Location = new Point(1620, 820);
+            exitBtn2.Text = "Exit";
+            exitBtn2.Font = Custom.font(18);
+            exitBtn2.Cursor = Cursors.Hand;
+            exitBtn2.BackColor = Color.Red;
+            exitBtn2.ForeColor = Color.White;
+            exitBtn2.FlatStyle = FlatStyle.Flat;
+            exitBtn2.FlatAppearance.BorderColor = Color.White;
+            exitBtn2.Click += exitBtn1_clicked;
 
             // first under line
             perUnderline1 = new Panel();
@@ -639,6 +682,7 @@ namespace JOB_IN
             personalMorePanel.Controls.Add(peraboutUsField);
             personalMorePanel.Controls.Add(permediaLinkLabel);
             personalMorePanel.Controls.Add(permediaLinkField);
+            personalMorePanel.Controls.Add(exitBtn2);
             personalMorePanel.Controls.Add(perSubmitBtn);
             personalMorePanel.Controls.Add(perUnderline1);
             personalMorePanel.Controls.Add(perUnderline2);
@@ -660,7 +704,7 @@ namespace JOB_IN
                         perphoneNumLabel, peraddressLabel, peremailLabel, perpasswordLabel, peraboutUsLabel, permediaLinkLabel;
         private RoundedTextBox2 orgnameField, orgphoneNumField, orgaddressField, orgemailField, orgpasswordField, aboutUsField, mediaLinkField,
                             pernameField, perphoneNumField, peraddressField, peremailField, perpasswordField, peraboutUsField, permediaLinkField;
-        private RoundedButton2 orgnextBtn, addMediaLinkBtn, orgSubmitBtn, pernextBtn, peraddMediaLinkBtn, perSubmitBtn, backBtn, showPasswordBtn1, showPasswordBtn2;
+        private RoundedButton2 orgnextBtn, addMediaLinkBtn, orgSubmitBtn, pernextBtn, peraddMediaLinkBtn, perSubmitBtn, backBtn, showPasswordBtn1, showPasswordBtn2, exitBtn1, exitBtn2;
         private Button organizationBtn, personalBtn;
 
         #endregion
