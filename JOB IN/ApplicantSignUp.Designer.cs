@@ -332,12 +332,14 @@ namespace JOB_IN
             // Choose Btn
             chooseFileBtn = new RoundedButton();
             chooseFileBtn.Anchor = AnchorStyles.None;
+            chooseFileBtn.radius = 20;
             chooseFileBtn.Size = new Size(230, 70);
             chooseFileBtn.Location = new Point(478, 695);
             chooseFileBtn.Text = "Choose File";
             chooseFileBtn.BackColor = Color.Coral;
             chooseFileBtn.ForeColor = Color.White;
             chooseFileBtn.FlatStyle = FlatStyle.Flat;
+            chooseFileBtn.FlatAppearance.BorderColor = Color.White;
             chooseFileBtn.Cursor = Cursors.Hand;
             chooseFileBtn.Font = Custom.font(16);
             chooseFileBtn.Click += OnChooseFile_clicked;
