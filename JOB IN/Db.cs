@@ -185,7 +185,7 @@ namespace JOB_IN
                 command.Parameters.AddWithValue("@6", job.name);
                 command.Parameters.AddWithValue("@7", job.category);
                 command.Parameters.AddWithValue("@8", job.Explevel);
-                command.Parameters.AddWithValue("@9", job.Explevel);
+                command.Parameters.AddWithValue("@9", job.payestimate);
                 a = command.ExecuteNonQuery();
             }
             if (a == 1)
