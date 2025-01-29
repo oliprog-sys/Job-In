@@ -162,6 +162,16 @@ namespace JOB_IN
             personalPanel.Show();
             signUpAsLabel.Text = "Employer  Sign  Up";
         }
+
+        private void exitBtn1_clicked(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void exitBtn2_clicked(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
     public class CreateOrganizationAccount {
@@ -206,6 +216,8 @@ namespace JOB_IN
 
             return row > 0;
         }
+
+       
     }
 
     public class CreatePersonalAccount

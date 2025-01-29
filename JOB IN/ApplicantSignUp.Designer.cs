@@ -253,17 +253,33 @@ namespace JOB_IN
 
             // Next Button
             nextBtn = new RoundedButton();
+            nextBtn.radius = 20;
             nextBtn.Anchor = AnchorStyles.None;
-            nextBtn.Size = new Size(230, 70);
-            nextBtn.Location = new Point(1397, 878);
+            nextBtn.Size = new Size(200, 70);
+            nextBtn.Location = new Point(1597, 878);
             nextBtn.Text = "Next >>";
             nextBtn.BackColor = Color.Black;
             nextBtn.ForeColor = Color.White;
             nextBtn.Font = Custom.font(18);
             nextBtn.FlatStyle = FlatStyle.Flat;
             nextBtn.Cursor = Cursors.Hand;
-            nextBtn.FlatAppearance.BorderColor = Color.Black;
+            nextBtn.FlatAppearance.BorderColor = Color.FromArgb(238, 164, 127); ;
             nextBtn.Click += next_btn_click;
+
+
+            exitBtn = new RoundedButton();
+            exitBtn.Anchor = AnchorStyles.None;
+            exitBtn.radius = 20;
+            exitBtn.Size = new Size(200, 70);
+            exitBtn.Location = new Point(1620, 820);
+            exitBtn.Text = "Exit";
+            exitBtn.Font = Custom.font(18);
+            exitBtn.Cursor = Cursors.Hand;
+            exitBtn.BackColor = Color.Red;
+            exitBtn.ForeColor = Color.White;
+            exitBtn.FlatStyle = FlatStyle.Flat;
+            exitBtn.FlatAppearance.BorderColor = Color.FromArgb(238, 164, 127);
+            exitBtn.Click += exitBtn_clicked;
 
             //Second main panel
             infoPanel2 = new Panel();
@@ -316,12 +332,14 @@ namespace JOB_IN
             // Choose Btn
             chooseFileBtn = new RoundedButton();
             chooseFileBtn.Anchor = AnchorStyles.None;
+            chooseFileBtn.radius = 20;
             chooseFileBtn.Size = new Size(230, 70);
             chooseFileBtn.Location = new Point(478, 695);
             chooseFileBtn.Text = "Choose File";
             chooseFileBtn.BackColor = Color.Coral;
             chooseFileBtn.ForeColor = Color.White;
             chooseFileBtn.FlatStyle = FlatStyle.Flat;
+            chooseFileBtn.FlatAppearance.BorderColor = Color.White;
             chooseFileBtn.Cursor = Cursors.Hand;
             chooseFileBtn.Font = Custom.font(16);
             chooseFileBtn.Click += OnChooseFile_clicked;
@@ -448,14 +466,15 @@ namespace JOB_IN
             submitBtn = new RoundedButton();
             submitBtn.Anchor = AnchorStyles.None;
             submitBtn.Text = "Submit";
-            submitBtn.Size = new Size(245, 76);
-            submitBtn.Location = new Point(1529, 820);
+            submitBtn.radius = 20;
+            submitBtn.Size = new Size(200, 70);
+            submitBtn.Location = new Point(1380, 820);
             submitBtn.ForeColor = Color.Black;
             submitBtn.BackColor = Color.FromArgb(238, 164, 127);
             submitBtn.FlatStyle = FlatStyle.Flat;
             submitBtn.Cursor = Cursors.Hand;
             submitBtn.Font = Custom.font(16);
-            submitBtn.FlatAppearance.BorderColor = Color.FromArgb(238, 164, 127);
+            submitBtn.FlatAppearance.BorderColor = Color.White;
             submitBtn.Click += OnSubmitBtn_clicked;
 
             // first under line
@@ -490,8 +509,9 @@ namespace JOB_IN
             infoPanel.Controls.Add(emailField);
             infoPanel.Controls.Add(passwordLabel);
             infoPanel.Controls.Add(passwordField);
-            infoPanel.Controls.Add(showPasswordBtn);
+            infoPanel.Controls.Add(showPasswordBtn);            
             infoPanel.Controls.Add(nextBtn);
+            
             
 
 
@@ -512,6 +532,7 @@ namespace JOB_IN
             infoPanel2.Controls.Add(workStatusLabel);
             infoPanel2.Controls.Add(statusRadioBtn1);
             infoPanel2.Controls.Add(statusRadioBtn2);
+            infoPanel2.Controls.Add(exitBtn);
             infoPanel2.Controls.Add(submitBtn);
             infoPanel2.Controls.Add(underlinePanel1);
             infoPanel2.Controls.Add(underlinePanel2);
@@ -533,7 +554,7 @@ namespace JOB_IN
         private Panel mainPanel1, infoPanel2, titlePanel, infoPanel, underlinePanel1, underlinePanel2;
         private Label titleLabel, nameLabel, emailLabel, phoneNumLabel, passwordLabel, DOBLabel, skillLabel, cvLabel,
             certificationLabel, jobCategoryLabel, experienceLabel, workStatusLabel, yearsLabel;
-        private RoundedButton nextBtn, submitBtn, uploadBtn, addCertificateBtn, chooseFileBtn, backBtn, showPasswordBtn;
+        private RoundedButton nextBtn, submitBtn, uploadBtn, addCertificateBtn, chooseFileBtn, backBtn, showPasswordBtn, exitBtn;
         private RoundedTextBox nameField, emailField, phoneNumField, passwordField, skillField, cvField, certificationField, experienceField;
         private DateTimePicker DobField;
         private ComboBox jobCategoryCB;

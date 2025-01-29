@@ -180,7 +180,7 @@ namespace JOB_IN
             statusPane.Anchor = AnchorStyles.None;
             statusPane.AutoScroll = true;
             statusPane.BackColor = Color.White;
-            statusPane.Size = new Size(1413, 675);
+            statusPane.Size = new Size(1434, 675);
             statusPane.Location = new Point(10, 10);
             statusPane.BorderStyle = BorderStyle.None;
 
@@ -592,6 +592,8 @@ namespace JOB_IN
         {
             selectedButton("jobs");
             jobsPane.BringToFront();
+            jobsPane.Controls.Clear();
+            this.job_list_adder();
            
         }
 
@@ -607,9 +609,51 @@ namespace JOB_IN
         {
             selectedButton("status");
             statusPane.BringToFront();
-            job_history_adder("all");
 
 
+            status_lock(Db.Applied_History_Count(applicant.email));
+           
+
+
+        }
+
+        public void status_lock(int i)
+        {
+            borderedPanels b = new borderedPanels();
+            if (i == 0)
+            {
+                sAllbutton.Hide();
+                sAcceptedbutton.Hide();
+                sDeniedbutton.Hide();
+                sPendingbutton.Hide();
+                Label l = new Label();
+                l.Text = "No Job history, Apply to jobs to see history.";
+                l.Font = Custom.font(20);
+                l.Size = new Size(400, 40);
+
+              
+                b.Size = new Size(700, 400);
+                b.Location = new Point(600, 300);
+                b.Controls.Add(l);
+
+                statusScrollPane.Controls.Clear();
+                statusPane.Controls.Add(b);
+                b.BringToFront();
+                statusPane.MinimumSize = new Size(1434, 675);
+            }
+            else
+            {
+
+                sAllbutton.Show();
+                sAcceptedbutton.Show();
+                sDeniedbutton.Show();
+                sPendingbutton.Show();
+                job_history_adder("all");
+                statusScrollPane.BringToFront();
+                b.Hide();
+                statusPane.MaximumSize = new Size(1413, 675);
+
+            }
         }
 
         private void profile_nav_MouseClick(object? sender, EventArgs e)
@@ -634,10 +678,11 @@ namespace JOB_IN
 
                 Label l = new Label();
                 l.ForeColor = Color.Black;
-                l.Text = "No jobs available, Try again later";
+                l.Text = "No "+applicant.category+" jobs available, Try again later";
+                
                 l.Font = Custom.font(24);
                 l.Anchor = AnchorStyles.None;
-                l.Size = new Size(1200, 60);
+                l.Size = new Size(900, 150);
                 l.Location = new Point(340, 280);
 
                 b.Controls.Add(l);

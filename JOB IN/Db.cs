@@ -477,15 +477,15 @@ namespace JOB_IN
                 command.CommandText = "select count(*)  from ApplicantJob  where Job_id=@11 and Aemail=@0;";
                 command.Parameters.AddWithValue("@11", jid);
                 command.Parameters.AddWithValue("@0", aemail);
-
-                if(command.ExecuteNonQuery() != 0)
+                int i = (int)command.ExecuteScalar();
+                if (i != 0)
                 {
                     MessageBox.Show("You have already applied to this job.");
                     return false;
                 }
 
                 command.CommandType = CommandType.Text;
-                command.CommandText = "select count(*)  from ApplicantJob  where Job_id=@1 Jp;";
+                command.CommandText = "select count(*)  from ApplicantJob  where Job_id=@1 ;";
                 command.Parameters.AddWithValue("@1", jid);
                
                 applicants =(int) command.ExecuteScalar();
@@ -494,15 +494,15 @@ namespace JOB_IN
                 command.Parameters.AddWithValue("@2", jid);
 
                 capacity = (int)command.ExecuteScalar();
-                /*
-                command.CommandText = "select jop_exp_level from ApplicantJob  where Job_id=@3;";
+                
+                command.CommandText = "select job_exp_level from Jobs  where Job_id=@3;";
                 command.Parameters.AddWithValue("@3", jid);
 
                 min_exp = (int)command.ExecuteScalar();
 
                 command.CommandText = "select Experience  from Applicant  where Aemail=@4;";
                 command.Parameters.AddWithValue("@4", aemail);
-                */
+                
                 exp = (int)command.ExecuteScalar();
 
                 if (applicants >= capacity)
@@ -510,13 +510,13 @@ namespace JOB_IN
                     MessageBox.Show("Capacity full, Cannot apply to this job.");
                     return false;
                 }
-                /*
+                
                 if(min_exp > exp)
                 {
                     MessageBox.Show("You do not have the experience needed to apply to this job.");
                     return false;
                 }
-                */
+                
                 DateTime d = DateTime.Now;
                 command.CommandText = "insert into ApplicantJob values (@5, @6, @7, 'pending');";
                 command.Parameters.AddWithValue("@5", aemail);
@@ -566,6 +566,30 @@ namespace JOB_IN
             }
            
             return arr;
+        }
+
+        public static int Applied_History_Count(string aemail)
+        {
+            SqlDataReader s;
+            int i;
+
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.Connection = conn;
+              
+                command.CommandText = "select Count(*)  from ApplicantJob  where Aemail=@1;";
+                command.Parameters.AddWithValue("@1", aemail);
+                
+              
+                i =(int) command.ExecuteScalar();
+               
+
+            }
+
+            return i;
         }
 
 
