@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.DirectoryServices.ActiveDirectory;
+using JOB_IN.RJControls;
 namespace JOB_IN
 {
 
@@ -115,7 +116,7 @@ namespace JOB_IN
             titleLabel.Size = new Size(1920, 210);
             titleLabel.TextAlign = ContentAlignment.MiddleCenter;
             titleLabel.Text = "Applicant SignUp";
-            titleLabel.Font = new Font("sans serif", 42f);
+            titleLabel.Font = Custom.font(42);
 
             backBtn = new RoundedButton();
             backBtn.Anchor = AnchorStyles.None;
@@ -127,7 +128,7 @@ namespace JOB_IN
             backBtn.ForeColor = Color.Black;
             backBtn.FlatStyle = FlatStyle.Flat;
             backBtn.FlatAppearance.BorderColor = Color.Red;
-            backBtn.Font = new Font("Sans serif", 14f, FontStyle.Bold);
+            backBtn.Font = Custom.font(14);
             backBtn.Cursor = Cursors.Hand;
             backBtn.Visible = false;
             backBtn.Click += OnbackBtn_clicked;
@@ -145,7 +146,7 @@ namespace JOB_IN
             nameLabel.Location = new Point(150, 318);
             nameLabel.Text = "Name";
             nameLabel.ForeColor = Color.White;
-            nameLabel.Font = new Font("sans serif", 18f);
+            nameLabel.Font = Custom.font(18);
 
             // Name Field 
             nameField = new RoundedTextBox();
@@ -156,8 +157,8 @@ namespace JOB_IN
             nameField.TextAlign = HorizontalAlignment.Left;
             nameField.PlaceholderText = "Enter your name";
             nameField.BorderStyle = BorderStyle.None;            
-            nameField.Font = new Font("Sans serif", 14f);
-            
+            nameField.Font = Custom.font(14);
+
 
 
             // Phone number label
@@ -167,7 +168,7 @@ namespace JOB_IN
             phoneNumLabel.Location = new Point(150, 484);
             phoneNumLabel.Text = "Phone Number";
             phoneNumLabel.ForeColor = Color.White;
-            phoneNumLabel.Font = new Font("sans serif", 18f);
+            phoneNumLabel.Font = Custom.font(18);
 
             // Phone number field 
             phoneNumField = new RoundedTextBox();
@@ -177,7 +178,7 @@ namespace JOB_IN
             phoneNumField.Location = new Point(150, 537);
             phoneNumField.PlaceholderText = "09--------";
             phoneNumField.BorderStyle = BorderStyle.None;
-            phoneNumField.Font = new Font("Sans serif", 14f);
+            phoneNumField.Font = Custom.font(14);
 
             // Date of birth label
             DOBLabel = new Label();
@@ -186,7 +187,7 @@ namespace JOB_IN
             DOBLabel.Location = new Point(150, 637);
             DOBLabel.Text = "Date of Birth";
             DOBLabel.ForeColor = Color.White;
-            DOBLabel.Font = new Font("sans serif", 18f);
+            DOBLabel.Font = Custom.font(18);
 
             // Date of birth field
             DobField = new DateTimePicker();
@@ -202,7 +203,7 @@ namespace JOB_IN
             emailLabel.Location = new Point(1175, 318);
             emailLabel.Text = "Email";
             emailLabel.ForeColor = Color.White;
-            emailLabel.Font = new Font("Sans serif", 18f);
+            emailLabel.Font = Custom.font(18);
 
 
             // Email Field 
@@ -213,7 +214,7 @@ namespace JOB_IN
             emailField.Location = new Point(1175, 374);
             emailField.PlaceholderText = "example@gmail.com";
             emailField.BorderStyle = BorderStyle.None;
-            emailField.Font = new Font("Sans serif", 14f);
+            emailField.Font = Custom.font(14);
 
             // password label
             passwordLabel = new Label();
@@ -222,7 +223,7 @@ namespace JOB_IN
             passwordLabel.Location = new Point(1175, 484);
             passwordLabel.Text = "Password";
             passwordLabel.ForeColor = Color.White;
-            passwordLabel.Font = new Font("Sans serif", 18f);
+            passwordLabel.Font = Custom.font(18);
 
             // password field
             passwordField = new RoundedTextBox();
@@ -234,7 +235,7 @@ namespace JOB_IN
             passwordField.PasswordChar = '*';
             passwordField.Font = new Font("Sans serif", 16f);
             passwordField.BorderStyle = BorderStyle.None;
-            passwordField.Font = new Font("Sans serif", 14f);
+            passwordField.Font = Custom.font(14);
 
             // show and hide password button
             showPasswordBtn = new RoundedButton();
@@ -243,7 +244,7 @@ namespace JOB_IN
             showPasswordBtn.Size = new Size(100, 45);
             showPasswordBtn.Location = new Point(1610, 535);
             showPasswordBtn.Text = "Show";
-            showPasswordBtn.Font = new Font("Sans serif", 14f);
+            showPasswordBtn.Font = Custom.font(14);
             showPasswordBtn.BackColor = Color.White;
             showPasswordBtn.FlatStyle = FlatStyle.Flat;
             showPasswordBtn.FlatAppearance.BorderColor = Color.White;
@@ -258,7 +259,7 @@ namespace JOB_IN
             nextBtn.Text = "Next >>";
             nextBtn.BackColor = Color.Black;
             nextBtn.ForeColor = Color.White;
-            nextBtn.Font = new Font("Sans serif", 18f);
+            nextBtn.Font = Custom.font(18);
             nextBtn.FlatStyle = FlatStyle.Flat;
             nextBtn.Cursor = Cursors.Hand;
             nextBtn.FlatAppearance.BorderColor = Color.Black;
@@ -277,7 +278,7 @@ namespace JOB_IN
             skillLabel.Location = new Point(47, 269);
             skillLabel.Text = "Skill Description and Achievments";
             skillLabel.ForeColor = Color.Black;
-            skillLabel.Font = new Font("Sans serif", 16f);
+            skillLabel.Font = Custom.font(16);
 
             // skill and achievements field
             skillField = new RoundedTextBox();
@@ -298,15 +299,15 @@ namespace JOB_IN
             cvLabel.Location = new Point(57, 643);
             cvLabel.Text = "Curriculum Vitae (CV)";
             cvLabel.ForeColor = Color.Black;
-            cvLabel.Font = new Font("Sans serif", 16f);
-            
+            cvLabel.Font = Custom.font(16);
+
 
             // Cv Field
             cvField = new RoundedTextBox();
             cvField.Anchor = AnchorStyles.None;
             cvField.MinimumSize = new Size(420, 45);
             cvField.Location = new Point(57, 704);
-            cvField.Font = new Font("Sans serif", 14f, FontStyle.Regular);
+            cvField.Font = Custom.font(14);
             cvField.BackColor = Color.Black;
             cvField.ForeColor = Color.White;
             cvField.BorderStyle = BorderStyle.None;
@@ -322,7 +323,7 @@ namespace JOB_IN
             chooseFileBtn.ForeColor = Color.White;
             chooseFileBtn.FlatStyle = FlatStyle.Flat;
             chooseFileBtn.Cursor = Cursors.Hand;
-            chooseFileBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            chooseFileBtn.Font = Custom.font(16);
             chooseFileBtn.Click += OnChooseFile_clicked;
 
 
@@ -333,7 +334,7 @@ namespace JOB_IN
             certificationLabel.Location = new Point(57, 790);
             certificationLabel.Text = "Certificate";
             certificationLabel.ForeColor = Color.Black;
-            certificationLabel.Font = new Font("Sans serif", 16f);
+            certificationLabel.Font = Custom.font(16);
 
 
             // certification adding field
@@ -342,7 +343,7 @@ namespace JOB_IN
             certificationField.MinimumSize = new Size(580, 45);
             certificationField.Location = new Point(57, 846);
             certificationField.BackColor = Color.Black;
-            certificationField.Font = new Font("Sans serif", 16f, FontStyle.Regular);
+            certificationField.Font = Custom.font(16);
             certificationField.BorderStyle = BorderStyle.None;
             certificationField.ForeColor = Color.White;
 
@@ -353,7 +354,7 @@ namespace JOB_IN
             addCertificateBtn.Location = new Point(641, 847);
             addCertificateBtn.Text = "+";
             addCertificateBtn.TextAlign = ContentAlignment.MiddleCenter;
-            addCertificateBtn.Font = new Font("Arial", 16f, FontStyle.Bold);
+            addCertificateBtn.Font = Custom.font(16);
             addCertificateBtn.ForeColor = Color.Black;
             addCertificateBtn.BackColor = Color.LightGray;
             addCertificateBtn.FlatAppearance.BorderColor = Color.LightGray;
@@ -367,7 +368,7 @@ namespace JOB_IN
             jobCategoryLabel.Location = new Point(1453, 274);
             jobCategoryLabel.Text = "Job Category";
             jobCategoryLabel.ForeColor = Color.Black;
-            jobCategoryLabel.Font = new Font("Sans serif", 16f);
+            jobCategoryLabel.Font = Custom.font(16);
 
 
             // Job category combo Box
@@ -379,7 +380,7 @@ namespace JOB_IN
             jobCategoryCB.Location = new Point(1390, 340);
             jobCategoryCB.BackColor = Color.Black;
             jobCategoryCB.ForeColor = Color.White;
-            jobCategoryCB.Font = new Font("Sans serif", 14f);            
+            jobCategoryCB.Font = Custom.font(14);
             jobCategoryCB.FlatStyle = FlatStyle.Flat;
 
 
@@ -389,7 +390,7 @@ namespace JOB_IN
             experienceLabel.Size = new Size(278, 46);
             experienceLabel.Location = new Point(1436, 422);
             experienceLabel.Text = "Experience";
-            experienceLabel.Font = new Font("Sans serif", 16f);
+            experienceLabel.Font = Custom.font(16);
             experienceLabel.ForeColor = Color.Black;
 
 
@@ -399,7 +400,7 @@ namespace JOB_IN
             experienceField.Anchor = AnchorStyles.None;
             experienceField.Size = new Size(145, 76);
             experienceField.Location = new Point(1390, 480);
-            experienceField.Font = new Font("Sans serif", 16f);
+            experienceField.Font = Custom.font(16);
             experienceField.ForeColor = Color.White;
             experienceField.BackColor = Color.Black;
             experienceField.BorderStyle = BorderStyle.None;
@@ -412,7 +413,7 @@ namespace JOB_IN
             yearsLabel.Size = new Size(122, 36);
             yearsLabel.Location = new Point(1540, 480);
             yearsLabel.ForeColor = Color.Black;
-            yearsLabel.Font = new Font("Sans serif", 16f);
+            yearsLabel.Font = Custom.font(16);
 
             // Work status label
             workStatusLabel = new Label();
@@ -421,7 +422,7 @@ namespace JOB_IN
             workStatusLabel.Size = new Size(278, 46);
             workStatusLabel.Location = new Point(1450, 570);
             workStatusLabel.ForeColor = Color.Black;
-            workStatusLabel.Font = new Font("Sans serif", 16f);
+            workStatusLabel.Font = Custom.font(16);
 
             // Work status radio button
             statusRadioBtn1 = new RadioButton();
@@ -430,7 +431,7 @@ namespace JOB_IN
             statusRadioBtn1.Size = new Size(120, 46);
             statusRadioBtn1.Location = new Point(1410, 635);
             statusRadioBtn1.ForeColor = Color.Black;
-            statusRadioBtn1.Font = new Font("Sans serif", 14f);
+            statusRadioBtn1.Font = Custom.font(14);
             statusRadioBtn1.Checked = true;
 
 
@@ -440,7 +441,7 @@ namespace JOB_IN
             statusRadioBtn2.Size = new Size(223, 46);
             statusRadioBtn2.Location = new Point(1540, 636);
             statusRadioBtn2.ForeColor = Color.Black;
-            statusRadioBtn2.Font = new Font("Sans serif", 14f);
+            statusRadioBtn2.Font = Custom.font(14);
 
 
             // submit button
@@ -453,7 +454,7 @@ namespace JOB_IN
             submitBtn.BackColor = Color.FromArgb(238, 164, 127);
             submitBtn.FlatStyle = FlatStyle.Flat;
             submitBtn.Cursor = Cursors.Hand;
-            submitBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            submitBtn.Font = Custom.font(16);
             submitBtn.FlatAppearance.BorderColor = Color.FromArgb(238, 164, 127);
             submitBtn.Click += OnSubmitBtn_clicked;
 
