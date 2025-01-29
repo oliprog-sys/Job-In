@@ -5,6 +5,8 @@ using System.Collections;
 using System.Security.Cryptography;
 using System.Drawing;
 using System.Diagnostics;
+using Microsoft.VisualBasic.Devices;
+using Microsoft.VisualBasic.Logging;
 
 
 namespace JOB_IN
@@ -638,7 +640,9 @@ namespace JOB_IN
             orgicon.Size = new Size(152, 121);
             orgicon.TabIndex = 0;
             orgicon.TabStop = false;
-            orgicon.Image = Image.FromFile("C:\\Users\\hello\\Source\\Repos\\Job-In\\JOB IN\\Image\\png-clipart-logo-house-home-house-angle-building.png");
+           // orgicon.ImageLocation = "Image\\png-clipart-logo-house-home-house-angle-building.png";
+            //orgicon.ImageLocation = Path.Combine(System.Windows.Forms.Application.StartupPath, "\\Images\\png-clipart-logo-house-home-house-angle-building.png");
+            orgicon.Load(Application.StartupPath + "..\\..\\..\\Image\\png-clipart-logo-house-home-house-angle-building.png");
             // 
             // backbtn
             // 

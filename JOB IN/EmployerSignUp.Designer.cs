@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.DirectoryServices.ActiveDirectory;
 using static JOB_IN.ApplicantSignUp;
+using JOB_IN.RJControls;
 namespace JOB_IN
 {
 
@@ -117,7 +118,7 @@ namespace JOB_IN
             signUpAsLabel.Size = new Size(1920, 210);
             signUpAsLabel.TextAlign = ContentAlignment.MiddleCenter;
             signUpAsLabel.Text = "Sign-Up  as";
-            signUpAsLabel.Font = new Font("sans serif", 42f);
+            signUpAsLabel.Font = Custom.font(42);
 
             // back button
             backBtn = new RoundedButton2();
@@ -130,7 +131,7 @@ namespace JOB_IN
             backBtn.ForeColor = Color.Black;
             backBtn.FlatStyle = FlatStyle.Flat;
             backBtn.FlatAppearance.BorderColor = Color.Red;
-            backBtn.Font = new Font("Sans serif", 14f, FontStyle.Bold);
+            backBtn.Font = Custom.font(14);
             backBtn.Cursor = Cursors.Hand;
             backBtn.Visible = false;
             backBtn.Click += OnbackBtnForOrganization_clicked;
@@ -149,7 +150,7 @@ namespace JOB_IN
             organizationBtn.Text = "Organization \n  For Organization use";
             organizationBtn.ForeColor = Color.White;
             organizationBtn.BackColor = Color.FromArgb(0, 83, 156);
-            organizationBtn.Font = new Font("sans serif", 16f);
+            organizationBtn.Font = Custom.font(16);
             organizationBtn.Click += OnOrganizationBtn_clicked;
 
             // sign up as personal button
@@ -157,7 +158,7 @@ namespace JOB_IN
             personalBtn.Size = new Size(500, 500);
             personalBtn.Location = new Point(1150, 300);
             personalBtn.Text = "Person \n For personal Use";
-            personalBtn.Font = new Font("sans serif", 16f);
+            personalBtn.Font = Custom.font(16);
             personalBtn.ForeColor = Color.White;
             personalBtn.BackColor = Color.FromArgb(0, 83, 156);
             personalBtn.Click += OnPersonalBtn_clicked;
@@ -187,7 +188,7 @@ namespace JOB_IN
             orgnameLabel.Location = new Point(150, 318);
             orgnameLabel.Text = "Name";
             orgnameLabel.ForeColor = Color.White;
-            orgnameLabel.Font = new Font("sans serif", 18f);
+            orgnameLabel.Font = Custom.font(18); ;
 
             // Name Field 
             orgnameField = new RoundedTextBox2();
@@ -197,7 +198,7 @@ namespace JOB_IN
             orgnameField.Location = new Point(150, 374);
             orgnameField.PlaceholderText = "Enter your name";
             orgnameField.BorderStyle = BorderStyle.None;
-            orgnameField.Font = new Font("Sans serif", 14f);
+            orgnameField.Font = Custom.font(14);
 
 
             // Phone number label
@@ -207,7 +208,7 @@ namespace JOB_IN
             orgphoneNumLabel.Location = new Point(150, 484);
             orgphoneNumLabel.Text = "Phone Number";
             orgphoneNumLabel.ForeColor = Color.White;
-            orgphoneNumLabel.Font = new Font("sans serif", 18f);
+            orgphoneNumLabel.Font = Custom.font(18);
 
             // Phone number field 
             orgphoneNumField = new RoundedTextBox2();
@@ -217,7 +218,7 @@ namespace JOB_IN
             orgphoneNumField.Location = new Point(150, 537);
             orgphoneNumField.PlaceholderText = "09--------";
             orgphoneNumField.BorderStyle = BorderStyle.None;
-            orgphoneNumField.Font = new Font("Sans serif", 14f);
+            orgphoneNumField.Font = Custom.font(14);
 
             // Date of birth label
             orgaddressLabel = new Label();
@@ -226,7 +227,7 @@ namespace JOB_IN
             orgaddressLabel.Location = new Point(150, 637);
             orgaddressLabel.Text = "Address";
             orgaddressLabel.ForeColor = Color.White;
-            orgaddressLabel.Font = new Font("sans serif", 18f);
+            orgaddressLabel.Font = Custom.font(18);
 
             // Date of birth field
             orgaddressField = new RoundedTextBox2();
@@ -236,7 +237,7 @@ namespace JOB_IN
             orgaddressField.Location = new Point(150, 693);
             orgaddressField.PlaceholderText = "Addis Ababa";
             orgaddressField.BorderStyle = BorderStyle.None;
-            orgaddressField.Font = new Font("Sans serif", 14f);
+            orgaddressField.Font = Custom.font(14);
 
             // Email label 
             orgemailLabel = new Label();
@@ -245,7 +246,7 @@ namespace JOB_IN
             orgemailLabel.Location = new Point(1175, 318);
             orgemailLabel.Text = "Email";
             orgemailLabel.ForeColor = Color.White;
-            orgemailLabel.Font = new Font("Sans serif", 18f);
+            orgemailLabel.Font = Custom.font(18);
 
 
             // Email Field 
@@ -256,7 +257,7 @@ namespace JOB_IN
             orgemailField.Location = new Point(1175, 374);
             orgemailField.PlaceholderText = "example@gmail.com";
             orgemailField.BorderStyle = BorderStyle.None;
-            orgemailField.Font = new Font("Sans serif", 14f);
+            orgemailField.Font = Custom.font(14);
 
             // password label
             orgpasswordLabel = new Label();
@@ -265,7 +266,7 @@ namespace JOB_IN
             orgpasswordLabel.Location = new Point(1175, 484);
             orgpasswordLabel.Text = "Password";
             orgpasswordLabel.ForeColor = Color.White;
-            orgpasswordLabel.Font = new Font("Sans serif", 18f);
+            orgpasswordLabel.Font = Custom.font(18);
 
             // password field
             orgpasswordField = new RoundedTextBox2();
@@ -276,9 +277,9 @@ namespace JOB_IN
             orgpasswordField.PlaceholderText = "******";
             orgpasswordField.PasswordChar = '*';
             orgpasswordField.BorderStyle = BorderStyle.None;
-            orgpasswordField.Font = new Font("Sans serif", 14f);
+            orgpasswordField.Font = Custom.font(14);
 
-           
+
             // show and hide password button
             showPasswordBtn1 = new RoundedButton2();
             showPasswordBtn1.Anchor = AnchorStyles.None;
@@ -286,7 +287,7 @@ namespace JOB_IN
             showPasswordBtn1.Size = new Size(100, 45);
             showPasswordBtn1.Location = new Point(1610, 535);
             showPasswordBtn1.Text = "Show";
-            showPasswordBtn1.Font = new Font("Sans serif", 14f);
+            showPasswordBtn1.Font = Custom.font(14);
             showPasswordBtn1.BackColor = Color.White;
             showPasswordBtn1.FlatStyle = FlatStyle.Flat;
             showPasswordBtn1.FlatAppearance.BorderColor = Color.White;
@@ -301,7 +302,7 @@ namespace JOB_IN
             orgnextBtn.Text = "Next >>";
             orgnextBtn.BackColor = Color.Black;
             orgnextBtn.ForeColor = Color.White;
-            orgnextBtn.Font = new Font("Sans serif", 18f);
+            orgnextBtn.Font = Custom.font(18);
             orgnextBtn.FlatStyle = FlatStyle.Flat;
             orgnextBtn.FlatAppearance.BorderColor = Color.Black;
             orgnextBtn.Click += next_btn_click;
@@ -334,7 +335,7 @@ namespace JOB_IN
             aboutUsLabel.Location = new Point(47, 269);
             aboutUsLabel.Text = "About Us";
             aboutUsLabel.ForeColor = Color.Black;
-            aboutUsLabel.Font = new Font("Sans serif", 16f);
+            aboutUsLabel.Font = Custom.font(16);
 
             // about us Field
             aboutUsField = new RoundedTextBox2();
@@ -342,7 +343,7 @@ namespace JOB_IN
             aboutUsField.Size = new Size(1310, 285);
             aboutUsField.Location = new Point(47, 335);
             aboutUsField.PlaceholderText = "Enter about your company";
-            aboutUsField.Font = new Font("Sans serif", 16f);
+            aboutUsField.Font = Custom.font(16);
             aboutUsField.ForeColor = Color.Black;
             aboutUsField.Multiline = true;
             aboutUsField.ScrollBars = ScrollBars.Vertical;
@@ -356,7 +357,7 @@ namespace JOB_IN
             mediaLinkLabel.Location = new Point(47, 648);
             mediaLinkLabel.Text = "Media Link";
             mediaLinkLabel.ForeColor = Color.Black;
-            mediaLinkLabel.Font = new Font("Sans serif", 16f);
+            mediaLinkLabel.Font = Custom.font(16);
 
             // media link field
             mediaLinkField = new RoundedTextBox2();
@@ -365,7 +366,7 @@ namespace JOB_IN
             mediaLinkField.Location = new Point(57, 714);
             mediaLinkField.BackColor = Color.Black;
             mediaLinkField.PlaceholderText = "https://linkedin/";
-            mediaLinkField.Font = new Font("Sans serif", 16f);
+            mediaLinkField.Font = Custom.font(16);
             mediaLinkField.BorderStyle = BorderStyle.None;
             mediaLinkField.ForeColor = Color.LightGray;
             
@@ -380,7 +381,7 @@ namespace JOB_IN
             orgSubmitBtn.BackColor = Color.FromArgb(0, 83, 156);
             orgSubmitBtn.FlatStyle = FlatStyle.Flat;
             orgSubmitBtn.FlatAppearance.BorderColor = Color.Blue;
-            orgSubmitBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            orgSubmitBtn.Font = Custom.font(16);
             orgSubmitBtn.Click += OnorgSubmitBtn_clicked;
 
             // first under line
@@ -424,7 +425,7 @@ namespace JOB_IN
             pernameLabel.Location = new Point(150, 318);
             pernameLabel.Text = "Name";
             pernameLabel.ForeColor = Color.White;
-            pernameLabel.Font = new Font("sans serif", 18f);
+            pernameLabel.Font = Custom.font(18);
 
             // Name Field 
             pernameField = new RoundedTextBox2();
@@ -433,7 +434,7 @@ namespace JOB_IN
             pernameField.Location = new Point(150, 374);
             pernameField.PlaceholderText = "Enter your name";
             pernameField.BorderStyle = BorderStyle.None;
-            pernameField.Font = new Font("Sans serif", 14f);
+            pernameField.Font = Custom.font(14);
 
 
             // Phone number label
@@ -443,7 +444,7 @@ namespace JOB_IN
             perphoneNumLabel.Location = new Point(150, 484);
             perphoneNumLabel.Text = "Phone Number";
             perphoneNumLabel.ForeColor = Color.White;
-            perphoneNumLabel.Font = new Font("sans serif", 18f);
+            perphoneNumLabel.Font = Custom.font(18);
 
             // Phone number field 
             perphoneNumField = new RoundedTextBox2();
@@ -452,7 +453,7 @@ namespace JOB_IN
             perphoneNumField.Location = new Point(150, 537);
             perphoneNumField.PlaceholderText = "09--------";
             perphoneNumField.BorderStyle = BorderStyle.None;
-            perphoneNumField.Font = new Font("Sans serif", 14f);
+            perphoneNumField.Font = Custom.font(14);
 
             // Date of birth label
             peraddressLabel = new Label();
@@ -461,7 +462,7 @@ namespace JOB_IN
             peraddressLabel.Location = new Point(150, 637);
             peraddressLabel.Text = "Address";
             peraddressLabel.ForeColor = Color.White;
-            peraddressLabel.Font = new Font("sans serif", 18f);
+            peraddressLabel.Font = Custom.font(18);
 
             // Date of birth field
             peraddressField = new RoundedTextBox2();
@@ -470,7 +471,7 @@ namespace JOB_IN
             peraddressField.Location = new Point(150, 693);
             peraddressField.PlaceholderText = "Addis Ababa";
             peraddressField.BorderStyle = BorderStyle.None;
-            peraddressField.Font = new Font("Sans serif", 14f);
+            peraddressField.Font = Custom.font(14);
 
             // Email label 
             peremailLabel = new Label();
@@ -479,7 +480,7 @@ namespace JOB_IN
             peremailLabel.Location = new Point(1175, 318);
             peremailLabel.Text = "Email";
             peremailLabel.ForeColor = Color.White;
-            peremailLabel.Font = new Font("Sans serif", 18f);
+            peremailLabel.Font = Custom.font(18);
 
 
             // Email Field 
@@ -489,7 +490,7 @@ namespace JOB_IN
             peremailField.Location = new Point(1175, 374);
             peremailField.PlaceholderText = "example@gmail.com";
             peremailField.BorderStyle = BorderStyle.None;
-            peremailField.Font = new Font("Sans serif", 14f);
+            peremailField.Font = Custom.font(14);
 
             // password label
             perpasswordLabel = new Label();
@@ -498,7 +499,7 @@ namespace JOB_IN
             perpasswordLabel.Location = new Point(1175, 484);
             perpasswordLabel.Text = "Password";
             perpasswordLabel.ForeColor = Color.White;
-            perpasswordLabel.Font = new Font("Sans serif", 18f);
+            perpasswordLabel.Font = Custom.font(18);
 
             // password field
             perpasswordField = new RoundedTextBox2();
@@ -508,7 +509,7 @@ namespace JOB_IN
             perpasswordField.PlaceholderText = "******";
             perpasswordField.PasswordChar = '*';
             perpasswordField.BorderStyle = BorderStyle.None;
-            perpasswordField.Font = new Font("Sans serif", 14f);
+            perpasswordField.Font = Custom.font(14);
 
             // show and hide password button
             showPasswordBtn2 = new RoundedButton2();
@@ -517,7 +518,7 @@ namespace JOB_IN
             showPasswordBtn2.Size = new Size(100, 45);
             showPasswordBtn2.Location = new Point(1610, 535);
             showPasswordBtn2.Text = "Show";
-            showPasswordBtn2.Font = new Font("Sans serif", 14f);
+            showPasswordBtn2.Font = Custom.font(14);
             showPasswordBtn2.BackColor = Color.White;
             showPasswordBtn2.FlatStyle = FlatStyle.Flat;
             showPasswordBtn2.FlatAppearance.BorderColor = Color.White;
@@ -532,7 +533,7 @@ namespace JOB_IN
             pernextBtn.Text = "Next >>";
             pernextBtn.BackColor = Color.Black;
             pernextBtn.ForeColor = Color.White;
-            pernextBtn.Font = new Font("Sans serif", 18f);
+            pernextBtn.Font = Custom.font(18);
             pernextBtn.FlatStyle = FlatStyle.Flat;
             pernextBtn.FlatAppearance.BorderColor = Color.Black;
             pernextBtn.Click += personal_next_btn_click;
@@ -566,7 +567,7 @@ namespace JOB_IN
             peraboutUsLabel.Location = new Point(47, 269);
             peraboutUsLabel.Text = "About Us";
             peraboutUsLabel.ForeColor = Color.Black;
-            peraboutUsLabel.Font = new Font("Sans serif", 16f);
+            peraboutUsLabel.Font = Custom.font(16);
 
             // about us Field
             peraboutUsField = new RoundedTextBox2();
@@ -574,7 +575,7 @@ namespace JOB_IN
             peraboutUsField.Size = new Size(1310, 285);
             peraboutUsField.Location = new Point(47, 335);
             peraboutUsField.PlaceholderText = "Enter about your company";
-            peraboutUsField.Font = new Font("Sans serif", 16f);
+            peraboutUsField.Font = Custom.font(16);
             peraboutUsField.ForeColor = Color.Black;
             peraboutUsField.Multiline = true;
             peraboutUsField.ScrollBars = ScrollBars.Vertical;
@@ -588,7 +589,7 @@ namespace JOB_IN
             permediaLinkLabel.Location = new Point(47, 648);
             permediaLinkLabel.Text = "Media Link";
             permediaLinkLabel.ForeColor = Color.Black;
-            permediaLinkLabel.Font = new Font("Sans serif", 16f);
+            permediaLinkLabel.Font = Custom.font(16);
 
             // media link field
             permediaLinkField = new RoundedTextBox2();
@@ -597,7 +598,7 @@ namespace JOB_IN
             permediaLinkField.PlaceholderText = "https://linkedin/";
             permediaLinkField.Location = new Point(57, 714);
             permediaLinkField.BackColor = Color.Black;
-            permediaLinkField.Font = new Font("Sans serif", 16f, FontStyle.Regular);
+            permediaLinkField.Font = Custom.font(16);
             permediaLinkField.BorderStyle = BorderStyle.None;
             permediaLinkField.ForeColor = Color.LightGray;
 
@@ -613,7 +614,7 @@ namespace JOB_IN
             perSubmitBtn.BackColor = Color.FromArgb(0, 83, 156);
             perSubmitBtn.FlatStyle = FlatStyle.Flat;
             perSubmitBtn.FlatAppearance.BorderColor = Color.Blue; 
-            perSubmitBtn.Font = new Font("Sans serif", 16f, FontStyle.Bold);
+            perSubmitBtn.Font = Custom.font(16);
             perSubmitBtn.Click += OnperSubmitBtn_clicked;
 
             // first under line
