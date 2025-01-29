@@ -622,6 +622,7 @@ namespace JOB_IN
             // 
             // namelbl
             // 
+
             namelbl.AutoSize = true;
             namelbl.Font = new Font("Cascadia Mono", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             namelbl.Location = new Point(90, 192);

@@ -606,6 +606,7 @@ namespace JOB_IN.RJControls
 
 
 
+
     class jobDescDetail : borderedPanels
     {
         private int jobID;
@@ -617,7 +618,7 @@ namespace JOB_IN.RJControls
         private Label TotalApplicant;
         private Label PayEstimate;
         private Label Employer;
-        private topButtons Apply;
+        public topButtons Apply;
         private topButtons close;
 
         public jobDescDetail(int jid)

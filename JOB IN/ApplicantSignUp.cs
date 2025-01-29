@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -78,18 +79,25 @@ namespace JOB_IN
                 return;
             }
 
-            checkExtension(filePath);
+            if (checkExtension(filePath))
+            {
+                try
+                {
+                    ca.ApplicantCV = File.ReadAllBytes(filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error reading file: " + ex.Message);
+                    return;
+                }
+            } else
+            {
+                MessageBox.Show("Invalid file type. Please upload a PDF file.");
+                cvField.Text = "";
+            }
 
 
-            try
-            {
-                ca.ApplicantCV = File.ReadAllBytes(filePath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error reading file: " + ex.Message);
-                return;
-            }
+            
 
             string certiPath = certificationField.Text;
 
@@ -99,17 +107,24 @@ namespace JOB_IN
                 return;
             }
 
-            checkExtension(certiPath);
+            if (checkExtension(certiPath))
+            {
+                try
+                {
+                    ca.ApplicantCertificate = File.ReadAllBytes(certiPath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error reading file: " + ex.Message);
+                    return;
+                }
+            } else
+            {
+                MessageBox.Show("Invalid file type. Please upload a PDF file.");
+                certificationField.Text = "";
+            }
 
-            try
-            {
-                ca.ApplicantCertificate = File.ReadAllBytes(certiPath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error reading file: " + ex.Message);
-                return;
-            }
+            
 
             if (!int.TryParse(experienceField.Text, out int experience))
             {
@@ -160,16 +175,16 @@ namespace JOB_IN
             isPasswordVisible = !isPasswordVisible;
         }
 
-        private void checkExtension(string fileName)
+        private bool checkExtension(string fileName)
         {
             string fileExtension = Path.GetExtension(fileName).ToLower();
             string[] allowedExtensions = { ".pdf" };
 
             if (!allowedExtensions.Contains(fileExtension))
-            {
-                MessageBox.Show("Invalid file type. Please upload a PDF file.");
-                return;
+            {               
+                return false;
             }
+            return true;
         }
 
         private void OnPlusSign_clicked(object sender, EventArgs e)
