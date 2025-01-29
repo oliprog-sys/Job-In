@@ -448,6 +448,8 @@ namespace JOB_IN.RJControls
         private Label app;
         private Label jexplvl;
         public Customb Showbutton;
+        public Label pestimate;
+        
 
         public orgJobs(Job job)
         {
@@ -460,6 +462,7 @@ namespace JOB_IN.RJControls
             DeadLine = new Label();
             app = new Label();
             Showbutton = new Customb();
+            pestimate = new Label();
 
             jname.Text = "Job Name: " + job.name;
             jname.Font = Custom.font(16);
@@ -473,7 +476,7 @@ namespace JOB_IN.RJControls
 
             jdesc.Text = "Job Description: " + "\n"+job.description;
             jdesc.Font = Custom.font(12);
-            jdesc.Size = new Size(500,300);
+            jdesc.Size = new Size(500,200);
             jdesc.Location = new Point(50, 100);
 
 
@@ -482,6 +485,10 @@ namespace JOB_IN.RJControls
             app.Size = new Size(500, 30);
             app.Location = new Point(50, 300);
 
+            pestimate.Text = "Pay Estimate : " + job.payestimate+" ETB";
+            pestimate.Font = Custom.font(12);
+            pestimate.Size = new Size(500, 30);
+            pestimate.Location = new Point(50, 265);
 
 
             jreq.Text = "Job Requirement : " +"\n"+ job.requirement;
@@ -518,10 +525,12 @@ namespace JOB_IN.RJControls
             this.Controls.Add(jexplvl);
             this.Controls.Add(Showbutton);
             this.Controls.Add(jcat);
+            this.Controls.Add(pestimate); 
             this.Controls.Add(app);
             this.Controls.Add(DeadLine);
             this.Controls.Add(jdesc); 
             this.Controls.Add(jreq);
+           
             this.BackColor = Color.White;
 
 
@@ -909,7 +918,7 @@ namespace JOB_IN.RJControls
         public Customb cv;
         public Customb accept;
         public Customb reject;
-        public Customb close;
+        public Customb certificate;
 
         public Applicant_desc() { }
 
@@ -923,7 +932,7 @@ namespace JOB_IN.RJControls
             cv = new Customb();
             accept = new Customb();
             reject = new Customb();
-            close = new Customb();
+            certificate = new Customb();
 
             name.Text = "Name: " + app.name;
             name.Size = new Size(500,35);
@@ -996,17 +1005,17 @@ namespace JOB_IN.RJControls
             reject.Location = new Point(1200, 390);
             
 
-            close.Text = "Certficate";
+            certificate.Text = "Certficate";
             
-            close.Size = new Size(200, 50);
-            close.BackColor = Color.RoyalBlue;
-            close.BorderRadius = 20;
-            close.BorderSize = 0;
-            close.FlatAppearance.BorderSize = 0;
-            close.FlatStyle = FlatStyle.Flat;
-            close.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            close.ForeColor = Color.White;
-            close.Location = new Point(160, 390);
+            certificate.Size = new Size(200, 50);
+            certificate.BackColor = Color.RoyalBlue;
+            certificate.BorderRadius = 20;
+            certificate.BorderSize = 0;
+            certificate.FlatAppearance.BorderSize = 0;
+            certificate.FlatStyle = FlatStyle.Flat;
+            certificate.Font = new Font("Cascadia Mono", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            certificate.ForeColor = Color.White;
+            certificate.Location = new Point(160, 390);
 
 
             this.Controls.Add(name);
@@ -1017,7 +1026,7 @@ namespace JOB_IN.RJControls
             this.Controls.Add(cv);
             this.Controls.Add(accept);
             this.Controls.Add(reject);
-            this.Controls.Add(close);
+            this.Controls.Add(certificate);
             this.BackColor = Color.White;
             this.Size = new Size(1405,500);
           
@@ -1031,7 +1040,12 @@ namespace JOB_IN.RJControls
         public Label experience;
         public Label skill_desc;
         public Label work_Status;
-       
+        public Customb cv;
+        public Customb accept;
+        public Customb reject;
+        public Customb certificate;
+
+
         public Label acceptance_status;
        
 
@@ -1044,7 +1058,8 @@ namespace JOB_IN.RJControls
             experience = new Label();
             skill_desc = new Label();
             work_Status = new Label();
-           acceptance_status = new Label();
+            acceptance_status = new Label();
+
 
             name.Text = "Name: " + app.name;
             name.Size = new Size(500, 35);
@@ -1104,7 +1119,7 @@ namespace JOB_IN.RJControls
             
             // this.Controls.Add(close);
             this.BackColor = Color.White;
-            this.Size = new Size(1405, 300);
+            this.Size = new Size(1405, 400);
 
 
         }

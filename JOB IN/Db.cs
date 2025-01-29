@@ -19,7 +19,7 @@ namespace JOB_IN
         static string ConnectionString = "Data Source=.;Initial Catalog=Job_in;Integrated Security=True;";
         public static bool InsertApplicant()
         {
-            applicants b = new applicants("abebe", "091121", DateTime.Now, "abebe@gmail.com", "abebe11", "abe in the house", "abe likes work", "abe no work", 2, "notworking");
+            applicants b = new applicants("abebe", "091121", DateTime.Now, "abebe@gmail.com", "abebe11", "abe in the house", "abe likes work", "abe no work", 2, "notworking", null, null);
             int r;
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -84,7 +84,7 @@ namespace JOB_IN
                 command.Connection = conn;
                 s = command.ExecuteReader();
                 s.Read();
-                app = new applicants(s["Name"].ToString(), s["Phone_num"].ToString(), (DateTime)s["DOB"], s["AEmail"].ToString(), s["Password"].ToString(), s["Job_category"].ToString(), s["Skill_description"].ToString(), s["Job_category"].ToString(), (int)s["Experience"], s["Work_status"].ToString());
+                app = new applicants(s["Name"].ToString(), s["Phone_num"].ToString(), (DateTime)s["DOB"], s["AEmail"].ToString(), s["Password"].ToString(), s["Job_category"].ToString(), s["Skill_description"].ToString(), s["Job_category"].ToString(), (int)s["Experience"], s["Work_status"].ToString(), (byte[])s["CV"], (byte[])s["AppCertificate"]);
 
 
             }
@@ -109,7 +109,7 @@ namespace JOB_IN
                 command.Connection = conn;
                 s = command.ExecuteReader();
                 s.Read();
-                app = new Job((int)s["Job_id"], s["Job_name"].ToString(), s["Job_category"].ToString(), s["OEmail"].ToString(), (int)s["capacity"], s["Requirement"].ToString(), s["Job_description"].ToString(), (DateTime)s["Deadline"], (int)s["job_exp_level"]);
+                app = new Job((int)s["Job_id"], s["Job_name"].ToString(), s["Job_category"].ToString(), s["OEmail"].ToString(), (int)s["capacity"], s["Requirement"].ToString(), s["Job_description"].ToString(), (DateTime)s["Deadline"], (int)s["job_exp_level"], (int)s["payestimate"]);
 
 
 
@@ -176,7 +176,7 @@ namespace JOB_IN
                 conn.Open();
                 SqlCommand command = conn.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "insert into Jobs(Job_description,Requirement,capacity, Deadline, OEmail, Job_name, Job_category,job_exp_level) values(@1,@2,@3,@4,@5,@6,@7,@8);";
+                command.CommandText = "insert into Jobs(Job_description,Requirement,capacity, Deadline, OEmail, Job_name, Job_category,job_exp_level,payestimate) values(@1,@2,@3,@4,@5,@6,@7,@8,@9);";
                 command.Parameters.AddWithValue("@1", job.description);
                 command.Parameters.AddWithValue("@2", job.requirement);
                 command.Parameters.AddWithValue("@3", job.capacity);
@@ -185,6 +185,7 @@ namespace JOB_IN
                 command.Parameters.AddWithValue("@6", job.name);
                 command.Parameters.AddWithValue("@7", job.category);
                 command.Parameters.AddWithValue("@8", job.Explevel);
+                command.Parameters.AddWithValue("@9", job.Explevel);
                 a = command.ExecuteNonQuery();
             }
             if (a == 1)
@@ -240,7 +241,7 @@ namespace JOB_IN
                 SqlDataReader a = command.ExecuteReader();
                 while (a.Read())
                 {
-                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"], (int)a["job_exp_level"]));
+                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"], (int)a["job_exp_level"], (int)a["payestimate"]));
                 }
             }
 
@@ -263,7 +264,7 @@ namespace JOB_IN
                 SqlDataReader a = command.ExecuteReader();
                 while (a.Read())
                 {
-                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"], (int)a["job_exp_level"]));
+                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"], (int)a["job_exp_level"], (int)a["payestimate"]));
                 }
             }
 
@@ -285,7 +286,7 @@ namespace JOB_IN
                 SqlDataReader a = command.ExecuteReader();
                 while (a.Read())
                 {
-                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"], (int)a["job_exp_level"]));
+                    arrayList.Add(new Job((int)a["Job_id"], a["Job_name"].ToString(), a["Job_category"].ToString(), a["OEmail"].ToString(), (int)a["capacity"], a["requirement"].ToString(), a["Job_description"].ToString(), (DateTime)a["Deadline"], (int)a["job_exp_level"], (int)a["payestimate"]));
                 }
             }
 
@@ -400,7 +401,7 @@ namespace JOB_IN
                 while (s.Read())
                 {
 
-                    app = new Job((int)s["Job_id"], s["Job_name"].ToString(), s["Job_category"].ToString(), s["OEmail"].ToString(), (int)s["capacity"], s["Requirement"].ToString(), s["Job_description"].ToString(), (DateTime)s["Deadline"], (int)s["job_exp_level"]);
+                    app = new Job((int)s["Job_id"], s["Job_name"].ToString(), s["Job_category"].ToString(), s["OEmail"].ToString(), (int)s["capacity"], s["Requirement"].ToString(), s["Job_description"].ToString(), (DateTime)s["Deadline"], (int)s["job_exp_level"], (int)s["payestimate"]);
                     arrayList.Add(app);
                 }
 
@@ -448,10 +449,12 @@ namespace JOB_IN
         public string job_description;
         public int experience;
         public string work_status;
+        public byte[] cv;
+        public byte[] certificateFile;
         // CV varbinary(max) not null,
         // Photo varbinary
 
-        public applicants( string name, string PhoneNum, DateTime dob, string email, string password, string category, string skill_description, string job_description, int experience, string work_status)
+        public applicants( string name, string PhoneNum, DateTime dob, string email, string password, string category, string skill_description, string job_description, int experience, string work_status, byte[] cv, byte[] certificateFile)
         {
             this.name = name; 
             this.PhoneNum = PhoneNum;
@@ -463,6 +466,8 @@ namespace JOB_IN
             this.job_description = job_description;
             this.experience = experience;
             this.work_status = work_status;
+            this.cv = cv;
+            this.certificateFile = certificateFile;
 
         }
         public applicants(SqlDataReader s)
@@ -477,6 +482,7 @@ namespace JOB_IN
             this.job_description = s["Job_category"].ToString();
             this.experience = (int)s["Experience"];
             this.work_status = s["Work_status"].ToString();
+            this.cv = (byte[])s["CV"];
 
         }
 
@@ -495,9 +501,10 @@ namespace JOB_IN
         public string description;
         public DateTime Deadline;
         public int Explevel;
+        public int payestimate;
         public Job(){ }
 
-        public Job(int id, string name, string category, string oEmail, int capacity, string requirement, string description, DateTime deadline,int Explevel)
+        public Job(int id, string name, string category, string oEmail, int capacity, string requirement, string description, DateTime deadline,int Explevel,int payestimate)
         {
             this.id = id;
             this.name = name;
@@ -508,6 +515,7 @@ namespace JOB_IN
             this.description = description;
             Deadline = deadline;
             this.Explevel = Explevel;
+            this.payestimate = payestimate;
         }   
     }
 

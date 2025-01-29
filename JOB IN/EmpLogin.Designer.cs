@@ -4,6 +4,7 @@ using JOB_IN.RJControls;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Drawing;
+using System.Diagnostics;
 
 
 namespace JOB_IN
@@ -340,6 +341,24 @@ namespace JOB_IN
             catcb.Size = new Size(350, 35);
             //catcb.TabIndex = 8;
             postpanel.Controls.Add(catcb);
+
+            payelbl = new Label();
+            payelbl.AutoSize = true;
+            payelbl.Font = new Font("Cascadia Code", 13.8F, FontStyle.Bold);
+            payelbl.ForeColor = Color.White;
+            payelbl.Location = new Point(831, 440);
+            payelbl.Anchor = AnchorStyles.None;
+            payelbl.Size = new Size(221, 30);
+            payelbl.Text = "Pay Estimate ";
+            postpanel.Controls.Add(payelbl);
+
+            payetxt = new TextBox();
+            payetxt.BackColor= Color.White;
+            payetxt.Font = new Font("Cascadia Mono", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);   
+            payetxt.Location = new Point(1070, 440);
+            payetxt.Size = new Size(350, 35);
+            postpanel.Controls.Add(payetxt);
+
 
 
             jname = new Label();
@@ -867,7 +886,7 @@ namespace JOB_IN
         private Label b; 
         private void postJob(object sender, EventArgs e)
         {
-            if (jnametxt.Text == "" || roundedTextBox2.Text == "" || roundedTextBox3.Text == "" || catcb.Text == "")
+            if (jnametxt.Text == "" || roundedTextBox2.Text == "" || roundedTextBox3.Text == "" || catcb.Text == ""||payetxt.Text=="")
             {
 
                 MessageBox.Show("Please Enter All Spaces Provided");
@@ -888,6 +907,7 @@ namespace JOB_IN
                 job.oEmail = org.email;
                 job.Deadline = deadl.Value;
                 job.Explevel = (int)excomp.Value;
+                job.payestimate = int.Parse(payetxt.Text);
                 bool success = Db.insertJob(job);
                 if (success)
                 {
@@ -975,6 +995,8 @@ namespace JOB_IN
         private Customb eback;
         private bool proclicked;
 
+        private Label payelbl;
+        private TextBox payetxt;
         
 
 
@@ -984,27 +1006,43 @@ namespace JOB_IN
         public void joblist(Form f)
         {
             ArrayList arr = Db.fetchOrgJobs(org.email);
-            
-           foreach(Job i in arr)
-            {   
-                orgJobs j = new orgJobs(i);
-                if (i.Deadline > DateTime.Now)
-                {
-                    jobpanel.Controls.Add(j);
-                    j.Showbutton.Click += (s, e) => applicants_list(s, e, i, f);
-                }else if (i.Deadline <= DateTime.Now)
-                {
+            if (arr.Count == 0) {
+                Label lbl = new Label();
+                lbl.Text = "No one Job has been posted";
+                lbl.Font = Custom.font(24);
+                lbl.Size = new Size(900, 400);
+                lbl.Location = new Point(500, 400);
+                lbl.Anchor = AnchorStyles.None;
+                lbl.Dock = DockStyle.Fill;
+                jobpanel.Controls.Add(lbl);
 
-                    j.Size = new Size(1430, 350);
-                    historypanel.Controls.Add(j);
-                  
-                    j.Anchor = AnchorStyles.None;
-                    historypanel.BackColor = Color.FromArgb(255, 135, 206, 235);
-                   
-                    j.Showbutton.Click += (s, e) => applicants_list2(s, e, i, f);
+
+
+            }
+            else
+            {
+                foreach (Job i in arr)
+                {
+                    orgJobs j = new orgJobs(i);
+                    if (i.Deadline > DateTime.Now)
+                    {
+                        jobpanel.Controls.Add(j);
+                        j.Showbutton.Click += (s, e) => applicants_list(s, e, i, f);
+                    }
+                    else if (i.Deadline <= DateTime.Now)
+                    {
+
+                        j.Size = new Size(1430, 350);
+                        historypanel.Controls.Add(j);
+
+                        j.Anchor = AnchorStyles.None;
+                        historypanel.BackColor = Color.FromArgb(255, 135, 206, 235);
+
+                        j.Showbutton.Click += (s, e) => applicants_list2(s, e, i, f);
+                    }
                 }
             }
-        }
+        } 
 
         private void applicants_list2(object s, EventArgs e, Job i, Form f)
         {
@@ -1090,7 +1128,7 @@ namespace JOB_IN
             scroll.Controls.Add(x);
             scroll.AutoScroll = true;
 
-            ArrayList arr = Db.applied_list2(j.id);
+            ArrayList arr = Db.applied_list(j.id);
             if (arr.Count == 0) { 
            
                 Label lbl = new Label();
@@ -1117,10 +1155,10 @@ namespace JOB_IN
 
 
 
-                    //cv.Click+=
+                    d.cv.Click +=(sender,e)=> show_cv(sender,e,a.cv);
                     d.accept.Click += (sender, e) => accepted(sender, e, j.id, a.email);
                     d.reject.Click += (sender, e) => rejected(sender, e, j.id, a.email);
-                    d.close.Click += closed;
+                    d.certificate.Click +=(sender,e)=> showcertificate(sender,e,a.certificateFile);
 
                 }
             }
@@ -1129,6 +1167,20 @@ namespace JOB_IN
             scroll.Location = new Point(150, 105);
             f.Controls.Add(scroll);
             scroll.BringToFront();
+        }
+
+        private void showcertificate(object sender, EventArgs e, byte[]a)
+        {
+            string tempfilepath = "D:\\hello1" + ".pdf";
+            File.WriteAllBytes(tempfilepath, a);
+            Process.Start(new ProcessStartInfo { FileName = tempfilepath, UseShellExecute = true });
+        }
+
+        private void show_cv(object sender, EventArgs e, byte[]a)
+        {
+           string tempfilepath = "D:\\hello1" + ".pdf";
+            File.WriteAllBytes(tempfilepath, a);
+            Process.Start(new ProcessStartInfo { FileName = tempfilepath, UseShellExecute= true });
         }
 
         private void close_the_scroll(object sender, EventArgs e,borderedscrollPanels s)
