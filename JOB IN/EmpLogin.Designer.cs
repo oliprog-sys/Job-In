@@ -1014,6 +1014,8 @@ namespace JOB_IN
             if (arr.Count == 0) {
                 Label lbl = new Label();
                 lbl.Text = "No one Job has been posted";
+                lbl.ForeColor = Color.White;
+
                 lbl.Font = Custom.font(24);
                 lbl.Size = new Size(900, 400);
                 lbl.Location = new Point(500, 400);
