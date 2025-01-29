@@ -609,6 +609,7 @@ namespace JOB_IN
             statusPane.BringToFront();
             job_history_adder("all");
 
+
         }
 
         private void profile_nav_MouseClick(object? sender, EventArgs e)
