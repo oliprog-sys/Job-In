@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -21,6 +22,15 @@ namespace JOB_IN
 
         private Label companyname1;
         private Panel panel1;
+
+        public TextBox edit_name;
+
+        public TextBox edit_phone;
+
+        public TextBox edit_exp;
+
+        public TextBox edit_bio;
+
         public ApplicantHomepage(applicants ap)
         {
             applicant = ap;
@@ -51,6 +61,8 @@ namespace JOB_IN
 
             profile = new topButtons(0);
             profilePane = new borderedPanels();
+
+            editpanel = new borderedPanels();
 
             subMain = new borderedPanels();
             
@@ -204,30 +216,41 @@ namespace JOB_IN
             profilePane.Location = new Point(10, 10);
             profilePane.BorderStyle = BorderStyle.None;
 
-            Panel profileImg = new Panel();
+
+            editpanel.Anchor = AnchorStyles.None;
+            editpanel.AutoScroll = true;
+            editpanel.BackColor = Color.Coral;
+            editpanel.Size = new Size(1600, 805);
+            editpanel.Location = new Point(-700, -320);
+            editpanel.BorderStyle = BorderStyle.None;
+            
+
+            PictureBox profileImg = new PictureBox();
             Label UserNameL = new Label();
             Label Email = new Label();
             Label PhoneNum = new Label();
             Label Status = new Label();
             Label Bio = new Label();
             borderedPanels BioP = new borderedPanels();
-            TextBox bioT = new TextBox();
+            Label bioT = new Label();
             Label Experience = new Label();
             Label CV = new Label();
-            borderedPanels cvP = new borderedPanels();
+            topButtons cvP = new topButtons(0);
             borderedscrollPanels cvs = new borderedscrollPanels();
             Label CertificationsLabel = new Label();
-            borderedPanels CertificationPanel = new borderedPanels();
-            borderedscrollPanels CertificationScroll = new borderedscrollPanels();
+            topButtons Certification = new topButtons(0);
+           // borderedscrollPanels CertificationScroll = new borderedscrollPanels();
             topButtons edit = new topButtons(0);
-            topButtons addCertification = new topButtons(Color.AliceBlue, Color.Coral);
+           // topButtons Certification = new topButtons(Color.AliceBlue, Color.Coral);
             //Label UserName = new Label();
 
             profileImg.Size = new Size(140, 140);
             profileImg.Location = new Point(40, 25);
             profileImg.BorderStyle = BorderStyle.None;  
-            profileImg.BackColor = Color.OrangeRed;
-       //     profileImg.Controls.Add(new Label("profile image"));
+            //profileImg.BackColor = Color.OrangeRed;
+            profileImg.Load(Application.StartupPath + "..\\..\\..\\Image\\png-clipart-logo-house-home-house-angle-building.png");
+
+            //     profileImg.Controls.Add(new Label("profile image"));
 
             UserNameL.Text = "Name: "+applicant.name;
             UserNameL.Anchor = AnchorStyles.None;
@@ -245,7 +268,7 @@ namespace JOB_IN
             PhoneNum.Anchor = AnchorStyles.None;
             PhoneNum.Font = Custom.font(15);
             PhoneNum.Location = new Point(40, 250);
-            PhoneNum.Size = new Size(200, 40);
+            PhoneNum.Size = new Size(400, 40);
 
             Status.Text = "Status: " + applicant.work_status;
             Status.Anchor = AnchorStyles.None;
@@ -266,9 +289,10 @@ namespace JOB_IN
             BioP.BackColor = Color.Coral;
 
             bioT.Text = applicant.skill_description;
-            bioT.Anchor = AnchorStyles.None;    
+            bioT.Anchor = AnchorStyles.None;
+            bioT.ForeColor = Color.White;
+            bioT.Font = Custom.font(12);
             bioT.AllowDrop = true;
-            bioT.Multiline = true;
             bioT.Size = new Size(350,160);
             bioT.BorderStyle = BorderStyle.None;
             bioT.Location = new Point(25, 20);
@@ -286,34 +310,28 @@ namespace JOB_IN
             CV.Location = new Point(900, 40);
             CV.Size = new Size(400, 30);
 
-            cvP.Size = new Size(400, 200);
-            cvP.Location = new Point(880, 70);
+            cvP.Size = new Size(290, 50);
+            cvP.Text = "View";
+            cvP.Font = Custom.font(17);
+            cvP.Location = new Point(880, 80);
             cvP.Anchor = AnchorStyles.None;
-            cvP.BackColor = Color.Coral;
+            cvP.Click += (sender, e) => show_cv(sender, e, applicant.cv);
+           
 
-            CertificationsLabel.Text = "Certifications";
+            CertificationsLabel.Text = "Certification";
             CertificationsLabel.Anchor = AnchorStyles.None;
             CertificationsLabel.Font = Custom.font(15);
-            CertificationsLabel.Location = new Point(900, 300);
+            CertificationsLabel.Location = new Point(900, 140);
             CertificationsLabel.Size = new Size(400, 30);
 
-            CertificationScroll.Size = new Size(400, 130);
-            CertificationScroll.Location = new Point(3, 3);
-            CertificationScroll.Anchor = AnchorStyles.None;
-            CertificationScroll.BackColor = Color.FromArgb(0,Color.White);
-
-            addCertification.Anchor = AnchorStyles.None;
-            addCertification.Size = new Size(180, 40);
-            addCertification.Text = "Add";
-            addCertification.Location = new Point(180, 150);
+            Certification.Anchor = AnchorStyles.None;
+            Certification.Size = new Size(290, 50);
+            Certification.Font = Custom.font(17);
+            Certification.Text = "View";
+            Certification.Location = new Point(880, 180);
+            Certification.Click += (sender, e) => showcertificate(sender, e, applicant.certificateFile);
             
 
-            CertificationPanel.Size = new Size(400, 200);
-            CertificationPanel.Location = new Point(880, 350);
-            CertificationPanel.Anchor = AnchorStyles.None;
-            CertificationPanel.BackColor = Color.Coral;
-            CertificationPanel.Controls.Add(CertificationScroll);
-            CertificationPanel.Controls.Add(addCertification);
 
 
             edit.Anchor = AnchorStyles.None;
@@ -321,6 +339,7 @@ namespace JOB_IN
             edit.Text = "Edit";
             edit.Size = new Size(290, 50);
             edit.Location = new Point(935, 600);
+            edit.Click += edit_click;
 
             profilePane.Controls.Add(profileImg);
             profilePane.Controls.Add(UserNameL);
@@ -333,7 +352,7 @@ namespace JOB_IN
             profilePane.Controls.Add(CV);
             profilePane.Controls.Add(cvP);
             profilePane.Controls.Add(CertificationsLabel);
-            profilePane.Controls.Add(CertificationPanel);
+            profilePane.Controls.Add(Certification);
             profilePane.Controls.Add(edit);
             edit.BringToFront();
 
@@ -385,6 +404,9 @@ namespace JOB_IN
             subMain.Controls.Add(statusPane);
             subMain.Controls.Add(profilePane);
             MainPanel.Controls.Add(subMain);
+            MainPanel.Controls.Add(editpanel);
+            editpanel.Hide();
+            
 
             MainPanel.Anchor = AnchorStyles.None;
             MainPanel.BackColor = Color.White;
@@ -409,6 +431,12 @@ namespace JOB_IN
             this.FormClosing += CloseApp;
 
 
+        }
+
+        private void edit_click(object? sender, EventArgs e)
+        {
+           editpanel.Show();
+            editpanel.BringToFront();
         }
 
         private void pending_button_nav(object? sender, EventArgs e)
@@ -472,6 +500,9 @@ namespace JOB_IN
                     noResult.Text = "No results found...";
                     noResult.BackColor = Color.FromArgb(0, Color.White);
                     noResult.Location = new Point(400, 80);
+                    
+                   
+
                     wrap.Controls.Add(noResult);
                     searchResultsPane.Controls.Add(wrap);
                 }
@@ -482,6 +513,7 @@ namespace JOB_IN
 
                         jobDesc jd = new jobDesc(j.name, j.description, j.requirement);
                         //jd.Size = new Size(1100, 400);
+                        jd.more.Location = new Point(930, 230);
                         jd.more.Click += (sender, e) => jobExpand(sender, e, j.id);
                         searchResultsPane.Controls.Add(jd);
                     }
@@ -782,6 +814,19 @@ namespace JOB_IN
             f.activeForm.Controls.Remove(this);
             this.Hide();
           
+        }
+        private void showcertificate(object sender, EventArgs e, byte[] a)
+        {
+            string tempfilepath = Application.StartupPath + "..\\..\\..\\cv\\certificate" + ".pdf";
+            File.WriteAllBytes(tempfilepath, a);
+            Process.Start(new ProcessStartInfo { FileName = tempfilepath, UseShellExecute = true });
+        }
+
+        private void show_cv(object sender, EventArgs e, byte[] a)
+        {
+            string tempfilepath = Application.StartupPath + "..\\..\\..\\cv\\cv" + ".pdf";
+            File.WriteAllBytes(tempfilepath, a);
+            Process.Start(new ProcessStartInfo { FileName = tempfilepath, UseShellExecute = true });
         }
     }
 

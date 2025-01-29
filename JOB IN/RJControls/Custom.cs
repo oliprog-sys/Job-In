@@ -561,23 +561,23 @@ namespace JOB_IN.RJControls
 
 
             jobName.Anchor = AnchorStyles.None;
-            jobName.Font = Custom.font(29);
-            jobName.Size = new Size(200, 60);
-            jobName.Text = JobName;
-            jobName.BackColor = Color.AliceBlue;
+            jobName.Font = Custom.font(24);
+            jobName.Size = new Size(600, 60);
+            jobName.Text ="Job Name: " +JobName;
+            //jobName.BackColor = Color.AliceBlue;
             jobName.Location = new Point(-550, -70);
 
             jobDescription.Anchor = AnchorStyles.None;
             jobDescription.Font = Custom.font(14);
-            jobDescription.Size = new Size(200, 60);
-            jobDescription.Text = JobDescription;
+            jobDescription.Size = new Size(600, 70);
+            jobDescription.Text ="Job Description:\n"+ JobDescription;
             jobDescription.Location = new Point(-500, 30);
 
             jobRequirement.Anchor = AnchorStyles.None;
-            jobRequirement.Font = Custom.font(20);
-            jobRequirement.Size = new Size(400, 60);
-            jobRequirement.Text = JobRequirement;
-            jobRequirement.Location = new Point(-525, 80);
+            jobRequirement.Font = Custom.font(16);
+            jobRequirement.Size = new Size(800, 60);
+            jobRequirement.Text = "Job Requirement: "+JobRequirement;
+            jobRequirement.Location = new Point(-545, 100);
 
             more.Anchor = AnchorStyles.None;
             more.Font = Custom.font(17);
@@ -835,42 +835,42 @@ namespace JOB_IN.RJControls
 
 
             jobName.Anchor = AnchorStyles.None;
-            jobName.Font = Custom.font(17);
-            jobName.Size = new Size(120, 40);
-            jobName.Text = JobName;
+            jobName.Font = Custom.font(14);
+            jobName.Size = new Size(250, 70);
+            jobName.Text = "Job Name: " + JobName;
             //jobName.BackColor = Color.Red;
-            jobName.Location = new Point(-350, -20);
+            jobName.Location = new Point(-400, -20);
             //  jobName.Click += Enlarge;
 
             employer.Anchor = AnchorStyles.None;
-            employer.Font = Custom.font(12);
-            employer.Size = new Size(120, 40);
-            employer.Text = Employer;
-            employer.Location = new Point(-350, 40);
+            employer.Font = Custom.font(10);
+            employer.Size = new Size(250, 70);
+            employer.Text ="Org. email: "+ Employer;
+            employer.Location = new Point(-400, 60);
             //employer.BackColor = Color.Blue;
             // employer.Click += Enlarge;
 
             jobType.Anchor = AnchorStyles.None;
-            jobType.Font = Custom.font(12);
-            jobType.Size = new Size(120, 40);
-            jobType.Text = JobType;
+            jobType.Font = Custom.font(10);
+            jobType.Size = new Size(225, 70);
+            jobType.Text = "Job Category: "+ JobType;
             jobType.Location = new Point(0, -20);
             //jobType.BackColor = Color.Blue;
             // jobType.Click += Enlarge;
 
             jobRequirement.Anchor = AnchorStyles.None;
-            jobRequirement.Font = Custom.font(11);
-            jobRequirement.Size = new Size(140, 40);
-            jobRequirement.Text = JobRequirement;
-            jobRequirement.Location = new Point(0, 40);
+            jobRequirement.Font = Custom.font(10);
+            jobRequirement.Size = new Size(225, 70);
+            jobRequirement.Text = "Job requirement: " + JobRequirement;
+            jobRequirement.Location = new Point(0, 60);
             //jobRequirement.BackColor = Color.Blue;
             //  jobRequirement.Click += Enlarge;
 
             deadline.Anchor = AnchorStyles.None;
             deadline.Font = Custom.font(10);
-            deadline.Size = new Size(200, 60);
-            deadline.Text = Deadline;
-            deadline.Location = new Point(400, -20);
+            deadline.Size = new Size(200, 70);
+            deadline.Text ="Deadline: \n" + Deadline;
+            deadline.Location = new Point(450, -20);
             //deadline.BackColor = Color.Blue;
             // deadline.Click += Enlarge;
 

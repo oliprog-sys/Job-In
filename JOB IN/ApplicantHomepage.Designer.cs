@@ -40,6 +40,7 @@ namespace JOB_IN
         private borderedPanels statusPane;
         private borderedPanels subMain;
         private borderedPanels profilePane;
+        private borderedPanels editpanel;
         private Panel MainPanel;
 
       
