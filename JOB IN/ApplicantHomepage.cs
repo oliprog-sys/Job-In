@@ -592,6 +592,8 @@ namespace JOB_IN
         {
             selectedButton("jobs");
             jobsPane.BringToFront();
+            jobsPane.Controls.Clear();
+            this.job_list_adder();
            
         }
 
@@ -634,7 +636,7 @@ namespace JOB_IN
 
                 Label l = new Label();
                 l.ForeColor = Color.Black;
-                l.Text = "No jobs available, Try again later";
+                l.Text = "No "+applicant.category+" jobs available, Try again later";
                 l.Font = Custom.font(24);
                 l.Anchor = AnchorStyles.None;
                 l.Size = new Size(1200, 60);
