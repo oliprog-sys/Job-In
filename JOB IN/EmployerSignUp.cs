@@ -33,6 +33,16 @@ namespace JOB_IN
 
         private void next_btn_click(object sender, EventArgs e)
         {
+
+            int length = orgphoneNumField.Text.Length;
+
+            if (length != 10 && length != 0)
+            {
+                MessageBox.Show("Please enter 10 digit phone number");
+                return;
+            }
+
+
             organizationPanel.Hide();
             backBtn.Visible = true;
             signUpAsPanel.BackColor = Color.FromArgb(0, 83, 156);
@@ -97,6 +107,14 @@ namespace JOB_IN
         // personal panel
         private void personal_next_btn_click(Object sender, EventArgs e)
         {
+            int length = perphoneNumField.Text.Length;
+
+            if (length != 10 && length != 0)
+            {
+                MessageBox.Show("Please enter 10 digit phone number");
+                return;
+            }
+
             personalPanel.Hide();
             backBtn.Visible = true;
             signUpAsPanel.BackColor = Color.FromArgb(0, 83, 156);

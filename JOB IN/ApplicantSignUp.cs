@@ -25,19 +25,28 @@ namespace JOB_IN
 
         private void next_btn_click(object sender, EventArgs e)
         {
+
+            int length = phoneNumField.Text.Length;
+
+            if (length != 10 && length != 0)
+            {
+                MessageBox.Show("Please enter 10 digit phone number");
+                return;
+            }
+
             infoPanel.Hide();
             backBtn.Visible = true;
             titlePanel.BackColor = Color.FromArgb(238, 164, 127);            
             mainPanel1.Controls.Add(infoPanel2);
-            infoPanel2.Show();
+            infoPanel2.Show();            
         }
 
         private void OnbackBtn_clicked(object sender, EventArgs e)
-        {
+        {            
             backBtn.Visible = false;
             infoPanel2.Hide();
             titlePanel.BackColor = Color.White;
-            infoPanel.Show();
+            infoPanel.Show();           
         }
 
         //private void onUploadBtn_clicked(object sender, EventArgs e)
@@ -64,8 +73,8 @@ namespace JOB_IN
 
         private void OnSubmitBtn_clicked(Object sender, EventArgs e)
         {
-            ca.ApplicantName = nameField.Text;
-            ca.ApplicantPhoneNum = phoneNumField.Text;
+            ca.ApplicantName = nameField.Text;            
+            ca.ApplicantPhoneNum = phoneNumField.Text;            
             ca.ApplicantDOB = DobField.Text;
             ca.ApplicantEmail = emailField.Text;
             ca.ApplicantPassword = passwordField.Text;
