@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using BCrypt.Net;
 
 
 namespace JOB_IN
@@ -251,7 +252,8 @@ namespace JOB_IN
                         com.Parameters.AddWithValue("@ApPhone", ca.ApplicantPhoneNum);
                         com.Parameters.AddWithValue("@ApDob", ca.ApplicantDOB);
                         com.Parameters.AddWithValue("@ApEmail", ca.ApplicantEmail);
-                        com.Parameters.AddWithValue("@ApPassword", ca.ApplicantPassword);
+                        string hashedpass = BCrypt.Net.BCrypt.HashPassword(ca.ApplicantPassword);
+                        com.Parameters.AddWithValue("@ApPassword", hashedpass);
                         com.Parameters.AddWithValue("@ApSkill", ca.ApplicantSkillDesc);
                         com.Parameters.AddWithValue("@ApJob", ca.ApplicantJobCategory);
                         com.Parameters.AddWithValue("@ApExper", ca.ApplicantExperience);
