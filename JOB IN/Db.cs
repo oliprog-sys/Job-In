@@ -49,22 +49,25 @@ namespace JOB_IN
         public static bool check(string email, string password)
         {
             Object r;
+            bool c;
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 SqlCommand command = conn.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "select count (*) from Applicant where AEmail=@1 and Password=@2;";
+                command.CommandText = "select Password from Applicant where AEmail=@1;";
                 command.Parameters.AddWithValue("@1", email);
-                string hashed = BCrypt.Net.BCrypt.HashPassword(password);
-                command.Parameters.AddWithValue("@2", hashed);
+                //string hashed = BCrypt.Net.BCrypt.HashPassword(password);
+                //command.Parameters.AddWithValue("@2", hashed);
 
                 //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
                 command.Connection = conn;
                 r = command.ExecuteScalar();
+                string p = r.ToString();
+                c = BCrypt.Net.BCrypt.Verify(password, p);
 
             }
-            if ((int)r == 1)
+            if (c == true)
             {
                 return true;
             }
@@ -150,22 +153,25 @@ namespace JOB_IN
         public static bool checkOrganization(string email, string password)
         {
             Object r;
+            bool c;
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 SqlCommand command = conn.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "select count (*) from Organization where OEmail=@1 and Password=@2;";
+                command.CommandText = "select Password from Organization where OEmail=@1;";
                 command.Parameters.AddWithValue("@1", email);
-                string hashed = BCrypt.Net.BCrypt.HashPassword(password);
-                command.Parameters.AddWithValue("@2", hashed);
+                //string hashed = BCrypt.Net.BCrypt.HashPassword(password);
+                //command.Parameters.AddWithValue("@2", hashed);
 
                 //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
                 command.Connection = conn;
                 r = command.ExecuteScalar();
+                string p = r.ToString();
+                c = BCrypt.Net.BCrypt.Verify(password, p);
 
             }
-            if ((int)r == 1)
+            if (c == true)
             {
                 return true;
             }
