@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Diagnostics;
 using Microsoft.VisualBasic.Devices;
 using Microsoft.VisualBasic.Logging;
+using System.Data.SqlClient;
 
 
 namespace JOB_IN
@@ -58,7 +59,7 @@ namespace JOB_IN
             profilebackp = new borderedPanels();
             historybackp = new borderedPanels();
             Jobbackp = new borderedPanels();
-            historypanel = new borderedPanels();
+            historypanel = new borderedscrollPanels();
             profilepanel = new borderedPanels();
             editbtn = new Customb();
             smpanel = new borderedPanels();
@@ -420,6 +421,8 @@ namespace JOB_IN
             panel1.Size = new Size(1610, 104);
             panel1.TabIndex = 3;
             // 
+            
+
             // postbackp
             // 
             postbackp.BorderRadius = 10;
@@ -469,6 +472,7 @@ namespace JOB_IN
             historypanel.Location = new Point(47, 125);
             historypanel.Name = "historypanel";
             historypanel.Size = new Size(1434, 689);
+            historypanel.AutoScroll = true;
             historypanel.TabIndex = 1;
             // 
             // profilepanel
@@ -530,12 +534,13 @@ namespace JOB_IN
             sminp.Dock = DockStyle.Fill;
             sminp.FlowDirection = FlowDirection.TopDown;
 
-            smlink = new LinkLabel();
+            smlink = new Label();
             smlink.AutoSize = true;
             smlink.Font = new Font("Cascadia Mono", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smlink.Location = new Point(20,30 );
             
             smlink.Size = new Size(305, 37);
+           
             sminp.Controls.Add(smlink); 
            smpanel.Controls.Add(sminp);
 
@@ -797,7 +802,23 @@ namespace JOB_IN
 
             profilepanel.Controls.Add(editpan);
 
+            text = new borderedPanels();
+            text.Size= new Size(1500, 90);
+            text.Dock = DockStyle.Fill;
+            text.BackColor= Color.LightGray;
+            text.BorderRadius = 15;
 
+            Label j = new Label();
+            j.Text = " Applicant List";
+            j.Size = new Size(500, 60);
+            j.Location = new Point(500, 20);
+            j.Font = Custom.font(30);
+            j.ForeColor = Color.Black;
+             text.Controls.Add(j);
+            text.Hide();
+
+            panel1.Controls.Add(text);
+            
            
 
             //
@@ -895,38 +916,47 @@ namespace JOB_IN
         private Label b; 
         private void postJob(object sender, EventArgs e)
         {
-            if (jnametxt.Text == "" || roundedTextBox2.Text == "" || roundedTextBox3.Text == "" || catcb.Text == ""||payetxt.Text=="")
+            try
             {
-
-                MessageBox.Show("Please Enter All Spaces Provided");
-
-            }
-            if(deadl.Value <= DateTime.Now)
-            {
-                MessageBox.Show("You have entered Wrong Date.Please enter valid date ", "Deadline Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                Job job = new Job();
-                job.name = jnametxt.Text;
-                job.description = roundedTextBox2.Text;
-                job.requirement = roundedTextBox3.Text;
-                job.category = catcb.Text;
-                job.capacity = (int)numericUpDown1.Value;
-                job.oEmail = org.email;
-                job.Deadline = deadl.Value;
-                job.Explevel = (int)excomp.Value;
-                job.payestimate = int.Parse(payetxt.Text);
-                bool success = Db.insertJob(job);
-                if (success)
+                if (jnametxt.Text == "" || roundedTextBox2.Text == "" || roundedTextBox3.Text == "" || catcb.Text == "" || payetxt.Text == "")
                 {
-                    MessageBox.Show("Job posted successfully");
 
+                    MessageBox.Show("Please Enter All Spaces Provided");
+
+                }
+                if (deadl.Value <= DateTime.Now)
+                {
+                    MessageBox.Show("You have entered Wrong Date.Please enter valid date ", "Deadline Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Job not posted successfully");
+                    Job job = new Job();
+                    job.name = jnametxt.Text;
+                    job.description = roundedTextBox2.Text;
+                    job.requirement = roundedTextBox3.Text;
+                    job.category = catcb.Text;
+                    job.capacity = (int)numericUpDown1.Value;
+                    job.oEmail = org.email;
+                    job.Deadline = deadl.Value;
+                    job.Explevel = (int)excomp.Value;
+                    job.payestimate = int.Parse(payetxt.Text);
+                    bool success = Db.insertJob(job);
+                    if (success)
+                    {
+                        MessageBox.Show("Job posted successfully", "JOB POSTING SUCCESS STATUS", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Job not posted successfully","JOB POSTING SUCCESS STATUS",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    }
                 }
+            }catch(FormatException a)
+            {
+                MessageBox.Show(a.Message,"Exception error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }catch(SqlException a)
+            {
+                MessageBox.Show(a.Message, "Exception error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -959,7 +989,7 @@ namespace JOB_IN
         private NumericUpDown excomp;
         private NumericUpDown numericUpDown1;
         private Customb postb;
-        private borderedPanels historypanel;
+        private borderedscrollPanels historypanel;
         private borderedPanels profilepanel;
         private PictureBox orgicon;
         private Label namelbl;
@@ -983,7 +1013,7 @@ namespace JOB_IN
         private Customb myjobs;
         private Customb ojobs;
         private FlowLayoutPanel sminp;
-        private LinkLabel smlink;
+        private Label smlink;
 
         // edit panel
         private borderedPanels editpan;
@@ -1006,6 +1036,7 @@ namespace JOB_IN
 
         private Label payelbl;
         private TextBox payetxt;
+        private borderedPanels text;
         
 
 
@@ -1016,7 +1047,7 @@ namespace JOB_IN
         {
             ArrayList arr = Db.fetchOrgJobs(org.email);
             ArrayList arr2= Db.fetchOrghisJobs(org.email);
-            
+            ArrayList arr3 = new ArrayList();
             if (arr.Count == 0) {
                 Label lbl = new Label();
                 lbl.Text = "               No one Job has been posted       ";
@@ -1046,6 +1077,9 @@ namespace JOB_IN
                     {
                         f.jobpanel.Controls.Add(j);
                         j.Showbutton.Click += (s, e) => applicants_list(s, e, i, f);
+                    }else if (i.Deadline <= DateTime.Now)
+                    {
+                        arr3.Add(i);
                     }
                     
                 }
@@ -1071,22 +1105,16 @@ namespace JOB_IN
                 f.historypanel.BackColor = Color.FromArgb(255, 135, 206, 235);
                 f.historypanel.Controls.Add(panel);
             }
-            else
+            else if (arr2.Count > 1)
             {
                 
-                foreach (Job i in arr2)
-                {   orgJobs j = new orgJobs(i);
-                    if (i.Deadline <= DateTime.Now)
-                    {
-
-                        j.Size = new Size(1430, 350);
-                        f.historypanel.Controls.Add(j);
-
-                        j.Anchor = AnchorStyles.None;
+                foreach (Job n in arr2)
+                {   
+                    orgJobs k = new orgJobs(n);
+                        f.historypanel.Controls.Add(k);
+                        k.Anchor = AnchorStyles.None;
                         f.historypanel.BackColor = Color.FromArgb(255, 135, 206, 235);
-
-                        j.Showbutton.Click += (s, e) => applicants_list2(s, e, i, f);
-                    }
+                        k.Showbutton.Click += (s, e) => applicants_list2(s, e, n, f);
                 }
             }
         } 
@@ -1150,7 +1178,9 @@ namespace JOB_IN
             scroll.Location = new Point(150, 105);
             Controls.Add(scroll);
             scroll.BringToFront();
-            
+            text.Show();
+            text.BringToFront();
+
         }
        
         
@@ -1216,6 +1246,10 @@ namespace JOB_IN
             scroll.Location = new Point(150, 105);
             f.Controls.Add(scroll);
             scroll.BringToFront();
+            text.Show();
+            text.BringToFront();
+            
+
         }
 
         private void showcertificate(object sender, EventArgs e, byte[]a)
@@ -1235,6 +1269,8 @@ namespace JOB_IN
         private void close_the_scroll(object sender, EventArgs e,borderedscrollPanels s)
         {
            s.Hide();
+            text.Hide();
+            
          
             
         }
@@ -1245,15 +1281,22 @@ namespace JOB_IN
         }
 
         private void rejected(object sender, EventArgs e,int jid,string email)
-        {
-            bool success = Db.Rejected(jid, email);
-            if (success)
+        {    DialogResult res = MessageBox.Show("Are you sure?","Confirmation",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
             {
-                MessageBox.Show("You have rejected this client","Success message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                bool success = Db.Rejected(jid, email);
+                if (success)
+                {
+                    MessageBox.Show("You have rejected this client", "Success message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("You have not rejected this client", "Erros message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("You have not rejected this client","Erros message",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("You have not changed the acceptance status of client", "No change message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
