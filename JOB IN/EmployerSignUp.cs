@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BCrypt.Net;
 
 namespace JOB_IN
 {
@@ -201,7 +202,8 @@ namespace JOB_IN
                         com.Parameters.AddWithValue("@phone", account.orgPhone);
                         com.Parameters.AddWithValue("@address", account.orgAddress);
                         com.Parameters.AddWithValue("@email", account.orgEmail);
-                        com.Parameters.AddWithValue("@password", account.orgPassword);
+                        string hashed = BCrypt.Net.BCrypt.HashPassword(account.orgPassword);
+                        com.Parameters.AddWithValue("@password", hashed);
                         com.Parameters.AddWithValue("@description", account.orgDescription);
                         com.Parameters.AddWithValue("@mediaLink", account.orgMediaLink);
 
@@ -248,7 +250,8 @@ namespace JOB_IN
                         com.Parameters.AddWithValue("@phone", account.perPhone);
                         com.Parameters.AddWithValue("@address", account.perAddress);
                         com.Parameters.AddWithValue("@email", account.perEmail);
-                        com.Parameters.AddWithValue("@password", account.perPassword);
+                        string hash = BCrypt.Net.BCrypt.HashPassword(account.perPassword);
+                        com.Parameters.AddWithValue("@password", hash);
                         com.Parameters.AddWithValue("@description", account.perDescription);
                         com.Parameters.AddWithValue("@mediaLink", account.perMediaLink);
 

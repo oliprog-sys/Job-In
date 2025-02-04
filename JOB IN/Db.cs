@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using System.Data.SqlClient;
+//using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Xml.Linq;
 using System.Windows.Forms.VisualStyles;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using BCrypt.Net;
 namespace JOB_IN
 {
     public class Db
@@ -54,7 +56,8 @@ namespace JOB_IN
                 command.CommandType = CommandType.Text;
                 command.CommandText = "select count (*) from Applicant where AEmail=@1 and Password=@2;";
                 command.Parameters.AddWithValue("@1", email);
-                command.Parameters.AddWithValue("@2", password);
+                string hashed = BCrypt.Net.BCrypt.HashPassword(password);
+                command.Parameters.AddWithValue("@2", hashed);
 
                 //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
                 command.Connection = conn;
@@ -154,7 +157,8 @@ namespace JOB_IN
                 command.CommandType = CommandType.Text;
                 command.CommandText = "select count (*) from Organization where OEmail=@1 and Password=@2;";
                 command.Parameters.AddWithValue("@1", email);
-                command.Parameters.AddWithValue("@2", password);
+                string hashed = BCrypt.Net.BCrypt.HashPassword(password);
+                command.Parameters.AddWithValue("@2", hashed);
 
                 //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
                 command.Connection = conn;
