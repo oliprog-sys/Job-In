@@ -537,8 +537,12 @@ namespace JOB_IN.RJControls
 
 
         }
-
-
+        public static int Y = 0;
+        public static int recalculateY()
+        {
+            Y += 350;
+            return Y;
+        }
 
 
     }
@@ -957,6 +961,7 @@ namespace JOB_IN.RJControls
         public Label experience;
         public Label skill_desc;
         public Label work_Status;
+        public Label phonenum;
         public Customb cv;
         public Customb accept;
         public Customb reject;
@@ -996,21 +1001,32 @@ namespace JOB_IN.RJControls
             experience.Text = "Experience: " + app.experience + " years";
             experience.Size = new Size(500, 35);
             //experience.Anchor = AnchorStyles.None;
-            experience.Font = Custom.font(16);
-            experience.Location = new Point(900, 150);
+            experience.Font = Custom.font(14);
+            experience.Location = new Point(900, 100);
 
             acceptance_status.Text = "Acceptance status: " ;
             acceptance_status.Size = new Size(500, 35);
             //experience.Anchor = AnchorStyles.None;
             acceptance_status.Font = Custom.font(16);
-            acceptance_status.Location = new Point(900, 200);
+            acceptance_status.Location = new Point(900, 300);
+
+            
+            phonenum = new Label();
+            phonenum.Text = "Phone No.: "+app.PhoneNum;
+            phonenum.Size = new Size(500, 35);
+            //experience.Anchor = AnchorStyles.None;
+            phonenum.Font = Custom.font(14);
+            phonenum.Location = new Point(900, 150);
+
+
+
 
 
 
             work_Status.Text = "Status: " + app.work_status;
             work_Status.Size = new Size(500, 35);
             // work_Status.Anchor = AnchorStyles.None;
-            work_Status.Font = Custom.font(16);
+            work_Status.Font = Custom.font(14);
             work_Status.Location = new Point(900, 50);
 
 
@@ -1032,6 +1048,7 @@ namespace JOB_IN.RJControls
             this.Controls.Add(skill_desc);
             this.Controls.Add(work_Status);
             this.Controls.Add(experience);
+            this.Controls.Add(phonenum);
             this.Controls.Add(acceptance_status);
             
             // this.Controls.Add(close);
