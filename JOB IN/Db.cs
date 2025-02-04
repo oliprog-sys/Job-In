@@ -63,6 +63,10 @@ namespace JOB_IN
                 //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
                 command.Connection = conn;
                 r = command.ExecuteScalar();
+                if (r == null)
+                {
+                    return false;
+                }
                 string p = r.ToString();
                 c = BCrypt.Net.BCrypt.Verify(password, p);
 
