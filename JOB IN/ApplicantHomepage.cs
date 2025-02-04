@@ -8,10 +8,12 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using JOB_IN.RJControls;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace JOB_IN
 {
     
@@ -23,13 +25,22 @@ namespace JOB_IN
         private Label companyname1;
         private Panel panel1;
 
-        public TextBox edit_name;
+        public TextBox edit_name_text;
 
-        public TextBox edit_phone;
+        public TextBox edit_phone_text;
+        public ComboBox edit_category_text;
+        public TextBox edit_bio_text;
+        public NumericUpDown edit_exp_text;
+        TextBox edit_certificate_text;
+        TextBox edit_cv_text;
+        public string edit_cv_path;
+        public string edit_certificate_path;
+        RadioButton active, notworking;
 
-        public TextBox edit_exp;
+        topButtons edit_save;
+        topButtons edit_close;
 
-        public TextBox edit_bio;
+
 
         public ApplicantHomepage(applicants ap)
         {
@@ -224,6 +235,196 @@ namespace JOB_IN
             editpanel.Location = new Point(-700, -320);
             editpanel.BorderStyle = BorderStyle.None;
             
+            Label edit_label = new Label();
+            Label edit_name = new Label();
+            Label edit_phone = new Label();
+            Label edit_exp = new Label();
+            Label edit_bio = new Label();
+            Label edit_category = new Label();
+            Label edit_cv = new Label();
+            Label edit_certificate = new Label();
+            topButtons edit_cv_button = new topButtons(Color.AliceBlue, Color.Coral);
+            topButtons edit_certificate_button = new topButtons(Color.AliceBlue, Color.Coral);
+            Label edit_workStatus = new Label();
+
+            edit_name_text = new TextBox();
+            edit_phone_text = new TextBox();
+            edit_bio_text = new TextBox();
+            edit_exp_text = new NumericUpDown();
+            edit_category_text = new ComboBox();
+            edit_certificate_text = new TextBox();
+            edit_cv_text = new TextBox();
+            active = new RadioButton();
+            notworking = new RadioButton();
+            edit_save = new topButtons(Color.Yellow, Color.Black);
+            edit_close = new topButtons(Color.Red, Color.Black);
+
+            edit_label.Text = "Edit";
+            edit_label.ForeColor = Color.White;
+            edit_label.Anchor = AnchorStyles.None;
+            edit_label.Size = new Size(300, 50);
+            edit_label.Font = Custom.font(25);
+            edit_label.Location = new Point(650, 80);
+
+            edit_name.Text = "Name: ";
+            edit_name.Anchor = AnchorStyles.None;
+            edit_name.Size = new Size(100, 50);
+            edit_name.Font = Custom.font(16);
+            edit_name.Location = new Point(50, 160);
+
+           
+            edit_name_text.Anchor = AnchorStyles.None;
+            edit_name_text.Size = new Size(300, 50);
+            edit_name_text.Font = Custom.font(12);
+            edit_name_text.Location = new Point(180, 160);
+
+            edit_phone.Text = "Phone: ";
+            edit_phone.Anchor = AnchorStyles.None;
+            edit_phone.Size = new Size(100, 50);
+            edit_phone.Font = Custom.font(16);
+            edit_phone.Location = new Point(50, 230);
+            edit_phone_text.Leave += phone_check;
+
+            edit_phone_text.Anchor = AnchorStyles.None;
+            edit_phone_text.Size = new Size(300, 50);
+            edit_phone_text.Font = Custom.font(12);
+            edit_phone_text.Location = new Point(180, 230);
+
+            edit_exp.Text = "Exp: ";
+            edit_exp.Anchor = AnchorStyles.None;
+            edit_exp.Size = new Size(100, 50);
+            edit_exp.Font = Custom.font(16);
+            edit_exp.Location = new Point(50, 300);
+
+            edit_exp_text.Anchor = AnchorStyles.None;
+            edit_exp_text.Size = new Size(300, 50);
+            edit_exp_text.Font = Custom.font(12);
+            edit_exp_text.Location = new Point(180, 300);
+
+            edit_bio.Text = "Bio: ";
+            edit_bio.Anchor = AnchorStyles.None;
+            edit_bio.Size = new Size(100, 50);
+            edit_bio.Font = Custom.font(16);
+            edit_bio.Location = new Point(50, 380);
+
+            edit_category.Text = "Category: ";
+            edit_category.Anchor = AnchorStyles.None;
+            edit_category.Size = new Size(200, 50);
+            edit_category.Font = Custom.font(16);
+            edit_category.Location = new Point(760, 160);
+
+            edit_category_text.DataSource = Custom.job_category;
+            edit_category_text.Anchor = AnchorStyles.None;
+            edit_category_text.Size = new Size(400, 50);
+            edit_category_text.Font = Custom.font(12);
+            edit_category_text.Location = new Point(980, 160);
+
+            edit_cv.Text = "CV: ";
+            edit_cv.Anchor = AnchorStyles.None;
+            edit_cv.Size = new Size(200, 50);
+            edit_cv.Font = Custom.font(16);
+            edit_cv.Location = new Point(760, 300);
+
+        
+            edit_cv_text.Anchor = AnchorStyles.None;
+            edit_cv_text.Size = new Size(300, 50);
+            edit_cv_text.Font = Custom.font(12);
+            edit_cv_text.Location = new Point(980, 300);
+            edit_cv_text.Enabled = false;
+
+            edit_cv_button.Text = "New file";
+            edit_cv_button.Anchor = AnchorStyles.None;
+            edit_cv_button.Size = new Size(100, 40);
+            edit_cv_button.Font = Custom.font(16);
+            edit_cv_button.Location = new Point(1300, 300);
+            edit_cv_button.Click += cv_clicked;
+
+            edit_certificate.Text = "Certificate: ";
+            edit_certificate.Anchor = AnchorStyles.None;
+            edit_certificate.Size = new Size(210, 50);
+            edit_certificate.Font = Custom.font(16);
+            edit_certificate.Location = new Point(760, 340);
+
+            edit_certificate_text.Anchor = AnchorStyles.None;
+            edit_certificate_text.Size = new Size(300, 50);
+            edit_certificate_text.Font = Custom.font(12);
+            edit_certificate_text.Location = new Point(980, 340);
+            edit_certificate_text.Enabled =false;
+
+            edit_certificate_button.Text = "New file";
+            edit_certificate_button.Anchor = AnchorStyles.None;
+            edit_certificate_button.Size = new Size(100, 40);
+            edit_certificate_button.Font = Custom.font(16);
+            edit_certificate_button.Location = new Point(1300, 340);
+            edit_certificate_button.Click += certificate_clicked;
+
+            edit_workStatus.Text = "Work status: ";
+            edit_workStatus.Anchor = AnchorStyles.None;
+            edit_workStatus.Size = new Size(210, 50);
+            edit_workStatus.Font = Custom.font(16);
+            edit_workStatus.Location = new Point(760, 440);
+            
+            active.Text = "Active";
+            active.Anchor = AnchorStyles.None;
+            active.Size = new Size(210, 50);
+            active.Font = Custom.font(16);
+            active.Location = new Point(980, 440);
+
+
+            notworking.Text = "Not working";
+            notworking.Anchor = AnchorStyles.None;
+            notworking.Size = new Size(300, 50);
+            notworking.Font = Custom.font(16);
+            notworking.Location = new Point(1200, 440);
+          
+          
+
+            edit_bio_text.PlaceholderText = applicant.skill_description;
+            edit_bio_text.Anchor = AnchorStyles.None;
+            edit_bio_text.Multiline = true;
+            edit_bio_text.WordWrap = true;
+            edit_bio_text.Size = new Size(500, 200);
+            edit_bio_text.Font = Custom.font(12);
+            edit_bio_text.Location = new Point(180, 380);
+
+
+            edit_save.Text = "Save";
+            edit_save.Anchor = AnchorStyles.None;
+            edit_save.Size = new Size(120, 40);
+            edit_save.Font = Custom.font(16);
+            edit_save.Location = new Point(1300, 640);
+            edit_save.Click += edit_save_click;
+
+            edit_close.Text = "Close";
+            edit_close.Anchor = AnchorStyles.None;
+            edit_close.Size = new Size(120, 40);
+            edit_close.Font = Custom.font(16);
+            edit_close.Location = new Point(1150, 640);
+            edit_close.Click += edit_close_click;
+
+
+            editpanel.Controls.Add(edit_label);
+            editpanel.Controls.Add(edit_name);
+            editpanel.Controls.Add(edit_phone);
+            editpanel.Controls.Add(edit_exp);
+            editpanel.Controls.Add(edit_bio);
+            editpanel.Controls.Add(edit_category);
+            editpanel.Controls.Add(edit_cv);
+            editpanel.Controls.Add(edit_certificate);
+            editpanel.Controls.Add(edit_cv_button);
+            editpanel.Controls.Add(edit_certificate_button);
+            editpanel.Controls.Add(edit_workStatus);
+            editpanel.Controls.Add(edit_name_text);
+            editpanel.Controls.Add(edit_phone_text);
+            editpanel.Controls.Add(edit_bio_text);
+            editpanel.Controls.Add(edit_exp_text);
+            editpanel.Controls.Add(edit_category_text);
+            editpanel.Controls.Add(edit_cv_text);
+            editpanel.Controls.Add(edit_certificate_text);
+            editpanel.Controls.Add(active);
+            editpanel.Controls.Add(notworking);
+            editpanel.Controls.Add(edit_save);
+            editpanel.Controls.Add(edit_close);
 
             PictureBox profileImg = new PictureBox();
             Label UserNameL = new Label();
@@ -433,9 +634,135 @@ namespace JOB_IN
 
         }
 
+        private void edit_close_click(object? sender, EventArgs e)
+        {
+
+
+            edit_name_text.Clear();
+            edit_phone_text.Clear();
+            edit_bio_text.Clear();
+            edit_certificate_text.Clear();
+            edit_cv_text.Clear();
+            edit_cv_text.Clear();
+            edit_certificate_path = "";
+            edit_certificate_path ="";
+            editpanel.Hide();
+
+        }
+        private void phone_check(object sender, EventArgs e)
+        {
+            Regex regex = new Regex(@"^[0-9]{10}$");
+            Match match = regex.Match(edit_phone_text.Text);
+
+            if (!match.Success)
+            {
+                MessageBox.Show("Please enter exactly 10 digits.");
+                edit_phone_text.Text = string.Empty;
+                edit_phone_text.Focus();
+            }
+        }
+        private void edit_save_click(object? sender, EventArgs e)
+        {
+
+            byte[] cvFile = { };
+            byte[] certificateFile = { };
+            if (string.IsNullOrEmpty(edit_name_text.Text)) edit_name_text.Text = edit_name_text.PlaceholderText;
+            if (string.IsNullOrEmpty(edit_phone_text.Text)) edit_phone_text.Text = edit_phone_text.PlaceholderText;
+            if (string.IsNullOrEmpty(edit_bio_text.Text)) edit_bio_text.Text = edit_bio_text.PlaceholderText;
+            if (string.IsNullOrEmpty(edit_cv_text.Text))
+            {
+                MessageBox.Show("Please select a Cv file");
+                return;
+            }
+            else
+            {
+                if (checkExtension(edit_cv_path))
+                {
+                    try
+                    {
+                        cvFile = File.ReadAllBytes(edit_cv_path);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error reading file: " + ex.Message);
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid file type. Please upload a PDF file.");
+                    edit_cv_text.Text = "";
+                }
+            }
+            if (string.IsNullOrEmpty(edit_certificate_text.Text))
+            {
+
+                MessageBox.Show("Please select a Certificate file");
+                return;
+            }
+            else
+            {
+                if (checkExtension(edit_certificate_path))
+                {
+                    try
+                    {
+                        certificateFile = File.ReadAllBytes(edit_certificate_path);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error reading file: " + ex.Message);
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid file type. Please upload a PDF file.");
+                    edit_cv_text.Text = "";
+                }
+            }
+
+            string stat;
+            if (active.Checked)
+            {
+                stat = "Active";
+            }
+            else
+            {
+                stat = "notworking";
+            }
+
+            int p = int.Parse(edit_phone_text.Text);
+            edit_phone_text.Text = p.ToString("D10");
+
+            if(Db.update_applicant(applicant.email, edit_name_text.Text,edit_phone_text.Text,(int) edit_exp_text.Value, edit_bio_text.Text, edit_category_text.Text, cvFile, certificateFile, stat))
+            {
+                applicant = Db.fetchApplicantinfo(applicant.email);
+                refresh();
+            }
+        }
+        
+        public void refresh()
+        {
+            MessageBox.Show("Restarting now");
+            Application.Restart();
+        }
+
         private void edit_click(object? sender, EventArgs e)
         {
-           editpanel.Show();
+             editpanel.Show();
+            edit_name_text.PlaceholderText = applicant.name;
+            edit_phone_text.PlaceholderText = applicant.PhoneNum;
+            edit_bio_text.PlaceholderText = applicant.skill_description;
+            edit_exp_text.Value = applicant.experience;
+            edit_category_text.SelectedIndex = (int)Custom.job_category.IndexOf(applicant.category);
+            if (applicant.work_status == "Active")
+            {
+                active.Checked = true;
+            }
+            else
+            {
+                notworking.Checked = true;
+            }
             editpanel.BringToFront();
         }
 
@@ -828,6 +1155,54 @@ namespace JOB_IN
             File.WriteAllBytes(tempfilepath, a);
             Process.Start(new ProcessStartInfo { FileName = tempfilepath, UseShellExecute = true });
         }
+        private void certificate_clicked(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Select a File";
+                openFileDialog.Filter = "All Files (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+
+                    MessageBox.Show("Selected file: " + filePath);
+                    edit_certificate_path= filePath;
+                    edit_certificate_text.Text = edit_certificate_path;
+
+                }
+            }
+        }
+        private void cv_clicked(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Select a File";
+                openFileDialog.Filter = "All Files (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+
+                    MessageBox.Show("Selected file: " + filePath);
+                    edit_cv_path = filePath;
+                    edit_cv_text.Text = edit_cv_path;
+
+                }
+            }
+        }
+        private bool checkExtension(string fileName)
+        {
+            string fileExtension = Path.GetExtension(fileName).ToLower();
+            string[] allowedExtensions = { ".pdf" };
+
+            if (!allowedExtensions.Contains(fileExtension))
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 
 

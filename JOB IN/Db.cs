@@ -596,6 +596,47 @@ namespace JOB_IN
             return i;
         }
 
+        public static bool update_applicant(string aemail, string name, string phone_num, int exp, string bio, string category, byte[] cv, byte[] certificate, string status)
+        {
+
+            int i=0;
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.Connection = conn;
+
+                command.CommandText = "update Applicant set Name=@1, Phone_num=@2, Experience=@3, Skill_description=@4, Job_category=@5, CV=@6, AppCertificate=@7, Work_status=@8 where AEmail=@9;";
+                command.Parameters.AddWithValue("@1",  name);
+                command.Parameters.AddWithValue("@2", phone_num);
+                command.Parameters.AddWithValue("@3", exp);
+                command.Parameters.AddWithValue("@4", bio);
+                command.Parameters.AddWithValue("@5", category);
+                command.Parameters.AddWithValue("@6", cv);
+                command.Parameters.AddWithValue("@7", certificate);
+                command.Parameters.AddWithValue("@8", status);
+                command.Parameters.AddWithValue("@9", aemail);
+
+
+
+                i = (int)command.ExecuteNonQuery();
+               
+
+            }
+            if (i != 1)
+            {
+                MessageBox.Show("Error: Information not updated");
+                return false;
+            }
+            else
+            {
+                MessageBox.Show("Information Updated Successfully");
+                return true;
+            }
+
+
+        }
+
 
     }
     public class applicants
