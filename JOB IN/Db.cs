@@ -18,7 +18,7 @@ namespace JOB_IN
     public class Db
     {
         // static string ConnectionString= "Data Source=.;Initial Catalog=Job_in;Integrated Security=True;Trust Server Certificate=True";
-        static string ConnectionString = "Data Source=.;Initial Catalog=Job_in;Integrated Security=True;";
+        static string ConnectionString = "Data Source=.;Initial Catalog=Job_in;Integrated Security=True;TrustServerCertificate=True";
         public static bool InsertApplicant()
         {
             applicants b = new applicants("abebe", "091121", DateTime.Now, "abebe@gmail.com", "abebe11", "abe in the house", "abe likes work", "abe no work", 2, "notworking", null, null);
