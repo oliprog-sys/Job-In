@@ -130,7 +130,7 @@ namespace JOB_IN
             backBtn.BackColor = Color.White;
             backBtn.ForeColor = Color.Black;
             backBtn.FlatStyle = FlatStyle.Flat;
-            backBtn.FlatAppearance.BorderColor = Color.Red;
+            backBtn.FlatAppearance.BorderColor = Color.Blue;
             backBtn.Font = Custom.font(14);
             backBtn.Cursor = Cursors.Hand;
             backBtn.Visible = false;
@@ -294,7 +294,7 @@ namespace JOB_IN
             showPasswordBtn1.Font = Custom.font(14);
             showPasswordBtn1.BackColor = Color.White;
             showPasswordBtn1.FlatStyle = FlatStyle.Flat;
-            showPasswordBtn1.FlatAppearance.BorderColor = Color.White;
+            showPasswordBtn1.FlatAppearance.BorderColor = Color.Blue;
             showPasswordBtn1.Cursor = Cursors.Hand;
             showPasswordBtn1.Click += showPasswordBtn_on_org_clicked;
 
@@ -402,7 +402,7 @@ namespace JOB_IN
             exitBtn1.BackColor = Color.Red;
             exitBtn1.ForeColor = Color.White;
             exitBtn1.FlatStyle = FlatStyle.Flat;
-            exitBtn1.FlatAppearance.BorderColor = Color.FromArgb(238, 164, 127);
+            exitBtn1.FlatAppearance.BorderColor = Color.White;
             exitBtn1.Click += exitBtn1_clicked;
 
 

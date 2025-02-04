@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BCrypt.Net;
 
 namespace JOB_IN
 {
@@ -33,6 +34,16 @@ namespace JOB_IN
 
         private void next_btn_click(object sender, EventArgs e)
         {
+
+            int length = orgphoneNumField.Text.Length;
+
+            if (length != 10 && length != 0)
+            {
+                MessageBox.Show("Please enter 10 digit phone number");
+                return;
+            }
+
+
             organizationPanel.Hide();
             backBtn.Visible = true;
             signUpAsPanel.BackColor = Color.FromArgb(0, 83, 156);
@@ -97,6 +108,14 @@ namespace JOB_IN
         // personal panel
         private void personal_next_btn_click(Object sender, EventArgs e)
         {
+            int length = perphoneNumField.Text.Length;
+
+            if (length != 10 && length != 0)
+            {
+                MessageBox.Show("Please enter 10 digit phone number");
+                return;
+            }
+
             personalPanel.Hide();
             backBtn.Visible = true;
             signUpAsPanel.BackColor = Color.FromArgb(0, 83, 156);
@@ -201,7 +220,8 @@ namespace JOB_IN
                         com.Parameters.AddWithValue("@phone", account.orgPhone);
                         com.Parameters.AddWithValue("@address", account.orgAddress);
                         com.Parameters.AddWithValue("@email", account.orgEmail);
-                        com.Parameters.AddWithValue("@password", account.orgPassword);
+                        string hashed = BCrypt.Net.BCrypt.HashPassword(account.orgPassword);
+                        com.Parameters.AddWithValue("@password", hashed);
                         com.Parameters.AddWithValue("@description", account.orgDescription);
                         com.Parameters.AddWithValue("@mediaLink", account.orgMediaLink);
 
@@ -248,7 +268,8 @@ namespace JOB_IN
                         com.Parameters.AddWithValue("@phone", account.perPhone);
                         com.Parameters.AddWithValue("@address", account.perAddress);
                         com.Parameters.AddWithValue("@email", account.perEmail);
-                        com.Parameters.AddWithValue("@password", account.perPassword);
+                        string hash = BCrypt.Net.BCrypt.HashPassword(account.perPassword);
+                        com.Parameters.AddWithValue("@password", hash);
                         com.Parameters.AddWithValue("@description", account.perDescription);
                         com.Parameters.AddWithValue("@mediaLink", account.perMediaLink);
 
