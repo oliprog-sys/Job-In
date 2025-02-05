@@ -1103,9 +1103,10 @@ namespace JOB_IN
                 //panel.Dock = DockStyle.Fill;
 
                 f.historypanel.BackColor = Color.FromArgb(255, 135, 206, 235);
+                
                 f.historypanel.Controls.Add(panel);
             }
-            else if (arr2.Count > 1)
+            else 
             {
                 
                 foreach (Job n in arr2)

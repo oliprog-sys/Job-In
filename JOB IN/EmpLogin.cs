@@ -63,8 +63,11 @@ namespace JOB_IN
             jobpanel.Hide();
             profilepanel.Hide();
             postpanel.Hide();
-            
-            
+
+
+            historypanel.Controls.Clear();
+            this.joblist(this);
+
             //this.joblist(this);
         }
 

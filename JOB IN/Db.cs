@@ -254,7 +254,7 @@ namespace JOB_IN
                 conn.Open();
                 SqlCommand command = conn.CreateCommand();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "select * from Jobs where OEmail=@1;";
+                command.CommandText = "select * from Jobs where OEmail=@1 and Deadline > GETDATE(); ;";
                 command.Parameters.AddWithValue("@1", email);
                 SqlDataReader a = command.ExecuteReader();
                 while (a.Read())
