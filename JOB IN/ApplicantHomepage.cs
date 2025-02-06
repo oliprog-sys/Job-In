@@ -1073,7 +1073,7 @@ namespace JOB_IN
         {
             if(Db.apply(id, applicant.email))
             {
-                MessageBox.Show("Applies Successfully");
+                MessageBox.Show("Applied Successfully");
             }
         }
 

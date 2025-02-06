@@ -651,6 +651,28 @@ namespace JOB_IN
 
         }
 
+        public static int capacity(int jobid)
+        {
+            int s;
+            string stat = "";
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = conn.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select Count(*) from ApplicantJob where Job_id=@2;";
+
+                command.Parameters.AddWithValue("@2", jobid);
+
+                //      command.CommandText = String.Format(commandText, b.name, b.PhoneNum, b.dob, b.email, b.password, b.description, b.skill_description, b.job_description, b.experience, b.work_status);
+                command.Connection = conn;
+                s = (int) command.ExecuteScalar();
+                
+
+            }
+            return s;
+        }
+
 
     }
     public class applicants

@@ -622,6 +622,8 @@ namespace JOB_IN.RJControls
         private Label TotalApplicant;
         private Label PayEstimate;
         private Label Employer;
+        private Label Experience;
+        private Label Capacity;
         public topButtons Apply;
         private topButtons close;
 
@@ -640,6 +642,8 @@ namespace JOB_IN.RJControls
             TotalApplicant = new Label();
             PayEstimate = new Label();
             Employer = new Label();
+            Experience = new Label();
+            Capacity = new Label();
             Apply = new topButtons(0);
             close = new topButtons(0);
 
@@ -691,6 +695,18 @@ namespace JOB_IN.RJControls
             Deadline.Text = "Deadline: \n" + j.Deadline;
             Deadline.Location = new Point(450, -150);
 
+            Experience.Anchor = AnchorStyles.None;
+            Experience.Font = Custom.font(14);
+            Experience.Size = new Size(500, 50);
+            Experience.Text = "Min Experience : " + j.Explevel;
+            Experience.Location = new Point(450, -200);
+
+            Capacity.Anchor = AnchorStyles.None;
+            Capacity.Font = Custom.font(14);
+            Capacity.Size = new Size(400, 100);
+            Capacity.Text = "Applicant capacity: " + Db.capacity(jid) + "/" + j.capacity;
+            Capacity.Location = new Point(450, 0);
+
             Apply.Anchor = AnchorStyles.None;
             Apply.Font = Custom.font(17);
             Apply.Text = "Apply";
@@ -712,6 +728,8 @@ namespace JOB_IN.RJControls
             this.Controls.Add(Deadline);
             this.Controls.Add(TotalApplicant);
             this.Controls.Add(PayEstimate);
+            this.Controls.Add(Experience);
+            this.Controls.Add(Capacity);
             this.Controls.Add(Apply);
             this.Controls.Add(close);
             this.Size = new Size(1560, 840);
